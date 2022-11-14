@@ -1,7 +1,11 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import "./index.scss"
-import App from "./App"
+import "./styles/index.scss"
+import App from "./containers/App"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
-root.render(<App />)
+root.render(
+  <React.Fragment>
+    <App />
+  </React.Fragment>,
+)
