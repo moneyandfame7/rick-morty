@@ -1,0 +1,29 @@
+.header {
+  width: 100%;
+  height: 70px;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid black;
+  background-color: #1a2234;
+  z-index: 3;
+  opacity: 1;
+  .navigation {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    .link {
+      color: white;
+      text-transform: uppercase;
+      font-size: 24px;
+      font-weight: 600;
+      text-decoration: none;
+      &:hover {
+        color: #c27a2f;
+        transition: 0.3s ease all;
+      }
+    }
+  }
+}

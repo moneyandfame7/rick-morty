@@ -4,20 +4,20 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(10, 220px);
+  grid-template-rows: repeat(10, 480px);
   grid-column-gap: 5em;
   grid-row-gap: 30px;
   padding: 1.5rem;
 
   @media only screen and (min-width: 1920.98px) {
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 220px);
+    grid-template-rows: repeat(5, 530px);
     grid-column-gap: 50px;
     max-width: 90%;
   }
   @include md {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(20, 220px);
+    grid-template-rows: repeat(20, 480px);
     grid-column-gap: 0px;
     width: 100%;
   }

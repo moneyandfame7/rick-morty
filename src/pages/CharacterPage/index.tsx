@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { getApiResource } from "../../utils/fetch"
 import { API_CHARACTER, API_EPISODE, API_LOCATION } from "../../constants/api"
 import { Character } from "../../interfaces/character"
 import styles from "./CharacterPage.module.scss"
 import cn from "classnames"
+import CharacterCard from "../../components/Card"
+
 const CharacterPage: React.FC = () => {
   const [characters, setCharacters] = useState<Character[]>()
 
@@ -25,21 +27,13 @@ const CharacterPage: React.FC = () => {
     <>
       <div className={styles.container}>
         {characters?.map(character => (
-          <div key={character.id} className={styles.characterCard}>
-            <div className={styles.section}>
-              <h1 className={styles.name}>{character.name}</h1>
-              <span className={styles.status}>
-                <span
-                  className={
-                    character.status === "Dead"
-                      ? styles.redMarker
-                      : styles.greenMarker
-                  }
-                ></span>
-                {character.status} - {character.species}
-              </span>
-            </div>
-          </div>
+          <CharacterCard
+            key={character.id}
+            name={character.name}
+            buttonTitle='Share'
+            info={character.status + " - " + character.gender}
+            imageUrl={character.image}
+          />
         ))}
       </div>
     </>
