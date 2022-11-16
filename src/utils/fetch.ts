@@ -1,4 +1,4 @@
-import { Character } from "../interfaces/character"
+import { ICharacter } from "../interfaces/character"
 
 interface IApiResponse {
   info: {
@@ -7,7 +7,7 @@ interface IApiResponse {
     pages: number
     prev: null | string
   }
-  results: Array<Character>
+  results: Array<ICharacter>
 }
 
 export const getApiResource = async (
