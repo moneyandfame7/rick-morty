@@ -30,27 +30,33 @@ const CharacterCard: FC<ICharacterCard> = ({
     }
   }
   return (
-    <article className={styles.cardWrapper}>
-      <div
-        style={{ backgroundImage: `url(${imageUrl})` }}
-        className={styles.image}
-      ></div>
-      <div className={styles.info}>
-        <h5 className={styles.name}>{name}</h5>
-        <div className={styles.wrapperAbout}>
-          <span className={setMarker()}></span>
-          <p className={styles.about}>{info}</p>
+    <article className={styles.wrapper}>
+      <div className={styles.imageWrapper}>
+        <img src={imageUrl} alt={name + " image"} />
+      </div>
+
+      <div className={styles.contentWrapper}>
+        <div className={styles.section}>
+          <h5 className={styles.name}>{name}</h5>
+          <div className={styles.wrapperAbout}>
+            <span className={setMarker()}></span>
+            <p className={styles.about}>{info}</p>
+          </div>
         </div>
-        <p className={styles.subtitle}>Last known location:</p>
-        {/*TODO: исправить ссылку*/}
-        <a href={location.url} className={styles.link}>
-          {location.name}
-        </a>
-        <p className={styles.subtitle}>First seen in:</p>
-        {/*TODO: вместо ссылки эпизода выводить его название*/}
-        <a href={episode[0]} className={styles.link}>
-          {episode[0]}
-        </a>
+        <div className={styles.section}>
+          <p className={styles.subtitle}>Last known location:</p>
+          {/*TODO: исправить ссылку*/}
+          <a href={location.url} className={styles.link}>
+            {location.name}
+          </a>
+        </div>
+        <div className={styles.section}>
+          <p className={styles.subtitle}>First seen in:</p>
+          {/*TODO: вместо ссылки эпизода выводить его название*/}
+          <a href={episode[0]} className={styles.link}>
+            {episode[0]}
+          </a>
+        </div>
       </div>
     </article>
   )

@@ -1,30 +1,19 @@
 @import "../../styles/base";
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
+.wrapper {
+  display: flex;
   justify-content: center;
-  grid-template-columns: repeat(3, 370px);
-  grid-template-rows: repeat(7, 750px);
-  grid-column-gap: 1em;
-  grid-row-gap: 30px;
-  padding: 1rem;
-
-  @media only screen and (min-width: 1920.98px) {
-    max-width: 1800px;
-    grid-template-columns: repeat(4, 380px);
-    grid-template-rows: repeat(5, 600px);
-    grid-column-gap: 50px;
-  }
-  @include md {
-    grid-template-columns: repeat(2, 400px);
-    grid-template-rows: repeat(10, 750px);
-    grid-column-gap: 0.5em;
-    grid-row-gap: 0.5em;
-    width: 100%;
-  }
+  align-items: center;
+  padding: 4.5rem 0;
   @include sm {
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(20, 750px);
+    padding: 1.5rem;
+  }
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1920px;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
   }
 }
