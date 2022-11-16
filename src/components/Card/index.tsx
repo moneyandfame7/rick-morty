@@ -4,24 +4,22 @@ import styles from "./Card.module.scss"
 interface ICharacterCard {
   info: string
   name: string
-  buttonTitle: string
   imageUrl: string
+  location: {
+    name: string
+    url: string
+  }
+  episode: string[]
 }
 
 const CharacterCard: FC<ICharacterCard> = ({
   info,
   name,
-  buttonTitle,
   imageUrl,
+  location,
+  episode,
 }) => {
   const setMarker = () => {
-    if (info.includes("Dead")) {
-      return styles.redMarker
-    } else if (info.includes("Alive")) {
-      return styles.greenMarker
-    } else {
-      return styles.grayMarker
-    }
     switch (true) {
       case info.includes("Dead"):
         return styles.redMarker
@@ -43,6 +41,16 @@ const CharacterCard: FC<ICharacterCard> = ({
           <span className={setMarker()}></span>
           <p className={styles.about}>{info}</p>
         </div>
+        <p className={styles.subtitle}>Last known location:</p>
+        {/*TODO: исправить ссылку*/}
+        <a href={location.url} className={styles.link}>
+          {location.name}
+        </a>
+        <p className={styles.subtitle}>First seen in:</p>
+        {/*TODO: вместо ссылки эпизода выводить его название*/}
+        <a href={episode[0]} className={styles.link}>
+          {episode[0]}
+        </a>
       </div>
     </article>
   )

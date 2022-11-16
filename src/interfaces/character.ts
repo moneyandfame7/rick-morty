@@ -1,4 +1,4 @@
-export interface Character {
+export interface ICharacter {
   id: number
   created: string
   episode: Array<string>

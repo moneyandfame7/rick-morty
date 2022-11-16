@@ -1,69 +1,30 @@
 @import "../../styles/base";
 .container {
-  max-width: 1080px;
+  max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(10, 480px);
-  grid-column-gap: 5em;
+  justify-content: center;
+  grid-template-columns: repeat(3, 370px);
+  grid-template-rows: repeat(7, 750px);
+  grid-column-gap: 1em;
   grid-row-gap: 30px;
-  padding: 1.5rem;
+  padding: 1rem;
 
   @media only screen and (min-width: 1920.98px) {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 530px);
+    max-width: 1800px;
+    grid-template-columns: repeat(4, 380px);
+    grid-template-rows: repeat(5, 600px);
     grid-column-gap: 50px;
-    max-width: 90%;
   }
   @include md {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(20, 480px);
-    grid-column-gap: 0px;
+    grid-template-columns: repeat(2, 400px);
+    grid-template-rows: repeat(10, 750px);
+    grid-column-gap: 0.5em;
+    grid-row-gap: 0.5em;
     width: 100%;
   }
-  @include xs {
-    grid-template-rows: repeat(20, 530px);
-  }
-  .characterCard {
-    width: 100%;
-    border: 3px solid black;
-    border-radius: 0.5rem;
-    position: relative;
-    background: #1a2234;
-    color: white;
-
-    .name {
-      font-size: 34px;
-    }
-    .status {
-      font-size: 18px;
-      position: relative;
-      margin-left: 20px;
-
-      .redMarker {
-        display: inline-block;
-        position: absolute;
-        left: -15px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background-color: red;
-        margin-right: 20px;
-      }
-      .greenMarker {
-        display: inline-block;
-        position: absolute;
-        left: -15px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        margin-right: 20px;
-        background-color: green;
-      }
-    }
+  @include sm {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(20, 750px);
   }
 }

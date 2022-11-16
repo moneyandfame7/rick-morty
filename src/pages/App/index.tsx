@@ -1,9 +1,11 @@
-import React from "react"
+import React, { FC } from "react"
 import styles from "./App.module.scss"
 import CharacterPage from "../CharacterPage"
 import Header from "../../layouts/Header"
 
-const App: React.FC = () => {
+const App: FC = () => {
+  //TODO: сделать темную и светлую тему
+  // TODO: сделать компонент карточки так, чтобы можно было использовать в любом месте, не только в рик и морти
   return (
     <>
       <Header />
