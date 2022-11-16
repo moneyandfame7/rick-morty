@@ -19,17 +19,19 @@ const CharacterPage: React.FC = () => {
 
   return (
     <>
-      <div className={styles.container}>
-        {characters?.map(character => (
-          <CharacterCard
-            key={character.id}
-            name={character.name}
-            info={character.status + " - " + character.species}
-            imageUrl={character.image}
-            location={character.location}
-            episode={character.episode}
-          />
-        ))}
+      <div className={styles.wrapper}>
+        <div className={styles.inner}>
+          {characters?.map(character => (
+            <CharacterCard
+              key={character.id}
+              name={character.name}
+              info={character.status + " - " + character.species}
+              imageUrl={character.image}
+              location={character.location}
+              episode={character.episode}
+            />
+          ))}
+        </div>
       </div>
     </>
   )
