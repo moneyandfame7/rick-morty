@@ -1,0 +1,10 @@
+@import "src/styles/base";
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4.5rem 0;
+  @include sm {
+    padding: 1.5rem;
+  }
+}

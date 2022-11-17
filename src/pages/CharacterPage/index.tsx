@@ -4,6 +4,8 @@ import { API_CHARACTER } from "../../constants/api"
 import { ICharacter } from "../../interfaces"
 import styles from "./CharacterPage.module.scss"
 import CharacterCard from "../../components/Card"
+import Wrapper from "../../layouts/Wrapper"
+import { CircularProgress } from "@mui/material"
 
 const CharacterPage: React.FC = () => {
   const [characters, setCharacters] = useState<ICharacter[]>()
@@ -18,10 +20,12 @@ const CharacterPage: React.FC = () => {
 
   console.log(characters)
   return (
-    <>
-      <div className={styles.wrapper}>
-        <div className={styles.inner}>
-          {characters?.map(character => (
+    <Wrapper>
+      <section className={styles.container}>
+        {!characters ? (
+          <CircularProgress />
+        ) : (
+          characters.map(character => (
             <CharacterCard
               key={character.id}
               name={character.name}
@@ -30,10 +34,10 @@ const CharacterPage: React.FC = () => {
               location={character.location}
               episodeUrl={character.episode[0]}
             />
-          ))}
-        </div>
-      </div>
-    </>
+          ))
+        )}
+      </section>
+    </Wrapper>
   )
 }
 

@@ -1,19 +1,11 @@
 @import "../../styles/base";
-.wrapper {
+
+.container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 4.5rem 0;
-  @include sm {
-    padding: 1.5rem;
-  }
-  .inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 1920px;
-    flex-wrap: wrap;
-    -webkit-box-align: center;
-    -webkit-box-pack: center;
-  }
+  justify-content: center;
+  max-width: 1920px;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
 }
