@@ -1,10 +1,10 @@
-import React, { FC } from "react"
-import styles from "./Header.module.scss"
+import React, { FC } from "react";
+import styles from "./Header.module.scss";
 
 interface ILinkConfig {
-  url: string
-  name: string
-  id: number
+  url: string;
+  name: string;
+  id: number;
 }
 
 const LINKS_CONFIG: ILinkConfig[] = [
@@ -23,7 +23,7 @@ const LINKS_CONFIG: ILinkConfig[] = [
     name: "Location",
     id: 2,
   },
-]
+];
 
 const Header: FC = () => {
   return (
@@ -36,7 +36,7 @@ const Header: FC = () => {
         ))}
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
