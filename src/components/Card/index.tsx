@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from "react"
 import styles from "./Card.module.scss"
 import { IEpisode } from "../../interfaces"
 import { getApiResource } from "../../utils/fetch"
+import { Skeleton } from "@mui/material"
 interface ICharacterCard {
   info: string
   name: string
@@ -32,6 +33,7 @@ const CharacterCard: FC<ICharacterCard> = ({
         setEpisode(episodeResponse)
       }
     })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const setMarker = () => {
@@ -67,7 +69,7 @@ const CharacterCard: FC<ICharacterCard> = ({
         <div className={styles.section}>
           <p className={styles.subtitle}>First seen in:</p>
           {!episode ? (
-            <span>Loading...</span>
+            <Skeleton animation='wave' />
           ) : (
             <a href={episodeUrl} className={styles.link}>
               {episode.name}
