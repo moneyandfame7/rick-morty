@@ -1,6 +1,7 @@
 @import "src/styles/base";
 .wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 4.5rem 0;
