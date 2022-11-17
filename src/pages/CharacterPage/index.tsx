@@ -1,22 +1,22 @@
-import React, { useContext, useEffect, useState } from "react"
-import { getApiResource } from "../../utils/fetch"
-import { API_CHARACTER, API_EPISODE, API_LOCATION } from "../../constants/api"
-import { ICharacter } from "../../interfaces/character"
+import React, { useEffect, useState } from "react"
+import { getApiResource, ICharactersResponse } from "../../utils/fetch"
+import { API_CHARACTER } from "../../constants/api"
+import { ICharacter } from "../../interfaces"
 import styles from "./CharacterPage.module.scss"
 import CharacterCard from "../../components/Card"
 
 const CharacterPage: React.FC = () => {
   const [characters, setCharacters] = useState<ICharacter[]>()
-
   useEffect(() => {
     ;(async () => {
-      const res = await getApiResource(API_CHARACTER)
+      const res = await getApiResource<ICharactersResponse>(API_CHARACTER)
       if (res) {
         setCharacters(res.results)
       }
     })()
   }, [])
 
+  console.log(characters)
   return (
     <>
       <div className={styles.wrapper}>
@@ -28,7 +28,7 @@ const CharacterPage: React.FC = () => {
               info={character.status + " - " + character.species}
               imageUrl={character.image}
               location={character.location}
-              episode={character.episode}
+              episodeUrl={character.episode[0]}
             />
           ))}
         </div>

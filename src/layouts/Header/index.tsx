@@ -25,7 +25,7 @@ const LINKS_CONFIG: ILinkConfig[] = [
   },
 ]
 
-const Header: FC<{ userName?: string }> = ({ userName }) => {
+const Header: FC = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.navigation}>

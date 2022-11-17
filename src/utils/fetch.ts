@@ -1,6 +1,6 @@
-import { ICharacter } from "../interfaces/character"
+import { ICharacter, IEpisode } from "../interfaces"
 
-interface IApiResponse {
+export interface ICharactersResponse {
   info: {
     count: number
     next: string
@@ -10,9 +10,20 @@ interface IApiResponse {
   results: Array<ICharacter>
 }
 
-export const getApiResource = async (
+export interface IEpisodesResponse {
+  info: {
+    count: number
+    next: string
+    pages: number
+    prev: null | string
+  }
+  results: Array<IEpisode>
+}
+
+// for Episodes, Locations and Characters
+export const getApiResource = async <IResultEntity>(
   url: string,
-): Promise<IApiResponse | null> => {
+): Promise<IResultEntity | null> => {
   try {
     const res = await fetch(url)
 

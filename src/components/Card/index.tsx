@@ -1,6 +1,8 @@
 import * as React from "react"
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 import styles from "./Card.module.scss"
+import { IEpisode } from "../../interfaces"
+import { getApiResource } from "../../utils/fetch"
 interface ICharacterCard {
   info: string
   name: string
@@ -9,7 +11,8 @@ interface ICharacterCard {
     name: string
     url: string
   }
-  episode: string[]
+  episodeUrl: string
+  episodeName?: string
 }
 
 const CharacterCard: FC<ICharacterCard> = ({
@@ -17,8 +20,20 @@ const CharacterCard: FC<ICharacterCard> = ({
   name,
   imageUrl,
   location,
-  episode,
+  episodeUrl,
 }) => {
+  const [episode, setEpisode] = useState<IEpisode>()
+
+  useEffect(() => {
+    ;(async () => {
+      const episodeResponse = await getApiResource<IEpisode>(episodeUrl)
+
+      if (episodeResponse) {
+        setEpisode(episodeResponse)
+      }
+    })()
+  }, [])
+
   const setMarker = () => {
     switch (true) {
       case info.includes("Dead"):
@@ -32,7 +47,7 @@ const CharacterCard: FC<ICharacterCard> = ({
   return (
     <article className={styles.wrapper}>
       <div className={styles.imageWrapper}>
-        <img src={imageUrl} alt={name + " image"} />
+        <img src={imageUrl} alt={name} />
       </div>
 
       <div className={styles.contentWrapper}>
@@ -45,17 +60,19 @@ const CharacterCard: FC<ICharacterCard> = ({
         </div>
         <div className={styles.section}>
           <p className={styles.subtitle}>Last known location:</p>
-          {/*TODO: исправить ссылку*/}
           <a href={location.url} className={styles.link}>
             {location.name}
           </a>
         </div>
         <div className={styles.section}>
           <p className={styles.subtitle}>First seen in:</p>
-          {/*TODO: вместо ссылки эпизода выводить его название*/}
-          <a href={episode[0]} className={styles.link}>
-            {episode[0]}
-          </a>
+          {!episode ? (
+            <span>Loading...</span>
+          ) : (
+            <a href={episodeUrl} className={styles.link}>
+              {episode.name}
+            </a>
+          )}
         </div>
       </div>
     </article>
