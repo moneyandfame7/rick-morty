@@ -4,7 +4,7 @@ import Wrapper from "../../layouts/Wrapper";
 const ErrorMessage: FC = () => {
   return (
     <Wrapper>
-      <h1>Error</h1>
+      <h1>Something went wrong</h1>
     </Wrapper>
   );
 };

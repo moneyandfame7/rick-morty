@@ -1,53 +1,48 @@
-import * as React from "react"
-import { FC, useEffect, useState } from "react"
-import styles from "./Card.module.scss"
-import { IEpisode } from "../../interfaces"
-import { getApiResource } from "../../utils/fetch"
-import { Skeleton } from "@mui/material"
+import * as React from "react";
+import { FC, useEffect, useState } from "react";
+import styles from "./Card.module.scss";
+import { IEpisode } from "../../interfaces";
+import { getApiResource } from "../../utils/fetch";
+import { Skeleton } from "@mui/material";
+import { Link } from "react-router-dom";
 interface ICharacterCard {
-  info: string
-  name: string
-  imageUrl: string
+  info: string;
+  name: string;
+  imageUrl: string;
   location: {
-    name: string
-    url: string
-  }
-  episodeUrl: string
-  episodeName?: string
+    name: string;
+    url: string;
+  };
+  episodeUrl: string;
+  episodeName?: string;
+  id: number;
 }
 
-const CharacterCard: FC<ICharacterCard> = ({
-  info,
-  name,
-  imageUrl,
-  location,
-  episodeUrl,
-}) => {
-  const [episode, setEpisode] = useState<IEpisode>()
+const CharacterCard: FC<ICharacterCard> = ({ info, name, imageUrl, location, episodeUrl, id }) => {
+  const [episode, setEpisode] = useState<IEpisode>();
 
   useEffect(() => {
-    ;(async () => {
-      const episodeResponse = await getApiResource<IEpisode>(episodeUrl)
+    (async () => {
+      const episodeResponse = await getApiResource<IEpisode>(episodeUrl);
 
       if (episodeResponse) {
-        setEpisode(episodeResponse)
+        setEpisode(episodeResponse);
       }
-    })()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    })();
+  }, []);
 
   const setMarker = () => {
     switch (true) {
       case info.includes("Dead"):
-        return styles.redMarker
+        return styles.redMarker;
       case info.includes("Alive"):
-        return styles.greenMarker
+        return styles.greenMarker;
       default:
-        return styles.grayMarker
+        return styles.grayMarker;
     }
-  }
+  };
   return (
-    <article className={styles.wrapper}>
+    <Link to={`/character/${id}`} className={styles.wrapper}>
       <div className={styles.imageWrapper}>
         <img src={imageUrl} alt={name} />
       </div>
@@ -62,22 +57,14 @@ const CharacterCard: FC<ICharacterCard> = ({
         </div>
         <div className={styles.section}>
           <p className={styles.subtitle}>Last known location:</p>
-          <a href={location.url} className={styles.link}>
-            {location.name}
-          </a>
+          <p>{location.name}</p>
         </div>
         <div className={styles.section}>
           <p className={styles.subtitle}>First seen in:</p>
-          {!episode ? (
-            <Skeleton animation='wave' />
-          ) : (
-            <a href={episodeUrl} className={styles.link}>
-              {episode.name}
-            </a>
-          )}
+          {!episode ? <Skeleton animation='wave' /> : <p>{episode.name}</p>}
         </div>
       </div>
-    </article>
-  )
-}
-export default CharacterCard
+    </Link>
+  );
+};
+export default CharacterCard;
