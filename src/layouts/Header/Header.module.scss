@@ -14,7 +14,7 @@
     justify-content: space-around;
     align-items: center;
     height: 100%;
-    .link {
+    a {
       color: white;
       font-size: 24px;
       font-weight: 500;
@@ -26,6 +26,9 @@
       &:hover {
         background-color: rgb(74, 74, 90);
       }
+    }
+    :global(a.active) {
+      background-color: rgb(74, 74, 90);
     }
   }
 }
