@@ -1,30 +1,52 @@
-.main {
+@import "../../styles/mixins";
+.wrapper {
   width: 100%;
   padding: 0 2rem;
-  display: flex;
-  gap: 100px;
-  .leftBar {
-    border: 5px solid gray;
-    max-width: 300px;
-    .imageWrapper {
-      max-height: 300px;
-      max-width: 300px;
-    }
-    .row {
+  @include md() {
+    padding: 0 0.3rem;
+  }
+  .main {
+    display: flex;
+    justify-content: space-around;
+    @include md() {
       display: flex;
-      border-bottom: 2px solid gray;
-      &:first-child {
-        border-top: 6px solid gray;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      gap: 20px;
+    }
+    .leftBar {
+      border: 5px solid gray;
+      min-width: 300px;
+      max-width: 300px;
+      align-self: flex-start;
+      @include md{
+        align-self: center;
       }
-      .key {
-        width: 40%;
-        text-align: center;
-        border-right: 2px solid gray;
+
+      .imageWrapper {
+        max-height: 300px;
+        max-width: 300px;
       }
-      .info {
-        width: 60%;
-        text-align: center;
+      .row {
+        display: flex;
+        border-bottom: 2px solid gray;
+        &:first-child {
+          border-top: 6px solid gray;
+        }
+        .key {
+          width: 40%;
+          text-align: center;
+          border-right: 2px solid gray;
+        }
+        .info {
+          width: 60%;
+          text-align: center;
+        }
       }
+    }
+    .about {
+      max-width: 600px;
     }
   }
 }

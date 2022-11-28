@@ -1,12 +1,26 @@
-import React, { FC, useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button";
 import styles from "./CharacterNavigation.module.scss";
-import { CharacterContext } from "../../pages/CharacterPage";
+import { IEntity } from "../../interfaces";
+import { NavigationTypeEnum } from "../../constants/api";
 
-const CharacterNavigation: FC = () => {
-  const { getResource, prevPage, nextPage, counterPage } = useContext(CharacterContext);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface INavigationProps<IItem extends IEntity> {
+  getResource: (url: string) => Promise<void>;
+  prevPage: string | null;
+  nextPage: string | null;
+  counterPage: number;
+  navigationType: NavigationTypeEnum;
+}
 
+function Navigation<IItem extends IEntity>({
+  getResource,
+  prevPage,
+  nextPage,
+  counterPage,
+  navigationType,
+}: INavigationProps<IItem>) {
   const handleChangeNext = () => {
     if (nextPage) getResource(nextPage);
   };
@@ -17,15 +31,15 @@ const CharacterNavigation: FC = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.navigation}>
-        <Link to={`/character?page=${counterPage && counterPage - 1}`} className={styles.link}>
+        <Link to={`/${navigationType}?page=${counterPage && counterPage - 1}`} className={styles.link}>
           <Button title='Previous' onClick={handleChangePrev} disabled={!prevPage} />
         </Link>
-        <Link to={`/character?page=${counterPage && counterPage + 1}`} className={styles.link}>
+        <Link to={`/${navigationType}?page=${counterPage && counterPage + 1}`} className={styles.link}>
           <Button title='Next' onClick={handleChangeNext} disabled={!nextPage} />
         </Link>
       </div>
     </div>
   );
-};
+}
 
-export default CharacterNavigation;
+export default Navigation;

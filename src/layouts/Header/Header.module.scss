@@ -1,34 +1,8 @@
-.header {
-  width: 100%;
-  height: max-content;
-  position: sticky;
-  top: 0;
-  background: #1a1f2d;
-  z-index: 3;
-  opacity: 1;
-  .navigation {
-    padding: 10px 0;
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    a {
-      color: white;
-      font-size: 24px;
-      font-weight: 500;
-      text-decoration: none;
-      padding: 5px 10px;
-      border-radius: 0.5rem;
-      transition: 0.3s ease all;
-
-      &:hover {
-        background-color: rgb(74, 74, 90);
-      }
-    }
-    :global(a.active) {
-      background-color: rgb(74, 74, 90);
-    }
+.link {
+  &:hover {
+    background-color: lighten(#1a1f2d, 15%);
   }
+}
+.active {
+  background-color: lighten(#1a1f2d, 15%);
 }
