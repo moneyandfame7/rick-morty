@@ -24,11 +24,7 @@ const CharacterPage: React.FC = () => {
         counterPage={counterPage}
         navigationType={NavigationTypeEnum.CHARACTER}
       />
-      {isLoading ? (
-        <CircularProgress className={styles.loader} />
-      ) : (
-        <CharacterList items={data} linkType={NavigationTypeEnum.CHARACTER} />
-      )}
+      {isLoading ? <CircularProgress className={styles.loader} /> : <CharacterList items={data} />}
     </>
   );
 };
