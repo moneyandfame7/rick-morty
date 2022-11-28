@@ -6,36 +6,35 @@ import { getApiResource } from "../../utils/fetch";
 import { Skeleton } from "@mui/material";
 import { Link } from "react-router-dom";
 interface ICharacterCard {
-  info: string;
+  status: string;
   name: string;
-  imageUrl: string;
+  image: string;
   location: {
     name: string;
     url: string;
   };
-  episodeUrl: string;
-  episodeName?: string;
+  episode: Array<string>;
   id: number;
 }
 
-const CharacterCard: FC<ICharacterCard> = ({ info, name, imageUrl, location, episodeUrl, id }) => {
-  const [episode, setEpisode] = useState<IEpisode>();
+const CharacterCard: FC<ICharacterCard> = ({ status, name, image, location, episode, id }) => {
+  const [episodeName, setEpisodeName] = useState<IEpisode>();
 
   useEffect(() => {
     (async () => {
-      const episodeResponse = await getApiResource<IEpisode>(episodeUrl);
+      const episodeResponse = await getApiResource<IEpisode>(episode[0]);
 
       if (episodeResponse) {
-        setEpisode(episodeResponse);
+        setEpisodeName(episodeResponse);
       }
     })();
   }, []);
 
   const setMarker = () => {
     switch (true) {
-      case info.includes("Dead"):
+      case status.includes("Dead"):
         return styles.redMarker;
-      case info.includes("Alive"):
+      case status.includes("Alive"):
         return styles.greenMarker;
       default:
         return styles.grayMarker;
@@ -44,7 +43,7 @@ const CharacterCard: FC<ICharacterCard> = ({ info, name, imageUrl, location, epi
   return (
     <Link to={`/character/${id}`} className={styles.wrapper}>
       <div className={styles.imageWrapper}>
-        <img src={imageUrl} alt={name} />
+        <img src={image} alt={name} />
       </div>
 
       <div className={styles.contentWrapper}>
@@ -52,7 +51,7 @@ const CharacterCard: FC<ICharacterCard> = ({ info, name, imageUrl, location, epi
           <h5 className={styles.name}>{name}</h5>
           <div className={styles.wrapperAbout}>
             <span className={setMarker()}></span>
-            <p className={styles.about}>{info}</p>
+            <p className={styles.about}>{status}</p>
           </div>
         </div>
         <div className={styles.section}>
@@ -61,7 +60,7 @@ const CharacterCard: FC<ICharacterCard> = ({ info, name, imageUrl, location, epi
         </div>
         <div className={styles.section}>
           <p className={styles.subtitle}>First seen in:</p>
-          {!episode ? <Skeleton animation='wave' /> : <p>{episode.name}</p>}
+          {!episodeName ? <Skeleton animation='wave' /> : <p>{episodeName.name}</p>}
         </div>
       </div>
     </Link>

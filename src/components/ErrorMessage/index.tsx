@@ -1,10 +1,13 @@
 import React, { FC } from "react";
 import Wrapper from "../../layouts/Wrapper";
 
-const ErrorMessage: FC = () => {
+interface IErrorMessage {
+  error?: Error;
+}
+const ErrorMessage: FC<IErrorMessage> = ({ error }) => {
   return (
     <Wrapper>
-      <h1>Something went wrong</h1>
+      <h1>{error?.message}</h1>
     </Wrapper>
   );
 };

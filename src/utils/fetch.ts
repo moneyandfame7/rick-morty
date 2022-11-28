@@ -46,3 +46,11 @@ export const getApiResource = async <IResultEntity>(url: string): Promise<IResul
     return null;
   }
 };
+
+export const makeConcurrentRequest = async (url: string[]) => {
+  return await Promise.all(
+    url.map(res => {
+      return fetch(res).then(res => res.json());
+    })
+  );
+};
