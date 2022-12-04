@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { IEpisode } from "../../interfaces";
 import styles from "./CharacterEpisode.module.scss";
 import { CircularProgress } from "@mui/material";
+import { ListGroup } from "react-bootstrap";
 interface ICharacterEpisodes {
   episodes: string[];
 }
@@ -18,29 +19,27 @@ const CharacterEpisodes: FC<ICharacterEpisodes> = ({ episodes }) => {
 
       if (response) {
         setEpisodesName(response);
-        console.log(response);
         setIsLoading(false);
       } else {
         setIsLoading(false);
         throw new Error("FAILED TO FETCH DATA");
       }
     })();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return isLoading ? (
     <CircularProgress />
   ) : (
-    <ul className={styles.list}>
+    <ListGroup variant='flush' as='ol' numbered>
       {episodesName.map(item => (
-        <li key={item.id}>
-          <b style={{ width: "100px" }} className={styles.title}>
-            Episode {item.id}:{" "}
-          </b>
+        <ListGroup.Item as='li' action key={item.id}>
           <Link to={`/episode/${item.id}`} className={styles.link}>
             {item.name}
           </Link>
-        </li>
+        </ListGroup.Item>
       ))}
-    </ul>
+    </ListGroup>
   );
 };
 

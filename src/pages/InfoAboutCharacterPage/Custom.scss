@@ -1,0 +1,12 @@
+.accordion-body {
+  background-color: darken(white, 5%);
+  font-weight: bold;
+}
+.card {
+  max-height: 610px;
+  overflow-y: auto;
+  .card-header {
+    color: black;
+    font-weight: bold;
+  }
+}

@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import styles from "./Header.module.scss";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   AppBar,
   Box,
@@ -14,9 +14,13 @@ import {
   Toolbar,
   Typography,
   Button,
+  Badge,
 } from "@mui/material";
-
 import MenuIcon from "@mui/icons-material/Menu";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
+
+import { useAppSelector } from "../../redux/hooks";
+import { getFavoritesAmount } from "../../redux/selectors";
 
 interface ILinkConfig {
   url: string;
@@ -45,33 +49,34 @@ const LINKS_CONFIG: ILinkConfig[] = [
 interface IHeaderProps {
   window?: () => Window;
 }
-
 const drawerWidth = 240;
 const Header: FC<IHeaderProps> = ({ window }) => {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const amountFavorite = useAppSelector(getFavoritesAmount);
 
   const handleDrawerToggle = () => {
-    console.log("click");
-    console.log(mobileOpen);
     setMobileOpen(!mobileOpen);
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center", height: "70px" }}>
       <Typography variant='h6' sx={{ my: 2 }}>
         RICK & MORTY
       </Typography>
       <Divider />
       <List>
-        {LINKS_CONFIG.map(({ url, name, id }) => (
-          <ListItem key={id} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <NavLink to={url} key={id}>
-                <ListItemText primary={name} />
-              </NavLink>
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {LINKS_CONFIG.map(
+          ({ url, name, id }) =>
+            name !== "Favorites" && (
+              <ListItem key={id} disablePadding>
+                <ListItemButton sx={{ textAlign: "center" }}>
+                  <NavLink to={url} key={id}>
+                    <ListItemText primary={name} />
+                  </NavLink>
+                </ListItemButton>
+              </ListItem>
+            )
+        )}
       </List>
     </Box>
   );
@@ -89,26 +94,36 @@ const Header: FC<IHeaderProps> = ({ window }) => {
           }}
         >
           <IconButton
+            className={styles.icon}
             color='inherit'
             aria-label='open drawer'
             edge='start'
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 2, display: { sm: "none" }, "&:hover": { backgroundColor: "#1A1F2DFF" } }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' component='div' sx={{ display: { xs: "block", sm: "block" } }}>
-            RICK & MORTY
-          </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {LINKS_CONFIG.map(({ id, name, url }) => (
-              <NavLink key={id} style={{ color: "#fff" }} to={url}>
-                <Button key={id} sx={{ color: "#fff", fontWeight: "bold" }} className={styles.link}>
-                  {name}
-                </Button>
-              </NavLink>
-            ))}
+          <Box sx={{ display: "flex", gap: 5, alignItems: "center" }}>
+            <Typography variant='h6' component='div' sx={{ display: { xs: "block", sm: "block" } }}>
+              RICK & MORTY
+            </Typography>
+            <Box sx={{ display: { xs: "none", sm: "flex" } }}>
+              {LINKS_CONFIG.map(({ id, name, url }) => (
+                <NavLink key={id} style={{ color: "#fff" }} to={url}>
+                  <Button key={id} sx={{ color: "#fff", fontWeight: "bold" }} className={styles.link}>
+                    {name}
+                  </Button>
+                </NavLink>
+              ))}
+            </Box>
           </Box>
+          <Link to='/favorite'>
+            <IconButton className={styles.icon} color='inherit' aria-label='Open favorite page' edge='start' sx={{}}>
+              <Badge badgeContent={amountFavorite} color='primary' component='span'>
+                <BookmarksIcon />
+              </Badge>
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
       <Box component='nav'>
