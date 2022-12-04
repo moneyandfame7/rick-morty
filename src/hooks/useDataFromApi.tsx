@@ -20,9 +20,7 @@ export const useDataFromApi = <ItemType,>({ url, setIsErrorApi, setMessageError 
   const getResource = useCallback(
     async (url: string) => {
       setIsLoading(true);
-      //TODO fix any type
       const res = await getApiResource<any>(url);
-
       if (res) {
         setData(res.results);
         setPrevPage(res.info.prev);
@@ -30,6 +28,7 @@ export const useDataFromApi = <ItemType,>({ url, setIsErrorApi, setMessageError 
         setIsErrorApi(false);
         setCounterPage(Number(queryPage));
         setIsLoading(false);
+        console.log(Number(queryPage));
       } else {
         setIsLoading(false);
         setMessageError(new Error("ERROR_DATA_FETCHING"));
@@ -39,10 +38,12 @@ export const useDataFromApi = <ItemType,>({ url, setIsErrorApi, setMessageError 
     [queryPage]
   );
 
-  // TODO: показать [queryPage]
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     getResource(url + queryPage);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return {
     prevPage,

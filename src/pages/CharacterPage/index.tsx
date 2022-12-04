@@ -15,6 +15,7 @@ const CharacterPage: React.FC = () => {
     setIsErrorApi,
     setMessageError,
   });
+  // TODO: пофиксить роутинг повсюду
   return render(
     <>
       <Navigation<ICharacter>

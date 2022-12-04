@@ -14,6 +14,7 @@ const EpisodePage: FC = () => {
     setMessageError,
   });
 
+  console.log(nextPage);
   return render(
     <>
       <Navigation<IEpisode>

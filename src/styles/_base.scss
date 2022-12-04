@@ -1,7 +1,7 @@
 a {
   text-decoration: none;
   text-transform: none;
-  color: inherit;
+  color: inherit !important;
 }
 *::selection {
   background-color: #3394d0;
@@ -18,4 +18,7 @@ img {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+p {
+  margin: 0;
 }

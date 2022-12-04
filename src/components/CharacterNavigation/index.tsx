@@ -5,7 +5,6 @@ import styles from "./CharacterNavigation.module.scss";
 import { IEntity } from "../../interfaces";
 import { NavigationTypeEnum } from "../../constants/api";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface INavigationProps<IItem extends IEntity> {
   getResource: (url: string) => Promise<void>;
   prevPage: string | null;
