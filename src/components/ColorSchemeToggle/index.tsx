@@ -17,12 +17,21 @@ const SchemeToggle = () => {
         width: "100%",
         alignItems: "center",
         justifyContent: "center",
-        bgcolor: "background.default",
+        bgcolor: "background.paper",
         color: "text.primary",
         borderRadius: 1,
         p: 3,
       }}
     >
+      <Box
+        sx={{
+          width: "100px",
+          height: "100%",
+          bgcolor: "divider",
+        }}
+      >
+        Lorem ipsum
+      </Box>
       {theme.palette.mode} mode
       <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color='inherit'>
         {theme.palette.mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
@@ -54,9 +63,7 @@ export default function ToggleColorMode() {
 
   return (
     <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <SchemeToggle />
-      </ThemeProvider>
+      <SchemeToggle />
     </ColorModeContext.Provider>
   );
 }

@@ -14,6 +14,7 @@ import styles from "./InfoAboutCharacterPage.module.scss";
 import "./Custom.scss";
 import { getCharacters } from "../../redux/selectors";
 import { addToFavorite, removeFromFavorite } from "../../redux/charactersSlice";
+import ToggleColorMode from "../../components/ColorSchemeToggle";
 /*/TODO: вынести запрос на первый эпизод в InfoAboutCharacterPage*/
 
 const InfoAboutCharacterPage: FC = () => {

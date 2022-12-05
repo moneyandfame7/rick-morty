@@ -28,23 +28,20 @@ export const useDataFromApi = <ItemType,>({ url, setIsErrorApi, setMessageError 
         setIsErrorApi(false);
         setCounterPage(Number(queryPage));
         setIsLoading(false);
-        console.log(Number(queryPage));
       } else {
         setIsLoading(false);
         setMessageError(new Error("ERROR_DATA_FETCHING"));
         setIsErrorApi(true);
       }
     },
-    [queryPage]
+    [queryPage, setIsErrorApi, setMessageError]
   );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     getResource(url + queryPage);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [getResource, queryPage, url]);
   return {
     prevPage,
     nextPage,
