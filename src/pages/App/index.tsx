@@ -2,24 +2,13 @@ import React from "react";
 import Header from "../../layouts/Header";
 import { createBrowserRouter } from "react-router-dom";
 import { routesConfig } from "../../routes/routesConfig";
-import Wrapper from "../../layouts/Wrapper";
 import { useLocation, useOutlet } from "react-router";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
-import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
-import { Experimental_CssVarsProvider as CssVarsProvider } from "@mui/material/styles";
-import { teal, deepOrange, orange, cyan } from "@mui/material/colors";
-
-import "./App.scss";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Container, CssBaseline, useMediaQuery } from "@mui/material";
+import "./App.scss";
+import { getDesignTokens } from "../../utils/theme";
 
-declare module "@mui/material/styles" {
-  interface Palette {
-    neutral?: Palette["primary"];
-  }
-  interface PaletteOptions {
-    neutral?: PaletteOptions["primary"];
-  }
-}
 export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 export const router = createBrowserRouter([
@@ -33,6 +22,7 @@ export const router = createBrowserRouter([
     })),
   },
 ]);
+
 function App() {
   const location = useLocation();
   const currentOutlet = useOutlet();
@@ -40,6 +30,7 @@ function App() {
 
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const [mode, setMode] = React.useState<"light" | "dark">(prefersDarkMode ? "dark" : "light");
+  const theme = createTheme(getDesignTokens(mode));
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -49,46 +40,6 @@ function App() {
     []
   );
 
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette:
-          mode === "light"
-            ? {
-                mode,
-                background: {
-                  default: "#f7f7f8",
-                  paper: "#fff",
-                },
-                neutral: {
-                  main: "#bdbdbd",
-                },
-              }
-            : {
-                mode,
-                primary: {
-                  main: "#a697ce",
-                },
-                neutral: {
-                  main: "#424242",
-                },
-                background: {
-                  default: "#000",
-                  paper: "#131318",
-                },
-              },
-      }),
-    [mode]
-  );
-  // const theme = React.useMemo(
-  //   () =>
-  //     createTheme({
-  //       palette: {
-  //         mode,
-  //       },
-  //     }),
-  //   [mode]
-  // );
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>

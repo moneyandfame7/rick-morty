@@ -1,6 +1,5 @@
 import * as React from "react";
 import { FC, useEffect, useState } from "react";
-import styles from "./Card.module.scss";
 import { IEpisode } from "../../interfaces";
 import { getApiResource } from "../../utils/fetch";
 import { Link as RouterLink } from "react-router-dom";
@@ -42,31 +41,6 @@ const CharacterCard: FC<ICharacterCard> = ({ status, name, image, location, epis
     }
   };
   return (
-    // <Link to={`/character/${id}`}>
-    //
-    //   <div className={styles.imageWrapper}>
-    //     <img src={image} alt={name} />
-    //   </div>
-    //
-    //   <div className={styles.contentWrapper}>
-    //     <div className={styles.section}>
-    //       <h5 className={styles.name}>{name}</h5>
-    //       <div className={styles.wrapperAbout}>
-    //         <span className={setMarker()}></span>
-    //         <p className={styles.about}>{status}</p>
-    //       </div>
-    //     </div>
-    //     <div className={styles.section}>
-    //       <p className={styles.subtitle}>Last known location:</p>
-    //       <p>{location.name}</p>
-    //     </div>
-    //     <div className={styles.section}>
-    //       <p className={styles.subtitle}>First seen in:</p>
-    //       {!episodeName ? <Skeleton animation='wave' /> : <p>{episodeName.name}</p>}
-    //     </div>
-    //   </div>
-    // </Link>
-
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card sx={{ height: "100%" }}>
         <CardMedia component='img' alt='green iguana' image={image} width='200px' />
@@ -92,7 +66,14 @@ const CharacterCard: FC<ICharacterCard> = ({ status, name, image, location, epis
               {status}
             </Typography>
           </Box>
-          <ul>Lorem ipsum dolor sit amet, consect</ul>
+          <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
+            <Typography component='h5' variant='subtitle1' sx={{ fontWeight: "bolder" }}>
+              First seen in:
+            </Typography>
+            <Typography component='h6' variant='subtitle2' color='text.primary'>
+              {episodeName?.name}
+            </Typography>
+          </Box>
         </CardContent>
         <CardActions>
           <Button fullWidth variant='outlined' component={RouterLink} to={`/character/${id}`}>
