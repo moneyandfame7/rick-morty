@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { FAVORITE_CHARACTERS, getLocalStorage } from "../utils/localStorage";
-import { ICharacter } from "../interfaces";
+import { FAVORITE_CHARACTERS, getLocalStorage } from "../../utils/localStorage";
+import { ICharacter } from "../../interfaces";
 
 interface CharacterState {
   characters: ICharacter[];

@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import charactersReducer from "./charactersSlice";
+import charactersReducer from "./slices/charactersSlice";
+import episodesReducer from "./slices/episodesSlice";
 import { FAVORITE_CHARACTERS, setLocalStorage } from "../utils/localStorage";
 
 export const store = configureStore({
   reducer: {
     characters: charactersReducer,
+    episodes: episodesReducer,
   },
 });
 
