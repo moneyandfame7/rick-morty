@@ -6,14 +6,14 @@ import { useParams } from "react-router";
 import { API_CHARACTER_ONLY_ONE } from "../../constants/api";
 import { ICharacter } from "../../interfaces";
 import Accordion from "react-bootstrap/Accordion";
-import { Alert, AlertTitle, Button, CircularProgress } from "@mui/material";
-import LinkGoBack from "../../components/LinkGoBack";
+import { Alert, AlertTitle, Button, CircularProgress, Container } from "@mui/material";
 import CharacterEpisodes from "../../components/CharacterEpisodes";
 import { Card } from "react-bootstrap";
 import styles from "./InfoAboutCharacterPage.module.scss";
 import "./Custom.scss";
 import { getCharacters } from "../../redux/selectors";
 import { addToFavorite, removeFromFavorite } from "../../redux/slices/charactersSlice";
+import MyBreadcrumbs from "../../components/Breadcrumbs";
 /*/TODO: вынести запрос на первый эпизод в InfoAboutCharacterPage*/
 
 const InfoAboutCharacterPage: FC = () => {
@@ -90,9 +90,8 @@ const InfoAboutCharacterPage: FC = () => {
       <CircularProgress />
     ) : (
       <div className={styles.wrapper}>
-        <LinkGoBack />
-        <main className={styles.main}>
-          <aside className={styles.leftBar}>
+        <div className={styles.main}>
+          <div className={styles.infoCard}>
             <div className={styles.imageWrapper}>
               <img src={character?.image} alt={character?.name} width={300} height={300} />
             </div>
@@ -126,12 +125,12 @@ const InfoAboutCharacterPage: FC = () => {
                 </Accordion.Item>
               </Accordion>
             </div>
-          </aside>
+          </div>
           <Card>
             <Card.Header>We will meet {character?.name} in the episode: </Card.Header>
             {episodes && <CharacterEpisodes episodes={episodes} />}
           </Card>
-        </main>
+        </div>
       </div>
     )
   );

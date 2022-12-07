@@ -1,10 +1,22 @@
 import * as React from "react";
-import { FC, useEffect, useState } from "react";
-import { IEpisode } from "../../interfaces";
-import { getApiResource } from "../../utils/fetch";
+import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { red, green, grey } from "@mui/material/colors";
-import { Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  CircularProgress,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
+import { useFetchEpisodeByIdQuery } from "../../redux/slices/rickMortyApiSlice";
+
 interface ICharacterCard {
   status: string;
   name: string;
@@ -18,17 +30,11 @@ interface ICharacterCard {
 }
 
 const CharacterCard: FC<ICharacterCard> = ({ status, name, image, location, episode, id }) => {
-  const [episodeName, setEpisodeName] = useState<IEpisode>();
-
-  useEffect(() => {
-    (async () => {
-      const episodeResponse = await getApiResource<IEpisode>(episode[0]);
-
-      if (episodeResponse) {
-        setEpisodeName(episodeResponse);
-      }
-    })();
-  }, []);
+  // TODO: показать этО
+  // TODO: добавить скелетон
+  const { data, isLoading } = useFetchEpisodeByIdQuery(
+    parseInt(episode[0].split("/")[episode[0].split("/").length - 1])
+  );
 
   const textColor = () => {
     switch (true) {
@@ -40,6 +46,7 @@ const CharacterCard: FC<ICharacterCard> = ({ status, name, image, location, epis
         return { color: grey[400] };
     }
   };
+
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card sx={{ height: "100%" }}>
@@ -70,9 +77,19 @@ const CharacterCard: FC<ICharacterCard> = ({ status, name, image, location, epis
             <Typography component='h5' variant='subtitle1' sx={{ fontWeight: "bolder" }}>
               First seen in:
             </Typography>
-            <Typography component='h6' variant='subtitle2' color='text.primary'>
-              {episodeName?.name}
-            </Typography>
+
+            {isLoading ? (
+              <CircularProgress />
+            ) : (
+              <Stack direction='column' gap='3px'>
+                <Typography component='h6' variant='subtitle2' color='text.primary' sx={{ textAlign: "center" }}>
+                  {data?.name}
+                </Typography>
+                <Typography component='h6' variant='subtitle2' color='text.primary' sx={{ textAlign: "center" }}>
+                  {`(${data?.episode})`}
+                </Typography>
+              </Stack>
+            )}
           </Box>
         </CardContent>
         <CardActions>

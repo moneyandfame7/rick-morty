@@ -1,0 +1,9 @@
+.inner-link {
+  font-weight: bolder;
+  cursor: pointer;
+}
+.active {
+  .inner-link {
+    color: #a465b7;
+  }
+}

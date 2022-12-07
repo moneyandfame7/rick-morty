@@ -23,7 +23,7 @@ export const apiSlice = createApi({
   }),
   endpoints: builder => ({
     fetchCharacters: builder.query<IFetchCharacters, number | void>({
-      query: page => `/character?page=${page}`,
+      query: (page = 1) => `/character?page=${page}`,
     }),
     fetchCharacterById: builder.query<ICharacter, number | void>({
       query: id => `/character/${id}`,
@@ -37,4 +37,5 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useFetchCharactersQuery } = apiSlice;
+export const { useFetchCharactersQuery, useFetchCharacterByIdQuery, useFetchEpisodesQuery, useFetchEpisodeByIdQuery } =
+  apiSlice;

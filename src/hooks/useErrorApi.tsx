@@ -6,7 +6,7 @@ export const useErrorApi = () => {
   const [messageError, setMessageError] = useState<Error>();
   const render = (node: React.ReactElement): React.ReactElement => {
     if (isErrorApi) {
-      return <ErrorMessage error={messageError} />;
+      // return <ErrorMessage error={messageError} />;
     }
 
     return node;

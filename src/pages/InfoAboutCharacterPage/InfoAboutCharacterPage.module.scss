@@ -1,14 +1,13 @@
 @import "../../styles/mixins";
 .wrapper {
-  width: 100%;
-  padding: 0 2rem;
-  margin-top: -30px;
+  margin-top: 20px;
   @include md() {
     padding: 0 0.3rem;
   }
   .main {
     display: flex;
     justify-content: space-around;
+    gap: 50px;
     @include md() {
       display: flex;
       flex-direction: column;
@@ -16,7 +15,7 @@
       margin: 0 auto;
       gap: 20px;
     }
-    .leftBar {
+    .infoCard {
       display: flex;
       flex-direction: column;
       gap: 10px;

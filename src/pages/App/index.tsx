@@ -5,9 +5,10 @@ import { routesConfig } from "../../routes/routesConfig";
 import { useLocation, useOutlet } from "react-router";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Container, CssBaseline, useMediaQuery } from "@mui/material";
+import { Container, CssBaseline, Stack, useMediaQuery } from "@mui/material";
 import "./App.scss";
 import { getDesignTokens } from "../../utils/theme";
+import MyBreadcrumbs from "../../components/Breadcrumbs";
 
 export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -19,6 +20,7 @@ export const router = createBrowserRouter([
       index: route.path === "/",
       path: route.path === "/" ? undefined : route.path,
       element: route.element,
+      handle: route.handle,
     })),
   },
 ]);
@@ -45,11 +47,24 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header />
-        <Container maxWidth='xl' component='main'>
+        <Container sx={{ width: "100%", padding: 0 }}>
+          <MyBreadcrumbs />
+
           <SwitchTransition>
             <CSSTransition key={location.pathname} nodeRef={nodeRef} timeout={300} classNames='page' unmountOnExit>
               {() => (
-                <div ref={nodeRef} className='page'>
+                <div
+                  ref={nodeRef}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "20px",
+                    marginTop: "20px",
+                    padding: 0,
+                  }}
+                  className='page'
+                >
                   {currentOutlet}
                 </div>
               )}

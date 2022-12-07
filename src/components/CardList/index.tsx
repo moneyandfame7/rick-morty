@@ -7,7 +7,7 @@ interface ICardListProps {
 }
 const CharacterList: FC<ICardListProps> = ({ items }) => {
   return (
-    <Grid container spacing={3} alignItems='flex-end'>
+    <Grid container spacing={3} alignItems='flex-end' className='animated'>
       {items?.map(item => (
         <Card key={item.id} {...item} />
       ))}

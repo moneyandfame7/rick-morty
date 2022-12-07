@@ -16,7 +16,7 @@
   }
 }
 .button[disabled] {
-  cursor: default;
+  cursor: not-allowed;
   background: darken(gray, 20%);
   opacity: 0.5;
   color: darken(white, 10%);
