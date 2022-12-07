@@ -1,15 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import charactersReducer from "./slices/charactersSlice";
 import episodesReducer from "./slices/episodesSlice";
-import oneEpisodeReducer from "./slices/oneEpisodeSlice";
 import { FAVORITE_CHARACTERS, setLocalStorage } from "../utils/localStorage";
+import { apiSlice } from "./slices/rickMortyApiSlice";
 
 export const store = configureStore({
   reducer: {
     characters: charactersReducer,
     episodes: episodesReducer,
-    oneEpisode: oneEpisodeReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
 store.subscribe(() => {
