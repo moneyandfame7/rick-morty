@@ -1,19 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import charactersReducer from "./slices/charactersSlice";
 import episodesReducer from "./slices/episodesSlice";
+import oneEpisodeReducer from "./slices/oneEpisodeSlice";
 import { FAVORITE_CHARACTERS, setLocalStorage } from "../utils/localStorage";
 
 export const store = configureStore({
   reducer: {
     characters: charactersReducer,
     episodes: episodesReducer,
+    oneEpisode: oneEpisodeReducer,
   },
 });
 
 store.subscribe(() => {
   const state = store.getState();
   const { characters } = state.characters;
-  console.log(characters, "SUBSCRIBE");
   setLocalStorage(FAVORITE_CHARACTERS, characters);
 });
 

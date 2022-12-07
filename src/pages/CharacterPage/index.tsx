@@ -15,7 +15,7 @@ const CharacterPage: React.FC = () => {
     setIsErrorApi,
     setMessageError,
   });
-  // TODO: пофиксить роутинг повсюду
+  // TODO: переписать на RTK Query ( maybe )
   return render(
     <>
       <Navigation<ICharacter>

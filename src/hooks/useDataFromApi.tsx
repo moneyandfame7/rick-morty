@@ -9,19 +9,22 @@ interface IUseDataFromApiConfig {
 }
 
 export const useDataFromApi = <ItemType,>({ url, setIsErrorApi, setMessageError }: IUseDataFromApiConfig) => {
-  const query = useQueryParams();
-  const queryPage = query.get("page");
+  const queryPage = useQueryParams().get("page");
 
   const [data, setData] = useState<ItemType>();
   const [prevPage, setPrevPage] = useState<string | null>(null);
   const [nextPage, setNextPage] = useState<string | null>(null);
   const [counterPage, setCounterPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const getResource = useCallback(
     async (url: string) => {
-      setIsLoading(true);
-      const res = await getApiResource<any>(url);
+      setIsLoading(true); //2
+      //
+      const res = await getApiResource<any>(url); //1
+      //
       if (res) {
+        //2
         setData(res.results);
         setPrevPage(res.info.prev);
         setNextPage(res.info.next);
@@ -36,8 +39,6 @@ export const useDataFromApi = <ItemType,>({ url, setIsErrorApi, setMessageError 
     },
     [queryPage, setIsErrorApi, setMessageError]
   );
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     getResource(url + queryPage);

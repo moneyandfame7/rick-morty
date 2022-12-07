@@ -24,10 +24,8 @@ const InfoAboutCharacterPage: FC = () => {
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const { setMessageError, setIsErrorApi, render } = useErrorApi();
   const dispatch = useAppDispatch();
-
   const favoriteCharacters = useAppSelector(getCharacters);
 
-  console.log(favoriteCharacters, "FAVORITE CHARACTERS ARRAY");
   const handleOnFavoriteIconClick = (): void => {
     if (character) {
       if (isFavorite) {
@@ -64,6 +62,7 @@ const InfoAboutCharacterPage: FC = () => {
         );
     }
   };
+
   useEffect(() => {
     (async () => {
       setIsLoading(true);

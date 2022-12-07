@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { ICharacter } from "../../interfaces";
 import Card from "../Card";
-import styles from "./CardList.module.scss";
 import { Grid } from "@mui/material";
 interface ICardListProps {
   items?: ICharacter[];
