@@ -1,5 +1,4 @@
 import HomePage from "../pages/HomePage";
-import LocationPage from "../pages/LocationPage";
 import CharacterPage from "../pages/CharacterPage";
 import EpisodePage from "../pages/EpisodePage";
 import React, { createRef, RefObject } from "react";
@@ -29,41 +28,36 @@ export const routesConfig: IRoutesConfig[] = [
     id: 1,
     nodeRef: createRef(),
   },
-  {
-    path: "/location",
-    element: <LocationPage />,
-    id: 2,
-    nodeRef: createRef(),
-  },
+
   {
     path: "/character",
     element: <CharacterPage />,
-    id: 3,
+    id: 2,
     nodeRef: createRef(),
   },
   {
     path: "/character/:id",
     element: <InfoAboutCharacterPage />,
-    id: 4,
+    id: 3,
     nodeRef: createRef(),
   },
   {
     path: "/episode/:id",
     element: <InfoAboutEpisodePage />,
-    id: 5,
+    id: 4,
     nodeRef: createRef(),
   },
   {
     path: "/favorite",
     element: <FavoritePage />,
-    id: 6,
+    id: 5,
     nodeRef: createRef(),
   },
   {
     path: "*",
     exact: false,
     element: <NotFoundPage />,
-    id: 7,
+    id: 6,
     nodeRef: createRef(),
   },
 ];

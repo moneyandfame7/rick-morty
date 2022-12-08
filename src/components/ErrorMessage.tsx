@@ -25,6 +25,17 @@ const ErrorMessage: FC<IErrorMessage> = ({ error }) => {
                 </Typography>
               </Stack>
             );
+          case "FETCH_ERROR":
+            return (
+              <Stack direction='column' gap='10px'>
+                <Typography component='h3' variant='h3' fontWeight='bold'>
+                  {error.status}
+                </Typography>
+                <Typography component='h5' variant='subtitle2'>
+                  {error.error}
+                </Typography>
+              </Stack>
+            );
           default:
             return (
               <Stack direction='column' gap='10px'>

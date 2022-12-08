@@ -1,25 +1,16 @@
 import React, { FC, useEffect, useState } from "react";
-import { getApiResource } from "../../utils/fetch";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { useErrorApi } from "../../hooks/useErrorApi";
 import { useParams } from "react-router";
-import { API_CHARACTER_ONLY_ONE } from "../../constants/api";
-import { ICharacter } from "../../interfaces";
-import Accordion from "react-bootstrap/Accordion";
-import { Alert, AlertTitle, Button, CircularProgress, Container } from "@mui/material";
-import CharacterEpisodes from "../../components/CharacterEpisodes";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { addToFavorite, removeFromFavorite } from "../../redux/slices/charactersSlice";
+import { getCharacters } from "../../redux/selectors";
+import { useFetchCharacterByIdQuery } from "../../redux/slices/rickMortyApiSlice";
 import { Card } from "react-bootstrap";
+import Accordion from "react-bootstrap/Accordion";
+import { Alert, AlertTitle, Button, CircularProgress } from "@mui/material";
+import EpisodeList from "../../components/EpisodeList";
+import ErrorMessage from "../../components/ErrorMessage";
 import styles from "./InfoAboutCharacterPage.module.scss";
 import "./Custom.scss";
-import { getCharacters } from "../../redux/selectors";
-import { addToFavorite, removeFromFavorite } from "../../redux/slices/charactersSlice";
-import {
-  useFetchCharacterByIdQuery,
-  useFetchCharactersQuery,
-  useFetchEpisodeByIdQuery,
-} from "../../redux/slices/rickMortyApiSlice";
-import ErrorMessage from "../../components/ErrorMessage";
-/*/TODO: вынести запрос на первый эпизод в InfoAboutCharacterPage*/
 
 const InfoAboutCharacterPage: FC = () => {
   const { id } = useParams();
@@ -67,8 +58,6 @@ const InfoAboutCharacterPage: FC = () => {
   useEffect(() => {
     const favIndex = favoriteCharacters.findIndex(c => c.id === data?.id);
     favIndex === -1 ? setIsFavorite(false) : setIsFavorite(true);
-    console.log(favIndex);
-    console.log(isFavorite);
   }, [data?.id, favoriteCharacters]);
 
   if (error) {
@@ -116,7 +105,7 @@ const InfoAboutCharacterPage: FC = () => {
         </div>
         <Card>
           <Card.Header>We will meet {data?.name} in the episode: </Card.Header>
-          {data?.episode && <CharacterEpisodes episodes={data.episode} />}
+          {data?.episode && <EpisodeList episodes={data.episode} />}
         </Card>
       </div>
     </div>

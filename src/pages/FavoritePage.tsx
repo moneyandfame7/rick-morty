@@ -1,15 +1,14 @@
 import React, { FC, useEffect, useState } from "react";
-import { useAppSelector } from "../../redux/hooks";
-import CharacterList from "../../components/CardList";
-import { getCharacters } from "../../redux/selectors";
-import Modal from "../../components/Modal";
+import { useAppSelector } from "../redux/hooks";
+import CharacterList from "../components/CardList";
+import { getCharacters } from "../redux/selectors";
+import Modal from "../components/Modal";
 import { useNavigate } from "react-router";
 
 const FavoritePage: FC = () => {
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
   const characters = useAppSelector(getCharacters);
   const navigate = useNavigate();
-  console.log(characters);
   useEffect(() => {
     characters.length ? setIsEmpty(false) : setIsEmpty(true);
   }, [characters]);

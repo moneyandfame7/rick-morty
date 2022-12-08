@@ -1,9 +1,9 @@
-import React from "react";
-import styles from "./NotFoundPage.module.scss";
+import React, { FC } from "react";
 import { useLocation } from "react-router";
-const NotFoundPage = () => {
+import styles from "./NotFoundPage.module.scss";
+
+const NotFoundPage: FC = () => {
   const location = useLocation();
-  console.log(location);
   return (
     <div className={styles.container}>
       <div className={styles.error}>
@@ -12,7 +12,7 @@ const NotFoundPage = () => {
       </div>
 
       <p className={styles.text}>
-        No match for{" "}
+        No match for
         <a className={styles.path} href={location.pathname}>
           {location.pathname}
         </a>

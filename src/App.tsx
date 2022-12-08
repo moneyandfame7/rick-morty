@@ -1,14 +1,15 @@
 import React from "react";
-import Header from "../../layouts/Header";
-import { createBrowserRouter } from "react-router-dom";
-import { routesConfig } from "../../routes/routesConfig";
 import { useLocation, useOutlet } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
+import { routesConfig } from "./routes/routesConfig";
+import { getDesignTokens } from "./utils/theme";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Container, CssBaseline, Stack, useMediaQuery } from "@mui/material";
+import { Container, CssBaseline, useMediaQuery } from "@mui/material";
+import MyBreadcrumbs from "./components/Breadcrumbs";
+import Header from "./layout/Header";
+
 import "./App.scss";
-import { getDesignTokens } from "../../utils/theme";
-import MyBreadcrumbs from "../../components/Breadcrumbs";
 
 export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -46,9 +47,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header />
+        <MyBreadcrumbs />
         <Container sx={{ width: "100%", padding: 0 }}>
-          <MyBreadcrumbs />
-
           <SwitchTransition>
             <CSSTransition key={location.pathname} nodeRef={nodeRef} timeout={300} classNames='page' unmountOnExit>
               {() => (

@@ -1,38 +1,24 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ICharacter, IEpisode } from "../../interfaces";
-const BASE_URL = "";
+import { ICharacter, IEpisode, IResponseCharacter, IResponseEpisode } from "../../interfaces";
+import { BASE_URL, NavigationTypeEnum } from "../../constants/api";
 
-interface IResponse {
-  info: {
-    count: number;
-    pages: number;
-    next: string | null;
-    prev: string | null;
-  };
-}
-interface IFetchCharacters extends IResponse {
-  results: ICharacter[];
-}
-interface IFetchEpisodes extends IResponse {
-  results: IEpisode[];
-}
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://rickandmortyapi.com/api",
+    baseUrl: BASE_URL,
   }),
   endpoints: builder => ({
-    fetchCharacters: builder.query<IFetchCharacters, number | void>({
-      query: (page = 1) => `/character?page=${page}`,
+    fetchCharacters: builder.query<IResponseCharacter, number | void>({
+      query: (page = 1) => `${NavigationTypeEnum.CHARACTER}/?page=${page}`,
     }),
     fetchCharacterById: builder.query<ICharacter, number | void>({
-      query: id => `/character/${id}`,
+      query: id => `/${NavigationTypeEnum.CHARACTER}/${id}`,
     }),
-    fetchEpisodes: builder.query<IFetchEpisodes, number | void>({
-      query: page => `/episode/?page=${page}`,
+    fetchEpisodes: builder.query<IResponseEpisode, number | void>({
+      query: page => `/${NavigationTypeEnum.EPISODE}/?page=${page}`,
     }),
     fetchEpisodeById: builder.query<IEpisode, number | void>({
-      query: id => `/episode/${id}`,
+      query: id => `/${NavigationTypeEnum.EPISODE}/${id}`,
     }),
   }),
 });

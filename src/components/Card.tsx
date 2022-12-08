@@ -15,9 +15,11 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useFetchEpisodeByIdQuery } from "../../redux/slices/rickMortyApiSlice";
+import { useFetchEpisodeByIdQuery } from "../redux/slices/rickMortyApiSlice";
+import { getIdFromName } from "../utils/getIdFromUrl";
+import { NavigationTypeEnum } from "../constants/api";
 
-interface ICharacterCard {
+interface ICharacterCardProps {
   status: string;
   name: string;
   image: string;
@@ -29,12 +31,8 @@ interface ICharacterCard {
   id: number;
 }
 
-const CharacterCard: FC<ICharacterCard> = ({ status, name, image, location, episode, id }) => {
-  // TODO: показать этО
-  // TODO: добавить скелетон
-  const { data, isLoading } = useFetchEpisodeByIdQuery(
-    parseInt(episode[0].split("/")[episode[0].split("/").length - 1])
-  );
+const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location, episode, id }) => {
+  const { data, isLoading } = useFetchEpisodeByIdQuery(getIdFromName(episode[0]));
 
   const textColor = () => {
     switch (true) {
@@ -93,7 +91,7 @@ const CharacterCard: FC<ICharacterCard> = ({ status, name, image, location, epis
           </Box>
         </CardContent>
         <CardActions>
-          <Button fullWidth variant='outlined' component={RouterLink} to={`/character/${id}`}>
+          <Button fullWidth variant='outlined' component={RouterLink} to={`/${NavigationTypeEnum.CHARACTER}/${id}`}>
             Read more
           </Button>
         </CardActions>

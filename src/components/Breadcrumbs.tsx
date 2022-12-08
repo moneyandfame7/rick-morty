@@ -1,9 +1,8 @@
-import React, { FC, useEffect, useState } from "react";
-import { useLocation, useMatches, useNavigate } from "react-router";
+import React, { FC } from "react";
+import { useLocation } from "react-router";
 import HomeIcon from "@mui/icons-material/Home";
 import { Breadcrumbs, Chip, emphasize, styled, useTheme } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import "./styles.scss";
 import { uniqBy } from "lodash";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
@@ -14,15 +13,12 @@ interface IBreadcrumbsConfig {
   isActive?: boolean;
 }
 
-interface IMyBreadcrumbs {
-  customLabel?: string;
-}
-const MyBreadcrumbs: FC<IMyBreadcrumbs> = ({ customLabel }) => {
+const MyBreadcrumbs: FC = () => {
   const location = useLocation();
-  console.log(location);
-  const paths = location.pathname.split("/");
   const theme = useTheme();
-  const makeArchitectureBreadcrumbs = (arr: string[], customLabel?: string): IBreadcrumbsConfig[] => {
+
+  const paths = location.pathname.split("/");
+  const makeArchitectureBreadcrumbs = (arr: string[]): IBreadcrumbsConfig[] => {
     const newArr = arr.map((path, index) => {
       const isActive = index + 1 === arr.length;
       if (path.length === 0)
@@ -43,7 +39,7 @@ const MyBreadcrumbs: FC<IMyBreadcrumbs> = ({ customLabel }) => {
       else
         return {
           id: index,
-          label: customLabel ? customLabel : "Information page",
+          label: "Information page",
           path: location.pathname,
           isActive,
         };
@@ -52,8 +48,6 @@ const MyBreadcrumbs: FC<IMyBreadcrumbs> = ({ customLabel }) => {
     return uniqBy(newArr, "path");
   };
 
-  const breadcrumbsObjects = makeArchitectureBreadcrumbs(paths);
-  console.log("render");
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800];
     return {
@@ -70,15 +64,15 @@ const MyBreadcrumbs: FC<IMyBreadcrumbs> = ({ customLabel }) => {
       },
     };
   }) as typeof Chip;
+
   return (
-    <Breadcrumbs aria-label='breadcrumb' separator={<NavigateNextIcon fontSize='small' />}>
-      {breadcrumbsObjects?.map(link => (
+    <Breadcrumbs aria-label='breadcrumb' separator={<NavigateNextIcon fontSize='small' />} sx={{ px: 3 }}>
+      {makeArchitectureBreadcrumbs(paths)?.map(link => (
         <NavLink key={link.id} to={link.path}>
           <StyledBreadcrumb
             component='span'
             label={link.label}
             icon={link.label === "Home" ? <HomeIcon fontSize='small' /> : undefined}
-            className='inner-link'
             sx={link.isActive ? { color: theme.palette.primary.main } : undefined}
           />
         </NavLink>
