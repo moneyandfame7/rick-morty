@@ -1,4 +1,4 @@
-export interface IEntity {
+interface IEntity {
   id: number;
   name: string;
   created: string;
@@ -28,9 +28,17 @@ export interface IEpisode extends IEntity {
   url: string;
 }
 
-export interface ILocation extends IEntity {
-  type: string;
-  dimension: string;
-  residents: string[];
-  url: string[];
+interface IResponse {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+}
+export interface IResponseCharacter extends IResponse {
+  results: ICharacter[];
+}
+export interface IResponseEpisode extends IResponse {
+  results: IEpisode[];
 }

@@ -1,5 +1,4 @@
 import React, { FC, useState } from "react";
-// import styles from "./Header.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import {
   AppBar,
@@ -15,15 +14,15 @@ import {
   Typography,
   Badge,
   Stack,
+  Button,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 
-import { useAppSelector } from "../../redux/hooks";
-import { getFavoritesAmount } from "../../redux/selectors";
-import ToggleMode from "../../components/ToggleMode";
-import { grey } from "@mui/material/colors";
-import { useTheme } from "@mui/material/styles";
+import { useAppSelector } from "../redux/hooks";
+import { getFavoritesAmount } from "../redux/selectors";
+import ToggleMode from "../components/ToggleMode";
 
 interface ILinkConfig {
   url: string;
@@ -42,17 +41,11 @@ const LINKS_CONFIG: ILinkConfig[] = [
     name: "Episodes",
     id: 1,
   },
-  {
-    url: "/location",
-    name: "Locations",
-    id: 2,
-  },
 ];
 
 interface IHeaderProps {
   window?: () => Window;
 }
-const drawerWidth = 240;
 const Header: FC<IHeaderProps> = ({ window }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const amountFavorite = useAppSelector(getFavoritesAmount);
@@ -73,7 +66,11 @@ const Header: FC<IHeaderProps> = ({ window }) => {
             name !== "Favorites" && (
               <ListItem key={id} disablePadding>
                 <ListItemButton sx={{ textAlign: "center" }}>
-                  <NavLink to={url} key={id}>
+                  <NavLink
+                    to={url}
+                    key={id}
+                    style={({ isActive }) => (isActive ? { color: theme.palette.primary.dark } : undefined)}
+                  >
                     <ListItemText primary={name} />
                   </NavLink>
                 </ListItemButton>
@@ -86,9 +83,9 @@ const Header: FC<IHeaderProps> = ({ window }) => {
 
   const container = window !== undefined ? () => window().document.body : undefined;
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" }} component='header'>
       <AppBar
-        component='nav'
+        component='div'
         sx={{
           backgroundColor: "background.default",
           boxShadow: "none",
@@ -118,11 +115,9 @@ const Header: FC<IHeaderProps> = ({ window }) => {
             </Typography>
             <Stack sx={{ display: { xs: "none", sm: "flex" } }} direction='row' gap={5}>
               {LINKS_CONFIG.map(({ id, name, url }) => (
-                <NavLink key={id} to={url}>
-                  <Typography key={id} sx={{ fontWeight: "bold" }} variant='body1'>
-                    {name}
-                  </Typography>
-                </NavLink>
+                <Button component={Link} to={url} key={id} sx={{ "&:hover": { color: "rgba(255,0,0)" } }}>
+                  {name}
+                </Button>
               ))}
             </Stack>
           </Box>
@@ -149,7 +144,7 @@ const Header: FC<IHeaderProps> = ({ window }) => {
           }}
           sx={{
             display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+            "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
           }}
         >
           {drawer}
