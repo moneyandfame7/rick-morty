@@ -45,7 +45,13 @@ const ErrorMessage: FC<IErrorMessage> = ({ error }) => {
     }
   };
   return (
-    <Container maxWidth='md' sx={{ display: "flex", justifyContent: "center" }}>
+    <Container
+      maxWidth='md'
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
       {handleError()}
     </Container>
   );

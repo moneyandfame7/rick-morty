@@ -18,10 +18,13 @@ const CharacterPage: React.FC = () => {
   // TODO: переписать на RTK Query ( maybe )
   // TODO: Make error handler for query
   // TODO: Remake navigation
+  if (isError) {
+    return <ErrorMessage error={error} />;
+  }
+
   return (
     <>
-      {isError && <ErrorMessage error={error} />}
-      {isLoading && !isError ? (
+      {isLoading ? (
         <CircularProgress sx={{ marginTop: "30px" }} />
       ) : (
         <>

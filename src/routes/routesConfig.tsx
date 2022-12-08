@@ -7,7 +7,6 @@ import NotFoundPage from "../pages/NotFoundPage";
 import InfoAboutCharacterPage from "../pages/InfoAboutCharacterPage";
 import InfoAboutEpisodePage from "../pages/InfoAboutEpisodePage";
 import FavoritePage from "../pages/FavoritePage";
-import { Link } from "react-router-dom";
 
 interface IRoutesConfig {
   path: string;
@@ -15,9 +14,6 @@ interface IRoutesConfig {
   id: number;
   exact?: boolean;
   nodeRef?: RefObject<any>;
-  handle?: {
-    crumb: () => React.ReactNode;
-  };
 }
 
 export const routesConfig: IRoutesConfig[] = [
@@ -26,18 +22,12 @@ export const routesConfig: IRoutesConfig[] = [
     element: <HomePage />,
     id: 0,
     nodeRef: createRef(),
-    handle: {
-      crumb: () => <Link to='/'>Home</Link>,
-    },
   },
   {
     path: "/episode",
     element: <EpisodePage />,
     id: 1,
     nodeRef: createRef(),
-    handle: {
-      crumb: () => <Link to='/'>Episode</Link>,
-    },
   },
   {
     path: "/location",

@@ -20,7 +20,6 @@ export const router = createBrowserRouter([
       index: route.path === "/",
       path: route.path === "/" ? undefined : route.path,
       element: route.element,
-      handle: route.handle,
     })),
   },
 ]);
@@ -60,7 +59,7 @@ function App() {
                     flexDirection: "column",
                     alignItems: "center",
                     gap: "20px",
-                    marginTop: "20px",
+                    margin: "20px 0 50px",
                     padding: 0,
                   }}
                   className='page'
