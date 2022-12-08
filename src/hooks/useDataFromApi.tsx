@@ -10,7 +10,6 @@ interface IUseDataFromApiConfig {
 
 export const useDataFromApi = <ItemType,>({ url, setIsErrorApi, setMessageError }: IUseDataFromApiConfig) => {
   const queryPage = useQueryParams().get("page");
-
   const [data, setData] = useState<ItemType>();
   const [prevPage, setPrevPage] = useState<string | null>(null);
   const [nextPage, setNextPage] = useState<string | null>(null);

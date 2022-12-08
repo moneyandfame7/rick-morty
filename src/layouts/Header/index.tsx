@@ -24,6 +24,7 @@ import { getFavoritesAmount } from "../../redux/selectors";
 import ToggleMode from "../../components/ToggleMode";
 import { grey } from "@mui/material/colors";
 import { useTheme } from "@mui/material/styles";
+import HomeIcon from "@mui/icons-material/Home";
 
 interface ILinkConfig {
   url: string;
@@ -73,7 +74,11 @@ const Header: FC<IHeaderProps> = ({ window }) => {
             name !== "Favorites" && (
               <ListItem key={id} disablePadding>
                 <ListItemButton sx={{ textAlign: "center" }}>
-                  <NavLink to={url} key={id}>
+                  <NavLink
+                    to={url}
+                    key={id}
+                    style={({ isActive }) => (isActive ? { color: theme.palette.primary.dark } : undefined)}
+                  >
                     <ListItemText primary={name} />
                   </NavLink>
                 </ListItemButton>

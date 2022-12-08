@@ -9,7 +9,7 @@ const FavoritePage: FC = () => {
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
   const characters = useAppSelector(getCharacters);
   const navigate = useNavigate();
-
+  console.log(characters);
   useEffect(() => {
     characters.length ? setIsEmpty(false) : setIsEmpty(true);
   }, [characters]);

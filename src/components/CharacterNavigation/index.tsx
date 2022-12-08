@@ -4,41 +4,29 @@ import Button from "../Button";
 import styles from "./CharacterNavigation.module.scss";
 import { IEntity } from "../../interfaces";
 import { NavigationTypeEnum } from "../../constants/api";
+import { Stack } from "@mui/material";
+import { useQueryParams } from "../../hooks/useQueryParams";
 
-interface INavigationProps<IItem extends IEntity> {
-  getResource: (url: string) => Promise<void>;
-  prevPage: string | null;
-  nextPage: string | null;
-  counterPage: number;
+interface INavigationProps {
+  prev: string | null | undefined;
+  next: string | null | undefined;
   navigationType: NavigationTypeEnum;
+  isLoading: boolean;
 }
 
-function Navigation<IItem extends IEntity>({
-  getResource,
-  prevPage,
-  nextPage,
-  counterPage,
-  navigationType,
-}: INavigationProps<IItem>) {
-  const handleChangeNext = () => {
-    if (nextPage) getResource(nextPage);
-  };
-  const handleChangePrev = () => {
-    if (prevPage) getResource(prevPage);
-  };
+const Navigation = ({ prev, next, navigationType, isLoading }: INavigationProps) => {
+  const queryPage = Number(useQueryParams().get("page"));
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.navigation}>
-        <Link to={`/${navigationType}?page=${counterPage && counterPage - 1}`} className={styles.link}>
-          <Button title='Previous' onClick={handleChangePrev} disabled={!prevPage} />
-        </Link>
-        <Link to={`/${navigationType}?page=${counterPage && counterPage + 1}`} className={styles.link}>
-          <Button title='Next' onClick={handleChangeNext} disabled={!nextPage} />
-        </Link>
-      </div>
-    </div>
+    <Stack direction='row' gap={3} justifyContent='center'>
+      <Link to={`/${navigationType}?page=${queryPage - 1}`}>
+        <Button title='Previous' disabled={!prev || isLoading} />
+      </Link>
+      <Link to={`/${navigationType}?page=${queryPage + 1}`}>
+        <Button title='Next' disabled={!next || isLoading} />
+      </Link>
+    </Stack>
   );
-}
+};
 
 export default Navigation;

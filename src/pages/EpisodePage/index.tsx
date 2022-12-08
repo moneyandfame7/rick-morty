@@ -1,29 +1,23 @@
 import React, { FC } from "react";
 import { IEpisode } from "../../interfaces";
-import { useErrorApi } from "../../hooks/useErrorApi";
-import { API_EPISODE_ALL, NavigationTypeEnum } from "../../constants/api";
 import Navigation from "../../components/CharacterNavigation";
-import { useDataFromApi } from "../../hooks/useDataFromApi";
 import { CircularProgress } from "@mui/material";
+import { useFetchEpisodesQuery } from "../../redux/slices/rickMortyApiSlice";
+import ErrorMessage from "../../components/ErrorMessage";
+import MyBreadcrumbs from "../../components/Breadcrumbs";
 
 const EpisodePage: FC = () => {
-  const { setIsErrorApi, render, setMessageError } = useErrorApi();
-  const { prevPage, nextPage, counterPage, isLoading, data, getResource } = useDataFromApi<IEpisode[]>({
-    url: API_EPISODE_ALL,
-    setIsErrorApi,
-    setMessageError,
-  });
+  const { data, isError, isLoading, error } = useFetchEpisodesQuery(1);
 
-  console.log(nextPage);
-  return render(
+  return (
     <>
-      <Navigation<IEpisode>
-        getResource={getResource}
-        prevPage={prevPage}
-        nextPage={nextPage}
-        counterPage={counterPage}
-        navigationType={NavigationTypeEnum.EPISODE}
-      />
+      {/*<Navigation<IEpisode>*/}
+      {/*  getResource={getResource}*/}
+      {/*  prevPage={prevPage}*/}
+      {/*  nextPage={nextPage}*/}
+      {/*  counterPage={counterPage}*/}
+      {/*  navigationType={NavigationTypeEnum.EPISODE}*/}
+      {/*/>*/}
       <div
         style={{
           display: "flex",
@@ -34,8 +28,11 @@ const EpisodePage: FC = () => {
           justifyContent: "center",
         }}
       >
-        {!isLoading ? (
-          data?.map(episode => (
+        {isError && <ErrorMessage error={error} />}
+        {isLoading && !isError ? (
+          <CircularProgress sx={{ marginTop: "30px" }} />
+        ) : (
+          data?.results?.map(episode => (
             <React.Fragment key={episode.id}>
               <h5 style={{ width: "49%", textAlign: "center" }}>
                 <span style={{ opacity: 0.9 }}>Name: </span>
@@ -43,8 +40,6 @@ const EpisodePage: FC = () => {
               </h5>
             </React.Fragment>
           ))
-        ) : (
-          <CircularProgress />
         )}
       </div>
     </>
