@@ -11,6 +11,8 @@ import EpisodeList from "../../components/EpisodeList";
 import ErrorMessage from "../../components/ErrorMessage";
 import styles from "./InfoAboutCharacterPage.module.scss";
 import "./Custom.scss";
+import { ICharacter } from "../../interfaces";
+import _ from "lodash";
 
 const InfoAboutCharacterPage: FC = () => {
   const { id } = useParams();
@@ -56,9 +58,14 @@ const InfoAboutCharacterPage: FC = () => {
   };
 
   useEffect(() => {
-    console.log(favoriteCharacters);
-    const favIndex = favoriteCharacters.find(c => c.id === data?.id);
-    !favIndex ? setIsFavorite(false) : setIsFavorite(true);
+    try {
+      console.log(favoriteCharacters);
+      const favIndex = _.findIndex(favoriteCharacters, o => o.id === data?.id);
+      favIndex === -1 ? setIsFavorite(false) : setIsFavorite(true);
+      console.log(favIndex);
+    } catch (e) {
+      throw new Error("Error in favoriteCharacters");
+    }
   }, [data?.id, favoriteCharacters]);
 
   if (error) {
