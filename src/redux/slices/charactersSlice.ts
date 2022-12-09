@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { FAVORITE_CHARACTERS, getLocalStorage } from "../../utils/localStorage";
 import { ICharacter } from "../../interfaces";
-import { concat, filter, uniq } from "lodash";
+import { concat, filter } from "lodash";
 interface CharacterState {
   characters: ICharacter[];
 }
