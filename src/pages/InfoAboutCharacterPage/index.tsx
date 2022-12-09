@@ -56,8 +56,9 @@ const InfoAboutCharacterPage: FC = () => {
   };
 
   useEffect(() => {
-    const favIndex = (favoriteCharacters ?? []).findIndex(c => c.id === data?.id);
-    favIndex === -1 ? setIsFavorite(false) : setIsFavorite(true);
+    console.log(favoriteCharacters);
+    const favIndex = favoriteCharacters.find(c => c.id === data?.id);
+    !favIndex ? setIsFavorite(false) : setIsFavorite(true);
   }, [data?.id, favoriteCharacters]);
 
   if (error) {
