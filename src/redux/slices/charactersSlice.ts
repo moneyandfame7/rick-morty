@@ -16,7 +16,7 @@ export const charactersSlice = createSlice({
   initialState,
   reducers: {
     addToFavorite: (state, action: PayloadAction<ICharacter>) => {
-      state.characters = uniq(concat(state.characters, action.payload));
+      state.characters = concat(state.characters, action.payload);
     },
     removeFromFavorite: (state, action: PayloadAction<number>) => {
       if (state.characters) {
