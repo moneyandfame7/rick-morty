@@ -11,7 +11,6 @@ import EpisodeList from "../../components/EpisodeList";
 import ErrorMessage from "../../components/ErrorMessage";
 import styles from "./InfoAboutCharacterPage.module.scss";
 import "./Custom.scss";
-import { ICharacter } from "../../interfaces";
 import _ from "lodash";
 
 const InfoAboutCharacterPage: FC = () => {
@@ -21,6 +20,8 @@ const InfoAboutCharacterPage: FC = () => {
   const dispatch = useAppDispatch();
   const favoriteCharacters = useAppSelector(getCharacters);
   const handleOnFavoriteIconClick = (): void => {
+    console.log("click");
+    console.log(favoriteCharacters);
     if (data) {
       if (isFavorite) {
         dispatch(removeFromFavorite(data.id));
