@@ -58,10 +58,8 @@ const InfoAboutCharacterPage: FC = () => {
 
   useEffect(() => {
     try {
-      console.log(favoriteCharacters);
       const favIndex = _.findIndex(favoriteCharacters, o => o.id === data?.id);
       favIndex === -1 ? setIsFavorite(false) : setIsFavorite(true);
-      console.log(favIndex);
     } catch (e) {
       throw new Error("Error in favoriteCharacters");
     }
