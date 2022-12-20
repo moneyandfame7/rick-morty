@@ -15,6 +15,7 @@ interface INavigationProps {
 export const Navigation: FC<INavigationProps> = ({ prev, next, navigationType, isLoading }) => {
   const queryPage = Number(useQueryParams().get("page"));
   const navigate = useNavigate();
+
   return (
     <Stack direction='row' gap={3} justifyContent='center'>
       <Button
@@ -22,6 +23,7 @@ export const Navigation: FC<INavigationProps> = ({ prev, next, navigationType, i
         onClick={() => {
           navigate(`/${navigationType}?page=${queryPage - 1}`);
         }}
+        data-testid='navigation-button-prev-component'
         startIcon={<NavigateBeforeIcon />}
       >
         Previous
@@ -32,6 +34,7 @@ export const Navigation: FC<INavigationProps> = ({ prev, next, navigationType, i
         onClick={() => {
           navigate(`/${navigationType}?page=${queryPage + 1}`);
         }}
+        data-testid='navigation-button-next-component'
         endIcon={<NavigateNextIcon />}
       >
         Next

@@ -37,6 +37,7 @@ describe("Modal", () => {
     fireEvent.click(await screen.findByTestId("modal-button-component"));
     // Assert
     expect(defaultProps.onClose).toBeCalled();
+    thenItRendersProperly();
   });
 
   function givenComponent(props?: any) {
