@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { CharacterCard } from "./index";
 import { useFetchEpisodeByIdQuery } from "../../redux/slices/rickMortyApiSlice";
 import { IEpisode } from "../../interfaces";

@@ -32,7 +32,9 @@ export const Modal: FC<IModalProps> = ({ open, title, message, onClose }) => {
         <DialogContentText id='alert-dialog-slide-description'>{message}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Okay</Button>
+        <Button onClick={onClose} data-testid='modal-button-component'>
+          Okay
+        </Button>
       </DialogActions>
     </Dialog>
   );
