@@ -1,4 +1,4 @@
-import { ICharacter } from "../interfaces";
+ import { ICharacter } from "../interfaces";
 
 export const FAVORITE_CHARACTERS = "FAVORITE_CHARACTERS";
 

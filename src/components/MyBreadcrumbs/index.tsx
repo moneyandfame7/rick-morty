@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { useLocation } from "react-router";
-import HomeIcon from "@mui/icons-material/Home";
-import { Breadcrumbs, Chip, emphasize, styled, useTheme } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { uniqBy } from "lodash";
+import HomeIcon from "@mui/icons-material/Home";
+import { Breadcrumbs, Chip, emphasize, styled, useTheme } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 interface IBreadcrumbsConfig {
@@ -13,7 +13,7 @@ interface IBreadcrumbsConfig {
   isActive?: boolean;
 }
 
-const MyBreadcrumbs: FC = () => {
+export const MyBreadcrumbs: FC = () => {
   const location = useLocation();
   const theme = useTheme();
 
@@ -80,5 +80,3 @@ const MyBreadcrumbs: FC = () => {
     </Breadcrumbs>
   );
 };
-
-export default MyBreadcrumbs;

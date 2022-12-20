@@ -18,7 +18,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction='up' ref={ref} {...props} />;
 });
 
-const Modal: FC<IModalProps> = ({ open, title, message, onClose }) => {
+export const Modal: FC<IModalProps> = ({ open, title, message, onClose }) => {
   return (
     <Dialog
       open={open}
@@ -37,5 +37,3 @@ const Modal: FC<IModalProps> = ({ open, title, message, onClose }) => {
     </Dialog>
   );
 };
-
-export default Modal;

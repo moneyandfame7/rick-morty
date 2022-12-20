@@ -1,11 +1,11 @@
 import React, { FC } from "react";
+import { ColorModeContext } from "../../App";
 import IconButton from "@mui/material/IconButton";
-import { ColorModeContext } from "../App";
-import { useTheme } from "@mui/material/styles";
+import useTheme from "@mui/material/styles/useTheme";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 
-const ToggleMode: FC = () => {
+export const ToggleMode: FC = () => {
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
 
@@ -15,5 +15,3 @@ const ToggleMode: FC = () => {
     </IconButton>
   );
 };
-
-export default ToggleMode;

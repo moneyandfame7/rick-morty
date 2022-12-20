@@ -7,7 +7,7 @@ interface IErrorMessage {
   error: FetchBaseQueryError | SerializedError | undefined;
 }
 
-const ErrorMessage: FC<IErrorMessage> = ({ error }) => {
+export const ErrorMessage: FC<IErrorMessage> = ({ error }) => {
   const handleError = () => {
     if (error) {
       console.log(error);
@@ -67,5 +67,3 @@ const ErrorMessage: FC<IErrorMessage> = ({ error }) => {
     </Container>
   );
 };
-
-export default ErrorMessage;

@@ -1,9 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
-import { useAppSelector } from "../redux/hooks";
-import CharacterList from "../components/CardList";
-import { getCharacters } from "../redux/selectors";
-import Modal from "../components/Modal";
 import { useNavigate } from "react-router";
+import { useAppSelector } from "../redux/hooks";
+import { getCharacters } from "../redux/selectors";
+import { CardList, Modal } from "../components";
 
 const FavoritePage: FC = () => {
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
@@ -19,7 +18,7 @@ const FavoritePage: FC = () => {
   return (
     <>
       {!isEmpty ? (
-        <CharacterList items={characters} />
+        <CardList items={characters} />
       ) : (
         <Modal
           title='Your favorites list is empty.'

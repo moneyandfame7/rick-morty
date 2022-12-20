@@ -1,5 +1,7 @@
 import React, { FC, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useAppSelector } from "../redux/hooks";
+import { getFavoritesAmount } from "../redux/selectors";
 import {
   AppBar,
   Box,
@@ -16,13 +18,10 @@ import {
   Stack,
   Button,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import useTheme from "@mui/material/styles/useTheme";
 import MenuIcon from "@mui/icons-material/Menu";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
-
-import { useAppSelector } from "../redux/hooks";
-import { getFavoritesAmount } from "../redux/selectors";
-import ToggleMode from "../components/ToggleMode";
+import { ToggleMode } from "../components";
 
 interface ILinkConfig {
   url: string;

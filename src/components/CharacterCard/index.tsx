@@ -1,6 +1,8 @@
-import * as React from "react";
-import { FC } from "react";
+import React, { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import { useFetchEpisodeByIdQuery } from "../../redux/slices/rickMortyApiSlice";
+import { getIdFromName } from "../../utils/getIdFromUrl";
+import { NavigationTypeEnum } from "../../constants/api";
 import { red, green, grey } from "@mui/material/colors";
 import {
   Box,
@@ -15,10 +17,8 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useFetchEpisodeByIdQuery } from "../redux/slices/rickMortyApiSlice";
-import { getIdFromName } from "../utils/getIdFromUrl";
-import { NavigationTypeEnum } from "../constants/api";
 
+// "Alive" | "Dead" | "unknown";
 interface ICharacterCardProps {
   status: string;
   name: string;
@@ -31,9 +31,8 @@ interface ICharacterCardProps {
   id: number;
 }
 
-const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location, episode, id }) => {
+export const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location, episode, id }) => {
   const { data, isLoading } = useFetchEpisodeByIdQuery(getIdFromName(episode[0]));
-
   const textColor = () => {
     switch (true) {
       case status.includes("Dead"):
@@ -44,7 +43,6 @@ const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location,
         return { color: grey[400] };
     }
   };
-
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card sx={{ height: "100%" }}>
@@ -91,12 +89,11 @@ const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location,
           </Box>
         </CardContent>
         <CardActions>
-          <Button fullWidth variant='outlined' component={RouterLink} to={`/${NavigationTypeEnum.CHARACTER}/${id}`}>
-            Read more
-          </Button>
+          {/*<Button fullWidth variant='outlined' component={RouterLink} to={`/${NavigationTypeEnum.CHARACTER}/${id}`}>*/}
+          {/*</Button>*/}
+          <RouterLink to={`/${NavigationTypeEnum.CHARACTER}/${id}`}>Read more</RouterLink>
         </CardActions>
       </Card>
     </Grid>
   );
 };
-export default CharacterCard;

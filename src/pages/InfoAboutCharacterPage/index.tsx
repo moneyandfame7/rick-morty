@@ -7,8 +7,7 @@ import { useFetchCharacterByIdQuery } from "../../redux/slices/rickMortyApiSlice
 import { Card } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import { Alert, AlertTitle, Button, CircularProgress } from "@mui/material";
-import EpisodeList from "../../components/EpisodeList";
-import ErrorMessage from "../../components/ErrorMessage";
+import { EpisodeList, ErrorMessage } from "../../components";
 import styles from "./InfoAboutCharacterPage.module.scss";
 import "./Custom.scss";
 import _ from "lodash";

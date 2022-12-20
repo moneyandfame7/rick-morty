@@ -6,7 +6,7 @@ import { getDesignTokens } from "./utils/theme";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Container, CssBaseline, useMediaQuery } from "@mui/material";
-import MyBreadcrumbs from "./components/Breadcrumbs";
+import { MyBreadcrumbs } from "./components";
 import Header from "./layout/Header";
 
 import "./App.scss";
