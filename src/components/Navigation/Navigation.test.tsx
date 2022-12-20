@@ -17,7 +17,7 @@ jest.mock("react-router", () => ({
 }));
 describe("Navigation", () => {
   let component: RenderResult;
-  let defaultProps = {
+  let defaultProps: any = {
     prev: null,
     next: "2",
     navigationType: "TEST",
@@ -34,7 +34,7 @@ describe("Navigation", () => {
     givenComponent();
     fireEvent.click(await screen.findByTestId("navigation-button-next-component"));
 
-    expect(mockedUsedNavigate).toBeCalledWith(`/TEST?page=${defaultProps.next}`);
+    expect(mockedUsedNavigate).toBeCalledWith(`/${defaultProps.navigationType}?page=${defaultProps.next}`);
     thenItRendersProperly();
   });
 
