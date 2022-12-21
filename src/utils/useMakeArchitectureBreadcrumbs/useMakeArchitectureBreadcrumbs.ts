@@ -1,13 +1,15 @@
 import { uniqBy } from "lodash";
+import { useLocation } from "react-router";
 
-interface IBreadcrumbsConfig {
+export interface IBreadcrumbsConfig {
   id: number;
   label: string;
   path: string;
   isActive?: boolean;
 }
 
-const makeArchitectureBreadcrumbs = (location: any): IBreadcrumbsConfig[] => {
+export function useMakeArchitectureBreadcrumbs(): IBreadcrumbsConfig[] {
+  const location = useLocation();
   const arr: string[] = location.pathname.split("/");
   console.log(arr, "входные");
   console.log(location, "location");
@@ -39,6 +41,4 @@ const makeArchitectureBreadcrumbs = (location: any): IBreadcrumbsConfig[] => {
   });
   console.log(uniqBy(newArr, "path"), "на выходе");
   return uniqBy(newArr, "path");
-};
-
-export default makeArchitectureBreadcrumbs;
+}

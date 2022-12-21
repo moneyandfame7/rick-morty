@@ -1,20 +1,11 @@
 import React, { FC } from "react";
-import { useLocation } from "react-router";
 import { NavLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import { Breadcrumbs, Chip, emphasize, styled, useTheme } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import makeArchitectureBreadcrumbs from "../../utils/makeArchitectureBreadcrumbs/makeArchitectureBreadcrumbs";
-
-interface IBreadcrumbsConfig {
-  id: number;
-  label: string;
-  path: string;
-  isActive?: boolean;
-}
+import { useMakeArchitectureBreadcrumbs } from "../../utils/useMakeArchitectureBreadcrumbs/useMakeArchitectureBreadcrumbs";
 
 export const MyBreadcrumbs: FC = () => {
-  const location = useLocation();
   const theme = useTheme();
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800];
@@ -32,10 +23,9 @@ export const MyBreadcrumbs: FC = () => {
       },
     };
   }) as typeof Chip;
-
   return (
     <Breadcrumbs aria-label='breadcrumb' separator={<NavigateNextIcon fontSize='small' />} sx={{ px: 3 }}>
-      {makeArchitectureBreadcrumbs(location)?.map(link => (
+      {useMakeArchitectureBreadcrumbs()?.map(link => (
         <NavLink key={link.id} to={link.path}>
           <StyledBreadcrumb
             component='span'
