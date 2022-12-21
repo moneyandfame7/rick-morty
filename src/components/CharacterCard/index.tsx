@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { Link as RouterLink } from "react-router-dom";
 import { useFetchEpisodeByIdQuery } from "../../redux/slices/rickMortyApiSlice";
 import { getIdFromName } from "../../utils/getIdFromUrl";
 import { NavigationTypeEnum } from "../../constants/api";
@@ -17,8 +16,8 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router";
 
-// "Alive" | "Dead" | "unknown";
 interface ICharacterCardProps {
   status: string;
   name: string;
@@ -32,6 +31,7 @@ interface ICharacterCardProps {
 }
 
 export const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location, episode, id }) => {
+  const navigate = useNavigate();
   const { data, isLoading } = useFetchEpisodeByIdQuery(getIdFromName(episode[0]));
   const textColor = () => {
     switch (true) {
@@ -75,7 +75,7 @@ export const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, lo
             </Typography>
 
             {isLoading ? (
-              <CircularProgress />
+              <CircularProgress data-testid='card-loader-component' />
             ) : (
               <Stack direction='column' gap='3px'>
                 <Typography component='h6' variant='subtitle2' color='text.primary' sx={{ textAlign: "center" }}>
@@ -91,7 +91,15 @@ export const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, lo
         <CardActions>
           {/*<Button fullWidth variant='outlined' component={RouterLink} to={`/${NavigationTypeEnum.CHARACTER}/${id}`}>*/}
           {/*</Button>*/}
-          <RouterLink to={`/${NavigationTypeEnum.CHARACTER}/${id}`}>Read more</RouterLink>
+
+          <Button
+            fullWidth
+            variant='contained'
+            onClick={() => navigate(`/${NavigationTypeEnum.CHARACTER}/${id}`)}
+            data-testid='card-button-component'
+          >
+            Read more
+          </Button>
         </CardActions>
       </Card>
     </Grid>

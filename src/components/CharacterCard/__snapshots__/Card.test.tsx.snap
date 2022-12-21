@@ -1,5 +1,250 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CharacterCard should navigate to character page when click on button 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 css-13i4rnv-MuiGrid-root"
+      >
+        <div
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-zwt9xa-MuiPaper-root-MuiCard-root"
+        >
+          <img
+            alt="green iguana"
+            class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+            width="200px"
+          />
+          <div
+            class="MuiCardHeader-root css-13fwgw0-MuiCardHeader-root"
+          >
+            <div
+              class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiCardHeader-title css-1l8qytf-MuiTypography-root"
+              >
+                Test Name
+              </span>
+              <span
+                class="MuiTypography-root MuiTypography-body1 MuiTypography-alignCenter MuiCardHeader-subheader css-zzcnnq-MuiTypography-root"
+              >
+                location test
+              </span>
+            </div>
+          </div>
+          <div
+            class="MuiCardContent-root css-71xg00-MuiCardContent-root"
+          >
+            <div
+              class="MuiBox-root css-uwdvlb"
+            >
+              <h4
+                class="MuiTypography-root MuiTypography-h5 css-1p5zgwg-MuiTypography-root"
+              >
+                Alive
+              </h4>
+            </div>
+            <div
+              class="MuiBox-root css-1vr2anf"
+            >
+              <h5
+                class="MuiTypography-root MuiTypography-subtitle1 css-1smqr0y-MuiTypography-root"
+              >
+                First seen in:
+              </h5>
+              <div
+                class="css-1ouuv2g-MuiStack-root"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle2 css-516ssh-MuiTypography-root"
+                >
+                  TEST_EPISODE_NAME
+                </h6>
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle2 css-516ssh-MuiTypography-root"
+                >
+                  (TEST_EPISODE_EPISODE)
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
+              data-testid="card-button-component"
+              tabindex="0"
+              type="button"
+            >
+              Read more
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              >
+                <span
+                  class="css-y4cjyz-MuiTouchRipple-ripple MuiTouchRipple-ripple MuiTouchRipple-rippleVisible"
+                  style="width: 2.8284271247461903px; height: 2.8284271247461903px; top: -1.4142135623730951px; left: -1.4142135623730951px;"
+                >
+                  <span
+                    class="MuiTouchRipple-child MuiTouchRipple-childLeaving"
+                  />
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 css-13i4rnv-MuiGrid-root"
+    >
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-zwt9xa-MuiPaper-root-MuiCard-root"
+      >
+        <img
+          alt="green iguana"
+          class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+          width="200px"
+        />
+        <div
+          class="MuiCardHeader-root css-13fwgw0-MuiCardHeader-root"
+        >
+          <div
+            class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiCardHeader-title css-1l8qytf-MuiTypography-root"
+            >
+              Test Name
+            </span>
+            <span
+              class="MuiTypography-root MuiTypography-body1 MuiTypography-alignCenter MuiCardHeader-subheader css-zzcnnq-MuiTypography-root"
+            >
+              location test
+            </span>
+          </div>
+        </div>
+        <div
+          class="MuiCardContent-root css-71xg00-MuiCardContent-root"
+        >
+          <div
+            class="MuiBox-root css-uwdvlb"
+          >
+            <h4
+              class="MuiTypography-root MuiTypography-h5 css-1p5zgwg-MuiTypography-root"
+            >
+              Alive
+            </h4>
+          </div>
+          <div
+            class="MuiBox-root css-1vr2anf"
+          >
+            <h5
+              class="MuiTypography-root MuiTypography-subtitle1 css-1smqr0y-MuiTypography-root"
+            >
+              First seen in:
+            </h5>
+            <div
+              class="css-1ouuv2g-MuiStack-root"
+            >
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle2 css-516ssh-MuiTypography-root"
+              >
+                TEST_EPISODE_NAME
+              </h6>
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle2 css-516ssh-MuiTypography-root"
+              >
+                (TEST_EPISODE_EPISODE)
+              </h6>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+        >
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
+            data-testid="card-button-component"
+            tabindex="0"
+            type="button"
+          >
+            Read more
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            >
+              <span
+                class="css-y4cjyz-MuiTouchRipple-ripple MuiTouchRipple-ripple MuiTouchRipple-rippleVisible"
+                style="width: 2.8284271247461903px; height: 2.8284271247461903px; top: -1.4142135623730951px; left: -1.4142135623730951px;"
+              >
+                <span
+                  class="MuiTouchRipple-child MuiTouchRipple-childLeaving"
+                />
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
 exports[`CharacterCard should render properly with Dead status 1`] = `
 Object {
   "asFragment": [Function],
@@ -60,12 +305,12 @@ Object {
                 <h6
                   class="MuiTypography-root MuiTypography-subtitle2 css-516ssh-MuiTypography-root"
                 >
-                  Test Name
+                  TEST_EPISODE_NAME
                 </h6>
                 <h6
                   class="MuiTypography-root MuiTypography-subtitle2 css-516ssh-MuiTypography-root"
                 >
-                  (Test Episode)
+                  (TEST_EPISODE_EPISODE)
                 </h6>
               </div>
             </div>
@@ -73,7 +318,17 @@ Object {
           <div
             class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
           >
-            <div />
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
+              data-testid="card-button-component"
+              tabindex="0"
+              type="button"
+            >
+              Read more
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
           </div>
         </div>
       </div>
@@ -135,12 +390,12 @@ Object {
               <h6
                 class="MuiTypography-root MuiTypography-subtitle2 css-516ssh-MuiTypography-root"
               >
-                Test Name
+                TEST_EPISODE_NAME
               </h6>
               <h6
                 class="MuiTypography-root MuiTypography-subtitle2 css-516ssh-MuiTypography-root"
               >
-                (Test Episode)
+                (TEST_EPISODE_EPISODE)
               </h6>
             </div>
           </div>
@@ -148,7 +403,17 @@ Object {
         <div
           class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
         >
-          <div />
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
+            data-testid="card-button-component"
+            tabindex="0"
+            type="button"
+          >
+            Read more
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
         </div>
       </div>
     </div>
@@ -267,12 +532,12 @@ Object {
                 <h6
                   class="MuiTypography-root MuiTypography-subtitle2 css-516ssh-MuiTypography-root"
                 >
-                  Test Name
+                  TEST_EPISODE_NAME
                 </h6>
                 <h6
                   class="MuiTypography-root MuiTypography-subtitle2 css-516ssh-MuiTypography-root"
                 >
-                  (Test Episode)
+                  (TEST_EPISODE_EPISODE)
                 </h6>
               </div>
             </div>
@@ -280,7 +545,17 @@ Object {
           <div
             class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
           >
-            <div />
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
+              data-testid="card-button-component"
+              tabindex="0"
+              type="button"
+            >
+              Read more
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
           </div>
         </div>
       </div>
@@ -342,12 +617,12 @@ Object {
               <h6
                 class="MuiTypography-root MuiTypography-subtitle2 css-516ssh-MuiTypography-root"
               >
-                Test Name
+                TEST_EPISODE_NAME
               </h6>
               <h6
                 class="MuiTypography-root MuiTypography-subtitle2 css-516ssh-MuiTypography-root"
               >
-                (Test Episode)
+                (TEST_EPISODE_EPISODE)
               </h6>
             </div>
           </div>
@@ -355,7 +630,256 @@ Object {
         <div
           class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
         >
-          <div />
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
+            data-testid="card-button-component"
+            tabindex="0"
+            type="button"
+          >
+            Read more
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`CharacterCard when loading, the loader should be displayed 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 css-13i4rnv-MuiGrid-root"
+      >
+        <div
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-zwt9xa-MuiPaper-root-MuiCard-root"
+        >
+          <img
+            alt="green iguana"
+            class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+            width="200px"
+          />
+          <div
+            class="MuiCardHeader-root css-13fwgw0-MuiCardHeader-root"
+          >
+            <div
+              class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiCardHeader-title css-1l8qytf-MuiTypography-root"
+              >
+                Test Name
+              </span>
+              <span
+                class="MuiTypography-root MuiTypography-body1 MuiTypography-alignCenter MuiCardHeader-subheader css-zzcnnq-MuiTypography-root"
+              >
+                location test
+              </span>
+            </div>
+          </div>
+          <div
+            class="MuiCardContent-root css-71xg00-MuiCardContent-root"
+          >
+            <div
+              class="MuiBox-root css-uwdvlb"
+            >
+              <h4
+                class="MuiTypography-root MuiTypography-h5 css-1p5zgwg-MuiTypography-root"
+              >
+                Alive
+              </h4>
+            </div>
+            <div
+              class="MuiBox-root css-1vr2anf"
+            >
+              <h5
+                class="MuiTypography-root MuiTypography-subtitle1 css-1smqr0y-MuiTypography-root"
+              >
+                First seen in:
+              </h5>
+              <span
+                class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+                data-testid="card-loader-component"
+                role="progressbar"
+                style="width: 40px; height: 40px;"
+              >
+                <svg
+                  class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+                  viewBox="22 22 44 44"
+                >
+                  <circle
+                    class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+                    cx="44"
+                    cy="44"
+                    fill="none"
+                    r="20.2"
+                    stroke-width="3.6"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div
+            class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
+              data-testid="card-button-component"
+              tabindex="0"
+              type="button"
+            >
+              Read more
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 css-13i4rnv-MuiGrid-root"
+    >
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-zwt9xa-MuiPaper-root-MuiCard-root"
+      >
+        <img
+          alt="green iguana"
+          class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+          width="200px"
+        />
+        <div
+          class="MuiCardHeader-root css-13fwgw0-MuiCardHeader-root"
+        >
+          <div
+            class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiCardHeader-title css-1l8qytf-MuiTypography-root"
+            >
+              Test Name
+            </span>
+            <span
+              class="MuiTypography-root MuiTypography-body1 MuiTypography-alignCenter MuiCardHeader-subheader css-zzcnnq-MuiTypography-root"
+            >
+              location test
+            </span>
+          </div>
+        </div>
+        <div
+          class="MuiCardContent-root css-71xg00-MuiCardContent-root"
+        >
+          <div
+            class="MuiBox-root css-uwdvlb"
+          >
+            <h4
+              class="MuiTypography-root MuiTypography-h5 css-1p5zgwg-MuiTypography-root"
+            >
+              Alive
+            </h4>
+          </div>
+          <div
+            class="MuiBox-root css-1vr2anf"
+          >
+            <h5
+              class="MuiTypography-root MuiTypography-subtitle1 css-1smqr0y-MuiTypography-root"
+            >
+              First seen in:
+            </h5>
+            <span
+              class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+              data-testid="card-loader-component"
+              role="progressbar"
+              style="width: 40px; height: 40px;"
+            >
+              <svg
+                class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+                viewBox="22 22 44 44"
+              >
+                <circle
+                  class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+                  cx="44"
+                  cy="44"
+                  fill="none"
+                  r="20.2"
+                  stroke-width="3.6"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div
+          class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+        >
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
+            data-testid="card-button-component"
+            tabindex="0"
+            type="button"
+          >
+            Read more
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ import Header from "./layout/Header";
 import "./App.scss";
 
 export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
-
+// TODO: протестировать тему, кликая на кнопку смены темы по несколько раз
 export const router = createBrowserRouter([
   {
     path: "/",
