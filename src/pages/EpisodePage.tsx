@@ -1,10 +1,9 @@
 import React, { FC } from "react";
-import { CircularProgress } from "@mui/material";
 import { useFetchEpisodesQuery } from "../redux/slices/rickMortyApiSlice";
-import ErrorMessage from "../components/ErrorMessage";
-import Navigation from "../components/Navigation";
 import { NavigationTypeEnum } from "../constants/api";
 import { useQueryParams } from "../hooks/useQueryParams";
+import { CircularProgress } from "@mui/material";
+import { ErrorMessage, Navigation } from "../components";
 
 const EpisodePage: FC = () => {
   const queryPage = Number(useQueryParams().get("page"));

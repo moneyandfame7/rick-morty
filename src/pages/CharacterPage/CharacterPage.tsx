@@ -1,11 +1,9 @@
 import React from "react";
-import Navigation from "../components/Navigation";
-import CharacterList from "../components/CardList";
-import ErrorMessage from "../components/ErrorMessage";
+import { Navigation, ErrorMessage, CardList } from "../../components";
 import { CircularProgress } from "@mui/material";
-import { NavigationTypeEnum } from "../constants/api";
-import { useFetchCharactersQuery } from "../redux/slices/rickMortyApiSlice";
-import { useQueryParams } from "../hooks/useQueryParams";
+import { NavigationTypeEnum } from "../../constants/api";
+import { useFetchCharactersQuery } from "../../redux/slices/rickMortyApiSlice";
+import { useQueryParams } from "../../hooks/useQueryParams";
 
 const CharacterPage: React.FC = () => {
   const queryPage = Number(useQueryParams().get("page"));
@@ -14,7 +12,6 @@ const CharacterPage: React.FC = () => {
   if (isError) {
     return <ErrorMessage error={error} />;
   }
-
   return (
     <>
       {isLoading ? (
@@ -27,7 +24,7 @@ const CharacterPage: React.FC = () => {
             next={data?.info.next}
             navigationType={NavigationTypeEnum.CHARACTER}
           />
-          <CharacterList items={data?.results} />
+          <CardList items={data?.results} />
         </>
       )}
     </>

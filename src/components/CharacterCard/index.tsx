@@ -1,6 +1,7 @@
-import * as React from "react";
-import { FC } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import React, { FC } from "react";
+import { useFetchEpisodeByIdQuery } from "../../redux/slices/rickMortyApiSlice";
+import { getIdFromName } from "../../utils/getIdFromUrl";
+import { NavigationTypeEnum } from "../../constants/api";
 import { red, green, grey } from "@mui/material/colors";
 import {
   Box,
@@ -15,9 +16,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useFetchEpisodeByIdQuery } from "../redux/slices/rickMortyApiSlice";
-import { getIdFromName } from "../utils/getIdFromUrl";
-import { NavigationTypeEnum } from "../constants/api";
+import { useNavigate } from "react-router";
 
 interface ICharacterCardProps {
   status: string;
@@ -31,9 +30,9 @@ interface ICharacterCardProps {
   id: number;
 }
 
-const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location, episode, id }) => {
+export const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location, episode, id }) => {
+  const navigate = useNavigate();
   const { data, isLoading } = useFetchEpisodeByIdQuery(getIdFromName(episode[0]));
-
   const textColor = () => {
     switch (true) {
       case status.includes("Dead"):
@@ -44,7 +43,6 @@ const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location,
         return { color: grey[400] };
     }
   };
-
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card sx={{ height: "100%" }}>
@@ -77,7 +75,7 @@ const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location,
             </Typography>
 
             {isLoading ? (
-              <CircularProgress />
+              <CircularProgress data-testid='card-loader-component' />
             ) : (
               <Stack direction='column' gap='3px'>
                 <Typography component='h6' variant='subtitle2' color='text.primary' sx={{ textAlign: "center" }}>
@@ -91,7 +89,15 @@ const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location,
           </Box>
         </CardContent>
         <CardActions>
-          <Button fullWidth variant='outlined' component={RouterLink} to={`/${NavigationTypeEnum.CHARACTER}/${id}`}>
+          {/*<Button fullWidth variant='outlined' component={RouterLink} to={`/${NavigationTypeEnum.CHARACTER}/${id}`}>*/}
+          {/*</Button>*/}
+
+          <Button
+            fullWidth
+            variant='contained'
+            onClick={() => navigate(`/${NavigationTypeEnum.CHARACTER}/${id}`)}
+            data-testid='card-button-component'
+          >
             Read more
           </Button>
         </CardActions>
@@ -99,4 +105,3 @@ const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location,
     </Grid>
   );
 };
-export default CharacterCard;

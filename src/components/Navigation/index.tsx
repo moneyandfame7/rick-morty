@@ -1,10 +1,10 @@
-import React from "react";
-import { NavigationTypeEnum } from "../constants/api";
-import { Button, Stack } from "@mui/material";
-import { useQueryParams } from "../hooks/useQueryParams";
+import React, { FC } from "react";
 import { useNavigate } from "react-router";
+import { NavigationTypeEnum } from "../../constants/api";
+import { useQueryParams } from "../../hooks/useQueryParams";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import { Button, Stack } from "@mui/material";
 
 interface INavigationProps {
   prev: string | null | undefined;
@@ -12,9 +12,10 @@ interface INavigationProps {
   navigationType: NavigationTypeEnum;
   isLoading: boolean;
 }
-const Navigation = ({ prev, next, navigationType, isLoading }: INavigationProps) => {
+export const Navigation: FC<INavigationProps> = ({ prev, next, navigationType, isLoading }) => {
   const queryPage = Number(useQueryParams().get("page"));
   const navigate = useNavigate();
+
   return (
     <Stack direction='row' gap={3} justifyContent='center'>
       <Button
@@ -22,6 +23,7 @@ const Navigation = ({ prev, next, navigationType, isLoading }: INavigationProps)
         onClick={() => {
           navigate(`/${navigationType}?page=${queryPage - 1}`);
         }}
+        data-testid='navigation-button-prev-component'
         startIcon={<NavigateBeforeIcon />}
       >
         Previous
@@ -32,6 +34,7 @@ const Navigation = ({ prev, next, navigationType, isLoading }: INavigationProps)
         onClick={() => {
           navigate(`/${navigationType}?page=${queryPage + 1}`);
         }}
+        data-testid='navigation-button-next-component'
         endIcon={<NavigateNextIcon />}
       >
         Next
@@ -39,5 +42,3 @@ const Navigation = ({ prev, next, navigationType, isLoading }: INavigationProps)
     </Stack>
   );
 };
-
-export default Navigation;

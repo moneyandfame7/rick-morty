@@ -10,7 +10,6 @@ export const store = configureStore({
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(apiSlice.middleware),
 });
-
 store.subscribe(() => {
   const state = store.getState();
   const { characters } = state.favoriteCharacters;

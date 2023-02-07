@@ -4,6 +4,15 @@ interface IEntity {
   created: string;
 }
 
+interface IResponse {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+}
+
 export interface ICharacter extends IEntity {
   episode: Array<string>;
   gender: string;
@@ -28,14 +37,6 @@ export interface IEpisode extends IEntity {
   url: string;
 }
 
-interface IResponse {
-  info: {
-    count: number;
-    pages: number;
-    next: string | null;
-    prev: string | null;
-  };
-}
 export interface IResponseCharacter extends IResponse {
   results: ICharacter[];
 }
