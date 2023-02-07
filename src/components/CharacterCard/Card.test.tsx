@@ -54,13 +54,12 @@ describe("CharacterCard", () => {
   it("should navigate to character page when click on button", async () => {
     givenEpisode();
     givenComponent();
-    const btn = await screen.findByTestId("card-button-component");
+    const btn = screen.getByTestId("card-button-component");
 
     expect(btn).toBeInTheDocument();
     userEvent.click(btn);
 
     expect(mockNavigate).toHaveBeenCalledWith(`/character/${data.id}`);
-    thenItRendersProperly();
   });
 
   it("when loading, the loader should be displayed", () => {

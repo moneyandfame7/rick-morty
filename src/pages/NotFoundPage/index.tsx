@@ -1,23 +1,29 @@
 import React, { FC } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import styles from "./NotFoundPage.module.scss";
+import { Button, Stack, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { NavigationTypeEnum } from "../../constants/api";
 
 const NotFoundPage: FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   return (
-    <div className={styles.container}>
-      <div className={styles.error}>
-        <h1>404</h1>
-        <h2>NOT_FOUND_PAGE</h2>
-      </div>
+    <Stack direction='column' gap='10px' alignItems='center'>
+      <Typography component='h3' variant='h3' fontWeight='bold'>
+        404
+      </Typography>
+      <Typography component='h4' variant='h4'>
+        Not found page
+      </Typography>
 
-      <p className={styles.text}>
+      <Stack direction='row' gap='20px' alignItems='center'>
         No match for
-        <a className={styles.path} href={location.pathname}>
+        <Button variant='outlined' data-testid='button-link' disabled>
           {location.pathname}
-        </a>
-      </p>
-    </div>
+        </Button>
+      </Stack>
+    </Stack>
   );
 };
 

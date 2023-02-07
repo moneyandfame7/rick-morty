@@ -10,6 +10,7 @@ interface ICharacterEpisodes {
 
 export const EpisodeList: FC<ICharacterEpisodes> = ({ episodes }) => {
   const [data, setData] = useState<IEpisode[] | undefined>();
+
   useEffect(() => {
     (async () => {
       const res = await makeConcurrentRequest<IEpisode>(episodes);
@@ -19,6 +20,7 @@ export const EpisodeList: FC<ICharacterEpisodes> = ({ episodes }) => {
       setData(res);
     })();
   }, [episodes]);
+
   return (
     <>
       {!data && <span style={{ padding: "20px", textAlign: "center" }}>Error to loading episodes</span>}

@@ -28,14 +28,14 @@ describe("ErrorMessage", () => {
 
   it("should render properly width FetchBaseQueryError", () => {
     givenComponent(fetchError);
-    thenItRendersProperly();
     fetchBaseQueryErrorRenderCorrectly(fetchError);
+    thenItRendersProperly();
   });
 
   it("should render properly with SerializedError", () => {
     givenComponent(serializedError);
-    thenItRendersProperly();
     serializedErrorRenderCorrectly(serializedError);
+    thenItRendersProperly();
   });
 
   function givenComponent(error: any = defaultError) {

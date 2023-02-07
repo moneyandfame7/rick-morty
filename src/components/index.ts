@@ -6,3 +6,4 @@ export { Modal } from "./Modal";
 export { MyBreadcrumbs } from "./MyBreadcrumbs";
 export { Navigation } from "./Navigation";
 export { ToggleMode } from "./ToggleMode";
+export { Form } from "./Form";

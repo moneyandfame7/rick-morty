@@ -12,7 +12,7 @@ import styles from "./InfoAboutCharacterPage.module.scss";
 import "./Custom.scss";
 import _ from "lodash";
 
-const InfoAboutCharacterPage: FC = () => {
+export const InfoAboutCharacterPage: FC = () => {
   const { id } = useParams();
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const { data, isLoading, error } = useFetchCharacterByIdQuery(Number(Number(id)));
@@ -56,12 +56,8 @@ const InfoAboutCharacterPage: FC = () => {
   };
 
   useEffect(() => {
-    try {
-      const favIndex = _.findIndex(favoriteCharacters, o => o.id === data?.id);
-      favIndex === -1 ? setIsFavorite(false) : setIsFavorite(true);
-    } catch (e) {
-      throw new Error("Error in favoriteCharacters");
-    }
+    const favIndex = _.findIndex(favoriteCharacters, o => o.id === data?.id);
+    favIndex === -1 ? setIsFavorite(false) : setIsFavorite(true);
   }, [data?.id, favoriteCharacters]);
 
   if (error) {
@@ -78,7 +74,7 @@ const InfoAboutCharacterPage: FC = () => {
           </div>
           {getCharacterStatus()}
           {!isFavorite ? (
-            <Button color='success' variant='contained' onClick={handleOnFavoriteIconClick}>
+            <Button color='success' variant='contained' onClick={handleOnFavoriteIconClick} data-testid='btn-favorite'>
               Add to favorite
             </Button>
           ) : (
@@ -115,5 +111,3 @@ const InfoAboutCharacterPage: FC = () => {
     </div>
   );
 };
-
-export default InfoAboutCharacterPage;

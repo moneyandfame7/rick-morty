@@ -15,6 +15,7 @@ jest.mock("react-router", () => ({
   },
   useNavigate: () => mockedUsedNavigate,
 }));
+
 describe("Navigation", () => {
   let component: RenderResult;
   let defaultProps: any = {

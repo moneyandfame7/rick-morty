@@ -40,11 +40,17 @@ const LINKS_CONFIG: ILinkConfig[] = [
     name: "Episodes",
     id: 1,
   },
+  {
+    url: "/create-character",
+    name: "Create Character",
+    id: 2,
+  },
 ];
 
 interface IHeaderProps {
   window?: () => Window;
 }
+
 const Header: FC<IHeaderProps> = ({ window }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const amountFavorite = useAppSelector(getFavoritesAmount);

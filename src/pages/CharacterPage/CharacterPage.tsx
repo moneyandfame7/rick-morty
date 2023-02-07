@@ -1,9 +1,9 @@
 import React from "react";
-import { Navigation, ErrorMessage, CardList } from "../components";
+import { Navigation, ErrorMessage, CardList } from "../../components";
 import { CircularProgress } from "@mui/material";
-import { NavigationTypeEnum } from "../constants/api";
-import { useFetchCharactersQuery } from "../redux/slices/rickMortyApiSlice";
-import { useQueryParams } from "../hooks/useQueryParams";
+import { NavigationTypeEnum } from "../../constants/api";
+import { useFetchCharactersQuery } from "../../redux/slices/rickMortyApiSlice";
+import { useQueryParams } from "../../hooks/useQueryParams";
 
 const CharacterPage: React.FC = () => {
   const queryPage = Number(useQueryParams().get("page"));

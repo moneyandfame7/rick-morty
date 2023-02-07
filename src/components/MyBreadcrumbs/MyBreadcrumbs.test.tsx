@@ -26,7 +26,6 @@ jest.mock("react-router", () => ({
   ...(jest.requireActual("react-router") as any),
   useLocation: () => mockLocationValue,
 }));
-// TODO: спросить как тут делать
 describe("MyBreadcrumbs should render correctly", () => {
   let component: any;
 
