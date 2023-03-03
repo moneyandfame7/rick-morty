@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { ColorModeContext } from "../../App";
+import { ColorModeContext } from "../../application/App";
 import IconButton from "@mui/material/IconButton";
 import { useTheme } from "@mui/material/styles";
 import DarkModeIcon from "@mui/icons-material/DarkMode";

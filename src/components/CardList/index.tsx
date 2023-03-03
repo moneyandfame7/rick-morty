@@ -1,10 +1,10 @@
-import React, { FC } from "react";
-import { map } from "lodash";
-import { ICharacter } from "../../interfaces";
-import { CharacterCard } from "../../components";
-import { Grid } from "@mui/material";
+import React, { FC } from 'react'
+import { map } from 'lodash'
+import { Grid } from '@mui/material'
+import { CharacterCard } from '../../components'
+import { ICharacter } from '../../features/characters/type'
 interface ICardListProps {
-  items?: ICharacter[];
+  items?: ICharacter[]
 }
 export const CardList: FC<ICardListProps> = ({ items }) => {
   return (
@@ -13,5 +13,5 @@ export const CardList: FC<ICardListProps> = ({ items }) => {
         <CharacterCard key={item.id} {...item} />
       ))}
     </Grid>
-  );
-};
+  )
+}

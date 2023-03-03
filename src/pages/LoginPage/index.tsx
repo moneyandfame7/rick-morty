@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useState } from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import React, { FC, useEffect, useState } from 'react'
+import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import {
   Avatar,
   Box,
@@ -12,35 +12,33 @@ import {
   InputAdornment,
   Link,
   TextField,
-  Typography,
-} from "@mui/material";
-
-import { CLIENT_URL } from "../../constants/api";
-import { useLogin } from "../../hooks/useLogin";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+  Typography
+} from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import { useLogin } from '../../features/authorization/hooks/useLogin'
+import { CLIENT_URL } from '../../shared/constants/api'
 
 function Copyright(props: any) {
   return (
     <Typography variant='body2' color='text.secondary' align='center' {...props}>
-      {"Copyright © "}
+      {'Copyright © '}
       <Link color='inherit' variant='body2' href={CLIENT_URL}>
         Rick&Morty API
-      </Link>{" "}
+      </Link>{' '}
       {new Date().getFullYear()}
-      {"."}
+      {'.'}
     </Typography>
-  );
+  )
 }
 
 export const LoginPage: FC = () => {
-  const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const handleClickShowPassword = () => setShowPassword(!showPassword);
-  const handleMouseDownPassword = () => setShowPassword(!showPassword);
-  const { formik, isLoading } = useLogin();
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const handleClickShowPassword = () => setShowPassword(!showPassword)
+  const handleMouseDownPassword = () => setShowPassword(!showPassword)
+  const { formik, isLoading } = useLogin()
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [])
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -49,12 +47,12 @@ export const LoginPage: FC = () => {
       <Box
         sx={{
           marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
+        <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component='h1' variant='h5'>
@@ -73,7 +71,7 @@ export const LoginPage: FC = () => {
             value={formik.values.email}
             onChange={formik.handleChange}
             error={formik.touched.email && !!formik.errors.email}
-            helperText={formik.touched.email && formik.errors.email ? formik.errors.email : ""}
+            helperText={formik.touched.email && formik.errors.email ? formik.errors.email : ''}
             onBlur={formik.handleBlur}
           />
           <TextField
@@ -83,12 +81,12 @@ export const LoginPage: FC = () => {
             name='password'
             label='Password'
             autoComplete='current-password'
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             id='password'
             value={formik.values.password}
             onChange={formik.handleChange}
             error={formik.touched.password && !!formik.errors.password}
-            helperText={formik.touched.password && formik.errors.password ? formik.errors.password : ""}
+            helperText={formik.touched.password && formik.errors.password ? formik.errors.password : ''}
             onBlur={formik.handleBlur}
             InputProps={{
               endAdornment: (
@@ -101,7 +99,7 @@ export const LoginPage: FC = () => {
                     {showPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
-              ),
+              )
             }}
           />
           <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
@@ -123,5 +121,5 @@ export const LoginPage: FC = () => {
       </Box>
       <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
-  );
-};
+  )
+}

@@ -1,70 +1,70 @@
-import React, { FC, useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { addToFavorite, removeFromFavorite } from "../../redux/slices/characters.slice";
-import { getCharacters } from "../../redux/selectors";
-import { Card } from "react-bootstrap";
-import Accordion from "react-bootstrap/Accordion";
-import { Alert, AlertTitle, Button, CircularProgress } from "@mui/material";
-import { EpisodeList, ErrorMessage } from "../../components";
-import styles from "./InfoAboutCharacterPage.module.scss";
-import "./Custom.scss";
-import _ from "lodash";
-import { useGetOneCharacterQuery } from "../../redux/services/character";
-import { CharacterStatus } from "../../interfaces";
+import React, { FC, useEffect, useState } from 'react'
+import { useParams } from 'react-router'
+import { useAppDispatch, useAppSelector } from '../../application/store'
+import { addToFavorite, removeFromFavorite } from '../../features/characters/services/characters.slice'
+import { Card } from 'react-bootstrap'
+import Accordion from 'react-bootstrap/Accordion'
+import { Alert, AlertTitle, Button, CircularProgress } from '@mui/material'
+import { EpisodeList, ErrorMessage } from '../../components'
+import styles from './InfoAboutCharacterPage.module.scss'
+import './Custom.scss'
+import _ from 'lodash'
+import { useGetOneCharacterQuery } from '../../features/characters/services/api.slice'
+import { selectFavoriteCharacters } from '../../features/characters/services/selector'
+import { CharacterStatus } from '../../features/characters/type'
 
 export const InfoAboutCharacterPage: FC = () => {
-  const { id } = useParams();
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
-  const { data, isLoading, error } = useGetOneCharacterQuery(Number(id));
-  const dispatch = useAppDispatch();
-  const favoriteCharacters = useAppSelector(getCharacters);
+  const { id } = useParams()
+  const [isFavorite, setIsFavorite] = useState<boolean>(false)
+  const { data, isLoading, error } = useGetOneCharacterQuery(Number(id))
+  const dispatch = useAppDispatch()
+  const favoriteCharacters = useAppSelector(selectFavoriteCharacters)
   const handleOnFavoriteIconClick = (): void => {
     if (data) {
       if (isFavorite) {
-        dispatch(removeFromFavorite(data.id));
-        setIsFavorite(false);
+        dispatch(removeFromFavorite(data.id))
+        setIsFavorite(false)
       } else {
-        dispatch(addToFavorite(data));
-        setIsFavorite(true);
+        dispatch(addToFavorite(data))
+        setIsFavorite(true)
       }
     }
-  };
+  }
   const getCharacterStatus = () => {
     if (data?.status !== undefined) {
       switch (data?.status) {
-        case "Alive" as CharacterStatus:
+        case 'Alive' as CharacterStatus:
           return (
             <Alert severity='success'>
               <AlertTitle>Alive</AlertTitle>
               She/He is lucky — <strong>alive!</strong>
             </Alert>
-          );
-        case "Dead" as CharacterStatus:
+          )
+        case 'Dead' as CharacterStatus:
           return (
             <Alert severity='error'>
               <AlertTitle>Dead</AlertTitle>
               Fortunately (or not fortunately for someone) - he is <strong>dead!</strong>
             </Alert>
-          );
+          )
         default:
           return (
             <Alert severity='info'>
               <AlertTitle>Unknown</AlertTitle>
               She/he is ... <strong>unknown!</strong>
             </Alert>
-          );
+          )
       }
     }
-  };
+  }
 
   useEffect(() => {
-    const favIndex = _.findIndex(favoriteCharacters, o => o.id === data?.id);
-    favIndex === -1 ? setIsFavorite(false) : setIsFavorite(true);
-  }, [data?.id, favoriteCharacters]);
+    const favIndex = _.findIndex(favoriteCharacters, o => o.id === data?.id)
+    favIndex === -1 ? setIsFavorite(false) : setIsFavorite(true)
+  }, [data?.id, favoriteCharacters])
 
   if (error) {
-    return <ErrorMessage error={error} />;
+    return <ErrorMessage error={error} />
   }
   return isLoading ? (
     <CircularProgress />
@@ -112,5 +112,5 @@ export const InfoAboutCharacterPage: FC = () => {
         </Card>
       </div>
     </div>
-  );
-};
+  )
+}

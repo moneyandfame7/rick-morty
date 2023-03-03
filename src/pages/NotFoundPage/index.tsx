@@ -1,13 +1,9 @@
-import React, { FC } from "react";
-import { useLocation, useNavigate } from "react-router";
-import styles from "./NotFoundPage.module.scss";
-import { Button, Stack, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
-import { NavigationTypeEnum } from "../../constants/api";
+import React, { FC } from 'react'
+import { useLocation } from 'react-router-dom'
+import { Button, Stack, Typography } from '@mui/material'
 
 const NotFoundPage: FC = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const location = useLocation()
   return (
     <Stack direction='column' gap='10px' alignItems='center'>
       <Typography component='h3' variant='h3' fontWeight='bold'>
@@ -24,7 +20,7 @@ const NotFoundPage: FC = () => {
         </Button>
       </Stack>
     </Stack>
-  );
-};
+  )
+}
 
-export default NotFoundPage;
+export default NotFoundPage

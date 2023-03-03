@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   Avatar,
   Box,
@@ -11,33 +11,33 @@ import {
   InputAdornment,
   Link,
   TextField,
-  Typography,
-} from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { useSignup } from "../../hooks/useSignup";
-import { Link as RouterLink } from "react-router-dom";
+  Typography
+} from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import { useSignup } from '../../features/authorization/hooks/useSignup'
+import { Link as RouterLink } from 'react-router-dom'
 
 export const SignupPage = () => {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const handleClickShowPassword = () => setShowPassword(!showPassword);
-  const handleMouseDownPassword = () => setShowPassword(!showPassword);
-  const { error, formik, isLoading } = useSignup();
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const handleClickShowPassword = () => setShowPassword(!showPassword)
+  const handleMouseDownPassword = () => setShowPassword(!showPassword)
+  const { error, formik, isLoading } = useSignup()
   return (
     <Container
       maxWidth='xs'
       sx={{
         marginTop: 8,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
       }}
     >
       {isLoading && <CircularProgress />}
       {error && <Typography>ERROR</Typography>}
       <CssBaseline />
 
-      <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
+      <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
         <LockOutlinedIcon />
       </Avatar>
       <Typography component='h1' variant='h5'>
@@ -56,7 +56,7 @@ export const SignupPage = () => {
               value={formik.values.email}
               onChange={formik.handleChange}
               error={formik.touched.email && !!formik.errors.email}
-              helperText={formik.touched.email && formik.errors.email ? formik.errors.email : ""}
+              helperText={formik.touched.email && formik.errors.email ? formik.errors.email : ''}
               onBlur={formik.handleBlur}
             />
           </Grid>
@@ -66,13 +66,13 @@ export const SignupPage = () => {
               fullWidth
               name='password'
               label='Password'
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               id='password'
               autoComplete='new-password'
               value={formik.values.password}
               onChange={formik.handleChange}
               error={formik.touched.password && !!formik.errors.password}
-              helperText={formik.touched.password && formik.errors.password ? formik.errors.password : ""}
+              helperText={formik.touched.password && formik.errors.password ? formik.errors.password : ''}
               onBlur={formik.handleBlur}
               InputProps={{
                 endAdornment: (
@@ -85,7 +85,7 @@ export const SignupPage = () => {
                       {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
-                ),
+                )
               }}
             />
           </Grid>
@@ -102,5 +102,5 @@ export const SignupPage = () => {
         </Grid>
       </Box>
     </Container>
-  );
-};
+  )
+}
