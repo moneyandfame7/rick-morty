@@ -1,5 +1,3 @@
- import { ICharacter } from "../interfaces";
-
 export const FAVORITE_CHARACTERS = "FAVORITE_CHARACTERS";
 
 export const getLocalStorage = (key: string) => {
@@ -10,6 +8,10 @@ export const getLocalStorage = (key: string) => {
   return {};
 };
 
-export const setLocalStorage = (key: string, data: ICharacter[]) => {
+export const setLocalStorage = <Data>(key: string, data: Data) => {
   localStorage.setItem(key, JSON.stringify(data));
+};
+
+export const removeLocalStorage = (key: string) => {
+  localStorage.removeItem(key);
 };

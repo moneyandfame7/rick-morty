@@ -19,7 +19,7 @@
     "isolatedModules": false,
     "noEmit": true,
     "jsx": "react-jsx",
-      "useUnknownInCatchVariables": false
+    "useUnknownInCatchVariables": false,
   },
   "include": [
     "src"

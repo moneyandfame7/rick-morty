@@ -1,24 +1,23 @@
 import React, { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { makeConcurrentRequest } from "../../utils/fetch";
 import { IEpisode } from "../../interfaces";
 import { ListGroup } from "react-bootstrap";
 
-interface ICharacterEpisodes {
-  episodes: string[];
+interface IEpisodeList {
+  episodes: number[];
 }
 
-export const EpisodeList: FC<ICharacterEpisodes> = ({ episodes }) => {
+export const EpisodeList: FC<IEpisodeList> = ({ episodes }) => {
   const [data, setData] = useState<IEpisode[] | undefined>();
 
   useEffect(() => {
-    (async () => {
-      const res = await makeConcurrentRequest<IEpisode>(episodes);
-      if ("error" in res[0]) {
-        return null;
-      }
-      setData(res);
-    })();
+    // (async () => {
+    //   const res = await makeConcurrentRequest<IEpisode>(episodes);
+    //   if ("error" in res[0]) {
+    //     return null;
+    //   }
+    //   setData(res);
+    // })();
   }, [episodes]);
 
   return (

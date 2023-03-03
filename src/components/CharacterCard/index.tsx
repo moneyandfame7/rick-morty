@@ -1,8 +1,6 @@
 import React, { FC } from "react";
-import { useFetchEpisodeByIdQuery } from "../../redux/slices/rickMortyApiSlice";
-import { getIdFromName } from "../../utils/getIdFromUrl";
 import { NavigationTypeEnum } from "../../constants/api";
-import { red, green, grey } from "@mui/material/colors";
+import { green, grey, red } from "@mui/material/colors";
 import {
   Box,
   Button,
@@ -17,22 +15,21 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router";
+import { useGetOneEpisodeQuery } from "../../redux/services/episode";
+import { CharacterLocation } from "../../interfaces";
 
 interface ICharacterCardProps {
   status: string;
   name: string;
   image: string;
-  location: {
-    name: string;
-    url: string;
-  };
-  episode: Array<string>;
+  location: CharacterLocation;
+  episodes: number[];
   id: number;
 }
 
-export const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location, episode, id }) => {
+export const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location, episodes, id }) => {
   const navigate = useNavigate();
-  const { data, isLoading } = useFetchEpisodeByIdQuery(getIdFromName(episode[0]));
+  const { data, isLoading } = useGetOneEpisodeQuery(episodes[0]);
   const textColor = () => {
     switch (true) {
       case status.includes("Dead"):
@@ -95,7 +92,7 @@ export const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, lo
           <Button
             fullWidth
             variant='contained'
-            onClick={() => navigate(`/${NavigationTypeEnum.CHARACTER}/${id}`)}
+            onClick={() => navigate(`/${NavigationTypeEnum.CHARACTERS}/${id}`)}
             data-testid='card-button-component'
           >
             Read more

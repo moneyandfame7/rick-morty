@@ -1,32 +1,36 @@
 import React from "react";
-import { Navigation, ErrorMessage, CardList } from "../../components";
-import { CircularProgress } from "@mui/material";
-import { NavigationTypeEnum } from "../../constants/api";
-import { useFetchCharactersQuery } from "../../redux/slices/rickMortyApiSlice";
+import { useLocation } from "react-router-dom";
+import { CircularProgress, Container, Typography } from "@mui/material";
 import { useQueryParams } from "../../hooks/useQueryParams";
+import { useGetManyCharactersQuery } from "../../redux/services/character";
 
 const CharacterPage: React.FC = () => {
+  const location = useLocation();
   const queryPage = Number(useQueryParams().get("page"));
-  const { data, isLoading, isError, error } = useFetchCharactersQuery(queryPage);
+  const { data, isLoading, isError, error } = useGetManyCharactersQuery(queryPage);
+  console.log(location, queryPage);
 
-  if (isError) {
-    return <ErrorMessage error={error} />;
-  }
+  // if (isError) {
+  //   return <ErrorMessage error={error} />;
+  // }
+
+  // <>
+  //   <Navigation
+  //     isLoading={isLoading}
+  //     prev={data?.info.prev}
+  //     next={data?.info.next}
+  //     navigationType={NavigationTypeEnum.CHARACTER}
+  //   />
+  //   <CardList items={data?.results} />
+  // </>
   return (
     <>
-      {isLoading ? (
-        <CircularProgress sx={{ marginTop: "30px" }} />
-      ) : (
-        <>
-          <Navigation
-            isLoading={isLoading}
-            prev={data?.info.prev}
-            next={data?.info.next}
-            navigationType={NavigationTypeEnum.CHARACTER}
-          />
-          <CardList items={data?.results} />
-        </>
-      )}
+      {isLoading && <CircularProgress sx={{ marginTop: "30px" }} />}
+      <Container maxWidth='xs'>
+        {data?.results.map(char => (
+          <Typography key={char.id}>{char.name}</Typography>
+        ))}
+      </Container>
     </>
   );
 };
