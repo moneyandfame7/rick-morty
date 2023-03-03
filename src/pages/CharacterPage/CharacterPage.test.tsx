@@ -1,12 +1,11 @@
-import { createElement } from "react";
 import CharacterPage from "./CharacterPage";
 import { render, screen } from "@testing-library/react";
-import { ICharacter, IEpisode } from "../../interfaces";
-import { useFetchCharactersQuery } from "../../redux/slices/rickMortyApiSlice";
+import { ICharacter } from "../../interfaces";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { Provider } from "react-redux";
 import { store } from "../../redux/store";
+import { useGetManyCharactersQuery } from "../../redux/services/character";
 
 jest.mock("react-router", () => ({
   ...jest.requireActual("react-router"),
@@ -24,7 +23,7 @@ jest.mock("react-router", () => ({
 
 jest.mock("../../redux/slices/rickMortyApiSlice", () => ({
   ...jest.requireActual("../../redux/slices/rickMortyApiSlice"),
-  useFetchCharactersQuery: jest.fn(),
+  useGetManyCharactersQuery: jest.fn(),
 }));
 
 describe("CharacterPage", () => {
@@ -70,7 +69,7 @@ describe("CharacterPage", () => {
     isError: boolean = false,
     error: FetchBaseQueryError | SerializedError | undefined = undefined
   ) {
-    (useFetchCharactersQuery as jest.Mock).mockImplementation(() => ({
+    (useGetManyCharactersQuery as jest.Mock).mockImplementation(() => ({
       isLoading,
       data,
       isError,

@@ -1,14 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { CharacterCard } from "./index";
-import { useFetchEpisodeByIdQuery } from "../../redux/slices/rickMortyApiSlice";
 import { IEpisode } from "../../interfaces";
 import React from "react";
 import userEvent from "@testing-library/user-event";
+import { useGetOneEpisodeQuery } from "../../redux/services/episode";
 
 const mockNavigate = jest.fn();
 
 jest.mock("../../redux/slices/rickMortyApiSlice", () => ({
-  useFetchEpisodeByIdQuery: jest.fn(),
+  useGetOneEpisodeQuery: jest.fn(),
 }));
 
 jest.mock("../../utils/getIdFromUrl", () => ({
@@ -79,7 +79,7 @@ describe("CharacterCard", () => {
   }
 
   function givenEpisode(data: Partial<IEpisode> = mockEpisode, isLoading: boolean = false) {
-    (useFetchEpisodeByIdQuery as jest.Mock).mockImplementation(() => ({
+    (useGetOneEpisodeQuery as jest.Mock).mockImplementation(() => ({
       isLoading,
       data,
     }));

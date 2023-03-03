@@ -1,6 +1,6 @@
 import { EpisodeList } from "./index";
-import { act, render, RenderResult } from "@testing-library/react";
-import React, { useEffect, useState } from "react";
+import { render, RenderResult } from "@testing-library/react";
+import React, { useState } from "react";
 import { makeConcurrentRequest } from "../../utils/fetch";
 
 jest.mock("../../utils/fetch", () => ({
@@ -55,6 +55,6 @@ describe("EpisodeList", () => {
   }
 
   function givenComponent(props?: any) {
-    component = render(<EpisodeList episodes={["1", "2", "3", "4"]} />);
+    component = render(<EpisodeList episodes={[1, 2, 3, 4]} />);
   }
 });

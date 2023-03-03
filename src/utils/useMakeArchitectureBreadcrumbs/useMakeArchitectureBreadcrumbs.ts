@@ -11,8 +11,6 @@ export interface IBreadcrumbsConfig {
 export function useMakeArchitectureBreadcrumbs(): IBreadcrumbsConfig[] {
   const location = useLocation();
   const arr: string[] = location.pathname.split("/");
-  console.log(arr, "входные");
-  console.log(location, "location");
 
   const newArr = arr.map((path, index) => {
     const isActive = index + 1 === arr.length;
@@ -39,6 +37,5 @@ export function useMakeArchitectureBreadcrumbs(): IBreadcrumbsConfig[] {
         isActive,
       };
   });
-  console.log(uniqBy(newArr, "path"), "на выходе");
   return uniqBy(newArr, "path");
 }

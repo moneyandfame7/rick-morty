@@ -1,9 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { addToFavorite, removeFromFavorite } from "../../redux/slices/charactersSlice";
+import { addToFavorite, removeFromFavorite } from "../../redux/slices/characters.slice";
 import { getCharacters } from "../../redux/selectors";
-import { useFetchCharacterByIdQuery } from "../../redux/slices/rickMortyApiSlice";
 import { Card } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import { Alert, AlertTitle, Button, CircularProgress } from "@mui/material";
@@ -11,11 +10,13 @@ import { EpisodeList, ErrorMessage } from "../../components";
 import styles from "./InfoAboutCharacterPage.module.scss";
 import "./Custom.scss";
 import _ from "lodash";
+import { useGetOneCharacterQuery } from "../../redux/services/character";
+import { CharacterStatus } from "../../interfaces";
 
 export const InfoAboutCharacterPage: FC = () => {
   const { id } = useParams();
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
-  const { data, isLoading, error } = useFetchCharacterByIdQuery(Number(Number(id)));
+  const { data, isLoading, error } = useGetOneCharacterQuery(Number(id));
   const dispatch = useAppDispatch();
   const favoriteCharacters = useAppSelector(getCharacters);
   const handleOnFavoriteIconClick = (): void => {
@@ -30,28 +31,30 @@ export const InfoAboutCharacterPage: FC = () => {
     }
   };
   const getCharacterStatus = () => {
-    switch (data?.status) {
-      case "Alive":
-        return (
-          <Alert severity='success'>
-            <AlertTitle>Alive</AlertTitle>
-            She/He is lucky — <strong>alive!</strong>
-          </Alert>
-        );
-      case "Dead":
-        return (
-          <Alert severity='error'>
-            <AlertTitle>Dead</AlertTitle>
-            Fortunately (or not fortunately for someone) - he is <strong>dead!</strong>
-          </Alert>
-        );
-      default:
-        return (
-          <Alert severity='info'>
-            <AlertTitle>Unknown</AlertTitle>
-            She/he is ... <strong>unknown!</strong>
-          </Alert>
-        );
+    if (data?.status !== undefined) {
+      switch (data?.status) {
+        case "Alive" as CharacterStatus:
+          return (
+            <Alert severity='success'>
+              <AlertTitle>Alive</AlertTitle>
+              She/He is lucky — <strong>alive!</strong>
+            </Alert>
+          );
+        case "Dead" as CharacterStatus:
+          return (
+            <Alert severity='error'>
+              <AlertTitle>Dead</AlertTitle>
+              Fortunately (or not fortunately for someone) - he is <strong>dead!</strong>
+            </Alert>
+          );
+        default:
+          return (
+            <Alert severity='info'>
+              <AlertTitle>Unknown</AlertTitle>
+              She/he is ... <strong>unknown!</strong>
+            </Alert>
+          );
+      }
     }
   };
 
@@ -105,7 +108,7 @@ export const InfoAboutCharacterPage: FC = () => {
         </div>
         <Card>
           <Card.Header>We will meet {data?.name} in the episode: </Card.Header>
-          {data?.episode && <EpisodeList episodes={data.episode} />}
+          {data?.episodes && <EpisodeList episodes={data.episodes} />}
         </Card>
       </div>
     </div>

@@ -1,16 +1,13 @@
-import { fireEvent, render, RenderResult, screen } from "@testing-library/react";
+import { render, RenderResult, screen } from "@testing-library/react";
 import { InfoAboutCharacterPage } from "./index";
-import { useFetchCharacterByIdQuery } from "../../redux/slices/rickMortyApiSlice";
-import { ICharacter } from "../../interfaces";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import userEvent from "@testing-library/user-event";
-import { useAppDispatch } from "../../redux/hooks";
-import { useDispatch } from "react-redux";
-import React, { useState as useStateMock } from "react";
+import React from "react";
+import { useGetOneCharacterQuery } from "../../redux/services/character";
 
 jest.mock("../../redux/slices/rickMortyApiSlice", () => ({
-  useFetchCharacterByIdQuery: jest.fn(),
+  useGetOneCharacterQuery: jest.fn(),
 }));
 
 jest.mock("../../redux/hooks", () => ({
@@ -81,11 +78,12 @@ describe("InfoAboutCharacterPage", () => {
     expect(component).toMatchSnapshot();
   }
   function givenData(
-    data: Partial<ICharacter> = mockData,
+    //todo: fix any
+    data: any = mockData,
     isLoading: boolean = false,
     error: SerializedError | FetchBaseQueryError | undefined = undefined
   ) {
-    (useFetchCharacterByIdQuery as jest.Mock).mockImplementation(() => ({
+    (useGetOneCharacterQuery as jest.Mock).mockImplementation(() => ({
       isLoading,
       data,
       error,

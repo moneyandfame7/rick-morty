@@ -1,4 +1,4 @@
-import charactersReducer, { addToFavorite, removeFromFavorite } from "../slices/charactersSlice";
+import charactersReducer, { addToFavorite, removeFromFavorite } from "../slices/characters.slice";
 // TODO: показать потом
 describe("characterSlice", () => {
   const characterOne = {
@@ -17,7 +17,6 @@ describe("characterSlice", () => {
     const action = { type: addToFavorite.type, payload: characterOne };
     const favoriteCharacters = charactersReducer(state, action);
 
-    console.log(favoriteCharacters);
     expect(favoriteCharacters.characters[1]).toEqual(characterOne);
     expect(favoriteCharacters.characters[0]).not.toEqual(characterOne);
   });
@@ -32,7 +31,6 @@ describe("characterSlice", () => {
     const action = { type: removeFromFavorite.type, payload: 1 };
 
     const favoriteCharacters = charactersReducer(state, action);
-    console.log(favoriteCharacters);
 
     expect(favoriteCharacters.characters[0]).not.toEqual(characterOne);
     expect(favoriteCharacters).not.toEqual(state);

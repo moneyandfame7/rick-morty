@@ -1,20 +1,22 @@
 import React, { FC } from "react";
-import { useFetchEpisodesQuery } from "../redux/slices/rickMortyApiSlice";
 import { NavigationTypeEnum } from "../constants/api";
 import { useQueryParams } from "../hooks/useQueryParams";
 import { CircularProgress } from "@mui/material";
 import { ErrorMessage, Navigation } from "../components";
+import { useGetManyEpisodesQuery } from "../redux/services/episode";
 
 const EpisodePage: FC = () => {
-  const queryPage = Number(useQueryParams().get("page"));
-  const { data, isError, isLoading, error } = useFetchEpisodesQuery(Number(queryPage));
+  const queryPage = parseInt(useQueryParams().get("page") ?? "");
+  const { data, isError, isLoading, error } = useGetManyEpisodesQuery(queryPage, {
+    skip: !queryPage,
+  });
 
   return (
     <>
       <Navigation
         prev={data?.info.prev}
         next={data?.info.next}
-        navigationType={NavigationTypeEnum.EPISODE}
+        navigationType={NavigationTypeEnum.EPISODES}
         isLoading={isLoading}
       />
       <div

@@ -1,8 +1,10 @@
 import { PaletteMode } from "@mui/material";
+
 declare module "@mui/material/styles" {
   interface Palette {
     neutral?: Palette["primary"];
   }
+
   interface PaletteOptions {
     neutral?: PaletteOptions["primary"];
   }
@@ -34,4 +36,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
             paper: "#131318",
           },
         },
+  typography: {
+    // fontFamily: "IBM Plex Sans",
+  },
 });
