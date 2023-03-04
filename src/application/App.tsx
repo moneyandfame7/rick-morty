@@ -1,12 +1,11 @@
+import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material'
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { CssBaseline, useMediaQuery } from '@mui/material'
 
 import { getDesignTokens, PROTECTED_ROUTES, PUBLIC_ROUTES } from 'application'
 
-import { Header } from 'shared/layout'
 import { ProtectedRoute } from 'shared/components'
+import { Header } from 'shared/layout'
 
 export const ColorModeContext = React.createContext({
   toggleColorMode: () => {}

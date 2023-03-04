@@ -1,19 +1,7 @@
-import React, { FC, useState } from 'react'
-import {
-  Avatar,
-  Box,
-  Divider,
-  IconButton,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-  Tooltip,
-  Typography,
-  Zoom
-} from '@mui/material'
+import { Box, Divider, IconButton, Menu, Tooltip, Typography, Zoom } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import { useAppSelector } from 'application/store'
+import React, { FC, useState } from 'react'
 
 import { selectCurrentUser } from 'features/users/services'
 
@@ -34,7 +22,6 @@ export const AvatarMenu: FC<AvatarMenuProps> = ({ isWelcomePage = false }) => {
     setAnchorElUser(null)
   }
   const currentMenu = useGetUserMenu(isWelcomePage, handleCloseUserMenu)
-
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title='You' arrow TransitionComponent={Zoom}>
@@ -42,6 +29,7 @@ export const AvatarMenu: FC<AvatarMenuProps> = ({ isWelcomePage = false }) => {
           <UserAvatar user={currentUser} sx={{ width: 28, height: 28 }} />
         </IconButton>
       </Tooltip>
+
       <Menu
         sx={{ mt: '45px' }}
         id='menu-appbar'
