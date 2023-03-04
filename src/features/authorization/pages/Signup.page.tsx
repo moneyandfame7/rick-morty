@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Link as RouterLink, useNavigate } from 'react-router-dom'
-import {
-  Avatar,
-  Box,
-  Button,
-  CircularProgress,
-  Container,
-  CssBaseline,
-  Grid,
-  IconButton,
-  InputAdornment,
-  Link,
-  TextField,
-  Typography
-} from '@mui/material'
-import { Visibility, VisibilityOff } from '@mui/icons-material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import { Avatar, Box, Button, CircularProgress, Container, CssBaseline, Grid, Link, Typography } from '@mui/material'
+import { useEffect } from 'react'
+import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { useSignup } from 'features/authorization/hooks'
-import { HOME_ROUTE } from '../../../shared/routes'
+import { EmailInput } from 'shared/components/EmailInput'
+import { PasswordInput } from 'shared/components/PasswordInput'
 import { useAppSelector } from '../../../application/store'
+import { HOME_ROUTE } from '../../../shared/routes'
 import { selectIsAuthenticated } from '../services'
 
 export const SignupPage = () => {
@@ -32,9 +20,6 @@ export const SignupPage = () => {
       navigate({ pathname: HOME_ROUTE.path })
     }
   }, [])
-  const [showPassword, setShowPassword] = useState<boolean>(false)
-  const handleClickShowPassword = () => setShowPassword(!showPassword)
-  const handleMouseDownPassword = () => setShowPassword(!showPassword)
   const { error, formik, isLoading } = useSignup()
   return (
     <Container
@@ -59,48 +44,10 @@ export const SignupPage = () => {
       <Box component='form' noValidate onSubmit={formik.handleSubmit} sx={{ mt: 3 }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <TextField
-              required
-              fullWidth
-              id='email'
-              label='Email Address'
-              name='email'
-              autoComplete='email'
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && !!formik.errors.email}
-              helperText={formik.touched.email && formik.errors.email ? formik.errors.email : ''}
-              onBlur={formik.handleBlur}
-            />
+            <EmailInput validate={formik} />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              required
-              fullWidth
-              name='password'
-              label='Password'
-              type={showPassword ? 'text' : 'password'}
-              id='password'
-              autoComplete='new-password'
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              error={formik.touched.password && !!formik.errors.password}
-              helperText={formik.touched.password && formik.errors.password ? formik.errors.password : ''}
-              onBlur={formik.handleBlur}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position='end'>
-                    <IconButton
-                      aria-label='toggle password visibility'
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-            />
+            <PasswordInput validate={formik} />
           </Grid>
         </Grid>
         <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
