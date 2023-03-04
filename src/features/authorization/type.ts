@@ -1,4 +1,4 @@
-import { IUser } from '../users/type'
+import type { IUser } from 'features/users/type'
 
 export interface IAuthCredentials {
   email: string

@@ -1,6 +1,8 @@
-import { rootApi } from '../../../application/store'
-import { NavigationEnum } from '../../../shared/constants/api'
-import type { ICharacter, IManyCharacter } from '../type'
+import { rootApi } from 'application/store/root-api.slice'
+
+import type { ICharacter, IManyCharacter } from 'features/characters/type'
+
+import { NavigationEnum } from 'shared/constants'
 
 const characterApi = rootApi.injectEndpoints({
   endpoints: builder => ({

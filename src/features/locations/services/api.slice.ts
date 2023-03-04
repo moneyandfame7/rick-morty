@@ -1,6 +1,7 @@
-import { rootApi } from '../../../application/store'
-import { NavigationEnum } from '../../../shared/constants/api'
-import type { ILocation, IManyLocation } from '../type'
+import { rootApi } from 'application/store/root-api.slice'
+import type { ILocation, IManyLocation } from 'features/locations'
+
+import { NavigationEnum } from 'shared/constants'
 
 const locationApi = rootApi.injectEndpoints({
   endpoints: builder => ({

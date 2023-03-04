@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { concat, filter, isEmpty } from 'lodash'
-import { getLocalStorage } from '../../../utils/localStorage'
-import { LocalStorageKey } from '../../../shared/constants/api'
 
-import type { ICharacter } from '../type'
+import type { ICharacter } from 'features/characters/type'
+
+import { getLocalStorage } from 'shared/utils'
+import { LocalStorageKey } from 'shared/constants'
 
 interface CharacterState {
   characters: ICharacter[]
@@ -31,4 +32,4 @@ export const charactersSlice = createSlice({
 
 export const { addToFavorite, removeFromFavorite } = charactersSlice.actions
 
-export default charactersSlice.reducer
+export const charactersReducer = charactersSlice.reducer

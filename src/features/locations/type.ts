@@ -1,15 +1,15 @@
-import { IPageInformation } from "../../shared/types/page";
+import { IPageInformation } from 'shared/types'
 
 export interface ILocation {
-  id: number;
-  name: string;
-  type: string;
-  dimension: string;
-  createdAt: Date;
-  residents: number[];
+  id: number
+  name: string
+  type: string
+  dimension: string
+  createdAt: Date
+  residents: number[]
 }
 
 export interface IManyLocation {
-  info: IPageInformation;
-  results: ILocation[];
+  info: IPageInformation
+  results: ILocation[]
 }

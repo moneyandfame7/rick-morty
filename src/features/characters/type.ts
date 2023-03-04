@@ -1,5 +1,6 @@
-import type { IPageInformation } from '../../shared/types/page'
-import type { ILocation } from '../locations/type'
+import type { ILocation } from 'features/locations/type'
+
+import type { IPageInformation } from 'shared/types'
 
 export type CharacterGender = 'Female' | 'Male' | 'Genderless' | 'unknown'
 export type CharacterStatus = 'Alive' | 'Dead' | 'unknown'

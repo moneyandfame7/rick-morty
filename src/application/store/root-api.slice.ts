@@ -1,9 +1,10 @@
 import { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import { removeUser, setUser } from 'features/users/services/user.slice'
-import { API_URL } from 'shared/constants/api'
 import type { IAuthResponse } from 'features/authorization/type'
+import { removeUser, setUser } from 'features/users/services'
+
+import { API_URL } from 'shared/constants'
 
 const baseQuery = fetchBaseQuery({
   baseUrl: API_URL,

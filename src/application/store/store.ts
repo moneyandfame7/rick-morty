@@ -1,17 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit'
-import charactersReducer from '../../features/characters/services/characters.slice'
-import authReducer from '../../features/users/services/user.slice'
-import { setLocalStorage } from '../../utils/localStorage'
 import { setupListeners } from '@reduxjs/toolkit/query'
-import { rootApi } from './root-api.slice'
-import { LocalStorageKey } from '../../shared/constants/api'
+
+import { rootApi } from 'application/store/root-api.slice'
+
+import { charactersReducer } from 'features/characters/services'
+import { userReducer } from 'features/users/services'
+
+import { setLocalStorage } from 'shared/utils'
+import { LocalStorageKey } from 'shared/constants'
 
 export const store = configureStore({
   reducer: {
     [rootApi.reducerPath]: rootApi.reducer,
-    // [authorization.reducerPath]: authorization.reducer,
     favoriteCharacters: charactersReducer,
-    credentials: authReducer
+    credentials: userReducer
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat([rootApi.middleware])
 })

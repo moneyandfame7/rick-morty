@@ -1,6 +1,7 @@
-import { rootApi } from '../../../application/store'
-import { IEpisode, IManyEpisode } from '../type'
-import { NavigationEnum } from '../../../shared/constants/api'
+import { rootApi } from 'application/store/root-api.slice'
+import type { IEpisode, IManyEpisode } from 'features/episodes/type'
+
+import { NavigationEnum } from 'shared/constants'
 
 const episodeApi = rootApi.injectEndpoints({
   endpoints: builder => ({

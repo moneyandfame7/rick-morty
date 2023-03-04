@@ -1,11 +1,15 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
-import { loginValidationSchema } from '../../../utils/auth'
-import { useLoginMutation } from '../services/api.slice'
-import { useAppDispatch } from '../../../application/store'
-import { setUser } from '../../users/services/user.slice'
-import { IAuthCredentials } from '../type'
+
+import { useAppDispatch } from 'application/store'
+
+import { type IAuthCredentials } from 'features/authorization/type'
+import { useLoginMutation } from 'features/authorization/services'
+
+import { setUser } from 'features/users/services'
+
+import { loginValidationSchema } from 'shared/utils'
 
 export const useLogin = () => {
   const navigate = useNavigate()
@@ -13,7 +17,7 @@ export const useLogin = () => {
 
   const [login, { isSuccess, isLoading }] = useLoginMutation()
 
-  const handleLogin = async (values: IAuthCredentials) => {
+  const onSubmit = async (values: IAuthCredentials) => {
     const info = await login(values)
     if ('data' in info) {
       dispatch(setUser(info.data.user))
@@ -22,9 +26,7 @@ export const useLogin = () => {
     }
     console.log(info.error)
   }
-  const onSubmit = async (values: IAuthCredentials) => {
-    await handleLogin(values)
-  }
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -35,7 +37,6 @@ export const useLogin = () => {
     onSubmit
   })
   useEffect(() => {
-    console.log('useLogin Hook')
     if (isSuccess) {
       navigate('/')
     }

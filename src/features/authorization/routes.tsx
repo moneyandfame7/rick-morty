@@ -1,21 +1,23 @@
 import { RouteProps } from 'react-router-dom'
-import { randomUUID } from 'crypto'
+import { v4 as uuidv4 } from 'uuid'
+
+import { LoginPage, SignupPage, WelcomePage } from 'features/authorization/pages'
 
 const SIGNUP_ROUTE: RouteProps = {
-  id: randomUUID(),
-  element: '',
+  id: uuidv4(),
+  element: <SignupPage />,
   path: '/signup'
 }
 
 const LOGIN_ROUTE: RouteProps = {
-  id: randomUUID(),
-  element: '',
+  id: uuidv4(),
+  element: <LoginPage />,
   path: '/login'
 }
 
 const WELCOME_ROUTE: RouteProps = {
-  id: randomUUID(),
-  element: '',
+  id: uuidv4(),
+  element: <WelcomePage />,
   path: '/welcome'
 }
 

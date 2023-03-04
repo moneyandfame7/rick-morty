@@ -1,7 +1,6 @@
-import { rootApi } from '../../../application/store'
-import { removeLocalStorage } from '../../../utils/localStorage'
-import type { IAuthCredentials, IAuthResponse } from '../type'
-import { IUser } from '../../users/type'
+import { rootApi } from 'application/store'
+import type { IAuthCredentials, IAuthResponse } from 'features/authorization/type'
+import type { IUser } from 'features/users/type'
 
 /**
  * Якщо буде помилка, то повертається обʼєкт error.

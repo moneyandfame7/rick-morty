@@ -3,11 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { SerializedError } from '@reduxjs/toolkit'
 import { useFormik } from 'formik'
-import { signupValidationSchema } from '../../../utils/auth'
-import { useSignupMutation } from '../services/api.slice'
-import { useAppDispatch } from '../../../application/store'
-import { setUser } from '../../users/services/user.slice'
-import type { IAuthCredentials, IAuthResponse } from '../type'
+
+import { useAppDispatch } from 'application/store'
+
+import { type IAuthCredentials, type IAuthResponse } from 'features/authorization/type'
+import { useSignupMutation } from 'features/authorization/services'
+
+import { setUser } from 'features/users/services'
+
+import { signupValidationSchema } from 'shared/utils'
 
 export const useSignup = () => {
   const navigate = useNavigate()

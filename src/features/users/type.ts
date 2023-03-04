@@ -1,4 +1,4 @@
-import { IRole } from '../authorization/type'
+import { IRole } from 'features/authorization/type'
 
 export interface IUser {
   readonly id: string
