@@ -1,0 +1,61 @@
+//@import 'src/shared/styles/mixins';
+.wrapper {
+  width: 100%;
+  margin-top: 20px;
+  @include md() {
+    padding: 0 0.3rem;
+  }
+  .main {
+    display: flex;
+    justify-content: space-between;
+    @include md() {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      gap: 20px;
+    }
+    .infoCard {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 300px;
+      max-width: 300px;
+      align-self: flex-start;
+      position: relative;
+      .icon {
+        &:hover {
+          background-color: lighten(#1a1f2d, 15%);
+        }
+      }
+
+      @include md {
+        align-self: center;
+      }
+
+      .imageWrapper {
+        max-height: 300px;
+        max-width: 300px;
+      }
+      .row {
+        display: flex;
+        border-bottom: 2px solid gray;
+        &:first-child {
+          border-top: 6px solid gray;
+        }
+        .key {
+          width: 40%;
+          text-align: center;
+          border-right: 2px solid gray;
+        }
+        .info {
+          width: 60%;
+          text-align: center;
+        }
+      }
+    }
+    .about {
+      max-width: 600px;
+    }
+  }
+}
