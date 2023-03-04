@@ -14,21 +14,21 @@ const baseQuery = fetchBaseQuery({
   }
 })
 
-const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
+const baseQueryWithRefresh: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
   args,
   api,
   extraOptions
 ) => {
   let result = await baseQuery(args, api, extraOptions)
-
+  
   if (result.error && result.error.status === 401) {
     const refreshResult = await baseQuery({ url: '/auth/refresh', method: 'get' }, api, extraOptions)
-
+    
     console.log(refreshResult, 'Refresh access token')
     if (refreshResult.data) {
       // const user=refreshResult.
       api.dispatch(setUser((refreshResult.data as IAuthResponse).user))
-
+    
       result = await baseQuery(args, api, extraOptions)
     } else {
       console.log('Unauthorized user')
@@ -39,6 +39,6 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 }
 
 export const rootApi = createApi({
-  baseQuery: baseQueryWithReauth,
+  baseQuery: baseQueryWithRefresh,
   endpoints: builder => ({})
 })
