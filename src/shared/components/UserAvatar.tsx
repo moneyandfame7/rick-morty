@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
-import type { IUser } from 'features/users/type'
+import type { User } from 'features/users/type'
 import { Avatar, AvatarProps } from '@mui/material'
 
 interface UserAvatarProps extends AvatarProps {
-  user: IUser | null
+  user: User | null
 }
 
 const defaultAvatar = 'https://i0.wp.com/dashboard.browse.ai/assets/default-avatar-96x96.png?ssl=1'

@@ -2280,6 +2280,11 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-select-country-list@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.npmjs.org/@types/react-select-country-list/-/react-select-country-list-2.2.1.tgz"
+  integrity sha512-Ixc9Vk+X+7P5KEEOK22ASf3y2McupLTfjQwhCUYUzlj00AgkDiERxT3t6Iv9MYkXQxkNx3pi+w8z/u7hdT3khg==
+
 "@types/react-transition-group@^4.4.4", "@types/react-transition-group@^4.4.5":
   version "4.4.5"
   resolved "https://registry.npmjs.org/@types/react-transition-group/-/react-transition-group-4.4.5.tgz"
@@ -8070,6 +8075,11 @@ react-scripts@5.0.1:
     workbox-webpack-plugin "^6.4.1"
   optionalDependencies:
     fsevents "^2.3.2"
+
+react-select-country-list@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.npmjs.org/react-select-country-list/-/react-select-country-list-2.2.3.tgz"
+  integrity sha512-eRgXL613dVyJiE99yKDYLvSBKDxvIlhkmvO2DVIjdKVyUQq6kBqoMUV/2zuRIAsbRXgBGmKjeL1dxjf7zTfszg==
 
 react-transition-group@^4.4.2, react-transition-group@^4.4.5:
   version "4.4.5"

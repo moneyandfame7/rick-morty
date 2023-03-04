@@ -5,7 +5,7 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { useLogin } from 'features/authorization/hooks'
 
-import { EmailInput } from 'shared/components/EmailInput'
+import { ValidatedInput } from 'shared/components/ValidatedInput'
 import { PasswordInput } from 'shared/components/PasswordInput'
 import { CLIENT_URL } from 'shared/constants'
 import { useAppSelector } from '../../../application/store'
@@ -35,6 +35,7 @@ export const LoginPage: FC = () => {
       navigate({ pathname: HOME_ROUTE.path })
     }
   }, [])
+  const test = formik.errors.email
   return (
     <Container component='main' maxWidth='xs'>
       {isLoading && <CircularProgress />}
@@ -56,7 +57,15 @@ export const LoginPage: FC = () => {
         <Box component='form' onSubmit={formik.handleSubmit} noValidate sx={{ mt: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <EmailInput validate={formik} />
+              <ValidatedInput
+                name='email'
+                label='Email address'
+                touched={formik.touched.email}
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                errorText={formik.errors.email}
+              />
             </Grid>
             <Grid item xs={12}>
               <PasswordInput validate={formik} />

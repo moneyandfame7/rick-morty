@@ -4,12 +4,13 @@ import { useFormik } from 'formik'
 
 import { useAppDispatch } from 'application/store'
 
-import { type IAuthCredentials } from 'features/authorization/type'
+import type { AuthCredentials } from 'features/authorization/type'
 import { useLoginMutation } from 'features/authorization/services'
 
 import { setUser } from 'features/users/services'
 
 import { loginValidationSchema } from 'shared/utils'
+import { HOME_ROUTE } from 'shared/routes'
 
 export const useLogin = () => {
   const navigate = useNavigate()
@@ -17,8 +18,8 @@ export const useLogin = () => {
 
   const [login, { isSuccess, isLoading }] = useLoginMutation()
 
-  const onSubmit = async (values: IAuthCredentials) => {
-    const info = await login(values)
+  const onSubmit = async (credentials: AuthCredentials) => {
+    const info = await login(credentials)
     if ('data' in info) {
       dispatch(setUser(info.data.user))
 
@@ -27,7 +28,7 @@ export const useLogin = () => {
     console.log(info.error)
   }
 
-  const formik = useFormik({
+  const formik = useFormik<AuthCredentials>({
     initialValues: {
       email: '',
       password: ''
@@ -38,7 +39,7 @@ export const useLogin = () => {
   })
   useEffect(() => {
     if (isSuccess) {
-      navigate('/')
+      navigate({ pathname: HOME_ROUTE.path })
     }
   }, [isSuccess])
 

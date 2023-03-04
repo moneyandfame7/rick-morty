@@ -1,22 +1,22 @@
-import type { IUser } from 'features/users/type'
+import type { User } from 'features/users/type'
 
-export interface IAuthCredentials {
+export interface AuthCredentials {
   email: string
   password: string
 }
 
-export interface IRole {
+export interface Role {
   id: number
   value: string
 }
 
-export interface IAuthResponse {
+export interface AuthResponse {
   refresh_token: string
   access_token: string
-  user: IUser
+  user: User
 }
 
-export interface IToken {
+export interface Token {
   id: number
   user_id: string
   refresh_token: string

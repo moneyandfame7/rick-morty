@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { useSignup } from 'features/authorization/hooks'
-import { EmailInput } from 'shared/components/EmailInput'
+import { ValidatedInput } from 'shared/components/ValidatedInput'
 import { PasswordInput } from 'shared/components/PasswordInput'
 import { useAppSelector } from '../../../application/store'
 import { HOME_ROUTE } from '../../../shared/routes'
@@ -20,7 +20,7 @@ export const SignupPage = () => {
       navigate({ pathname: HOME_ROUTE.path })
     }
   }, [])
-  const { error, formik, isLoading } = useSignup()
+  const { formik, isLoading } = useSignup()
   return (
     <Container
       maxWidth='xs'
@@ -32,7 +32,6 @@ export const SignupPage = () => {
       }}
     >
       {isLoading && <CircularProgress />}
-      {error && <Typography>ERROR</Typography>}
       <CssBaseline />
 
       <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
@@ -44,7 +43,13 @@ export const SignupPage = () => {
       <Box component='form' noValidate onSubmit={formik.handleSubmit} sx={{ mt: 3 }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <EmailInput validate={formik} />
+            <ValidatedInput
+              name='email'
+              label='Email address'
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
           </Grid>
           <Grid item xs={12}>
             <PasswordInput validate={formik} />

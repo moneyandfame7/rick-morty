@@ -1,15 +1,25 @@
-import { IRole } from 'features/authorization/type'
+import { Role } from 'features/authorization/type'
 
-export interface IUser {
+export interface User {
   readonly id: string
   readonly email: string
   readonly username: string | null
   readonly auth_type: string
   readonly banned: boolean
-  readonly role: IRole
+  readonly role: Role
   readonly country: string | null
   readonly photo: string | null
   readonly mail_subscribe: boolean | null
 }
 
-export type IUserProfile = Omit<IUser, 'mail_subscribe' | 'auth_type' | 'role'>
+export interface UserWelcomeDetails {
+  username: string
+  country: string
+  mail_subscribe: boolean
+}
+
+export interface UserCurrentCountry {
+  country_code: string
+  country_name: string
+}
+export type UserPublicProfile = Omit<User, 'mail_subscribe' | 'auth_type' | 'role'>

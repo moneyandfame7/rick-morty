@@ -1,5 +1,5 @@
 import { RootState } from 'application/store'
 
-import { IUser } from 'features/users/type'
+import { User } from 'features/users/type'
 
-export const selectCurrentUser = (state: RootState): IUser | null => state.credentials.user
+export const selectCurrentUser = (state: RootState): User | null => state.credentials.user

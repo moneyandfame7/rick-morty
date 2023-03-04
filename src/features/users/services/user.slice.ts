@@ -1,11 +1,11 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
-import type { IUser } from 'features/users/type'
+import type { User } from 'features/users/type'
 import { getLocalStorage, removeLocalStorage, setLocalStorage } from '../../../shared/utils'
 import { LocalStorageKey } from '../../../shared/constants'
 
 interface AuthState {
-  user: IUser | null
+  user: User | null
 }
 
 const initialState: AuthState = {
@@ -16,7 +16,7 @@ export const userSlice = createSlice({
   name: 'credentials',
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<IUser>) => {
+    setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload
       setLocalStorage(LocalStorageKey.USER, action.payload)
     },

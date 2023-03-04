@@ -1,34 +1,45 @@
-import { FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
+import {
+  FormControl,
+  FormControlTypeMap,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  SelectProps,
+  TextField,
+  TextFieldProps
+} from '@mui/material'
+import { DefaultComponentProps } from '@mui/material/OverridableComponent'
 import { FC, useState } from 'react'
 
-interface SelectInputProps {
+interface SelectInputInterface {
   items: string[]
-  label: string
+  touched?: boolean
+  errorText?: string
 }
 
-export const SelectInput: FC<SelectInputProps> = ({ items, label }) => {
-  const [value, setValue] = useState<string>('')
-  const onChange = (event: SelectChangeEvent) => {
-    setValue(event.target.value)
-  }
-  
+type SelectInputProps = TextFieldProps & SelectInputInterface
+
+export const SelectInput: FC<SelectInputProps> = ({ items, touched, errorText, ...props }) => {
   return (
-    <FormControl required sx={{ m: 1, minWidth: 120 }}>
-      <InputLabel id='demo-simple-select-required-label'>Age</InputLabel>
-      <Select
-        labelId='demo-simple-select-required-label'
-        id='demo-simple-select-required'
-        value={value}
-        label={label}
-        onChange={onChange}
-      >
-        {items.map(item => (
-          <MenuItem key={item} value={item}>
-            {item}
-          </MenuItem>
-        ))}
-      </Select>
-      <FormHelperText>Required</FormHelperText>
-    </FormControl>
+    <TextField
+      id={props.name}
+      name={props.name}
+      select
+      error={touched && !!errorText}
+      helperText={touched && errorText ? errorText : ''}
+      onBlur={props.onBlur}
+      onChange={props.onChange}
+      value={props.value}
+      size='small'
+      fullWidth
+    >
+      {items.map(item => (
+        <MenuItem key={item} value={item}>
+          {item}
+        </MenuItem>
+      ))}
+    </TextField>
   )
 }

@@ -6,33 +6,31 @@ import { useFormik } from 'formik'
 
 import { useAppDispatch } from 'application/store'
 
-import { type IAuthCredentials, type IAuthResponse } from 'features/authorization/type'
+import type { AuthCredentials, AuthResponse } from 'features/authorization/type'
 import { useSignupMutation } from 'features/authorization/services'
 
 import { setUser } from 'features/users/services'
 
 import { signupValidationSchema } from 'shared/utils'
+import { WELCOME_ROUTE } from '../routes'
 
 export const useSignup = () => {
   const navigate = useNavigate()
-  const [signupCredentials, setSignupCredentials] = useState<IAuthResponse>()
-  const [error, setError] = useState<FetchBaseQueryError | SerializedError>()
   const dispatch = useAppDispatch()
 
   const [signup, { isSuccess, isLoading }] = useSignupMutation()
 
-  const handleSignup = async (values: IAuthCredentials) => {
+  const onSubmit = async (values: AuthCredentials) => {
     const info = await signup(values)
     if ('data' in info) {
-      setSignupCredentials(info.data)
+      dispatch(setUser(info.data.user))
+
       return
     }
-    setError(info.error)
+    console.log(info)
   }
-  const onSubmit = async (values: IAuthCredentials) => {
-    await handleSignup(values)
-  }
-  const formik = useFormik({
+
+  const formik = useFormik<AuthCredentials>({
     initialValues: {
       email: '',
       password: ''
@@ -43,12 +41,9 @@ export const useSignup = () => {
   })
   useEffect(() => {
     if (isSuccess) {
-      navigate('/welcome')
-      if (signupCredentials) {
-        dispatch(setUser(signupCredentials.user))
-      }
+      navigate({ pathname: WELCOME_ROUTE.path })
     }
-  }, [isSuccess, signupCredentials])
+  }, [isSuccess])
 
-  return { signupCredentials, error, formik, isLoading, isSuccess }
+  return { formik, isLoading, isSuccess }
 }

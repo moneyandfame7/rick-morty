@@ -1,14 +1,15 @@
 import { rootApi } from 'application/store'
-import type { IAuthCredentials, IAuthResponse } from 'features/authorization/type'
-import type { IUser } from 'features/users/type'
+import type { AuthCredentials, AuthResponse } from 'features/authorization/type'
+import type { User, UserCurrentCountry, UserWelcomeDetails } from 'features/users/type'
 
 /**
  * Якщо буде помилка, то повертається обʼєкт error.
  * Якщо successfully, то повертається обʼєкт data.
  **/
+
 export const authApi = rootApi.injectEndpoints({
   endpoints: builder => ({
-    login: builder.mutation<IAuthResponse, IAuthCredentials>({
+    login: builder.mutation<AuthResponse, AuthCredentials>({
       query: body => ({
         url: '/auth/login',
         method: 'post',
@@ -21,7 +22,7 @@ export const authApi = rootApi.injectEndpoints({
         return response
       }
     }),
-    signup: builder.mutation<IAuthResponse, IAuthCredentials>({
+    signup: builder.mutation<AuthResponse, AuthCredentials>({
       query: body => ({
         url: '/auth/signup',
         method: 'post',
@@ -31,7 +32,7 @@ export const authApi = rootApi.injectEndpoints({
         return response.data
       }
     }),
-    logout: builder.mutation<IAuthResponse, void>({
+    logout: builder.mutation<AuthResponse, void>({
       query: () => {
         return {
           url: '/auth/logout',
@@ -39,11 +40,28 @@ export const authApi = rootApi.injectEndpoints({
         }
       }
     }),
-    getUser: builder.query<IUser, void>({
+    welcome: builder.mutation<AuthResponse, UserWelcomeDetails>({
+      query: body => ({
+        url: '/auth/welcome',
+        method: 'post',
+        body
+      })
+    }),
+    // TODO: на бекенді переробити endpoint, і зробити окремий api для юзера
+    getUser: builder.query<User, void>({
       query: () => `/auth/profile`
+    }),
+    getCurrentCountry: builder.query<UserCurrentCountry, void>({
+      query: () => 'https://ipapi.co/json'
     })
   })
 })
 
-// todo: на бекенді переробити endpoint, і зробити окремий api для юзера
-export const { useLoginMutation, useSignupMutation, useLogoutMutation, useGetUserQuery } = authApi
+export const {
+  useLoginMutation,
+  useSignupMutation,
+  useLogoutMutation,
+  useWelcomeMutation,
+  useGetUserQuery,
+  useGetCurrentCountryQuery
+} = authApi
