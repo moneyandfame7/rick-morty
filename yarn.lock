@@ -2515,7 +2515,7 @@
   dependencies:
     "@types/jest" "*"
 
-"@types/three@>=0.144.0":
+"@types/three@^0.149.0", "@types/three@>=0.144.0":
   version "0.149.0"
   resolved "https://registry.npmjs.org/@types/three/-/three-0.149.0.tgz"
   integrity sha512-fgNBm9LWc65ER/W0cvoXdC0iMy7Ke9e2CONmEr6Jt8sDSY3sw4DgOubZfmdZ747dkPhbQrgRQAWwDEr2S/7IEg==
