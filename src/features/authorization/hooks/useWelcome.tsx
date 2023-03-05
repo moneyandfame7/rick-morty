@@ -9,21 +9,19 @@ import { useFormik } from 'formik'
 import { welcomeValidationSchema } from 'shared/utils'
 import { useEffect, useMemo } from 'react'
 import { HOME_ROUTE } from 'shared/routes'
+import { CountryData } from '../type'
 
 export const useWelcome = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const countries = useMemo(() => countryList().getLabels(), [])
+  const countries: CountryData[] = useMemo(() => countryList().getData(), [])
   const [welcome, { isSuccess, isLoading }] = useWelcomeMutation()
-  const [logout] = useLogoutMutation()
 
   const onSubmit = async (details: UserWelcomeDetails) => {
-    if (details.country.includes('russia')) {
-      await logout()
-      dispatch(removeUser())
+    if (details.country === 'RU') {
+      return
     }
-    const countryCode = countryList().getValue(details.country)
-    const info = await welcome({ ...details, country: countryCode })
+    const info = await welcome(details)
     if ('data' in info) {
       dispatch(setUser(info.data.user))
       return
@@ -39,6 +37,7 @@ export const useWelcome = () => {
     },
     validateOnBlur: true,
     validationSchema: welcomeValidationSchema,
+
     onSubmit
   })
 

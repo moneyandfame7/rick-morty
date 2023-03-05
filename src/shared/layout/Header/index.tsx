@@ -1,8 +1,9 @@
 import MenuIcon from '@mui/icons-material/Menu'
 import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
+import { LOGIN_ROUTE, WELCOME_ROUTE } from 'features/authorization/routes'
 import { selectHasPassedWelcome, selectIsAuthenticated } from 'features/authorization/services'
 import { FC, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useAppSelector } from '../../../application/store'
 import { AvatarMenu } from './AvatarMenu'
 import { HeaderDrawer } from './Drawer'
@@ -12,17 +13,16 @@ import { LINKS_CONFIG } from './utils/links'
 import { HeaderWrapper } from './Wrapper'
 
 export const Header: FC = () => {
-  const isUserAuthenticated = useAppSelector(selectIsAuthenticated)
-  const hasUserPassedWelcome = useAppSelector(selectHasPassedWelcome)
+  const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
 
-  if (!isUserAuthenticated) {
+  if (location.pathname === LOGIN_ROUTE.path) {
     return <ForUnauthorizedHeader />
   }
-  if (!hasUserPassedWelcome) {
+  if (location.pathname === WELCOME_ROUTE.path) {
     return <ForWelcomePageHeader />
   }
 
@@ -37,7 +37,7 @@ export const Header: FC = () => {
       >
         <MenuIcon />
       </IconButton>
-      <Box sx={{ display: 'flex', gap: 5, alignItems: 'center' }}>
+      <Box component='div' sx={{ display: 'flex', gap: 5, alignItems: 'center' }}>
         <Typography variant='h6' color='inherit' noWrap sx={{ flexGrow: 1, userSelect: 'none' }} fontWeight='bolder'>
           Rick & morty
         </Typography>

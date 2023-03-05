@@ -41,6 +41,7 @@ export const LoginPage: FC = () => {
       {isLoading && <CircularProgress />}
       <CssBaseline />
       <Box
+        component='div'
         sx={{
           marginTop: 8,
           display: 'flex',

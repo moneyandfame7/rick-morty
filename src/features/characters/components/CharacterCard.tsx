@@ -55,6 +55,7 @@ export const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, lo
         />
         <CardContent sx={{ padding: 1 }}>
           <Box
+            component='div'
             sx={{
               display: 'flex',
               justifyContent: 'center',
@@ -66,7 +67,7 @@ export const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, lo
               {status}
             </Typography>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+          <Box component='div' sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
             <Typography component='h5' variant='subtitle1' sx={{ fontWeight: 'bolder' }}>
               First seen in:
             </Typography>

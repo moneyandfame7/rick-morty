@@ -1,8 +1,10 @@
 import React, { FC, useEffect, useMemo } from 'react'
 import {
+  Alert,
   Box,
   Button,
   Checkbox,
+  CircularProgress,
   Container,
   FormControlLabel,
   Grid,
@@ -22,32 +24,47 @@ import { selectHasPassedWelcome } from 'features/authorization/services'
 import { HOME_ROUTE } from 'shared/routes'
 import { ValidatedInput } from 'shared/components/ValidatedInput'
 import { SelectInput } from 'shared/components/SelectInput'
+import { SupportUkraineModel } from 'shared/components/SupportUkraineModel'
+import { textTransform } from '@mui/system'
+import countryList from 'react-select-country-list'
+import { CountryAutocompleteInput } from 'shared/components/CountryAutocompleteInput'
+import { PutinHuiloModel } from 'shared/components/PutinHuiloModel'
+import { Backdrop } from 'shared/components/Backdrop'
 
 export const WelcomePage: FC = () => {
   const navigate = useNavigate()
-  const { countries, formik, isLoading } = useWelcome()
+  const { countries, formik, isLoading, isSuccess } = useWelcome()
+
   const hasPassedWelcome = useAppSelector(selectHasPassedWelcome)
-  if (hasPassedWelcome) {
-    navigate({ pathname: HOME_ROUTE.path })
-  }
+  // useEffect(() => {
+  //   if (hasPassedWelcome) {
+  //     navigate({ pathname: HOME_ROUTE.path })
+  //   }
+  // }, [])
+
   return (
     <React.Fragment>
+      <Backdrop isLoading={isLoading} />
+
+      {formik.values.country === 'RU' && <PutinHuiloModel />}
+
       <Container
         component='main'
         maxWidth='xs'
-        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 8 }}
+        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 25 }}
       >
-        <Typography variant='h4' fontSize={25} fontWeight={400} textAlign='center'>
-          Welcome to the website based on the TV show Rick and Morty
+        <Typography variant='h3' fontWeight={400} textAlign='center'>
+          Welcome!
         </Typography>
-        <Typography variant='caption' textAlign='center' color={grey[600]} m='10px 0 20px'>
+        <Typography variant='subtitle1' fontWeight={500} textAlign='center' color={grey[600]} m='10px 0 20px'>
           Just a few questions to provide you with the best possible experience:
         </Typography>
       </Container>
-      <Container component='form' onSubmit={formik.handleSubmit} noValidate maxWidth='sm'>
+      <Container component='form' onSubmit={formik.handleSubmit} noValidate maxWidth='xs'>
         <Grid container spacing={2}>
-          <Grid item xs={12} display='flex' alignItems='center'>
+          <Grid item xs={12} display='flex' justifyContent='center' alignItems='center'>
             <ValidatedInput
+              fullWidth
               size='small'
               name='username'
               label='Username'
@@ -61,40 +78,34 @@ export const WelcomePage: FC = () => {
               TransitionComponent={Zoom}
               TransitionProps={{ timeout: 400 }}
               title='Your username will be public for everyone'
+              placement='right'
               arrow
             >
               <InfoIcon sx={{ cursor: 'help', ml: 1, width: 20, height: 20 }} />
             </Tooltip>
           </Grid>
-          <Grid item xs={12} display='flex' alignItems='center'>
-            <Box display='flex' alignItems='center' gap={1} width='100%'>
-              <Typography variant='body2' fontWeight={500}>
-                Which country do you reside in?
-              </Typography>
-              <SelectInput
-                name='country'
-                items={countries}
-                fullWidth
-                touched={formik.touched.country}
-                onChange={formik.handleChange}
-                value={formik.values.country}
-                onBlur={formik.handleBlur}
-                errorText={formik.errors.country}
-                defaultValue={countries.find(country => country === 'Ukraine')}
-              />
-            </Box>
+          <Grid item xs={12} display='flex' justifyContent='center' alignItems='center'>
+            <CountryAutocompleteInput
+              fullWidth
+              items={countries}
+              setFieldValue={formik.setFieldValue}
+              onBlur={formik.handleBlur}
+              touched={formik.touched.country}
+              errorText={formik.errors.country}
+            />
 
             <Tooltip
               TransitionComponent={Zoom}
               TransitionProps={{ timeout: 400 }}
+              placement='right'
               title="We need to make sure that you don't choose a fucking russia"
               arrow
             >
               <InfoIcon sx={{ cursor: 'help', ml: 1, width: 20, height: 20 }} />
             </Tooltip>
           </Grid>
-          <Grid item xs={12} display='flex' alignItems='center'>
-            <Box display='flex' justifyContent='flex-end' alignItems='center' gap={1} width='100%'>
+          <Grid item xs={12} display='flex' alignItems='center' justifyContent='center'>
+            <Box component='div' display='flex' alignItems='center' gap={1}>
               <Checkbox
                 id='mail_subscribe'
                 name='mail_subscribe'
@@ -107,20 +118,25 @@ export const WelcomePage: FC = () => {
                 Subscribe to the newsletter?
               </Typography>
             </Box>
-
             <Tooltip
               TransitionComponent={Zoom}
               TransitionProps={{ timeout: 400 }}
               title=' We can email you updates on new features.'
               arrow
+              placement='right'
             >
               <InfoIcon sx={{ cursor: 'help', ml: 1, width: 20, height: 20 }} />
             </Tooltip>
           </Grid>
         </Grid>
-        <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
-          Get started
-        </Button>
+        <Box
+          component='div'
+          sx={{ mt: 2, width: '100%', display: 'flex', justifyContent: 'center', height: 'max-content' }}
+        >
+          <Button type='submit' variant='contained' sx={{ textTransform: 'inherit' }}>
+            Get Started
+          </Button>
+        </Box>
       </Container>
     </React.Fragment>
   )

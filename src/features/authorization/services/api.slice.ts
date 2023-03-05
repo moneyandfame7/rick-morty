@@ -47,6 +47,12 @@ export const authApi = rootApi.injectEndpoints({
         body
       })
     }),
+    verificationSend: builder.mutation<void, void>({
+      query: () => ({
+        url: '/auth/resend-verification',
+        method: 'post'
+      })
+    }),
     // TODO: на бекенді переробити endpoint, і зробити окремий api для юзера
     getUser: builder.query<User, void>({
       query: () => `/auth/profile`
@@ -62,6 +68,7 @@ export const {
   useSignupMutation,
   useLogoutMutation,
   useWelcomeMutation,
+  useVerificationSendMutation,
   useGetUserQuery,
   useGetCurrentCountryQuery
 } = authApi

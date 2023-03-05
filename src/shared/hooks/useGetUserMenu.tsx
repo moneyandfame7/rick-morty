@@ -70,8 +70,8 @@ export const useGetUserMenu = (isWelcomePage: boolean, handleCloseMenu: () => vo
             }
           }}
         >
-          <ListItemIcon>{item.icon}</ListItemIcon>
-          <ListItemText primary={item.name} primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }} />
+          <ListItemIcon sx={{ color: '#000' }}>{item.icon}</ListItemIcon>
+          <ListItemText primary={item.name} primaryTypographyProps={{ fontSize: 12, fontWeight: 600 }} />
         </MenuItem>
       ))
     : defaultMenu.map(item => (
