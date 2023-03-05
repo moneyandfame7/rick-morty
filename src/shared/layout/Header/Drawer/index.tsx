@@ -29,7 +29,7 @@ export const HeaderDrawer: FC<HeaderDrawerProps> = ({ window, isOpen, onClose })
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 }
         }}
       >
-        <Box onClick={onClose} sx={{ textAlign: 'center', height: '70px' }}>
+        <Box component='div' onClick={onClose} sx={{ textAlign: 'center', height: '70px' }}>
           <Typography variant='h6' sx={{ my: 2 }}>
             RICK & MORTY
           </Typography>
