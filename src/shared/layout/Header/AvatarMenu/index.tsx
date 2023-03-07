@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, MouseEventHandler, useState } from 'react'
 import {
   Alert,
   AlertTitle,
@@ -6,7 +6,6 @@ import {
   Button,
   Divider,
   IconButton,
-  Menu,
   Stack,
   styled,
   Tooltip,
@@ -17,86 +16,124 @@ import SendIcon from '@mui/icons-material/Send'
 import CheckIcon from '@mui/icons-material/Check'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { grey } from '@mui/material/colors'
-import { useAppSelector } from 'application/store'
+import { useAppDispatch, useAppSelector } from 'application/store'
 
-import { selectCurrentUser } from 'features/users/services'
+import { removeUser, selectCurrentUser } from 'features/users/services'
 
 import { UserAvatar } from 'shared/components/UserAvatar'
 import { useGetUserMenu } from 'shared/hooks/useGetUserMenu'
 import { borderColor } from '@mui/system'
-import { useVerificationSendMutation } from 'features/authorization/services'
-
+import { useLogoutMutation, useVerificationSendMutation } from 'features/authorization/services'
+import { Menu, MenuItem } from '@mui/joy'
+import { useNavigate } from 'react-router-dom'
+import { Key } from '@mui/icons-material'
+import { Backdrop } from 'shared/components/Backdrop'
 interface AvatarMenuProps {
   isWelcomePage?: boolean
 }
-const AlertButton = styled(LoadingButton)({
-  fontSize: 11,
-  background: '#fff',
-  color: '#676363',
-  fontWeight: '600',
-  textTransform: 'initial',
-  boxShadow: '0px 1px 2px 0px #1018280d;',
-  border: '1px solid #0000001f',
-  borderRadius: '0.5rem',
-  '&:hover': {
-    backgroundColor: '#faf8f8',
-    borderColor: '#0000001f',
-    boxShadow: 'none'
+interface MenuItems {
+  id: number
+  name: string
+  url?: string
+  handle?: boolean
+}
+
+const defaultMenu: MenuItems[] = [
+  {
+    id: 0,
+    name: 'Profile',
+    url: '/profile'
   },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#fff',
-    borderColor: '#0000001f'
+  {
+    id: 1,
+    name: 'Account',
+    url: '/account'
   },
-  '&:focus': {
-    boxShadow: 'red'
+  {
+    id: 2,
+    name: 'Favorites',
+    url: '/favorites'
+  },
+  {
+    id: 3,
+    name: 'Logout',
+    handle: true
   }
-})
+]
+
+const menuForWelcome: MenuItems[] = [
+  {
+    id: 1,
+    name: 'Logout',
+    url: '/logout',
+    handle: true
+  }
+]
 export const AvatarMenu: FC<AvatarMenuProps> = ({ isWelcomePage = false }) => {
   const [resendVerification, { isLoading, isSuccess }] = useVerificationSendMutation()
-  const handleClick = async () => {
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const open = Boolean(anchorEl)
+  const navigate = useNavigate()
+  const [logout, { isLoading: logoutIsLoading }] = useLogoutMutation()
+  const dispatch = useAppDispatch()
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const createHandleClose = (item?: MenuItems) => async () => {
+    setAnchorEl(null)
+    console.log(item)
+    if (item) {
+      if (typeof item.id === 'number') {
+        setSelectedIndex(item.id)
+        navigate({ pathname: item.url })
+      }
+      if (item.handle) {
+        await logout()
+        dispatch(removeUser())
+      }
+    }
+  }
+  const handleClickSend = async () => {
     await resendVerification()
     console.log('Send verification message', isLoading, isSuccess)
   }
   const currentUser = useAppSelector(selectCurrentUser)
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget)
-  }
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null)
-  }
-  const currentMenu = useGetUserMenu(isWelcomePage, handleCloseUserMenu)
+
+  const currentMenu = useGetUserMenu(isWelcomePage, createHandleClose)
   return (
     <Box component='div' sx={{ flexGrow: 0, width: '30px' }}>
+      <Backdrop isLoading={logoutIsLoading} />
       <Tooltip title='You' arrow TransitionComponent={Zoom} TransitionProps={{ timeout: 400 }}>
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+        <IconButton onClick={handleClick} sx={{ p: 0 }}>
           <UserAvatar user={currentUser} sx={{ width: 28, height: 28 }} />
         </IconButton>
       </Tooltip>
 
-      <Menu
-        sx={{ mt: '45px' }}
-        id='menu-appbar'
-        anchorEl={anchorElUser}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'center'
-        }}
-        keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center'
-        }}
-        open={Boolean(anchorElUser)}
-        onClose={handleCloseUserMenu}
-        PaperProps={{
-          style: {
-            width: '35ch'
-          }
-        }}
-      >
-        <Box
+      <Menu anchorEl={anchorEl} open={open} onClose={createHandleClose()}>
+        {isWelcomePage
+          ? menuForWelcome.map(item => (
+              <MenuItem
+                {...(selectedIndex === item.id && { selected: true, variant: 'soft' })}
+                key={item.id}
+                component='span'
+                onClick={createHandleClose(item)}
+              >
+                {item.name}
+              </MenuItem>
+            ))
+          : defaultMenu.map(item => (
+              <MenuItem
+                {...(selectedIndex === item.id && { selected: true, variant: 'soft' })}
+                component='span'
+                key={item.id}
+                onClick={createHandleClose(item)}
+              >
+                {item.name}
+              </MenuItem>
+            ))}
+        {/* <Box
           component='div'
           sx={{
             p: '15px',
@@ -104,7 +141,8 @@ export const AvatarMenu: FC<AvatarMenuProps> = ({ isWelcomePage = false }) => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 0.5
+            gap: 0.5,
+            bgcolor: 'background.surface'
           }}
         >
           <UserAvatar user={currentUser} sx={{ width: 40, height: 40 }} />
@@ -139,7 +177,7 @@ export const AvatarMenu: FC<AvatarMenuProps> = ({ isWelcomePage = false }) => {
           </Alert>
         </Box>
         <Divider color={grey[300]} />
-        {currentMenu}
+        {currentMenu} */}
       </Menu>
     </Box>
   )

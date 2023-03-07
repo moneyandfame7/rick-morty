@@ -1,5 +1,4 @@
 import { Autocomplete, Box, TextField, TextFieldProps } from '@mui/material'
-import console from 'console'
 import { CountryData } from 'features/authorization/type'
 import { UserWelcomeDetails } from 'features/users/type'
 import { FormikProps } from 'formik'

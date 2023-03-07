@@ -4,10 +4,10 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import LogoutIcon from '@mui/icons-material/Logout'
-import { ListItemIcon, ListItemText, MenuItem } from '@mui/material'
 import { useLogoutMutation } from '../../features/authorization/services'
 import { useAppDispatch } from '../../application/store'
 import { removeUser } from '../../features/users/services'
+import { MenuItem } from '@mui/joy'
 
 interface MenuItems {
   id: number
@@ -55,41 +55,42 @@ const menuForWelcome: MenuItems[] = [
 ]
 
 export const useGetUserMenu = (isWelcomePage: boolean, handleCloseMenu: () => void) => {
-  const navigate = useNavigate()
-  const [logout] = useLogoutMutation()
-  const dispatch = useAppDispatch()
-  return isWelcomePage
-    ? menuForWelcome.map(item => (
-        <MenuItem
-          key={item.id}
-          onClick={async () => {
-            handleCloseMenu()
-            if (item.handle) {
-              await logout()
-              dispatch(removeUser())
-            }
-          }}
-        >
-          <ListItemIcon sx={{ color: '#000' }}>{item.icon}</ListItemIcon>
-          <ListItemText primary={item.name} primaryTypographyProps={{ fontSize: 12, fontWeight: 600 }} />
-        </MenuItem>
-      ))
-    : defaultMenu.map(item => (
-        <MenuItem
-          key={item.id}
-          onClick={async () => {
-            handleCloseMenu()
-            if (item.url) {
-              navigate(item.url)
-            }
-            if (item.handle) {
-              await logout()
-              dispatch(removeUser())
-            }
-          }}
-        >
-          <ListItemIcon>{item.icon}</ListItemIcon>
-          <ListItemText primary={item.name} primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }} />
-        </MenuItem>
-      ))
+  // const navigate = useNavigate()
+  // const [logout] = useLogoutMutation()
+  // const dispatch = useAppDispatch()
+  // return isWelcomePage
+  //   ? menuForWelcome.map(item => (
+  //       <MenuItem
+  //                 {...(selectedIndex === 0 && { selected: true, variant: 'soft' })}
+  //         key={item.id}
+  //         component='span'
+  //         onClick={async () => {
+  //           if (item.handle) {
+  //             handleCloseMenu()
+  //             await logout()
+  //             dispatch(removeUser())
+  //           }
+  //         }}
+  //       >
+  //         {item.name}
+  //       </MenuItem>
+  //     ))
+  //   : defaultMenu.map(item => (
+  //       <MenuItem
+  //         component='span'
+  //         key={item.id}
+  //         onClick={async () => {
+  //           handleCloseMenu()
+  //           if (item.url) {
+  //             navigate(item.url)
+  //           }
+  //           if (item.handle) {
+  //             await logout()
+  //             dispatch(removeUser())
+  //           }
+  //         }}
+  //       >
+  //         {item.name}
+  //       </MenuItem>
+  //     ))
 }

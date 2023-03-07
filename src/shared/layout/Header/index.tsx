@@ -1,6 +1,7 @@
 import MenuIcon from '@mui/icons-material/Menu'
-import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
-import { LOGIN_ROUTE, WELCOME_ROUTE } from 'features/authorization/routes'
+import { Box, Button, Typography } from '@mui/material'
+import { Typography as JoyTypography, Menu, MenuItem, Stack, Box as JoyBox, IconButton } from '@mui/joy'
+import { LOGIN_ROUTE, SIGNUP_ROUTE, WELCOME_ROUTE } from 'features/authorization/routes'
 import { selectHasPassedWelcome, selectIsAuthenticated } from 'features/authorization/services'
 import { FC, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
@@ -11,36 +12,50 @@ import { ForUnauthorizedHeader } from './forUnauthorized'
 import { ForWelcomePageHeader } from './forWelcomePage'
 import { LINKS_CONFIG } from './utils/links'
 import { HeaderWrapper } from './Wrapper'
-
+import { Logo } from 'shared/components/Logo'
+import { ColorSchemeToggle } from 'shared/components/ColorSchemeToggle'
+import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'
 export const Header: FC = () => {
   const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
-
-  if (location.pathname === LOGIN_ROUTE.path) {
-    return <ForUnauthorizedHeader />
+  const [anchorEl, setAnchorEl] = useState(null)
+  const open = Boolean(anchorEl)
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget)
   }
-  if (location.pathname === WELCOME_ROUTE.path) {
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+  if (location.pathname === LOGIN_ROUTE.path || location.pathname === SIGNUP_ROUTE.path) {
+    return (
+      <JoyBox
+        component='header'
+        sx={{
+          p: 3,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}
+      >
+        <JoyTypography fontWeight='lg' startDecorator={<Logo fontSize='xl5' fill='primary.main' />}>
+          Rick&Morty
+        </JoyTypography>
+        <ColorSchemeToggle />
+      </JoyBox>
+    )
+  } else if (location.pathname === WELCOME_ROUTE.path) {
     return <ForWelcomePageHeader />
   }
 
   return (
     <HeaderWrapper>
-      <IconButton
-        color='inherit'
-        aria-label='open drawer'
-        edge='start'
-        onClick={handleDrawerToggle}
-        sx={{ mr: 2, display: { sm: 'none' } }}
-      >
+      <IconButton color='primary' onClick={handleDrawerToggle} sx={{ mr: 2, display: { sm: 'none' } }}>
         <MenuIcon />
       </IconButton>
-      <Box component='div' sx={{ display: 'flex', gap: 5, alignItems: 'center' }}>
-        <Typography variant='h6' color='inherit' noWrap sx={{ flexGrow: 1, userSelect: 'none' }} fontWeight='bolder'>
-          Rick & morty
-        </Typography>
+      {/* <Box component='div' sx={{ display: 'flex', gap: 5, alignItems: 'center' }}>
         <Stack sx={{ display: { xs: 'none', sm: 'flex' } }} direction='row' gap={1}>
           {LINKS_CONFIG.map(({ id, name, url }) => (
             <Button component={Link} to={url} key={id} sx={{ '&:hover': { color: 'rgba(255,0,0)' } }}>
@@ -48,9 +63,16 @@ export const Header: FC = () => {
             </Button>
           ))}
         </Stack>
+      </Box> */}
+
+      <Box component='div' sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        <AvatarMenu />
+        {/* <IconButton color='primary' variant='outlined' size='sm'>
+          <FormatListBulletedOutlinedIcon />
+        </IconButton> */}
+        <ColorSchemeToggle sx={{ ml: 3 }} />
+        <HeaderDrawer isOpen={mobileOpen} onClose={handleDrawerToggle} />
       </Box>
-      <AvatarMenu />
-      <HeaderDrawer isOpen={mobileOpen} onClose={handleDrawerToggle} />
     </HeaderWrapper>
   )
 }

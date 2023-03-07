@@ -1,4 +1,4 @@
-import { Backdrop as MuiBackdrop, CircularProgress } from '@mui/material'
+import { CircularProgress, Modal } from '@mui/joy'
 import { FC } from 'react'
 
 interface BackdropProps {
@@ -6,8 +6,11 @@ interface BackdropProps {
 }
 export const Backdrop: FC<BackdropProps> = ({ isLoading }) => {
   return (
-    <MuiBackdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={isLoading}>
-      <CircularProgress color='inherit' />
-    </MuiBackdrop>
+    <Modal
+      open={isLoading}
+      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', userSelect: 'none' }}
+    >
+      <CircularProgress color='primary' size='md' variant='soft' />
+    </Modal>
   )
 }

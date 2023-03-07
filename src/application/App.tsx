@@ -1,9 +1,14 @@
-import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material'
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-
-import { getDesignTokens, PROTECTED_ROUTES, PUBLIC_ROUTES } from 'application'
-
+import {
+  CssBaseline,
+  useMediaQuery,
+  Experimental_CssVarsProvider as CssVarsProvider,
+  shouldSkipGeneratingVar as muiShouldSkipGeneratingVar
+} from '@mui/material'
+import { shouldSkipGeneratingVar as joyShouldSkipGeneratingVar } from '@mui/joy/styles'
+import { PROTECTED_ROUTES, PUBLIC_ROUTES } from 'application'
+import theme from 'application/theme'
 import { ProtectedRoute } from 'shared/components'
 import { Header } from 'shared/layout'
 
@@ -14,7 +19,7 @@ export const ColorModeContext = React.createContext({
 export const App = () => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
   const [mode, setMode] = React.useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light')
-  const theme = createTheme(getDesignTokens(mode))
+  // const theme = createTheme(getDesignTokens(mode))
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -25,7 +30,10 @@ export const App = () => {
   )
   return (
     <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
+      <CssVarsProvider
+        theme={theme}
+        shouldSkipGeneratingVar={keys => muiShouldSkipGeneratingVar(keys) || joyShouldSkipGeneratingVar(keys)}
+      >
         <CssBaseline />
         <Header />
         {/*{!(pathname === "/signup" || pathname === "/login" || pathname === "/welcome") ? <MyBreadcrumbs /> : null}*/}
@@ -42,7 +50,7 @@ export const App = () => {
             <Route path={route.path} key={route.id} element={route.element} />
           ))}
         </Routes>
-      </ThemeProvider>
+      </CssVarsProvider>
     </ColorModeContext.Provider>
   )
 }

@@ -1,35 +1,31 @@
-import { makeStyles, TextField, TextFieldProps, Theme } from '@mui/material'
+import { Visibility, VisibilityOff, VisibilityOffRounded } from '@mui/icons-material'
+import { FormControl, FormHelperText, FormLabel, IconButton, Input, InputProps } from '@mui/joy'
 import { FormikProps } from 'formik'
-import { FC } from 'react'
+import { ChangeEvent, FC, FocusEventHandler, useState } from 'react'
+import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded'
+import { useToggle } from 'shared/hooks'
 
-type ValidateInput = {
-  touched?: boolean
+interface ValidatedInputProps {
+  // validate: FormikProps<PasswordValidateObject>
   errorText?: string
+  touched?: boolean
 }
-type ValidateInputProps = ValidateInput & TextFieldProps
 
-export const ValidatedInput: FC<ValidateInputProps> = ({
-  touched,
-  name,
-  label,
+export const ValidatedInput: FC<ValidatedInputProps & InputProps> = ({
   value,
-  onChange,
   errorText,
+  touched,
+  onChange,
   onBlur,
+  children,
   ...props
 }) => {
+  const [showPassword, setShowPassword] = useState<boolean>(false)
   return (
-    <TextField
-      fullWidth
-      id={name}
-      label={label}
-      name={name}
-      value={value}
-      onChange={onChange}
-      error={touched && !!errorText}
-      helperText={touched && errorText ? errorText : ''}
-      onBlur={onBlur}
-      {...props}
-    />
+    <FormControl>
+      <FormLabel>{children}</FormLabel>
+      <Input {...props} value={value} error={touched && !!errorText} onChange={onChange} onBlur={onBlur} />
+      {touched && errorText && <FormHelperText sx={{ color: 'danger.solidBg' }}>{errorText}</FormHelperText>}
+    </FormControl>
   )
 }

@@ -1,21 +1,40 @@
-import { AppBar, Toolbar } from '@mui/material'
 import { FC, PropsWithChildren } from 'react'
+
+import { AppBar, Toolbar } from '@mui/material'
+import { Box, Typography } from '@mui/joy'
+
+import { Logo } from 'shared/components/Logo'
+import { ColorSchemeToggle } from 'shared/components/ColorSchemeToggle'
 
 export const HeaderWrapper: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <AppBar
-      component='nav'
-      position='sticky'
+    <Box
+      component='header'
       sx={{
-        backgroundColor: 'background.default',
-        boxShadow: 'none',
-        borderBottom: '1px solid',
-        borderColor: 'neutral.main',
-        color: 'text.primary',
-        display: 'flex'
+        px: 0,
+        alignItems: 'center'
       }}
+      bgcolor='background.surface'
     >
-      <Toolbar sx={{ display: 'flex', justifyContent: { xs: 'space-between' } }}>{children}</Toolbar>
-    </AppBar>
+      <Toolbar
+        sx={{
+          px: 3,
+          display: 'flex',
+          justifyContent: 'space-between'
+          // justifyContent: { xs: 'space-between' },
+          // width: { xs: '100%', sm: 'max-content' },
+          // justifyItems: 'flex-end'
+        }}
+      >
+        <Typography
+          fontWeight='lg'
+          startDecorator={<Logo fontSize='xl5' fill='#137cff' />}
+          sx={{ display: { xs: 'none', sm: 'flex' } }}
+        >
+          Rick&Morty
+        </Typography>
+        {children}
+      </Toolbar>
+    </Box>
   )
 }

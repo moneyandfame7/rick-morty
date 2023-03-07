@@ -65,15 +65,16 @@ export const WelcomePage: FC = () => {
           <Grid item xs={12} display='flex' justifyContent='center' alignItems='center'>
             <ValidatedInput
               fullWidth
-              size='small'
+              size='sm'
               name='username'
-              label='Username'
               value={formik.values.username}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               touched={formik.touched.username}
               errorText={formik.errors.username}
-            />
+            >
+              Username
+            </ValidatedInput>
             <Tooltip
               TransitionComponent={Zoom}
               TransitionProps={{ timeout: 400 }}

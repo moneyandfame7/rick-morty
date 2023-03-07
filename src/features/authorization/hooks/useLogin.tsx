@@ -16,7 +16,7 @@ export const useLogin = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const [login, { isSuccess, isLoading }] = useLoginMutation()
+  const [login, { isSuccess, isLoading, error }] = useLoginMutation()
 
   const onSubmit = async (credentials: AuthCredentials) => {
     const info = await login(credentials)
@@ -43,5 +43,5 @@ export const useLogin = () => {
     }
   }, [isSuccess])
 
-  return { formik, isLoading, isSuccess }
+  return { formik, isLoading, isSuccess, error }
 }
