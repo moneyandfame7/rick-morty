@@ -1,19 +1,24 @@
-import React, { useState } from 'react'
-import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded'
-import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded'
-import { ColorModeContext } from "../../application";
-import { IconButton, IconButtonProps, useTheme } from "@mui/material";
-
-export const ColorSchemeToggle = ({ onClick, ...props }: IconButtonProps) => {
-  const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
-  const [mounted, setMounted] = useState(false)
-
+import React, { FC } from 'react'
+import { MdDarkMode, MdLightMode } from 'react-icons/md'
+import { useAppDispatch, useAppSelector } from 'application/store'
+import { selectCustomization } from 'application/theme/customization.selector'
+import { setMode } from 'application/theme/customization.slice'
+import { Switch } from 'antd'
+export const ColorSchemeToggle: FC = () => {
+  const mode = useAppSelector(selectCustomization).mode
+  const dispatch = useAppDispatch()
+  const isDarkMode = mode === 'dark'
 
   return (
-
-      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
-        {theme.palette.mode === 'dark' ? <LightModeRoundedIcon /> : <DarkModeRoundedIcon />}
-      </IconButton>
+    <Switch
+      size='default'
+      style={{ width: 50, display: 'block', alignItems: 'center' }}
+      onChange={() => {
+        dispatch(setMode(isDarkMode ? 'light' : 'dark'))
+      }}
+      unCheckedChildren={<MdLightMode size={15} />}
+      checkedChildren={<MdDarkMode size={15} style={{ marginTop: '2.5px' }} />}
+      defaultChecked={isDarkMode}
+    />
   )
 }

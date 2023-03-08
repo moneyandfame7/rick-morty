@@ -14,6 +14,7 @@ import { HeaderWrapper } from './Wrapper'
 import { Logo } from 'shared/components/Logo'
 import { ColorSchemeToggle } from 'shared/components/ColorSchemeToggle'
 import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'
+import { Layout, Menu } from 'antd'
 export const Header: FC = () => {
   const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -40,10 +41,8 @@ export const Header: FC = () => {
           justifyContent: 'space-between'
         }}
       >
-        <Logo fontSize="large" fill='primary.main' />
-        <Typography fontWeight={600}>
-          Rick&Morty
-        </Typography>
+        <Logo fontSize='large' fill='primary.main' />
+        <Typography fontWeight={600}>Rick&Morty</Typography>
         <ColorSchemeToggle />
       </Box>
     )
@@ -52,28 +51,26 @@ export const Header: FC = () => {
   }
 
   return (
-    <HeaderWrapper>
-      <IconButton color='primary' onClick={handleDrawerToggle} sx={{ mr: 2, display: { sm: 'none' } }}>
-        <MenuIcon />
-      </IconButton>
-      {/* <Box component='div' sx={{ display: 'flex', gap: 5, alignItems: 'center' }}>
-        <Stack sx={{ display: { xs: 'none', sm: 'flex' } }} direction='row' gap={1}>
-          {LINKS_CONFIG.map(({ id, name, url }) => (
-            <Button component={Link} to={url} key={id} sx={{ '&:hover': { color: 'rgba(255,0,0)' } }}>
-              {name}
-            </Button>
-          ))}
-        </Stack>
-      </Box> */}
-
-      <Box component='div' sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        <AvatarMenu />
-        {/* <IconButton color='primary' variant='outlined' size='sm'>
-          <FormatListBulletedOutlinedIcon />
-        </IconButton> */}
-        <ColorSchemeToggle sx={{ ml: 3 }} />
-        <HeaderDrawer isOpen={mobileOpen} onClose={handleDrawerToggle} />
-      </Box>
-    </HeaderWrapper>
+    <Layout.Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%' }}>
+      <Menu
+        theme='dark'
+        mode='horizontal'
+        defaultSelectedKeys={['2']}
+        items={new Array(3).fill(null).map((_, index) => ({
+          key: String(index + 1),
+          label: `nav ${index + 1}`
+        }))}
+      />
+      <ColorSchemeToggle />
+    </Layout.Header>
+    // {/* <Box component='div' sx={{ display: 'flex', gap: 5, alignItems: 'center' }}>
+    //   <Stack sx={{ display: { xs: 'none', sm: 'flex' } }} direction='row' gap={1}>
+    //     {LINKS_CONFIG.map(({ id, name, url }) => (
+    //       <Button component={Link} to={url} key={id} sx={{ '&:hover': { color: 'rgba(255,0,0)' } }}>
+    //         {name}
+    //       </Button>
+    //     ))}
+    //   </Stack>
+    // </Box> */}
   )
 }

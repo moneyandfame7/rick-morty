@@ -5,15 +5,18 @@ import { Provider } from 'react-redux'
 import { StyledEngineProvider } from '@mui/material'
 
 import { App } from 'application'
-import { store } from 'application/store'
+import { persistor, store } from 'application/store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <Provider store={store}>
-    <StyledEngineProvider injectFirst>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </StyledEngineProvider>
+    <PersistGate loading={null} persistor={persistor}>
+      <StyledEngineProvider injectFirst>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </StyledEngineProvider>
+    </PersistGate>
   </Provider>
 )

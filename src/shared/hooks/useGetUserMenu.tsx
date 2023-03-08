@@ -7,6 +7,8 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { useLogoutMutation } from '../../features/authorization/services'
 import { useAppDispatch } from '../../application/store'
 import { removeUser } from '../../features/users/services'
+import { MenuItem } from '@mui/material'
+import { Backdrop } from 'shared/components/Backdrop'
 
 interface MenuItems {
   id: number
@@ -48,48 +50,46 @@ const menuForWelcome: MenuItems[] = [
     id: 1,
     name: 'Logout',
     icon: <LogoutIcon sx={{ fontSize: 16 }} />,
-    url: '/logout',
     handle: true
   }
 ]
 
 export const useGetUserMenu = (isWelcomePage: boolean, handleCloseMenu: () => void) => {
-  // const navigate = useNavigate()
-  // const [logout] = useLogoutMutation()
-  // const dispatch = useAppDispatch()
-  // return isWelcomePage
-  //   ? menuForWelcome.map(item => (
-  //       <MenuItem
-  //                 {...(selectedIndex === 0 && { selected: true, variant: 'soft' })}
-  //         key={item.id}
-  //         component='span'
-  //         onClick={async () => {
-  //           if (item.handle) {
-  //             handleCloseMenu()
-  //             await logout()
-  //             dispatch(removeUser())
-  //           }
-  //         }}
-  //       >
-  //         {item.name}
-  //       </MenuItem>
-  //     ))
-  //   : defaultMenu.map(item => (
-  //       <MenuItem
-  //         component='span'
-  //         key={item.id}
-  //         onClick={async () => {
-  //           handleCloseMenu()
-  //           if (item.url) {
-  //             navigate(item.url)
-  //           }
-  //           if (item.handle) {
-  //             await logout()
-  //             dispatch(removeUser())
-  //           }
-  //         }}
-  //       >
-  //         {item.name}
-  //       </MenuItem>
-  //     ))
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const [logout, { isLoading }] = useLogoutMutation()
+  const itemsForWelcomePage = menuForWelcome.map(item => (
+    <MenuItem
+      onClick={async () => {
+        handleCloseMenu()
+        await logout()
+        dispatch(removeUser())
+      }}
+    >
+      {item.icon}
+
+      {item.name}
+
+      {isLoading && <Backdrop />}
+    </MenuItem>
+  ))
+
+  const itemsForDefaultPage = defaultMenu.map(item => (
+    <MenuItem
+      onClick={async () => {
+        if (item.handle) {
+          await logout()
+          dispatch(removeUser())
+          return
+        }
+        navigate({ pathname: item.url })
+      }}
+      key={item.id}
+    >
+      {item.icon}
+      {item.name}
+      {isLoading && <Backdrop />}
+    </MenuItem>
+  ))
+  return isWelcomePage ? itemsForWelcomePage : itemsForDefaultPage
 }

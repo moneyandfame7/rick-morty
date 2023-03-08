@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, useState } from "react";
+import React, { FC, MouseEventHandler, useState } from 'react'
 import {
   Alert,
   AlertTitle,
@@ -6,106 +6,98 @@ import {
   Button,
   Divider,
   IconButton,
+  Menu,
   Stack,
   styled,
   Tooltip,
   Typography,
-  Zoom,
-} from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
-import CheckIcon from "@mui/icons-material/Check";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { grey } from "@mui/material/colors";
-import { useAppDispatch, useAppSelector } from "application/store";
+  Zoom
+} from '@mui/material'
+import SendIcon from '@mui/icons-material/Send'
+import CheckIcon from '@mui/icons-material/Check'
+import LoadingButton from '@mui/lab/LoadingButton'
+import { grey } from '@mui/material/colors'
+import { useAppDispatch, useAppSelector } from 'application/store'
 
-import { removeUser, selectCurrentUser } from "features/users/services";
+import { removeUser, selectCurrentUser } from 'features/users/services'
 
-import { UserAvatar } from "shared/components/UserAvatar";
-import { useGetUserMenu } from "shared/hooks/useGetUserMenu";
-import { borderColor } from "@mui/system";
-import { useLogoutMutation, useVerificationSendMutation } from "features/authorization/services";
-import { useNavigate } from "react-router-dom";
-import { Key } from "@mui/icons-material";
-import { Backdrop } from "shared/components/Backdrop";
+import { UserAvatar } from 'shared/components/UserAvatar'
+import { useGetUserMenu } from 'shared/hooks/useGetUserMenu'
+import { borderColor } from '@mui/system'
+import { useLogoutMutation, useVerificationSendMutation } from 'features/authorization/services'
+import { useNavigate } from 'react-router-dom'
+import { Key } from '@mui/icons-material'
+import { Backdrop } from 'shared/components/Backdrop'
 
 interface AvatarMenuProps {
-  isWelcomePage?: boolean;
+  isWelcomePage?: boolean
 }
 
 interface MenuItems {
-  id: number;
-  name: string;
-  url?: string;
-  handle?: boolean;
+  id: number
+  name: string
+  url?: string
+  handle?: boolean
 }
 
 const defaultMenu: MenuItems[] = [
   {
     id: 0,
-    name: "Profile",
-    url: "/profile",
+    name: 'Profile',
+    url: '/profile'
   },
   {
     id: 1,
-    name: "Account",
-    url: "/account",
+    name: 'Account',
+    url: '/account'
   },
   {
     id: 2,
-    name: "Favorites",
-    url: "/favorites",
+    name: 'Favorites',
+    url: '/favorites'
   },
   {
     id: 3,
-    name: "Logout",
-    handle: true,
-  },
-];
+    name: 'Logout',
+    handle: true
+  }
+]
 
 const menuForWelcome: MenuItems[] = [
   {
     id: 1,
-    name: "Logout",
-    url: "/logout",
-    handle: true,
-  },
-];
+    name: 'Logout',
+    url: '/logout',
+    handle: true
+  }
+]
 export const AvatarMenu: FC<AvatarMenuProps> = ({ isWelcomePage = false }) => {
-  const [resendVerification, { isLoading, isSuccess }] = useVerificationSendMutation();
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const navigate = useNavigate();
-  const [logout, { isLoading: logoutIsLoading }] = useLogoutMutation();
-  const dispatch = useAppDispatch();
+  const [resendVerification, { isLoading, isSuccess }] = useVerificationSendMutation()
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const open = Boolean(anchorEl)
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const createHandleClose = (item?: MenuItems) => async () => {
-    setAnchorEl(null);
-    console.log(item);
-    if (item) {
-      if (typeof item.id === "number") {
-        setSelectedIndex(item.id);
-        navigate({ pathname: item.url });
-      }
-      if (item.handle) {
-        await logout();
-        dispatch(removeUser());
-      }
-    }
-  };
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
   const handleClickSend = async () => {
-    await resendVerification();
-    console.log("Send verification message", isLoading, isSuccess);
-  };
-  const currentUser = useAppSelector(selectCurrentUser);
+    await resendVerification()
+    console.log('Send verification message', isLoading, isSuccess)
+  }
+  const currentUser = useAppSelector(selectCurrentUser)
 
-  const currentMenu = useGetUserMenu(isWelcomePage, createHandleClose);
+  const currentMenu = useGetUserMenu(isWelcomePage, handleClose)
   return (
-    <Box component="div">
-      <UserAvatar user={currentUser} sx={{ width: 40, height: 40 }} />
+    <Box component='div'>
+      <IconButton onClick={handleClick}>
+        <UserAvatar user={currentUser} sx={{ width: 30, height: 30 }} />
+      </IconButton>
+      <Menu anchorEl={anchorEl} onClose={handleClose} open={open}>
+        {currentMenu}
+      </Menu>
     </Box>
   )
 }

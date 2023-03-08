@@ -1,39 +1,51 @@
-import { createTheme as createMuiTheme, PaletteMode } from "@mui/material";
-import { getComponentOverrides } from "./theme/styleOverrides";
+import { theme, ThemeConfig } from 'antd'
 
+export type Mode = 'dark' | 'light'
+export type Placement = 'left' | 'right'
 
-const getDesignTokens = (mode: PaletteMode) => ({
-    palette:
-      mode === "light"
-        ? {
-          mode,
-          primary: {
-            main: "#096bde",
-          },
-          background: {
-            default: "#f7f7f8",
-            paper: "#fff",
-          },
-        }
-        : {
-          mode,
-          primary: {
-            main: "#054da7",
-            dark: "rgb(4 21 56)",
-          },
-          background: {
-            default: "rgb(19 19 24)",
-            paper: "#09090d",
-          },
-        },
-    // components: {},
+export const enum FontFamily {
+  ROBOTO = `"Roboto", "sans-serif"`,
+  INTER = `"Inter", "sans-serif"`,
+  POPPINS = `"Poppins", "sans-serif"`,
+  DEFAULT = `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+  'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+  'Noto Color Emoji'`,
+  OPEN_SANS = `"Open Sans", "sans-serif"`
+}
+export interface Customization {
+  fontFamily: string
+  fontSize: number
+  borderRadius: number
+  mode: Mode
+  compactAlgorithm: boolean
+  colorPrimary: string
+  drawerPlacement: Placement
+}
+
+export const customizationConfig: Customization = {
+  fontFamily: FontFamily.DEFAULT,
+  fontSize: 14,
+  borderRadius: 12,
+  mode: 'light',
+  compactAlgorithm: false,
+  colorPrimary: '#1677ff',
+  drawerPlacement: 'right'
+}
+
+export const generateTheme = (customize: Customization): ThemeConfig => {
+  const { darkAlgorithm, defaultAlgorithm, compactAlgorithm } = theme
+
+  const colorMode = customize.mode === 'dark' ? darkAlgorithm : defaultAlgorithm
+  const algorithms = [colorMode]
+  if (customize.compactAlgorithm) {
+    algorithms.push(compactAlgorithm)
   }
-
-);
-
-export const createTheme = (mode: PaletteMode) => {
-  const theme = createMuiTheme(getDesignTokens(mode));
-  theme.components = getComponentOverrides(theme);
-
-  return theme;
-};
+  return {
+    algorithm: algorithms,
+    token: {
+      borderRadius: customize.borderRadius,
+      fontFamily: customize.fontFamily,
+      colorPrimary: customize.colorPrimary
+    }
+  }
+}
