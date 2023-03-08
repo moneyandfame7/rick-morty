@@ -1,9 +1,9 @@
+import { SvgIcon } from '@mui/material'
 import * as React from 'react'
-import SvgIcon from '@mui/joy/SvgIcon'
 
-export const GoogleSignupIcon = () => {
+export const GoogleIcon = () => {
   return (
-    <SvgIcon fontSize='xl'>
+    <SvgIcon fontSize="large">
       <g transform='matrix(1, 0, 0, 1, 27.009001, -39.238998)'>
         <path
           fill='#4285F4'

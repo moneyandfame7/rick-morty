@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import type { User } from 'features/users/type'
-import { Avatar, AvatarProps } from '@mui/joy'
+import { Avatar, AvatarProps } from "@mui/material";
 
 interface UserAvatarProps extends AvatarProps {
   user: User | null
@@ -11,14 +11,14 @@ interface UserAvatarProps extends AvatarProps {
 export const UserAvatar: FC<UserAvatarProps> = ({ user, sx }) => {
   if (user?.username && !user.photo) {
     return (
-      <Avatar color='primary' variant='outlined' sx={sx}>
+      <Avatar color='primary' variant="rounded" sx={sx}>
         {user.username[0].toUpperCase()}
       </Avatar>
     )
   } else if (user?.photo) {
-    return <Avatar alt={'User avatar'} src={user.photo} sx={sx} variant='outlined' />
+    return <Avatar alt={'User avatar'} src={user.photo} sx={sx} variant='rounded' />
   } else {
-    return <Avatar color='primary' variant='outlined' />
+    return <Avatar color='primary' variant='rounded' />
   }
 
   // return <Avatar color='primary' variant='soft' alt='Aboba ' />

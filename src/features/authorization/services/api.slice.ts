@@ -2,10 +2,7 @@ import { rootApi } from 'application/store'
 import type { AuthCredentials, AuthResponse } from 'features/authorization/type'
 import type { User, UserCurrentCountry, UserWelcomeDetails } from 'features/users/type'
 
-/**
- * Якщо буде помилка, то повертається обʼєкт error.
- * Якщо successfully, то повертається обʼєкт data.
- **/
+
 
 export const authApi = rootApi.injectEndpoints({
   endpoints: builder => ({
@@ -20,7 +17,8 @@ export const authApi = rootApi.injectEndpoints({
       },
       transformResponse: (response: any, meta, arg) => {
         return response
-      }
+      },
+
     }),
     signup: builder.mutation<AuthResponse, AuthCredentials>({
       query: body => ({
@@ -59,8 +57,9 @@ export const authApi = rootApi.injectEndpoints({
     }),
     getCurrentCountry: builder.query<UserCurrentCountry, void>({
       query: () => 'https://ipapi.co/json'
-    })
-  })
+    }),
+
+  }),
 })
 
 export const {

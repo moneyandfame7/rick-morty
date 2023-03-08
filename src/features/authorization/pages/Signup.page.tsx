@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
-import { Box, Button, Checkbox, CssBaseline, Link, Typography } from '@mui/joy'
 
 import { useSignup } from 'features/authorization/hooks'
 import { ValidatedInput } from 'shared/components/ValidatedInput'
@@ -9,7 +8,6 @@ import { useAppSelector } from '../../../application/store'
 import { HOME_ROUTE } from '../../../shared/routes'
 import { selectIsAuthenticated } from '../services'
 import { ErrorMessage } from 'shared/components'
-import { GoogleSignupIcon } from '../components/GoogleIcon'
 import { Backdrop } from 'shared/components/Backdrop'
 import { Logo } from 'shared/components/Logo'
 

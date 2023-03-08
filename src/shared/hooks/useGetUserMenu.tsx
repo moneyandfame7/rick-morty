@@ -7,7 +7,6 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { useLogoutMutation } from '../../features/authorization/services'
 import { useAppDispatch } from '../../application/store'
 import { removeUser } from '../../features/users/services'
-import { MenuItem } from '@mui/joy'
 
 interface MenuItems {
   id: number

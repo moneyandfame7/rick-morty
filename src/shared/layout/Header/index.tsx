@@ -1,6 +1,5 @@
 import MenuIcon from '@mui/icons-material/Menu'
-import { Box, Button, Typography } from '@mui/material'
-import { Typography as JoyTypography, Menu, MenuItem, Stack, Box as JoyBox, IconButton } from '@mui/joy'
+import { Box, Button, IconButton, Typography } from '@mui/material'
 import { LOGIN_ROUTE, SIGNUP_ROUTE, WELCOME_ROUTE } from 'features/authorization/routes'
 import { selectHasPassedWelcome, selectIsAuthenticated } from 'features/authorization/services'
 import { FC, useState } from 'react'
@@ -21,6 +20,7 @@ export const Header: FC = () => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
+
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: any) => {
@@ -31,7 +31,7 @@ export const Header: FC = () => {
   }
   if (location.pathname === LOGIN_ROUTE.path || location.pathname === SIGNUP_ROUTE.path) {
     return (
-      <JoyBox
+      <Box
         component='header'
         sx={{
           p: 3,
@@ -40,11 +40,12 @@ export const Header: FC = () => {
           justifyContent: 'space-between'
         }}
       >
-        <JoyTypography fontWeight='lg' startDecorator={<Logo fontSize='xl5' fill='primary.main' />}>
+        <Logo fontSize="large" fill='primary.main' />
+        <Typography fontWeight={600}>
           Rick&Morty
-        </JoyTypography>
+        </Typography>
         <ColorSchemeToggle />
-      </JoyBox>
+      </Box>
     )
   } else if (location.pathname === WELCOME_ROUTE.path) {
     return <ForWelcomePageHeader />

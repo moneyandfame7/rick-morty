@@ -1,39 +1,34 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import {
   CssBaseline,
-  useMediaQuery,
-  Experimental_CssVarsProvider as CssVarsProvider,
-  shouldSkipGeneratingVar as muiShouldSkipGeneratingVar
-} from '@mui/material'
-import { shouldSkipGeneratingVar as joyShouldSkipGeneratingVar } from '@mui/joy/styles'
-import { PROTECTED_ROUTES, PUBLIC_ROUTES } from 'application'
-import theme from 'application/theme'
-import { ProtectedRoute } from 'shared/components'
-import { Header } from 'shared/layout'
+  useMediaQuery, ThemeProvider,
+} from "@mui/material";
+import { createTheme, PROTECTED_ROUTES, PUBLIC_ROUTES } from "application";
+import { ProtectedRoute } from "shared/components";
+import { Header } from "shared/layout";
+import { ToastContainer } from "react-toastify";
 
 export const ColorModeContext = React.createContext({
-  toggleColorMode: () => {}
-})
+  toggleColorMode: () => {
+  },
+});
 
 export const App = () => {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
-  const [mode, setMode] = React.useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light')
-  // const theme = createTheme(getDesignTokens(mode))
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const [mode, setMode] = React.useState<"light" | "dark">(prefersDarkMode ? "dark" : "light");
+  const theme = createTheme(mode);
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'))
-      }
+        setMode(prevMode => (prevMode === "light" ? "dark" : "light"));
+      },
     }),
-    []
-  )
+    [],
+  );
   return (
     <ColorModeContext.Provider value={colorMode}>
-      <CssVarsProvider
-        theme={theme}
-        shouldSkipGeneratingVar={keys => muiShouldSkipGeneratingVar(keys) || joyShouldSkipGeneratingVar(keys)}
-      >
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header />
         {/*{!(pathname === "/signup" || pathname === "/login" || pathname === "/welcome") ? <MyBreadcrumbs /> : null}*/}
@@ -50,7 +45,7 @@ export const App = () => {
             <Route path={route.path} key={route.id} element={route.element} />
           ))}
         </Routes>
-      </CssVarsProvider>
+      </ThemeProvider>
     </ColorModeContext.Provider>
-  )
-}
+  );
+};

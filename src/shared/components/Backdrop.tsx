@@ -1,16 +1,14 @@
-import { CircularProgress, Modal } from '@mui/joy'
-import { FC } from 'react'
+import { FC } from "react";
+import { Backdrop as MuiBackdrop, CircularProgress } from "@mui/material";
 
-interface BackdropProps {
-  isLoading: boolean
-}
-export const Backdrop: FC<BackdropProps> = ({ isLoading }) => {
+
+export const Backdrop: FC = () => {
   return (
-    <Modal
-      open={isLoading}
-      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', userSelect: 'none' }}
+    <MuiBackdrop
+      sx={{ color: "#fff", zIndex: 50, blur: "20px" }}
+      open={true}
     >
-      <CircularProgress color='primary' size='md' variant='soft' />
-    </Modal>
-  )
-}
+      <CircularProgress color="primary" thickness={7} />
+    </MuiBackdrop>
+  );
+};

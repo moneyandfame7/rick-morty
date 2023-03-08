@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo } from 'react'
+import React, { FC, useEffect, useMemo } from "react";
 import {
   Alert,
   Box,
@@ -11,31 +11,31 @@ import {
   IconButton,
   Tooltip,
   Typography,
-  Zoom
-} from '@mui/material'
-import { grey } from '@mui/material/colors'
-import InfoIcon from '@mui/icons-material/Info'
-import { useAppSelector } from 'application/store'
-import { selectCurrentUser } from 'features/users/services'
+  Zoom,
+} from "@mui/material";
+import { grey } from "@mui/material/colors";
+import InfoIcon from "@mui/icons-material/Info";
+import { useAppSelector } from "application/store";
+import { selectCurrentUser } from "features/users/services";
 
-import { useWelcome } from 'features/authorization/hooks'
-import { useNavigate } from 'react-router'
-import { selectHasPassedWelcome } from 'features/authorization/services'
-import { HOME_ROUTE } from 'shared/routes'
-import { ValidatedInput } from 'shared/components/ValidatedInput'
-import { SelectInput } from 'shared/components/SelectInput'
-import { SupportUkraineModel } from 'shared/components/SupportUkraineModel'
-import { textTransform } from '@mui/system'
-import countryList from 'react-select-country-list'
-import { CountryAutocompleteInput } from 'shared/components/CountryAutocompleteInput'
-import { PutinHuiloModel } from 'shared/components/PutinHuiloModel'
-import { Backdrop } from 'shared/components/Backdrop'
+import { useWelcome } from "features/authorization/hooks";
+import { useNavigate } from "react-router";
+import { selectHasPassedWelcome } from "features/authorization/services";
+import { HOME_ROUTE } from "shared/routes";
+import { ValidatedInput } from "shared/components/ValidatedInput";
+import { SelectInput } from "shared/components/SelectInput";
+import { SupportUkraineModel } from "shared/components/SupportUkraineModel";
+import { textTransform } from "@mui/system";
+import countryList from "react-select-country-list";
+import { CountryAutocompleteInput } from "shared/components/CountryAutocompleteInput";
+import { PutinHuiloModel } from "shared/components/PutinHuiloModel";
+import { Backdrop } from "shared/components/Backdrop";
 
 export const WelcomePage: FC = () => {
-  const navigate = useNavigate()
-  const { countries, formik, isLoading, isSuccess } = useWelcome()
+  const navigate = useNavigate();
+  const { countries, formik, isLoading, isSuccess } = useWelcome();
 
-  const hasPassedWelcome = useAppSelector(selectHasPassedWelcome)
+  const hasPassedWelcome = useAppSelector(selectHasPassedWelcome);
   // useEffect(() => {
   //   if (hasPassedWelcome) {
   //     navigate({ pathname: HOME_ROUTE.path })
@@ -44,29 +44,29 @@ export const WelcomePage: FC = () => {
 
   return (
     <React.Fragment>
-      <Backdrop isLoading={isLoading} />
 
-      {formik.values.country === 'RU' && <PutinHuiloModel />}
+      {isLoading && <Backdrop />}
+      {formik.values.country === "RU" && <PutinHuiloModel />}
 
       <Container
-        component='main'
-        maxWidth='xs'
-        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 25 }}
+        component="main"
+        maxWidth="xs"
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center", mt: 25 }}
       >
-        <Typography variant='h3' fontWeight={400} textAlign='center'>
+        <Typography variant="h3" fontWeight={400} textAlign="center">
           Welcome!
         </Typography>
-        <Typography variant='subtitle1' fontWeight={500} textAlign='center' color={grey[600]} m='10px 0 20px'>
+        <Typography variant="subtitle1" fontWeight={500} textAlign="center" color={grey[600]} m="10px 0 20px">
           Just a few questions to provide you with the best possible experience:
         </Typography>
       </Container>
-      <Container component='form' onSubmit={formik.handleSubmit} noValidate maxWidth='xs'>
+      <Container component="form" onSubmit={formik.handleSubmit} noValidate maxWidth="xs">
         <Grid container spacing={2}>
-          <Grid item xs={12} display='flex' justifyContent='center' alignItems='center'>
+          <Grid item xs={12} display="flex" justifyContent="center" alignItems="center">
             <ValidatedInput
               fullWidth
-              size='sm'
-              name='username'
+              size="small"
+              name="username"
               value={formik.values.username}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -78,14 +78,14 @@ export const WelcomePage: FC = () => {
             <Tooltip
               TransitionComponent={Zoom}
               TransitionProps={{ timeout: 400 }}
-              title='Your username will be public for everyone'
-              placement='right'
+              title="Your username will be public for everyone"
+              placement="right"
               arrow
             >
-              <InfoIcon sx={{ cursor: 'help', ml: 1, width: 20, height: 20 }} />
+              <InfoIcon sx={{ cursor: "help", ml: 1, width: 20, height: 20 }} />
             </Tooltip>
           </Grid>
-          <Grid item xs={12} display='flex' justifyContent='center' alignItems='center'>
+          <Grid item xs={12} display="flex" justifyContent="center" alignItems="center">
             <CountryAutocompleteInput
               fullWidth
               items={countries}
@@ -98,47 +98,47 @@ export const WelcomePage: FC = () => {
             <Tooltip
               TransitionComponent={Zoom}
               TransitionProps={{ timeout: 400 }}
-              placement='right'
+              placement="right"
               title="We need to make sure that you don't choose a fucking russia"
               arrow
             >
-              <InfoIcon sx={{ cursor: 'help', ml: 1, width: 20, height: 20 }} />
+              <InfoIcon sx={{ cursor: "help", ml: 1, width: 20, height: 20 }} />
             </Tooltip>
           </Grid>
-          <Grid item xs={12} display='flex' alignItems='center' justifyContent='center'>
-            <Box component='div' display='flex' alignItems='center' gap={1}>
+          <Grid item xs={12} display="flex" alignItems="center" justifyContent="center">
+            <Box component="div" display="flex" alignItems="center" gap={1}>
               <Checkbox
-                id='mail_subscribe'
-                name='mail_subscribe'
+                id="mail_subscribe"
+                name="mail_subscribe"
                 checked={formik.values.mail_subscribe}
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                inputProps={{ 'aria-label': 'controlled' }}
+                inputProps={{ "aria-label": "controlled" }}
               />
-              <Typography variant='body2' fontWeight={500}>
+              <Typography variant="body2" fontWeight={500}>
                 Subscribe to the newsletter?
               </Typography>
             </Box>
             <Tooltip
               TransitionComponent={Zoom}
               TransitionProps={{ timeout: 400 }}
-              title=' We can email you updates on new features.'
+              title=" We can email you updates on new features."
               arrow
-              placement='right'
+              placement="right"
             >
-              <InfoIcon sx={{ cursor: 'help', ml: 1, width: 20, height: 20 }} />
+              <InfoIcon sx={{ cursor: "help", ml: 1, width: 20, height: 20 }} />
             </Tooltip>
           </Grid>
         </Grid>
         <Box
-          component='div'
-          sx={{ mt: 2, width: '100%', display: 'flex', justifyContent: 'center', height: 'max-content' }}
+          component="div"
+          sx={{ mt: 2, width: "100%", display: "flex", justifyContent: "center", height: "max-content" }}
         >
-          <Button type='submit' variant='contained' sx={{ textTransform: 'inherit' }}>
+          <Button type="submit" variant="contained" sx={{ textTransform: "inherit" }}>
             Get Started
           </Button>
         </Box>
       </Container>
     </React.Fragment>
-  )
-}
+  );
+};
