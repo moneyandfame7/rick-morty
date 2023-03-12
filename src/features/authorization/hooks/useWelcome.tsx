@@ -15,12 +15,9 @@ export const useWelcome = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const countries: CountryData[] = useMemo(() => countryList().getData(), [])
-  const [welcome, { isSuccess, isLoading }] = useWelcomeMutation()
+  const [welcome, { isSuccess, isLoading, error }] = useWelcomeMutation()
 
   const onSubmit = async (details: UserWelcomeDetails) => {
-    if (details.country === 'RU') {
-      return
-    }
     const info = await welcome(details)
     if ('data' in info) {
       dispatch(setUser(info.data.user))
@@ -35,9 +32,9 @@ export const useWelcome = () => {
       country: '',
       mail_subscribe: false
     },
-    validateOnBlur: true,
+    validateOnBlur: false,
+    validateOnChange: false,
     validationSchema: welcomeValidationSchema,
-
     onSubmit
   })
 
@@ -47,5 +44,5 @@ export const useWelcome = () => {
     }
   }, [isSuccess])
 
-  return { countries, formik, isLoading, isSuccess }
+  return { countries, formik, isLoading, error }
 }

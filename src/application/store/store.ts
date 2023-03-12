@@ -9,7 +9,7 @@ import { userReducer } from 'features/users/services'
 
 import { setLocalStorage } from 'shared/utils'
 import { LocalStorageKey } from 'shared/constants'
-import { customizationReducer } from 'application/theme/customization.slice'
+import { customizationReducer } from 'application/theme/customization'
 
 const persistConfig = {
   key: 'root',

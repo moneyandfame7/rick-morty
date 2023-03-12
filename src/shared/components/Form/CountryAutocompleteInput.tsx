@@ -1,19 +1,18 @@
-import { Autocomplete, Box, TextField, TextFieldProps } from '@mui/material'
-import { CountryData } from 'features/authorization/type'
-import { UserWelcomeDetails } from 'features/users/type'
-import { FormikProps } from 'formik'
 import { FC } from 'react'
+import { Autocomplete, Box, TextField, TextFieldProps } from '@mui/material'
+import ErrorIcon from '@mui/icons-material/Error'
+
+import { CountryData } from 'features/authorization/type'
+import { ValidatedInput } from './ValidatedInput'
 
 interface CountryAutocompleteInputInterface {
   items: CountryData[]
-  touched?: boolean
   errorText?: string
   setFieldValue: (field: string, value: string | undefined) => void
 }
 type CountryAutocompleteInputProps = CountryAutocompleteInputInterface & TextFieldProps
 export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
   items,
-  touched,
   name,
   label,
   value,
@@ -25,7 +24,7 @@ export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
 }) => {
   return (
     <Autocomplete
-      fullWidth={props.fullWidth}
+      sx={{ minWidth: '150px' }}
       id='autocomplete-country-id'
       getOptionLabel={option => option.label}
       options={items}
@@ -46,12 +45,13 @@ export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
         </Box>
       )}
       renderInput={params => (
-        <TextField
+        <ValidatedInput
           name='country'
           label='Country'
           onBlur={onBlur}
-          error={!!errorText && touched}
-          helperText={touched && errorText ? errorText : ''}
+          error={!!errorText}
+          errorText={errorText}
+          helperText={!!errorText ? errorText : props.helperText}
           autoComplete='shipping country'
           {...params}
         />

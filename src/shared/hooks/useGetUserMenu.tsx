@@ -1,14 +1,17 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import LogoutIcon from '@mui/icons-material/Logout'
-import { useLogoutMutation } from '../../features/authorization/services'
-import { useAppDispatch } from '../../application/store'
-import { removeUser } from '../../features/users/services'
-import { MenuItem } from '@mui/material'
-import { Backdrop } from 'shared/components/Backdrop'
+import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks'
+import { BaseQueryFn, FetchArgs, FetchBaseQueryError, MutationDefinition } from '@reduxjs/toolkit/dist/query'
+import { ListItemIcon, ListItemText, MenuItem } from '@mui/material'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined'
+import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined'
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
+
+import { useAppDispatch } from 'application/store'
+
+import { removeUser } from 'features/users/services'
+import { AuthResponse } from 'features/authorization/type'
 
 interface MenuItems {
   id: number
@@ -18,59 +21,72 @@ interface MenuItems {
   handle?: boolean
 }
 
-const defaultMenu: MenuItems[] = [
+export const defaultMenu: MenuItems[] = [
   {
     id: 0,
     name: 'Profile',
-    icon: <AccountCircleIcon sx={{ fontSize: 16 }} />,
+    icon: <AccountCircleOutlinedIcon sx={{ fontSize: 20 }} />,
     url: '/profile'
   },
   {
     id: 1,
     name: 'Account',
-    icon: <ManageAccountsIcon sx={{ fontSize: 16 }} />,
+    icon: <ManageAccountsOutlinedIcon sx={{ fontSize: 20 }} />,
     url: '/account'
   },
   {
     id: 2,
     name: 'Favorites',
-    icon: <FavoriteIcon sx={{ fontSize: 16 }} />,
+    icon: <BookmarksOutlinedIcon sx={{ fontSize: 20 }} />,
     url: '/favorites'
   },
   {
     id: 3,
     name: 'Logout',
-    icon: <LogoutIcon sx={{ fontSize: 16 }} />,
+    icon: <LogoutOutlinedIcon sx={{ fontSize: 20 }} />,
     handle: true
   }
 ]
 
-const menuForWelcome: MenuItems[] = [
+export const menuForWelcome: MenuItems[] = [
   {
     id: 1,
     name: 'Logout',
-    icon: <LogoutIcon sx={{ fontSize: 16 }} />,
+    icon: <LogoutOutlinedIcon sx={{ fontSize: 20 }} />,
     handle: true
   }
 ]
+interface UseGetUserMenuParams {
+  isWelcomePage: boolean
+  logout: MutationTrigger<
+    MutationDefinition<
+      void,
+      BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, {}>,
+      never,
+      AuthResponse,
+      'api'
+    >
+  >
+  handleCloseMenu: () => void
+}
 
-export const useGetUserMenu = (isWelcomePage: boolean, handleCloseMenu: () => void) => {
+export const useGetUserMenu = ({ isWelcomePage, logout, handleCloseMenu }: UseGetUserMenuParams) => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const [logout, { isLoading }] = useLogoutMutation()
   const itemsForWelcomePage = menuForWelcome.map(item => (
     <MenuItem
       onClick={async () => {
-        handleCloseMenu()
-        await logout()
-        dispatch(removeUser())
+        if (item.name === 'Logout') {
+          handleCloseMenu()
+          await logout()
+          dispatch(removeUser())
+          return
+        }
       }}
+      key={item.id}
     >
-      {item.icon}
-
-      {item.name}
-
-      {isLoading && <Backdrop />}
+      <ListItemIcon>{item.icon}</ListItemIcon>
+      <ListItemText>{item.name}</ListItemText>
     </MenuItem>
   ))
 
@@ -78,6 +94,7 @@ export const useGetUserMenu = (isWelcomePage: boolean, handleCloseMenu: () => vo
     <MenuItem
       onClick={async () => {
         if (item.handle) {
+          handleCloseMenu()
           await logout()
           dispatch(removeUser())
           return
@@ -85,10 +102,10 @@ export const useGetUserMenu = (isWelcomePage: boolean, handleCloseMenu: () => vo
         navigate({ pathname: item.url })
       }}
       key={item.id}
+      sx={{ gap: 2 }}
     >
       {item.icon}
       {item.name}
-      {isLoading && <Backdrop />}
     </MenuItem>
   ))
   return isWelcomePage ? itemsForWelcomePage : itemsForDefaultPage

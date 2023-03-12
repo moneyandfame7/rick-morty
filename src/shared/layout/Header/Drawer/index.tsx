@@ -1,8 +1,18 @@
 import React, { FC } from 'react'
-import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material'
-import { NavLink } from 'react-router-dom'
-import useTheme from '@mui/material/styles/useTheme'
+import {
+  Box,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Typography
+} from '@mui/material'
 import { LINKS_CONFIG } from 'shared/layout/Header/utils/links'
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
+import { useNavigate } from 'react-router-dom'
 
 interface HeaderDrawerProps {
   window?: () => Window
@@ -12,45 +22,55 @@ interface HeaderDrawerProps {
 
 export const HeaderDrawer: FC<HeaderDrawerProps> = ({ window, isOpen, onClose }) => {
   const container = window !== undefined ? () => window().document.body : undefined
-  const theme = useTheme()
-
+  const navigate = useNavigate()
   return (
-    <Box component='nav'>
+    <Box component='nav' sx={{ transition: '0.2s' }}>
       <Drawer
         container={container}
         variant='temporary'
         open={isOpen}
         onClose={onClose}
         ModalProps={{
-          keepMounted: true // Better open performance on mobile.
+          keepMounted: true, // Better open performance on mobile.
+          sx: {
+            zIndex: 1201
+          }
         }}
-        sx={{
-          display: { xs: 'block', sm: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 }
+        PaperProps={{
+          sx: {
+            width: { xs: '100%', sm: 300 }
+          }
         }}
       >
-        <Box component='div' onClick={onClose} sx={{ textAlign: 'center', height: '70px' }}>
-          <Typography variant='h6' sx={{ my: 2 }}>
-            RICK & MORTY
-          </Typography>
+        <Box component='div' sx={{ textAlign: 'center', height: '70px' }}>
+          <Box
+            component='div'
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              p: '20px 10px'
+            }}
+          >
+            <Typography variant='h6'>RICK & MORTY</Typography>
+            <IconButton sx={{ p: 0.5 }} onClick={onClose}>
+              <CloseOutlinedIcon sx={{ fontSize: 25, color: 'primary.lighter' }} />
+            </IconButton>
+          </Box>
           <Divider />
-          <List>
-            {LINKS_CONFIG.map(
-              ({ url, name, id }) =>
-                name !== 'Favorites' && (
-                  <ListItem key={id} disablePadding>
-                    <ListItemButton sx={{ textAlign: 'center' }}>
-                      <NavLink
-                        to={url}
-                        key={id}
-                        style={({ isActive }) => (isActive ? { color: theme.palette.primary.dark } : undefined)}
-                      >
-                        <ListItemText primary={name} />
-                      </NavLink>
-                    </ListItemButton>
-                  </ListItem>
-                )
-            )}
+          <List component='nav'>
+            {LINKS_CONFIG.map(link => (
+              <ListItemButton
+                key={link.id}
+                onClick={() => {
+                  onClose()
+                  navigate({ pathname: link.url, search: link.search })
+                }}
+              >
+                <ListItemIcon>{link.icon}</ListItemIcon>
+                <ListItemText primary={link.name} />
+              </ListItemButton>
+            ))}
           </List>
         </Box>
       </Drawer>

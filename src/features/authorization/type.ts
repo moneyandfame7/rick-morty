@@ -5,6 +5,12 @@ export interface AuthCredentials {
   password: string
 }
 
+export interface SignupCredentials {
+  email: string
+  password: string
+  confirmPassword: string
+}
+
 export interface Role {
   id: number
   value: string

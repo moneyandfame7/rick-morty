@@ -1,55 +1,47 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useFormik } from 'formik'
 
-import { useAppDispatch } from "application/store";
+import { useAppDispatch } from 'application/store'
 
-import type { AuthCredentials } from "features/authorization/type";
-import { useLoginMutation } from "features/authorization/services";
+import type { AuthCredentials } from 'features/authorization/type'
+import { useLoginMutation } from 'features/authorization/services'
 
-import { setUser } from "features/users/services";
+import { setUser } from 'features/users/services'
 
-import { loginValidationSchema } from "shared/utils";
-import { HOME_ROUTE } from "shared/routes";
-import { toast } from "react-toastify";
+import { loginValidationSchema } from 'shared/utils'
+import { HOME_ROUTE } from 'shared/routes'
+import { toast } from 'react-toastify'
 
 export const useLogin = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
-  const [login, { isSuccess, isLoading, error }] = useLoginMutation();
-
+  const [login, { isSuccess, isLoading, error }] = useLoginMutation()
   const onSubmit = async (credentials: AuthCredentials) => {
-    const info = await login(credentials);
-    if ("data" in info) {
-      dispatch(setUser(info.data.user));
-
-      return;
+    const info = await login(credentials)
+    if ('data' in info) {
+      dispatch(setUser(info.data.user))
+      return
     }
-    if (!("status" in info.error)) {
-      // toast.error(info.error.message);
-      toast.error(info.error.message, {
-        toastId: info.error.message,
-      });
-
-    }
-  };
+  }
 
   const formik = useFormik<AuthCredentials>({
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: ''
     },
     validateOnBlur: false,
     validateOnChange: false,
     validationSchema: loginValidationSchema,
-    onSubmit,
-  });
+    onSubmit
+  })
+
   useEffect(() => {
     if (isSuccess) {
-      navigate({ pathname: HOME_ROUTE.path });
+      navigate({ pathname: HOME_ROUTE.path })
     }
-  }, [isSuccess]);
+  }, [isSuccess])
 
-  return { formik, isLoading, isSuccess, error };
-};
+  return { formik, isLoading, isSuccess, error }
+}

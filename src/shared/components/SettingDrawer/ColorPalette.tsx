@@ -1,16 +1,14 @@
-import { CheckOutlined } from '@ant-design/icons'
-import { Col, Radio, RadioChangeEvent, Row, theme } from 'antd'
 import { useAppDispatch } from 'application/store'
-import { setPrimaryColor } from 'application/theme/customization.slice'
+import { setPrimaryColor } from 'application/theme/customization/customization.slice'
 import { useState } from 'react'
 import { ColorResult, TwitterPicker } from 'react-color'
 export const ColorPalette = () => {
-  const token = theme.useToken()
   const dispatch = useAppDispatch()
   const onChange = (color: ColorResult, e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(color, e)
     dispatch(setPrimaryColor(color.hex))
   }
+
   return (
     // <Radio.Group onChange={onChange}>
     //   <Row gutter={16}>
@@ -61,9 +59,9 @@ export const ColorPalette = () => {
             backgroundColor: 'transparent'
           },
           input: {
-            backgroundColor: token.token.colorPrimary,
-            color: token.token.colorText,
-            borderColor: 'red'
+            // backgroundColor: token.token.colorPrimary,
+            // color: token.token.colorText,
+            // borderColor: 'red'
           }
         }
       }}

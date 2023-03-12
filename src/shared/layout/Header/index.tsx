@@ -1,76 +1,121 @@
+import React, { FC } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined'
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined'
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined'
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import MenuIcon from '@mui/icons-material/Menu'
-import { Box, Button, IconButton, Typography } from '@mui/material'
-import { LOGIN_ROUTE, SIGNUP_ROUTE, WELCOME_ROUTE } from 'features/authorization/routes'
-import { selectHasPassedWelcome, selectIsAuthenticated } from 'features/authorization/services'
-import { FC, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { useAppSelector } from '../../../application/store'
-import { AvatarMenu } from './AvatarMenu'
-import { HeaderDrawer } from './Drawer'
-import { ForUnauthorizedHeader } from './forUnauthorized'
-import { ForWelcomePageHeader } from './forWelcomePage'
-import { LINKS_CONFIG } from './utils/links'
-import { HeaderWrapper } from './Wrapper'
-import { Logo } from 'shared/components/Logo'
-import { ColorSchemeToggle } from 'shared/components/ColorSchemeToggle'
-import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'
-import { Layout, Menu } from 'antd'
-export const Header: FC = () => {
-  const location = useLocation()
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
+import { AppBar, Box, Chip, Container, IconButton, Toolbar, useTheme } from '@mui/material'
 
-  const [anchorEl, setAnchorEl] = useState(null)
-  const open = Boolean(anchorEl)
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget)
+import { Logo } from 'shared/components/Logo'
+import { HeaderDrawer } from './Drawer'
+import { ForWelcomePageHeader } from './forWelcomePage'
+import { LOGIN_ROUTE, SIGNUP_ROUTE, WELCOME_ROUTE } from 'features/authorization/routes'
+import { UserAvatar } from 'shared/components/UserAvatar'
+import { useAppDispatch, useAppSelector } from 'application/store'
+import { removeUser, selectCurrentUser } from 'features/users/services'
+import { SettingDrawer } from 'shared/components/SettingDrawer'
+import { LINKS_CONFIG } from './utils/links'
+import { useLogout } from 'features/authorization/hooks'
+import { AvatarMenu } from './AvatarMenu'
+import { Backdrop } from 'shared/components/Backdrop'
+const settings = [
+  {
+    icon: <AccountBoxOutlinedIcon />,
+    label: 'Profile',
+    path: '/profile',
+    key: 1
+  },
+  {
+    icon: <ManageAccountsOutlinedIcon />,
+    label: 'Account',
+    path: '/account',
+    key: 2
+  },
+  {
+    access: true,
+    icon: <DashboardOutlinedIcon fontSize='small' />,
+    label: 'Dashboard',
+    path: '/dashboard',
+    key: 3
+  },
+  {
+    icon: <LogoutOutlinedIcon />,
+    label: 'Logout',
+    key: 4
   }
-  const handleClose = () => {
-    setAnchorEl(null)
+]
+export const Header: FC = () => {
+  const { logout, isLoading: isLogoutLoading } = useLogout()
+  const dispatch = useAppDispatch()
+  const location = useLocation()
+  const navigate = useNavigate()
+  const theme = useTheme()
+  const user = useAppSelector(selectCurrentUser)
+  const [mobileOpen, setMobileOpen] = React.useState(false)
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget)
   }
-  if (location.pathname === LOGIN_ROUTE.path || location.pathname === SIGNUP_ROUTE.path) {
-    return (
-      <Box
-        component='header'
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null)
+  }
+  const handleDrawerToggle = () => {
+    setMobileOpen(prevState => !prevState)
+  }
+  if (
+    location.pathname === LOGIN_ROUTE.path ||
+    location.pathname === SIGNUP_ROUTE.path ||
+    location.pathname === WELCOME_ROUTE.path
+  ) {
+    return null
+  }
+  return (
+    <React.Fragment>
+      <AppBar
+        position='sticky'
         sx={{
-          p: 3,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between'
+          backgroundColor: 'background.paper',
+          boxShadow: 'none',
+          borderBottom: '1px solid rgb(77 72 72 / 20%)',
+          transition: '0.2s'
         }}
       >
-        <Logo fontSize='large' fill='primary.main' />
-        <Typography fontWeight={600}>Rick&Morty</Typography>
-        <ColorSchemeToggle />
-      </Box>
-    )
-  } else if (location.pathname === WELCOME_ROUTE.path) {
-    return <ForWelcomePageHeader />
-  }
-
-  return (
-    <Layout.Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%' }}>
-      <Menu
-        theme='dark'
-        mode='horizontal'
-        defaultSelectedKeys={['2']}
-        items={new Array(3).fill(null).map((_, index) => ({
-          key: String(index + 1),
-          label: `nav ${index + 1}`
-        }))}
-      />
-      <ColorSchemeToggle />
-    </Layout.Header>
-    // {/* <Box component='div' sx={{ display: 'flex', gap: 5, alignItems: 'center' }}>
-    //   <Stack sx={{ display: { xs: 'none', sm: 'flex' } }} direction='row' gap={1}>
-    //     {LINKS_CONFIG.map(({ id, name, url }) => (
-    //       <Button component={Link} to={url} key={id} sx={{ '&:hover': { color: 'rgba(255,0,0)' } }}>
-    //         {name}
-    //       </Button>
-    //     ))}
-    //   </Stack>
-    // </Box> */}
+        {isLogoutLoading && <Backdrop />}
+        <Container maxWidth='xl'>
+          <Toolbar
+            disableGutters
+            sx={{
+              justifyContent: 'space-between'
+            }}
+          >
+            <IconButton size='large' sx={{ display: { md: 'none' } }} onClick={handleDrawerToggle}>
+              <MenuIcon sx={{ color: 'primary.lighter' }} />
+            </IconButton>
+            <Logo fontSize='large' fill={theme.palette.primary.lighter} />
+            <Box component='div' sx={{ display: { xs: 'none', md: 'flex' }, gap: 5 }}>
+              {LINKS_CONFIG.map(link => (
+                <Chip
+                  key={link.id}
+                  label={link.name}
+                  deleteIcon={link.icon}
+                  onClick={() => {
+                    navigate({ pathname: link.url, search: link.search })
+                  }}
+                  onDelete={() => {
+                    navigate({ pathname: link.url, search: link.search })
+                  }}
+                />
+              ))}
+            </Box>
+            <Box component='div' sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: 2 }}>
+              <AvatarMenu />
+              <SettingDrawer />
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <HeaderDrawer onClose={handleDrawerToggle} isOpen={mobileOpen} />
+    </React.Fragment>
   )
 }

@@ -1,23 +1,28 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { PROTECTED_ROUTES, PUBLIC_ROUTES, generateTheme } from 'application'
+import { CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material'
+
+import { PROTECTED_ROUTES, PUBLIC_ROUTES } from 'application'
+import { useAppSelector } from 'application/store'
+import { useCreateTheme } from 'application/theme'
+import { selectCustomization } from 'application/theme/customization'
+
 import { ProtectedRoute } from 'shared/components'
 import { Header } from 'shared/layout'
-import { useAppSelector } from './store'
-import { selectCustomization } from './theme/customization.selector'
-import { SettingDrawer } from 'shared/components/SettingDrawer'
-import 'antd/dist/reset.css'
-import './app.css'
-import { ConfigProvider } from 'antd'
-export const App = () => {
-  const customization = useAppSelector(selectCustomization)
+import { SwipeableUserMenu } from 'shared/components/SwipeableUserMenu'
 
+export const App: React.FC = () => {
+  const customization = useAppSelector(selectCustomization)
+  const mobile = useMediaQuery('(max-width:600px)')
+  console.log(mobile)
+  const theme = useCreateTheme(customization)
   return (
-    <ConfigProvider theme={generateTheme(customization)}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Header />
-      <SettingDrawer />
-      {/*{!(pathname === "/signup" || pathname === "/login" || pathname === "/welcome") ? <MyBreadcrumbs /> : null}*/}
+      {/* {mobile && <SwipeableUserMenu />} */}
       <Routes>
+        {' '}
         {PROTECTED_ROUTES.map(route => (
           <Route
             index={route.index}
@@ -30,6 +35,6 @@ export const App = () => {
           <Route path={route.path} key={route.id} element={route.element} />
         ))}
       </Routes>
-    </ConfigProvider>
+    </ThemeProvider>
   )
 }
