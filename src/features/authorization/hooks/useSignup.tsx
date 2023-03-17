@@ -6,7 +6,7 @@ import { useFormik } from 'formik'
 
 import { useAppDispatch } from 'application/store'
 
-import type { AuthCredentials, AuthResponse } from 'features/authorization/type'
+import type { AuthCredentials, AuthResponse, SignupCredentials } from 'features/authorization/type'
 import { useSignupMutation } from 'features/authorization/services'
 
 import { setUser } from 'features/users/services'
@@ -30,12 +30,14 @@ export const useSignup = () => {
     console.log(info)
   }
 
-  const formik = useFormik<AuthCredentials>({
+  const formik = useFormik<SignupCredentials>({
     initialValues: {
       email: '',
-      password: ''
+      password: '',
+      confirmPassword: ''
     },
-    validateOnBlur: true,
+    validateOnBlur: false,
+    validateOnChange: false,
     validationSchema: signupValidationSchema,
     onSubmit
   })

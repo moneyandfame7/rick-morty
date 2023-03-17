@@ -1,25 +1,23 @@
 import React, { FC } from 'react'
-import type { User } from 'features/users/type'
-import { Avatar, AvatarProps } from "@mui/material";
+import { IconButton, IconButtonProps, Tooltip } from '@mui/material'
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 
-interface UserAvatarProps extends AvatarProps {
+import type { User } from 'features/users/type'
+
+interface UserAvatarProps extends IconButtonProps {
   user: User | null
 }
 
-// const defaultAvatar = 'https://i0.wp.com/dashboard.browse.ai/assets/default-avatar-96x96.png?ssl=1'
-
-export const UserAvatar: FC<UserAvatarProps> = ({ user, sx }) => {
-  if (user?.username && !user.photo) {
-    return (
-      <Avatar color='primary' variant="rounded" sx={sx}>
-        {user.username[0].toUpperCase()}
-      </Avatar>
-    )
-  } else if (user?.photo) {
-    return <Avatar alt={'User avatar'} src={user.photo} sx={sx} variant='rounded' />
-  } else {
-    return <Avatar color='primary' variant='rounded' />
-  }
-
-  // return <Avatar color='primary' variant='soft' alt='Aboba ' />
+export const UserAvatar: FC<UserAvatarProps> = ({ user, sx, ...props }) => {
+  return (
+    <Tooltip title='You'>
+      <IconButton
+        sx={{ ...sx, border: '1px solid', borderColor: 'primary.border', borderRadius: '4px' }}
+        onClick={props.onClick}
+      >
+        {/* <Avatar sx={{ ...sx, bgcolor: 'primary.lighter', color: '#fff', fontSize: 16 }}>{firstLetter}</Avatar> */}
+        <PersonOutlineOutlinedIcon sx={{ color: 'primary.lighter' }} />
+      </IconButton>
+    </Tooltip>
+  )
 }

@@ -6,10 +6,11 @@ import { CREATE_CHARACTER_ROUTE, MAIN_CHARACTER_ROUTE, SINGLE_CHARACTER_ROUTE } 
 import { CREATE_EPISODE_ROUTE, MAIN_EPISODE_ROUTE, SINGLE_EPISODE_ROUTE } from 'features/episodes/routes'
 import { CREATE_LOCATION_ROUTE, MAIN_LOCATION_ROUTE, SINGLE_LOCATION_ROUTE } from 'features/locations/routes'
 
-import { NOT_FOUND_ROUTE, HOME_ROUTE } from 'shared/routes'
+import { NOT_FOUND_ROUTE, HOME_ROUTE, FAVORITE_ROUTE } from 'shared/routes'
 
 export const PROTECTED_ROUTES: RouteProps[] = [
   WELCOME_ROUTE,
+  FAVORITE_ROUTE,
   /* Users */
   USER_ACCOUNT_ROUTE,
   USER_PROFILE_ROUTE,

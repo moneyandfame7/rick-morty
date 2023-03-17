@@ -1,51 +1,41 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import {
-  CssBaseline,
-  useMediaQuery, ThemeProvider,
-} from "@mui/material";
-import { createTheme, PROTECTED_ROUTES, PUBLIC_ROUTES } from "application";
-import { ProtectedRoute } from "shared/components";
-import { Header } from "shared/layout";
-import { ToastContainer } from "react-toastify";
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material'
 
-export const ColorModeContext = React.createContext({
-  toggleColorMode: () => {
-  },
-});
+import { PROTECTED_ROUTES, PUBLIC_ROUTES } from 'application'
+import { useAppSelector } from 'application/store'
+import { useCreateTheme } from 'application/theme'
+import { selectCustomization } from 'application/theme/customization'
+import { shouldSkipGeneratingVar as muiShouldSkipGeneratingVar } from '@mui/material/styles'
 
-export const App = () => {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  const [mode, setMode] = React.useState<"light" | "dark">(prefersDarkMode ? "dark" : "light");
-  const theme = createTheme(mode);
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode(prevMode => (prevMode === "light" ? "dark" : "light"));
-      },
-    }),
-    [],
-  );
+import { ProtectedRoute } from 'shared/components'
+import { Header } from 'shared/layout'
+import './app.css'
+
+export const App: React.FC = () => {
+  const customization = useAppSelector(selectCustomization)
+  const mobile = useMediaQuery('(max-width:600px)')
+  console.log(mobile)
+  const theme = useCreateTheme(customization)
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Header />
-        {/*{!(pathname === "/signup" || pathname === "/login" || pathname === "/welcome") ? <MyBreadcrumbs /> : null}*/}
-        <Routes>
-          {PROTECTED_ROUTES.map(route => (
-            <Route
-              index={route.index}
-              path={route.path}
-              key={route.id}
-              element={<ProtectedRoute>{route.element}</ProtectedRoute>}
-            />
-          ))}
-          {PUBLIC_ROUTES.map(route => (
-            <Route path={route.path} key={route.id} element={route.element} />
-          ))}
-        </Routes>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
-  );
-};
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Header />
+      {/* {mobile && <SwipeableUserMenu />} */}
+      <Routes>
+        {' '}
+        {PROTECTED_ROUTES.map(route => (
+          <Route
+            index={route.index}
+            path={route.path}
+            key={route.id}
+            element={<ProtectedRoute>{route.element}</ProtectedRoute>}
+          />
+        ))}
+        {PUBLIC_ROUTES.map(route => (
+          <Route path={route.path} key={route.id} element={route.element} />
+        ))}
+      </Routes>
+    </ThemeProvider>
+  )
+}

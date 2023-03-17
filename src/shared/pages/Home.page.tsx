@@ -1,28 +1,57 @@
 import React, { FC } from 'react'
-import { Canvas } from '@react-three/fiber'
-import SupportUkraine from '../components/3d/Support_ukraine'
-import { OrbitControls, PerspectiveCamera, Stage } from '@react-three/drei'
-import { Box, Typography } from '@mui/material'
-import { motion } from 'framer-motion'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import { getRandomFromInterval } from 'shared/utils/randomNumber'
+import { useTheme } from '@mui/material'
 
-export const HomePage: FC = () => {
+const ImgMediaCard = () => {
+  const theme = useTheme()
+  const video = `https://rick-morty.s3.eu-central-1.amazonaws.com/videos/${getRandomFromInterval(1, 4)}.mp4`
   return (
-    <motion.div
-      // style={{ background: '#000', width: 150, height: 150, borderRadius: 30, color: '#fff' }}
-      initial={{ x: '-100vw' }}
-      animate={{ x: 0 }}
-      exit={{ x: '-100vw' }}
-      transition={{ duration: 2 }}
-    >
-      <Box component='div' sx={{ height: '500px', display: 'flex', gap: 5 }}>
-        <Canvas>
-          <Stage environment='city' intensity={0.3}>
-            <SupportUkraine />
-          </Stage>
-          <PerspectiveCamera makeDefault fov={100} />
-          <OrbitControls autoRotate={true} enableRotate={false} enableZoom={false} autoRotateSpeed={10} />
-        </Canvas>
-      </Box>
-    </motion.div>
+    <>
+      <Card sx={{ width: '100%', height: { xs: 'max-content', md: 500 }, position: 'absolute' }}>
+        <Box
+          component='div'
+          sx={{
+            zIndex: 2,
+            userSelect: 'none',
+            backgroundColor: '#01010154',
+            height: '100%',
+            width: '100%',
+            position: 'absolute',
+            top: 0
+          }}
+        >
+          <Box
+            component='div'
+            sx={{
+              p: { xs: 1, md: 3 },
+              m: '30px 0 0 10px',
+              background: theme.palette.mode === 'light' ? '#ffffff6b' : '#01010154',
+              borderRadius: 4,
+              display: 'inline-block'
+            }}
+          >
+            <Typography
+              sx={{
+                fontSize: { xs: 15, sm: 40, md: 50 }
+              }}
+              fontWeight={700}
+            >
+              Rick&Morty API
+            </Typography>
+          </Box>
+        </Box>
+        <CardMedia sx={{ zIndex: -5 }} component='video' src={video} autoPlay muted loop />
+      </Card>
+    </>
   )
+}
+export const HomePage: FC = () => {
+  return <ImgMediaCard />
 }

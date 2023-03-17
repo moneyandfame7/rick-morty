@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from 'application/store'
 
-import { CardList } from 'features/characters/components'
 import { selectFavoriteCharacters } from 'features/characters/services'
 
 import { Modal } from 'shared/components'
@@ -21,7 +20,7 @@ export const FavoritePage: FC = () => {
   }
   return (
     <>
-      {!isEmpty ? (
+      {/* {!isEmpty ? (
         <CardList items={characters} />
       ) : (
         <Modal
@@ -30,7 +29,7 @@ export const FavoritePage: FC = () => {
           open={isEmpty}
           message='Please, add characters to see them.'
         />
-      )}
+      )} */}
     </>
   )
 }

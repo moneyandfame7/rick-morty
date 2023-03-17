@@ -1,105 +1,83 @@
-import React, { FC } from 'react'
-import { green, grey, red } from '@mui/material/colors'
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  CircularProgress,
-  Grid,
-  Stack,
-  Typography
-} from '@mui/material'
-import { useNavigate } from 'react-router-dom'
-import { useGetOneEpisodeQuery } from 'features/episodes/services'
-import type { CharacterLocation } from 'features/characters/type'
-import { NavigationEnum } from 'shared/constants'
+import { Box, Button, Card, CardContent, CardMedia, IconButton, Typography } from '@mui/material'
+import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined'
+import { FC } from 'react'
+import { ICharacter } from '../type'
 
-interface ICharacterCardProps {
-  status: string
-  name: string
-  image: string
-  location: CharacterLocation
-  episodes: number[]
-  id: number
+interface CharacterCardProps {
+  character: ICharacter
 }
-
-export const CharacterCard: FC<ICharacterCardProps> = ({ status, name, image, location, episodes, id }) => {
-  const navigate = useNavigate()
-  const { data, isLoading } = useGetOneEpisodeQuery(episodes[0])
-  const textColor = () => {
-    switch (true) {
-      case status.includes('Dead'):
-        return { color: red[600] }
-      case status.includes('Alive'):
-        return { color: green[600] }
-      default:
-        return { color: grey[400] }
-    }
-  }
+export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3}>
-      <Card sx={{ height: '100%' }}>
-        <CardMedia component='img' alt='green iguana' image={image} width='200px' />
-        <CardHeader
-          sx={{ minHeight: '100px', padding: 1 }}
-          title={name}
-          subheader={location.name}
-          titleTypographyProps={{ align: 'center' }}
-          subheaderTypographyProps={{
-            align: 'center'
+    <Card variant='outlined' sx={{ padding: '1rem' }}>
+      <CardContent
+        sx={{
+          padding: '0 0 10px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start'
+        }}
+      >
+        <div>
+          <Typography variant='h2' fontSize={16} sx={{ opacity: 0.9 }} fontWeight={500}>
+            {character.name}
+          </Typography>
+          <Typography variant='body2' sx={{ opacity: 0.7 }}>
+            {character.species}
+          </Typography>
+        </div>
+
+        <IconButton sx={{ borderRadius: '4px' }}>
+          <BookmarkAddOutlinedIcon sx={{ fontSize: 20 }} />
+        </IconButton>
+      </CardContent>
+      <Box
+        component='div'
+        sx={{
+          userSelect: 'none',
+          borderRadius: '8px',
+          pointerEvents: 'none',
+          position: 'relative',
+          overflow: 'hidden',
+          // height: { xs: 300, sm: 200 },
+          p: 0,
+          minHeight: '160px',
+          maxHeight: '200px'
+        }}
+      >
+        <CardMedia
+          sx={{
+            height: '100%',
+            position: 'absolute',
+            width: '100%',
+            p: 0,
+            display: 'flex',
+            alignItems: 'center'
           }}
+          component='img'
+          image={character.image}
         />
-        <CardContent sx={{ padding: 1 }}>
-          <Box
-            component='div'
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'baseline',
-              mb: 2
-            }}
-          >
-            <Typography component='h4' variant='h5' color='text.primary' sx={textColor()}>
-              {status}
-            </Typography>
-          </Box>
-          <Box component='div' sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-            <Typography component='h5' variant='subtitle1' sx={{ fontWeight: 'bolder' }}>
-              First seen in:
-            </Typography>
+      </Box>
+      <CardContent
+        sx={{
+          p: '10px 0 0 0 !important',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}
+      >
+        <div>
+          <Typography variant='body2' sx={{ opacity: 0.6, fontSize: 12 }}>
+            Status:
+          </Typography>
+          <Typography variant='body2' sx={{ opacity: 1, fontSize: 16 }}>
+            {character.status}
+          </Typography>
+        </div>
 
-            {isLoading ? (
-              <CircularProgress data-testid='card-loader-component' />
-            ) : (
-              <Stack direction='column' gap='3px'>
-                <Typography component='h6' variant='subtitle2' color='text.primary' sx={{ textAlign: 'center' }}>
-                  {data?.name}
-                </Typography>
-                <Typography component='h6' variant='subtitle2' color='text.primary' sx={{ textAlign: 'center' }}>
-                  {`(${data?.episode})`}
-                </Typography>
-              </Stack>
-            )}
-          </Box>
-        </CardContent>
-        <CardActions>
-          {/*<Button fullWidth variant='outlined' component={RouterLink} to={`/${NavigationTypeEnum.CHARACTER}/${id}`}>*/}
-          {/*</Button>*/}
-
-          <Button
-            fullWidth
-            variant='contained'
-            onClick={() => navigate(`/${NavigationEnum.CHARACTERS}/${id}`)}
-            data-testid='card-button-component'
-          >
-            Read more
-          </Button>
-        </CardActions>
-      </Card>
-    </Grid>
+        <Button variant='contained' size='small'>
+          Show more
+        </Button>
+      </CardContent>
+    </Card>
   )
 }

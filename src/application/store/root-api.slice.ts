@@ -22,17 +22,21 @@ const baseQueryWithRefresh: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQu
   let result = await baseQuery(args, api, extraOptions)
 
   if (result.error && result.error.status === 401) {
-    const refreshResult = await baseQuery({ url: '/auth/refresh', method: 'get' }, api, extraOptions)
+    try {
+      const refreshResult = await baseQuery({ url: '/auth/refresh', method: 'get' }, api, extraOptions)
 
-    console.log(refreshResult, 'Refresh access token')
-    if (refreshResult.data) {
-      // const user=refreshResult.
-      api.dispatch(setUser((refreshResult.data as AuthResponse).user))
+      console.log(refreshResult, 'Refresh access token')
+      if (refreshResult.data) {
+        // const user=refreshResult.
+        api.dispatch(setUser((refreshResult.data as AuthResponse).user))
 
-      result = await baseQuery(args, api, extraOptions)
-    } else {
-      console.log('Unauthorized user')
-      api.dispatch(removeUser())
+        result = await baseQuery(args, api, extraOptions)
+      } else {
+        console.log('Unauthorized user')
+        api.dispatch(removeUser())
+      }
+    } catch (error) {
+      console.log('error :>> ', error)
     }
   }
   return result

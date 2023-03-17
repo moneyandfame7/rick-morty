@@ -23,7 +23,7 @@ export const PutinHuiloModel = () => {
           top: -300,
           left: 0,
           position: 'absolute',
-          zIndex: '-1'
+          zIndex: '-5'
         }}
       >
         <Canvas>
