@@ -1,4 +1,4 @@
-export const API_URL = 'http://localhost:3001'
+export const API_URL = 'https://rick-morty-api-nest-production.up.railway.app'
 export const CLIENT_URL = 'http://localhost:3000'
 
 export const enum LocalStorageKey {
