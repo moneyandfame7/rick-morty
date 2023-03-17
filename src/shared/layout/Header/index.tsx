@@ -75,10 +75,11 @@ export const Header: FC = () => {
       <AppBar
         position='sticky'
         sx={{
-          backgroundColor: 'background.paper',
+          backgroundColor: 'primary.transparent',
           boxShadow: 'none',
           borderBottom: '1px solid rgb(77 72 72 / 20%)',
-          transition: '0.2s'
+          transition: '0.2s',
+          backdropFilter: 'blur(6px)'
         }}
       >
         {isLogoutLoading && <Backdrop />}

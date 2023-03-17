@@ -3,18 +3,17 @@ import { getComponentOverrides } from 'application/theme/customization'
 declare module '@mui/material/styles' {
   interface PaletteColor {
     lighter?: string
+    border?: string
+    transparent?: string
   }
 
   interface SimplePaletteColorOptions {
     lighter?: string
-  }
-
-  interface PaletteColor {
     border?: string
+    transparent?: string
   }
-
-  interface SimplePaletteColorOptions {
-    border?: string
+  interface TypeText {
+    third?: string
   }
 }
 export type Mode = 'dark' | 'light' | 'system' | 'blue'
@@ -47,27 +46,35 @@ export const customizationConfig: Customization = {
 const getDarkPalette = (customization: Customization): ThemeOptions['palette'] => ({
   mode: 'dark',
   background: {
-    default: '#000',
-    paper: '#1c1c1c'
+    default: '#09090d',
+    paper: '#131318'
   },
   primary: {
-    main: customization.colorPrimary || '#fff',
+    main: customization.colorPrimary || '#054da7',
     lighter: '#5ca0e5',
-    border: '#292a2b'
+    border: '#25252d',
+    transparent: '#13131880'
+  },
+  text: {
+    third: '#ccc7c7'
   }
 })
 
 const getLightPalette = (customization: Customization): ThemeOptions['palette'] => ({
   mode: 'light',
   background: {
-    default: '#fff',
-    paper: '#f6f6f6'
+    default: '#f7f7f8',
+    paper: '#fff'
   },
   primary: {
     main: customization.colorPrimary || 'rgb(26 115 232)',
     lighter: 'rgb(91 151 230)',
     contrastText: '#fff',
-    border: '#e7ebf0'
+    border: '#d8d8df',
+    transparent: '#ffffff57'
+  },
+  text: {
+    third: '#ccc7c7'
   }
 })
 
@@ -81,7 +88,8 @@ const getBluePalette = (customization: Customization): ThemeOptions['palette'] =
     main: customization.colorPrimary || '#007FFF',
     lighter: 'rgb(102 178 255)',
     border: '#132f4c',
-    contrastText: '#fff'
+    contrastText: '#fff',
+    transparent: 'rgb(14 25 40 / 21%)'
   }
 })
 export const getPaletteForMode = (customization: Customization, prefersDarkMode: boolean): ThemeOptions['palette'] => {

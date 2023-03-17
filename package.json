@@ -4,9 +4,10 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.10.14",
+    "@mui/joy": "^5.0.0-alpha.71",
     "@mui/lab": "^5.0.0-alpha.121",
     "@mui/material": "^5.11.11",
     "@react-three/drei": "^9.57.0",

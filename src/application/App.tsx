@@ -6,10 +6,11 @@ import { PROTECTED_ROUTES, PUBLIC_ROUTES } from 'application'
 import { useAppSelector } from 'application/store'
 import { useCreateTheme } from 'application/theme'
 import { selectCustomization } from 'application/theme/customization'
+import { shouldSkipGeneratingVar as muiShouldSkipGeneratingVar } from '@mui/material/styles'
 
 import { ProtectedRoute } from 'shared/components'
 import { Header } from 'shared/layout'
-import { SwipeableUserMenu } from 'shared/components/SwipeableUserMenu'
+import './app.css'
 
 export const App: React.FC = () => {
   const customization = useAppSelector(selectCustomization)
