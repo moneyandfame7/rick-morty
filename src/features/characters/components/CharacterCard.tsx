@@ -55,6 +55,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
           }}
           component='img'
           image={character.image}
+          loading='lazy'
         />
       </Box>
       <CardContent
