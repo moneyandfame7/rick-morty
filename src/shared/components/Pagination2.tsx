@@ -1,11 +1,12 @@
 import { FC, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import _ from 'lodash'
+
 import { Box, Typography, useTheme, Button as MuiButton } from '@mui/material'
 import { Button, ConfigProvider, Form, InputNumber, theme as antdTheme } from 'antd'
+import FormItem from 'antd/es/form/FormItem'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { IPageInformation } from 'shared/types'
-import { useLocation, useSearchParams } from 'react-router-dom'
-import _ from 'lodash'
-import FormItem from 'antd/es/form/FormItem'
 
 interface PaginationProps {
   info: IPageInformation | undefined
@@ -14,15 +15,17 @@ interface PaginationProps {
 export const Pagination2: FC<PaginationProps> = ({ info, isFetching }) => {
   const theme = useTheme()
   const [searchParams, setSearchParams] = useSearchParams()
-  const currentPage = Number(searchParams.get('page'))
-  const currentTake = Number(searchParams.get('take')) || info?.take
+  const currentPage = Number(searchParams.get('page')) || info?.page || 1
+
+  const currentTake = Number(searchParams.get('take')) || info?.take || 20
   const [form] = Form.useForm()
 
   useEffect(() => {
     form.setFieldsValue({
-      page: currentPage
+      page: currentPage,
+      take: currentTake
     })
-  }, [currentPage])
+  }, [currentPage, currentTake])
 
   const onFinish = (values: any) => {
     const search = Object.fromEntries(new URLSearchParams(searchParams))

@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { OrbitControls, PerspectiveCamera, PresentationControls, Stage } from '@react-three/drei'
+import { OrbitControls, PerspectiveCamera, Stage } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { motion } from 'framer-motion'
 import PutinHuilo from './3d/Putin_huilo'

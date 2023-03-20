@@ -9,6 +9,7 @@ export interface User {
   readonly role: Role
   readonly country: string | null
   readonly photo: string | null
+  readonly is_verified: boolean
   readonly mail_subscribe: boolean | null
 }
 

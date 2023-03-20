@@ -2,8 +2,6 @@ import { rootApi } from 'application/store'
 import type { AuthCredentials, AuthResponse } from 'features/authorization/type'
 import type { User, UserCurrentCountry, UserWelcomeDetails } from 'features/users/type'
 
-
-
 export const authApi = rootApi.injectEndpoints({
   endpoints: builder => ({
     login: builder.mutation<AuthResponse, AuthCredentials>({
@@ -14,11 +12,7 @@ export const authApi = rootApi.injectEndpoints({
       }),
       transformErrorResponse: (response: any, meta, arg) => {
         return response.data
-      },
-      transformResponse: (response: any, meta, arg) => {
-        return response
-      },
-
+      }
     }),
     signup: builder.mutation<AuthResponse, AuthCredentials>({
       query: body => ({
@@ -58,12 +52,39 @@ export const authApi = rootApi.injectEndpoints({
     getCurrentCountry: builder.query<UserCurrentCountry, void>({
       query: () => 'https://ipapi.co/json'
     }),
-
-  }),
+    googleLogin: builder.mutation<AuthResponse, void>({
+      query: () => ({
+        url: '/auth/google/login',
+        method: 'post'
+      })
+    }),
+    discordLogin: builder.mutation<AuthResponse, void>({
+      query: () => ({
+        url: '/auth/discord/login',
+        method: 'post'
+      })
+    }),
+    spotifyLogin: builder.mutation<AuthResponse, void>({
+      query: () => ({
+        url: '/auth/spotify/login',
+        method: 'post'
+      })
+    }),
+    githubLogin: builder.mutation<AuthResponse, void>({
+      query: () => ({
+        url: '/auth/github/login',
+        method: 'post'
+      })
+    })
+  })
 })
 
 export const {
   useLoginMutation,
+  useDiscordLoginMutation,
+  useGithubLoginMutation,
+  useGoogleLoginMutation,
+  useSpotifyLoginMutation,
   useSignupMutation,
   useLogoutMutation,
   useWelcomeMutation,

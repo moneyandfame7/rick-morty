@@ -7,6 +7,7 @@ import { CharacterCard } from '../components'
 import { Pagination2 } from 'shared/components/Pagination2'
 import { Filters } from 'shared/components/Filters'
 import { useLocation, useSearchParams } from 'react-router-dom'
+import { PutinHuiloModel } from 'shared/components/PutinHuiloModel'
 
 export const MainCharacterPage: FC = () => {
   const location = useLocation()

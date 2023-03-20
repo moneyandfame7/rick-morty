@@ -1,24 +1,27 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import { Box, Button, Container, LinearProgress, Link, Stack, Typography } from '@mui/material'
+
+import { useAppSelector } from 'application/store'
 
 import { useLogin } from 'features/authorization/hooks'
+import { selectIsAuthenticated } from 'features/authorization/services'
+
 import { ValidatedInput } from 'shared/components/Form/ValidatedInput'
 import { PasswordInput } from 'shared/components/Form/PasswordInput'
-import { useAppSelector } from 'application/store'
 import { HOME_ROUTE } from 'shared/routes'
-import { selectIsAuthenticated } from 'features/authorization/services'
-import { Box, Button, Container, LinearProgress, Link, Stack, Typography } from '@mui/material'
-import { errorHandler, ErrorHandler } from '../components/ErrorHandler'
+import { errorHandler } from '../components/ErrorHandler'
+import { SocialLogin } from '../components/SocialLogin'
 
 export const LoginPage: FC = () => {
   const navigate = useNavigate()
   const { formik, isLoading, error } = useLogin()
   const isUserAuthenticated = useAppSelector(selectIsAuthenticated)
   const authBadCredentials = errorHandler(error)
+  const [social, setSocial] = useState<boolean>(false)
 
   useEffect(() => {
     if (isUserAuthenticated) {
-      console.log('LOGIN PAGE REDIRECT BECAUSE >>>>> Already authenticated')
       navigate({ pathname: HOME_ROUTE.path })
     }
   }, [])
@@ -70,9 +73,10 @@ export const LoginPage: FC = () => {
               letterSpacing: '0.3px'
             }}
           >
-            Use your password
+            {social ? 'Use your social network' : ' Use your password'}
           </Typography>
         </Box>
+
         <Box
           component='form'
           sx={{
@@ -81,45 +85,41 @@ export const LoginPage: FC = () => {
           onSubmit={formik.handleSubmit}
           noValidate
         >
-          <ValidatedInput
-            fullWidth
-            autoComplete='email'
-            type='email'
-            name='email'
-            label='Email'
-            variant='outlined'
-            value={formik.values.email}
-            errorText={formik.errors.email || authBadCredentials?.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            disabled={isLoading}
-          />
-          <PasswordInput
-            sx={{
-              m: '20px 0 0'
-            }}
-            autoComplete='password'
-            id='password'
-            name='password'
-            fullWidth
-            label='Password'
-            value={formik.values.password}
-            errorText={formik.errors.password || authBadCredentials?.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            disabled={isLoading}
-          />
-          {/* <PasswordInput
-           
-            fullWidth
-            label='Enter your password'
-            value={formik.values.password}
-            errorText={formik.errors.password || authBadCredentials?.password}
-            touched={formik.touched.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            disabled={isLoading}
-          /> */}
+          {social ? (
+            <SocialLogin />
+          ) : (
+            <>
+              <ValidatedInput
+                fullWidth
+                autoComplete='email'
+                type='email'
+                name='email'
+                label='Email'
+                variant='outlined'
+                value={formik.values.email}
+                errorText={formik.errors.email || authBadCredentials?.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                disabled={isLoading}
+              />
+              <PasswordInput
+                sx={{
+                  m: '20px 0 0'
+                }}
+                autoComplete='password'
+                id='password'
+                name='password'
+                fullWidth
+                label='Password'
+                value={formik.values.password}
+                errorText={formik.errors.password || authBadCredentials?.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                disabled={isLoading}
+              />
+            </>
+          )}
+
           <Box component='div' sx={{ width: '100%', paddingTop: 1 }}>
             <Link
               component={RouterLink}
@@ -160,6 +160,9 @@ export const LoginPage: FC = () => {
             </Button>
           </Stack>
         </Box>
+        <Button sx={{ mt: '30px' }} onClick={() => setSocial(prev => !prev)} variant='text' fullWidth>
+          Social login
+        </Button>
       </Box>
     </Container>
   )
