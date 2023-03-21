@@ -4,10 +4,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { AuthResponse } from 'features/authorization/type'
 import { removeUser, setUser } from 'features/users/services'
 
-import { API_URL } from 'shared/constants'
-
 const baseQuery = fetchBaseQuery({
-  baseUrl: API_URL,
+  baseUrl: process.env.REACT_APP_API_URL,
   credentials: 'include',
   prepareHeaders: headers => {
     return headers

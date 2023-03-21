@@ -86,40 +86,34 @@ export const Filters: FC<FiltersProps> = ({ info }) => {
       </Box>
 
       <Box component='div' sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 2 }}>
-        <ConfigProvider
-          theme={{
-            algorithm: theme.palette.mode === 'light' ? antdTheme.defaultAlgorithm : antdTheme.darkAlgorithm
+        <Grid
+          container
+          spacing={1}
+          rowGap={1}
+          sx={{
+            justifyContent: 'space-between'
           }}
+          height='max-content'
         >
-          <Grid
-            container
-            spacing={1}
-            rowGap={1}
-            sx={{
-              justifyContent: 'space-between'
-            }}
-            height='max-content'
-          >
-            <Grid item xs={6} sm={3} display='flex' justifyContent='center'>
-              <Input
-                placeholder='Name'
-                style={{
-                  width: '100%'
-                }}
-              />
-            </Grid>
-
-            <Grid item xs={6} sm={3} display='flex' justifyContent='center'>
-              <SelectItems items={genders} placeholder='Gender' />
-            </Grid>
-            <Grid item xs={6} sm={3} display='flex' justifyContent='center'>
-              <SelectStatus />
-            </Grid>
-            <Grid item xs={6} sm={3} display='flex' justifyContent='center'>
-              <SelectItems items={species} placeholder='Species' />
-            </Grid>
+          <Grid item xs={6} sm={3} display='flex' justifyContent='center'>
+            <Input
+              placeholder='Name'
+              style={{
+                width: '100%'
+              }}
+            />
           </Grid>
-        </ConfigProvider>
+
+          <Grid item xs={6} sm={3} display='flex' justifyContent='center'>
+            <SelectItems items={genders} placeholder='Gender' />
+          </Grid>
+          <Grid item xs={6} sm={3} display='flex' justifyContent='center'>
+            <SelectStatus />
+          </Grid>
+          <Grid item xs={6} sm={3} display='flex' justifyContent='center'>
+            <SelectItems items={species} placeholder='Species' />
+          </Grid>
+        </Grid>
       </Box>
     </Paper>
   )

@@ -19,6 +19,13 @@ export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
       }
     }
   },
+  // MuiDialog: {
+  //   styleOverrides: {
+  //     root: {
+  //       backdropFilter: 'blur(8px)'
+  //     }
+  //   }
+  // },
   MuiInputBase: {
     styleOverrides: {
       sizeSmall: {
@@ -45,6 +52,29 @@ export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
     styleOverrides: {
       root: {
         backgroundImage: 'none'
+      }
+    }
+  },
+  MuiOutlinedInput: {
+    styleOverrides: {
+      root: {
+        borderRadius: '6px',
+        backgroundColor: theme.palette.mode === 'dark' ? '#000' : '',
+        '&:hover .MuiOutlinedInput-notchedOutline': {
+          borderColor: theme.palette.primary.main
+        },
+        '&.Mui-focused fieldset': {
+          border: '1px solid !important',
+          borderColor: `${theme.palette.primary.main} !important`
+        }
+      }
+    }
+  },
+
+  MuiSelect: {
+    styleOverrides: {
+      icon: {
+        opacity: 0.7
       }
     }
   },

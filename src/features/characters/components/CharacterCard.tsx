@@ -2,6 +2,7 @@ import { Box, Button, Card, CardContent, CardMedia, IconButton, Typography } fro
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined'
 import { FC } from 'react'
 import { ICharacter } from '../type'
+import Image from 'mui-image'
 
 interface CharacterCardProps {
   character: ICharacter
@@ -53,10 +54,18 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
             display: 'flex',
             alignItems: 'center'
           }}
-          component='img'
-          image={character.image}
-          loading='lazy'
-        />
+        >
+          <Image
+            src={character.image}
+            width='100%'
+            height='100%'
+            duration={500}
+            showLoading={true}
+            style={{
+              borderRadius: 8
+            }}
+          />
+        </CardMedia>
       </Box>
       <CardContent
         sx={{

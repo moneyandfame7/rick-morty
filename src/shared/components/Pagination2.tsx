@@ -7,13 +7,14 @@ import { Button, ConfigProvider, Form, InputNumber, theme as antdTheme } from 'a
 import FormItem from 'antd/es/form/FormItem'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { IPageInformation } from 'shared/types'
+import { useIsSomethingLoading } from '../../application/store/selectors'
 
 interface PaginationProps {
   info: IPageInformation | undefined
-  isFetching: boolean
 }
-export const Pagination2: FC<PaginationProps> = ({ info, isFetching }) => {
+export const Pagination2: FC<PaginationProps> = ({ info }) => {
   const theme = useTheme()
+  const isFetching = useIsSomethingLoading()
   const [searchParams, setSearchParams] = useSearchParams()
   const currentPage = Number(searchParams.get('page')) || info?.page || 1
 

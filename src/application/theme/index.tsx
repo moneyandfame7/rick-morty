@@ -1,5 +1,6 @@
-import { createTheme, Theme, ThemeOptions, useMediaQuery } from '@mui/material'
+import { createTheme, ThemeOptions, useMediaQuery } from '@mui/material'
 import { getComponentOverrides } from 'application/theme/customization'
+
 declare module '@mui/material/styles' {
   interface PaletteColor {
     lighter?: string
@@ -131,9 +132,7 @@ export const useCreateTheme = (customization: Customization) => {
   }
 
   const theme = createTheme(themeObj)
-  const components = getComponentOverrides(theme)
-  theme.components = components
-  console.log(theme.palette.mode)
+  theme.components = getComponentOverrides(theme)
 
   return theme
 }

@@ -9,7 +9,9 @@ const enum HttpErrorCode {
   EMAIL_NOT_FOUND = 'EMAIL_NOT_FOUND',
   INCORRECT_PASSWORD = 'INCORRECT_PASSWORD',
   USERNAME_ALREADY_USED = 'USERNAME_ALREADY_USED',
-  EMAIL_ALREADY_USED = 'EMAIL_ALREADY_USED'
+  EMAIL_ALREADY_USED = 'EMAIL_ALREADY_USED',
+
+  CHARACTERS_NOT_FOUND = 'CHARACTERS_NOT_FOUND'
 }
 export const ErrorHandler: FC<ErrorHandlerProps> = ({ error }) => {
   if ('status' in error) {
@@ -31,8 +33,11 @@ export const errorHandler = (error: FetchBaseQueryError | SerializedError | unde
   if (!error) {
     return undefined
   }
+  console.log(error, '<<<< errorrrrr...')
   if ('status' in error) {
-    console.log(error)
+    /*switch(error.){
+
+    }*/
   } else {
     switch (error.code) {
       case HttpErrorCode.EMAIL_NOT_FOUND:

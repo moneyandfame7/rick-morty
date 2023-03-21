@@ -9,7 +9,7 @@
     "@mui/icons-material": "^5.10.14",
     "@mui/joy": "^5.0.0-alpha.71",
     "@mui/lab": "^5.0.0-alpha.121",
-    "@mui/material": "^5.11.11",
+    "@mui/material": "^5.11.13",
     "@react-three/drei": "^9.57.0",
     "@react-three/fiber": "^8.11.7",
     "@reduxjs/toolkit": "^1.9.1",
@@ -25,7 +25,10 @@
     "formik": "^2.2.9",
     "framer-motion": "^10.0.2",
     "history": "^5.3.0",
+    "js-cookie": "^3.0.1",
     "jwt-decode": "^3.1.2",
+    "mui-image": "^1.0.7",
+    "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-color": "^2.19.3",
@@ -49,7 +52,8 @@
     "yup": "^1.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "env-cmd -f .env react-scripts start",
+    "start:prod": "env-cmd -f .env.production react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -74,10 +78,12 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.191",
+    "@types/mui-image": "^1.0.1",
     "@types/react-color": "^3.0.6",
     "@types/react-select-country-list": "^2.2.1",
     "@types/three": "^0.149.0",
     "@types/uuid": "^9.0.1",
+    "env-cmd": "^10.1.0",
     "lodash": "^4.17.21",
     "prettier": "2.7.1",
     "react-router-dom": "^6.4.3",
