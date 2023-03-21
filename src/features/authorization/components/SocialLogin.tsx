@@ -4,13 +4,17 @@ import { GitHub } from '@mui/icons-material'
 import { GoogleIcon } from './GoogleIcon'
 import { SpotifyIcon } from './SpotifyIcon'
 import { DiscordIcon } from './DiscordIcon'
-import { Link, useNavigate } from 'react-router-dom'
+
+const GOOGLE_REDIRECT = process.env.REACT_APP_API_URL + '/auth/google/login'
+const GITHUB_REDIRECT = process.env.REACT_APP_API_URL + '/auth/github/login'
+const SPOTIFY_REDIRECT = process.env.REACT_APP_API_URL + '/auth/spotify/login'
+const DISCORD_REDIRECT = process.env.REACT_APP_API_URL + '/auth/discord/login'
 
 export const SocialLogin: FC = () => {
-  const redirectToGoogle = async () => {
-    const googleLoginUrl = 'http://localhost:3001/auth/google/login'
-    window.open(googleLoginUrl, '_self', 'width=500,height=600')
+  const socialLogin = (callbackUrl: string) => {
+    window.open(callbackUrl, '_self')
   }
+  console.log(process.env.NODE_ENV)
   return (
     <Box component='div'>
       <Button
@@ -18,17 +22,43 @@ export const SocialLogin: FC = () => {
         sx={{ fontWeight: 600 }}
         startIcon={<GoogleIcon />}
         fullWidth
-        onClick={redirectToGoogle}
+        onClick={() => {
+          socialLogin(GOOGLE_REDIRECT)
+        }}
       >
         Login in with Google
       </Button>
-      <Button variant='contained' startIcon={<GitHub />} fullWidth sx={{ mt: '20px', fontWeight: 600 }}>
+      <Button
+        variant='contained'
+        startIcon={<GitHub />}
+        fullWidth
+        sx={{ mt: '20px', fontWeight: 600 }}
+        onClick={() => {
+          socialLogin(GITHUB_REDIRECT)
+        }}
+      >
         Login in with GitHub
       </Button>
-      <Button variant='contained' startIcon={<DiscordIcon />} fullWidth sx={{ mt: '20px', fontWeight: 600 }}>
+      <Button
+        variant='contained'
+        startIcon={<DiscordIcon />}
+        fullWidth
+        sx={{ mt: '20px', fontWeight: 600 }}
+        onClick={() => {
+          socialLogin(DISCORD_REDIRECT)
+        }}
+      >
         Login in with Discord
       </Button>
-      <Button variant='contained' startIcon={<SpotifyIcon />} fullWidth sx={{ mt: '20px', fontWeight: 600 }}>
+      <Button
+        variant='contained'
+        startIcon={<SpotifyIcon />}
+        fullWidth
+        sx={{ mt: '20px', fontWeight: 600 }}
+        onClick={() => {
+          socialLogin(SPOTIFY_REDIRECT)
+        }}
+      >
         Login in with Spotify
       </Button>
     </Box>
