@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react'
-import { Avatar, Box, BoxProps, Divider, IconButton, LinearProgress, Menu, Typography } from '@mui/material'
-
+import { Alert, Avatar, Box, BoxProps, Divider, Menu, Typography } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
+import SendIcon from '@mui/icons-material/Send'
 import { useAppSelector } from 'application/store'
 
 import { selectCurrentUser } from 'features/users/services'
@@ -10,14 +11,13 @@ import { UserAvatar } from 'shared/components/UserAvatar'
 import { useGetUserMenu } from 'shared/hooks'
 import { useLogout } from 'features/authorization/hooks'
 import { Backdrop } from 'shared/components/Backdrop'
-import { width } from '@mui/system'
 
 interface AvatarMenuProps {
   isWelcomePage?: boolean
 }
 
 export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = false }) => {
-  const [resendVerification, { isLoading: isVerificationLoading, isSuccess }] = useVerificationSendMutation()
+  const [resendVerification, { isLoading: isVerificationLoading }] = useVerificationSendMutation()
   const { logout, isLoading: isLogoutLoading } = useLogout()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -29,10 +29,8 @@ export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = fal
   }
   const handleClickSend = async () => {
     await resendVerification()
-    console.log('Send verification message', isVerificationLoading, isSuccess)
   }
   const currentUser = useAppSelector(selectCurrentUser)
-
   const currentMenu = useGetUserMenu({ isWelcomePage, logout, handleCloseMenu })
   return (
     <Box component='div'>
@@ -56,7 +54,7 @@ export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = fal
           component='div'
           sx={{
             display: 'flex',
-            gap: 5,
+            gap: 3,
             width: 300,
             mb: 2
           }}
@@ -70,6 +68,32 @@ export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = fal
           </div>
         </Box>
         <Divider sx={{ mb: 2 }} />
+        {/* {currentUser.} */}
+        {!currentUser?.is_verified ? (
+          <Alert severity='warning' sx={{ maxWidth: 300 }}>
+            <Typography variant='h6' fontSize={14} fontWeight={600}>
+              You haven't verified your email address yet.
+            </Typography>
+            <Typography variant='body2' fontWeight={500} sx={{ py: 1, opacity: 0.8 }}>
+              Please click on the link we emailed you to verify your email.
+            </Typography>
+            <Typography variant='body2' fontWeight={500} sx={{ opacity: 0.8 }}>
+              Did not receive the email?
+            </Typography>
+            <LoadingButton
+              loading={isVerificationLoading}
+              loadingPosition='start'
+              variant='contained'
+              color='success'
+              onClick={handleClickSend}
+              sx={{ fontWeight: 600, mt: 1 }}
+              startIcon={<SendIcon />}
+              size='small'
+            >
+              Resend verification email
+            </LoadingButton>
+          </Alert>
+        ) : null}
 
         {currentMenu}
       </Menu>

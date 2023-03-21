@@ -1,18 +1,36 @@
-import { Button, Dialog, DialogContent, DialogProps, DialogTitle, Typography } from "@mui/material";
-import { FC } from "react";
-import { GoogleIcon } from "./GoogleIcon";
-import { GitHub } from "@mui/icons-material";
+import { FC } from 'react'
+import { Box, Button } from '@mui/material'
+import { GitHub } from '@mui/icons-material'
+import { GoogleIcon } from './GoogleIcon'
+import { SpotifyIcon } from './SpotifyIcon'
+import { DiscordIcon } from './DiscordIcon'
+import { Link, useNavigate } from 'react-router-dom'
 
-
-export const SocialLoginModal: FC<DialogProps> = ({ open, onClose }) => {
-
+export const SocialLogin: FC = () => {
+  const redirectToGoogle = async () => {
+    const googleLoginUrl = 'http://localhost:3001/auth/google/login'
+    window.open(googleLoginUrl, '_self', 'width=500,height=600')
+  }
   return (
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Choose one of these social networks:</DialogTitle>
-      <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-        <Button variant="outlined" startIcon={<GoogleIcon />} fullWidth>Login in with Google</Button>
-        <Button variant="outlined" startIcon={<GitHub />}>Login in with GitHub</Button>
-      </DialogContent>
-    </Dialog>
-  );
-};
+    <Box component='div'>
+      <Button
+        variant='contained'
+        sx={{ fontWeight: 600 }}
+        startIcon={<GoogleIcon />}
+        fullWidth
+        onClick={redirectToGoogle}
+      >
+        Login in with Google
+      </Button>
+      <Button variant='contained' startIcon={<GitHub />} fullWidth sx={{ mt: '20px', fontWeight: 600 }}>
+        Login in with GitHub
+      </Button>
+      <Button variant='contained' startIcon={<DiscordIcon />} fullWidth sx={{ mt: '20px', fontWeight: 600 }}>
+        Login in with Discord
+      </Button>
+      <Button variant='contained' startIcon={<SpotifyIcon />} fullWidth sx={{ mt: '20px', fontWeight: 600 }}>
+        Login in with Spotify
+      </Button>
+    </Box>
+  )
+}
