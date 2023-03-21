@@ -1,17 +1,22 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./styles/index.scss";
-import { router } from "./App";
-import { RouterProvider } from "react-router-dom";
-import { StyledEngineProvider } from "@mui/material";
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { StyledEngineProvider } from '@mui/material'
+import { PersistGate } from 'redux-persist/integration/react'
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+import { App } from 'application'
+import { persistor, store } from 'application/store'
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <Provider store={store}>
-    <StyledEngineProvider injectFirst>
-      <RouterProvider router={router} />
-    </StyledEngineProvider>
+    <PersistGate loading={null} persistor={persistor}>
+      <StyledEngineProvider injectFirst>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </StyledEngineProvider>
+    </PersistGate>
   </Provider>
-);
+)
