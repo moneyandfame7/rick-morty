@@ -15,7 +15,6 @@ export const UserAvatar: FC<UserAvatarProps> = ({ user, sx, ...props }) => {
         sx={{ ...sx, border: '1px solid', borderColor: 'primary.border', borderRadius: '4px' }}
         onClick={props.onClick}
       >
-        {/* <Avatar sx={{ ...sx, bgcolor: 'primary.lighter', color: '#fff', fontSize: 16 }}>{firstLetter}</Avatar> */}
         <PersonOutlineOutlinedIcon sx={{ color: 'primary.lighter' }} />
       </IconButton>
     </Tooltip>

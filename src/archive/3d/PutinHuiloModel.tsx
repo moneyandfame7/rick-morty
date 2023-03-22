@@ -2,7 +2,7 @@ import { Box } from '@mui/material'
 import { OrbitControls, PerspectiveCamera, Stage } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { motion } from 'framer-motion'
-import PutinHuilo from './3d/Putin_huilo'
+import PutinHuilo from './Putin_huilo'
 
 export const PutinHuiloModel = () => {
   return (
