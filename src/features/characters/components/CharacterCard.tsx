@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Box, Button, Card, CardContent, CardMedia, IconButton, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, CardMedia, IconButton, Tooltip, Typography } from '@mui/material'
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined'
 import Image from 'mui-image'
 import { ICharacter } from '../type'
@@ -19,10 +19,21 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
           alignItems: 'center'
         }}
       >
-        <div style={{ minHeight: 60, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <Typography variant='h2' fontSize={16} sx={{ opacity: 0.9 }} fontWeight={500}>
-            {character.name}
-          </Typography>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            textOverflow: 'ellipsis',
+            width: '80%',
+            userSelect: 'none'
+          }}
+        >
+          <Tooltip title={character.name}>
+            <Typography noWrap variant='h2' fontSize={18} sx={{ opacity: 0.9 }} fontWeight={800}>
+              {character.name}
+            </Typography>
+          </Tooltip>
           <Typography variant='body2' sx={{ opacity: 0.7 }}>
             {character.species}
           </Typography>

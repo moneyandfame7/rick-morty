@@ -20,7 +20,6 @@ export const App: React.FC = () => {
       <CssBaseline />
       <Header />
       <CookieBanner />
-      {/* {mobile && <SwipeableUserMenu />} */}
       <Routes>
         {' '}
         {PROTECTED_ROUTES.map(route => (
