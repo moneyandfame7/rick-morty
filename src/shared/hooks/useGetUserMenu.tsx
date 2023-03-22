@@ -56,30 +56,21 @@ export const menuForWelcome: MenuItems[] = [
     handle: true
   }
 ]
+
 interface UseGetUserMenuParams {
   isWelcomePage: boolean
-  logout: MutationTrigger<
-    MutationDefinition<
-      void,
-      BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, {}>,
-      never,
-      AuthResponse,
-      'api'
-    >
-  >
+  makeLogout: () => void
   handleCloseMenu: () => void
 }
 
-export const useGetUserMenu = ({ isWelcomePage, logout, handleCloseMenu }: UseGetUserMenuParams) => {
+export const useGetUserMenu = ({ isWelcomePage, makeLogout, handleCloseMenu }: UseGetUserMenuParams) => {
   const navigate = useNavigate()
-  const dispatch = useAppDispatch()
   const itemsForWelcomePage = menuForWelcome.map(item => (
     <MenuItem
       onClick={async () => {
         if (item.name === 'Logout') {
           handleCloseMenu()
-          await logout()
-          dispatch(removeUser())
+          await makeLogout()
           return
         }
       }}
@@ -95,8 +86,7 @@ export const useGetUserMenu = ({ isWelcomePage, logout, handleCloseMenu }: UseGe
       onClick={async () => {
         if (item.handle) {
           handleCloseMenu()
-          await logout()
-          dispatch(removeUser())
+          await makeLogout()
           return
         }
         navigate({ pathname: item.url })

@@ -11,7 +11,7 @@ import {
   WELCOME_ROUTE
 } from 'features/authorization/routes'
 
-import { Logo } from 'shared/components/Logo'
+import { Logo } from 'shared/components/icons/Logo'
 import { SettingDrawer } from 'shared/components/SettingDrawer'
 import { HeaderDrawer } from './Drawer'
 import { LINKS_CONFIG } from './utils/links'

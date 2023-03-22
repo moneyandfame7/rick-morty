@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Box,
   Divider,
@@ -10,9 +11,8 @@ import {
   ListItemText,
   Typography
 } from '@mui/material'
-import { LINKS_CONFIG } from 'shared/layout/Header/utils/links'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
-import { useNavigate } from 'react-router-dom'
+import { LINKS_CONFIG } from 'shared/layout/Header/utils/links'
 
 interface HeaderDrawerProps {
   window?: () => Window

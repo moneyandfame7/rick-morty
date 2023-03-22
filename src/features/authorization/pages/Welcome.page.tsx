@@ -5,17 +5,21 @@ import { Box, Button, Checkbox, Container, LinearProgress, Typography } from '@m
 import { useAppSelector } from 'application/store'
 import { selectCurrentUser } from 'features/users/services'
 
-import { useWelcome } from 'features/authorization/hooks'
+import { useLogout, useWelcome } from 'features/authorization/hooks'
 import { errorHandler } from '../components/ErrorHandler'
 import { selectHasPassedWelcome } from 'features/authorization/services'
 
 import { ValidatedInput } from 'shared/components/Form/ValidatedInput'
 import { CountryAutocompleteInput } from 'shared/components/Form/CountryAutocompleteInput'
 import { HOME_ROUTE } from 'shared/routes'
+import { Backdrop } from 'shared/components/common/Backdrop'
+import { useIsSomethingLoading } from 'application/store/selectors'
 
 export const WelcomePage: FC = () => {
+  const isSomethingLoading = useIsSomethingLoading()
   const navigate = useNavigate()
   const hasPassedWelcome = useAppSelector(selectHasPassedWelcome)
+  const { makeLogout, isLoading: isLogoutLoading } = useLogout()
   const { countries, formik, isLoading, error } = useWelcome()
   const authBadCredentials = errorHandler(error)
   const user = useAppSelector(selectCurrentUser)
@@ -45,6 +49,7 @@ export const WelcomePage: FC = () => {
         transition: '.2s'
       }}
     >
+      {isLogoutLoading && <Backdrop />}
       <Box
         component='div'
         sx={{
@@ -129,21 +134,26 @@ export const WelcomePage: FC = () => {
               />
             </Box>
           </Box>
-          <Button
-            variant='contained'
-            type='submit'
-            sx={{
-              mt: '20px',
-              float: 'right',
-              textTransform: 'initial',
-              fontWeight: 500,
-              fontSize: 16,
-              padding: '5px 20px'
-            }}
-            disabled={isLoading}
-          >
-            Finish
-          </Button>
+          <Box component='div' sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Button variant='outlined' onClick={makeLogout} disabled={isSomethingLoading}>
+              Sign out
+            </Button>
+            <Button
+              variant='contained'
+              type='submit'
+              sx={{
+                mt: '20px',
+                float: 'right',
+                textTransform: 'initial',
+                fontWeight: 500,
+                fontSize: 16,
+                padding: '5px 20px'
+              }}
+              disabled={isSomethingLoading}
+            >
+              Finish
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Container>
