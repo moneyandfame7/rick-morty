@@ -1,27 +1,14 @@
 import { FC, useState } from 'react'
-import qs from 'query-string'
+import { useSearchParams } from 'react-router-dom'
 import { omitBy, isEmpty, isEqual, pick } from 'lodash'
-import Button from '@mui/material/Button'
-import {
-  Box,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Divider,
-  Stack,
-  TextField,
-  Typography,
-  useTheme
-} from '@mui/material'
+import { useFormik } from 'formik'
+import { Box, Button, Dialog, DialogContent, DialogTitle, Divider, Stack, Tooltip, Typography } from '@mui/material'
 import TuneIconOutlined from '@mui/icons-material/TuneOutlined'
 import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined'
+
+import { NumberInput } from './Form/NumberInput'
 import { SelectInput } from './Form/SelectInput'
 import { TextInput } from './Form/TextInput'
-import { useFormik } from 'formik'
-import { useSearchParams } from 'react-router-dom'
-import { NumberInput } from './Form/NumberInput'
 
 const MAX_PER_PAGE = 50
 const MIN_PER_PAGE = 1
@@ -95,23 +82,25 @@ export const Filtration: FC = () => {
   }
   return (
     <>
-      <Button
-        size='small'
-        color='primary'
-        sx={{
-          width: 'max-content',
-          p: 1.5,
-          borderRadius: 4,
-          position: 'fixed',
-          top: '50%',
-          right: -20,
-          pr: 4
-        }}
-        variant='contained'
-        onClick={handleClickOpen}
-      >
-        <TuneIconOutlined />
-      </Button>
+      <Tooltip title='Filters'>
+        <Button
+          size='small'
+          color='primary'
+          sx={{
+            width: 'max-content',
+            p: 1.5,
+            borderRadius: 4,
+            position: 'fixed',
+            top: '50%',
+            right: -20,
+            pr: 4
+          }}
+          variant='contained'
+          onClick={handleClickOpen}
+        >
+          <TuneIconOutlined />
+        </Button>
+      </Tooltip>
       <Dialog
         open={isOpenModal}
         onClose={handleClose}
