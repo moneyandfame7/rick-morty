@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import { Box, Button, Container, Grid, LinearProgress, Typography } from '@mui/material'
 
 import { useSignup } from 'features/authorization/hooks'
 import { ValidatedInput } from 'shared/components/Form/ValidatedInput'
@@ -7,10 +8,6 @@ import { PasswordInput } from 'shared/components/Form/PasswordInput'
 import { useAppSelector } from '../../../application/store'
 import { HOME_ROUTE } from '../../../shared/routes'
 import { selectIsAuthenticated } from '../services'
-import { ErrorMessage } from 'shared/components'
-import { Backdrop } from 'shared/components/Backdrop'
-import { Logo } from 'shared/components/Logo'
-import { Box, Button, Container, Grid, LinearProgress, Typography } from '@mui/material'
 import { errorHandler } from '../components/ErrorHandler'
 
 export const SignupPage = () => {
@@ -20,7 +17,6 @@ export const SignupPage = () => {
   const authBadCredentials = errorHandler(error)
   useEffect(() => {
     if (isUserAuthenticated) {
-      console.log('SIGNUP PAGE REDIRECT BECAUSE >>>>> Already authenticated')
       navigate({ pathname: HOME_ROUTE.path })
     }
   }, [])

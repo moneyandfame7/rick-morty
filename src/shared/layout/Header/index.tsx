@@ -1,17 +1,25 @@
 import React, { FC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu'
-import { AppBar, Box, Chip, Container, IconButton, Toolbar, useTheme } from '@mui/material'
+import { AppBar, Box, Chip, Container, IconButton, LinearProgress, Toolbar, useTheme } from '@mui/material'
 
-import { FORGOT_ROUTE, LOGIN_ROUTE, SIGNUP_ROUTE, WELCOME_ROUTE } from 'features/authorization/routes'
+import {
+  FORGOT_ROUTE,
+  LOGIN_ROUTE,
+  SIGNUP_ROUTE,
+  SUCCESS_LOGIN_ROUTE,
+  WELCOME_ROUTE
+} from 'features/authorization/routes'
 
 import { Logo } from 'shared/components/Logo'
 import { SettingDrawer } from 'shared/components/SettingDrawer'
 import { HeaderDrawer } from './Drawer'
 import { LINKS_CONFIG } from './utils/links'
 import { AvatarMenu } from './AvatarMenu'
+import { useIsSomethingLoading } from '../../../application/store/selectors'
 
 export const Header: FC = () => {
+  const isLoading = useIsSomethingLoading()
   const location = useLocation()
   const navigate = useNavigate()
   const theme = useTheme()
@@ -23,7 +31,8 @@ export const Header: FC = () => {
     location.pathname === LOGIN_ROUTE.path ||
     location.pathname === SIGNUP_ROUTE.path ||
     location.pathname === WELCOME_ROUTE.path ||
-    location.pathname === FORGOT_ROUTE.path
+    location.pathname === FORGOT_ROUTE.path ||
+    location.pathname === SUCCESS_LOGIN_ROUTE.path
   ) {
     return null
   }
@@ -32,11 +41,11 @@ export const Header: FC = () => {
       <AppBar
         position='sticky'
         sx={{
-          backgroundColor: 'primary.transparent',
+          backgroundColor: 'background.paper',
           boxShadow: 'none',
           borderBottom: '1px solid rgb(77 72 72 / 20%)',
           transition: '0.2s',
-          backdropFilter: 'blur(6px)'
+          position: 'relative'
         }}
       >
         <Container maxWidth='xl'>
@@ -71,7 +80,13 @@ export const Header: FC = () => {
             </Box>
           </Toolbar>
         </Container>
+        {isLoading && (
+          <LinearProgress
+            sx={{ position: 'absolute', bottom: 0, left: 0, borderRadius: '8px 8px 0 0', width: '100%' }}
+          />
+        )}
       </AppBar>
+
       <HeaderDrawer onClose={handleDrawerToggle} isOpen={mobileOpen} />
     </React.Fragment>
   )

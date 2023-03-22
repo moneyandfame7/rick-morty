@@ -14,7 +14,6 @@ export const useLogout = () => {
 
   //     return
   //   }
-  //   console.log(info.error)
   // })()
 
   return { logout, isSuccess, isLoading }

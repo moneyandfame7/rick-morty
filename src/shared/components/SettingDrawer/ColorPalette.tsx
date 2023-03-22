@@ -5,7 +5,6 @@ import { ColorResult, TwitterPicker } from 'react-color'
 export const ColorPalette = () => {
   const dispatch = useAppDispatch()
   const onChange = (color: ColorResult, e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(color, e)
     dispatch(setPrimaryColor(color.hex))
   }
 

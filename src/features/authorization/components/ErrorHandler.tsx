@@ -1,30 +1,11 @@
 import { SerializedError } from '@reduxjs/toolkit'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
-import { FC } from 'react'
 
-interface ErrorHandlerProps {
-  error: FetchBaseQueryError | SerializedError
-}
-const enum HttpErrorCode {
+const enum HttpStack {
   EMAIL_NOT_FOUND = 'EMAIL_NOT_FOUND',
   INCORRECT_PASSWORD = 'INCORRECT_PASSWORD',
   USERNAME_ALREADY_USED = 'USERNAME_ALREADY_USED',
   EMAIL_ALREADY_USED = 'EMAIL_ALREADY_USED'
-}
-export const ErrorHandler: FC<ErrorHandlerProps> = ({ error }) => {
-  if ('status' in error) {
-    console.log(error)
-  } else {
-    switch (error.code) {
-      case HttpErrorCode.EMAIL_NOT_FOUND:
-        break
-
-      default:
-        break
-    }
-  }
-
-  return <></>
 }
 
 export const errorHandler = (error: FetchBaseQueryError | SerializedError | undefined) => {
@@ -32,22 +13,22 @@ export const errorHandler = (error: FetchBaseQueryError | SerializedError | unde
     return undefined
   }
   if ('status' in error) {
-    console.log(error)
+    /* todo: зробити якесь поле і виводити помилку*/
   } else {
     switch (error.code) {
-      case HttpErrorCode.EMAIL_NOT_FOUND:
+      case HttpStack.EMAIL_NOT_FOUND:
         return {
           email: error.message
         }
-      case HttpErrorCode.INCORRECT_PASSWORD:
+      case HttpStack.INCORRECT_PASSWORD:
         return {
           password: error.message
         }
-      case HttpErrorCode.USERNAME_ALREADY_USED:
+      case HttpStack.USERNAME_ALREADY_USED:
         return {
           username: error.message
         }
-      case HttpErrorCode.EMAIL_ALREADY_USED:
+      case HttpStack.EMAIL_ALREADY_USED:
         return {
           email: error.message
         }

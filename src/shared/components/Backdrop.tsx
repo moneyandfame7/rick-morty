@@ -6,9 +6,7 @@ export const Backdrop: FC = () => {
     <MuiBackdrop
       sx={{
         color: 'primary.lighter',
-        zIndex: 10000,
-        blur: '20px',
-        backdropFilter: 'blur(8px)'
+        zIndex: 10000
       }}
       open={true}
     >

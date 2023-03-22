@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { LoginPage, SignupPage, WelcomePage } from 'features/authorization/pages'
 import { ForgotPassword } from './pages/ForgotPassword'
-import { SocialPage } from './pages/Social.page'
+import { SuccessLoginPage } from './pages/SuccessLogin.page'
 
 const SIGNUP_ROUTE: RouteProps = {
   id: uuidv4(),
@@ -29,10 +29,10 @@ const FORGOT_ROUTE: RouteProps = {
   path: '/forgot'
 }
 
-const SOCIAL_ROUTE: RouteProps = {
+const SUCCESS_LOGIN_ROUTE: RouteProps = {
   id: uuidv4(),
-  element: <SocialPage />,
-  path: '/social'
+  element: <SuccessLoginPage />,
+  path: '/login/success'
 }
 
-export { SIGNUP_ROUTE, LOGIN_ROUTE, WELCOME_ROUTE, FORGOT_ROUTE, SOCIAL_ROUTE }
+export { SIGNUP_ROUTE, LOGIN_ROUTE, WELCOME_ROUTE, FORGOT_ROUTE, SUCCESS_LOGIN_ROUTE }

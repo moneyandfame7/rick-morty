@@ -1,121 +1,155 @@
-import React, { FC, forwardRef } from "react";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { SerializedError } from "@reduxjs/toolkit";
-import { Alert, Box, Container, Stack, Typography } from "@mui/material";
-import { motion } from "framer-motion";
+import React, { FC } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import { SerializedError } from '@reduxjs/toolkit'
+import { Box, Button, Typography } from '@mui/material'
+import Image from 'mui-image'
 
 interface IErrorMessage {
-  error: FetchBaseQueryError | SerializedError | undefined;
+  error: FetchBaseQueryError | SerializedError
 }
 
-export const ErrorMessage: FC<IErrorMessage> = forwardRef(({ error }, ref: any) => {
+export const ErrorMessage: FC<IErrorMessage> = ({ error }) => {
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const resetFilters = () => {
+    const oldQuery = Object.fromEntries(new URLSearchParams(searchParams))
+    Object.keys(oldQuery).map(key => {
+      searchParams.delete(key)
+    })
+    searchParams.set('page', '1')
+    searchParams.set('take', '20')
+    const newQuery = Object.fromEntries(new URLSearchParams(searchParams))
+    setSearchParams(newQuery)
+  }
   const handleError = () => {
-    if (error) {
-      if ("status" in error) {
-        // you can access all properties of `FetchBaseQueryError` here
-        switch (error.status) {
-          case 404:
-            return (
-              <Stack direction="column" gap="10px" ref={ref}>
-                <Typography component="h3" fontSize="3xl" fontWeight="bold">
-                  Page Not Found
+    if ('status' in error) {
+      switch (error.status) {
+        case 404:
+          return (
+            <Box
+              component='div'
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+                userSelect: 'none'
+              }}
+            >
+              <Image
+                src={`https://rick-morty.s3.eu-central-1.amazonaws.com/assets/${error.status}.png`}
+                alt='Error Image'
+                width={500}
+                duration={500}
+                showLoading={true}
+                style={{
+                  borderRadius: 8,
+                  pointerEvents: 'none'
+                }}
+              />
+              <div>
+                <Typography variant='h6'>{error.status}</Typography>
+                <Typography variant='body2' color='text.secondary' sx={{ py: 1 }}>
+                  {(error.data as any).message}
                 </Typography>
-                <Typography component="h5" fontSize="sm">
-                  We could not find what you were looking for.
+                <Button
+                  variant='contained'
+                  size='small'
+                  /* onClick={() => {
+                 resetAllFilters()
+               }}*/
+                  onClick={resetFilters}
+                >
+                  Reset all filters
+                </Button>
+              </div>
+            </Box>
+          )
+        case 422:
+          return (
+            <Box
+              component='div'
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+                userSelect: 'none'
+              }}
+            >
+              <Image
+                src={`https://rick-morty.s3.eu-central-1.amazonaws.com/assets/${error.status}.png`}
+                alt='Error Image'
+                width={500}
+                duration={500}
+                showLoading={true}
+                style={{
+                  borderRadius: 8,
+                  pointerEvents: 'none'
+                }}
+              />
+              <div>
+                <Typography variant='h6'>{error.status}</Typography>
+                <Typography variant='body2' color='text.secondary' sx={{ py: 1 }}>
+                  The filter data is incorrect. Try resetting the filters.
                 </Typography>
-              </Stack>
-            );
-          case "FETCH_ERROR":
-            return (
-              <Stack direction="column" gap="10px" ref={ref}>
-                <Typography component="h3" fontSize="3xl" fontWeight="bold">
-                  {error.status}
-                </Typography>
-                <Typography component="h5" fontSize="sm">
-                  {error.error}
-                </Typography>
-              </Stack>
-            );
-          default:
-            return (
-              <Stack direction="column" gap="10px" ref={ref}>
-                <Typography component="h3" fontSize="3xl" fontWeight="bold">
-                  Oops! Something went wrong.
-                </Typography>
-              </Stack>
-            );
-        }
-      } else {
-        // you can access all properties of `SerializedError` here
-        return (
-          <motion.div initial={{ opacity: 0, y: "+100%" }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: "+100%" }}
-                      transition={{ duration: 3 }}
-          >
-            <Alert sx={{ alignItems: "flex-start", width: "100%" }} severity="error" ref={ref}>
-              <Typography fontSize="sm" sx={{ opacity: 0.8 }}>
-                {error.message}
-              </Typography>
-            </Alert>
-          </motion.div>
-        );
+                <Button
+                  variant='contained'
+                  size='small'
+                  /* onClick={() => {
+                 resetAllFilters()
+               }}*/
+                  onClick={resetFilters}
+                >
+                  Reset all filters
+                </Button>
+              </div>
+            </Box>
+          )
+        default:
+          return <Typography variant='h3'>Oops... something went wrong</Typography>
       }
+    } else {
+      // you can access all properties of `SerializedError` here
+      return (
+        <Box
+          component='div'
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-around',
+            userSelect: 'none'
+          }}
+        >
+          <Image
+            src={`https://rick-morty.s3.eu-central-1.amazonaws.com/assets/${error.code}.png`}
+            alt='Error Image'
+            width={500}
+            duration={500}
+            showLoading={true}
+            style={{
+              borderRadius: 8,
+              pointerEvents: 'none'
+            }}
+          />
+          <div>
+            <Typography variant='h6'>{error.code}</Typography>
+            <Typography variant='body2' color='text.secondary' sx={{ py: 1 }}>
+              {error.message}
+            </Typography>
+            <Button
+              variant='contained'
+              size='small'
+              /* onClick={() => {
+                 resetAllFilters()
+               }}*/
+            >
+              Reset all filters
+            </Button>
+          </div>
+        </Box>
+      )
     }
-  };
+  }
 
-  return <Box component="div">{handleError()}</Box>;
-});
-
-// export const ErrorMessage: FC<IErrorMessage> = ({ error }) => {
-//   const handleError = () => {
-//     if (error) {
-//       console.log(error);
-//       if ("status" in error) {
-//         // you can access all properties of `FetchBaseQueryError` here
-//         switch (error.status) {
-//           case 404:
-//             return (
-//               <Stack direction="column" gap="10px">
-//                 <Typography component="h3" fontSize="3xl" fontWeight="bold">
-//                   Page Not Found
-//                 </Typography>
-//                 <Typography component="h5" fontSize="sm">
-//                   We could not find what you were looking for.
-//                 </Typography>
-//               </Stack>
-//             );
-//           case "FETCH_ERROR":
-//             return (
-//               <Stack direction="column" gap="10px">
-//                 <Typography component="h3" fontSize="3xl" fontWeight="bold">
-//                   {error.status}
-//                 </Typography>
-//                 <Typography component="h5" fontSize="sm">
-//                   {error.error}
-//                 </Typography>
-//               </Stack>
-//             );
-//           default:
-//             return (
-//               <Stack direction="column" gap="10px">
-//                 <Typography component="h3" fontSize="3xl" fontWeight="bold">
-//                   Oops! Something went wrong.
-//                 </Typography>
-//               </Stack>
-//             );
-//         }
-//       } else {
-//         // you can access all properties of `SerializedError` here
-//         return (
-//           <Alert sx={{ alignItems: "flex-start", width: "100%" }} severity="error">
-//             <Typography fontSize="sm" sx={{ opacity: 0.8 }}>
-//               {error.message}
-//             </Typography>
-//           </Alert>
-//         );
-//       }
-//     }
-//   };
-//   return <Box component="div">{handleError()}</Box>;
-// };
+  return handleError()
+}

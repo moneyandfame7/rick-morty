@@ -17,7 +17,6 @@ export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
 
   if (!isUserAuthenticated) {
     console.log('Not auth')
-    console.log(location)
     return <Navigate to='/login' replace />
   }
 

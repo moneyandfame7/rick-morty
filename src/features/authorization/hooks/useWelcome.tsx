@@ -23,7 +23,6 @@ export const useWelcome = () => {
       dispatch(setUser(info.data.user))
       return
     }
-    console.log(info)
   }
 
   const formik = useFormik<UserWelcomeDetails>({

@@ -8,35 +8,33 @@ import {
   SelectChangeEvent,
   SelectProps,
   TextField,
-  TextFieldProps
+  TextFieldProps,
+  Theme
 } from '@mui/material'
 import { DefaultComponentProps } from '@mui/material/OverridableComponent'
 import { FC, useState } from 'react'
+import { makeStyles } from '@mui/material/styles'
 
 interface SelectInputInterface {
   items: string[]
-  touched?: boolean
-  errorText?: string
 }
 
 type SelectInputProps = TextFieldProps & SelectInputInterface
 
-export const SelectInput: FC<SelectInputProps> = ({ items, touched, errorText, ...props }) => {
+export const SelectInput: FC<SelectInputProps> = ({ items, ...props }) => {
   return (
     <TextField
       id={props.name}
       name={props.name}
       select
-      error={touched && !!errorText}
-      helperText={touched && errorText ? errorText : ''}
-      onBlur={props.onBlur}
       onChange={props.onChange}
       value={props.value}
       size='small'
       fullWidth
+      {...props}
     >
       {items.map(item => (
-        <MenuItem key={item} value={item}>
+        <MenuItem key={item} value={item} sx={{ fontSize: 14, minHeight: '10px' }}>
           {item}
         </MenuItem>
       ))}

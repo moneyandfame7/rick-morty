@@ -21,8 +21,6 @@ export const useLogin = () => {
   const onSubmit = async (credentials: AuthCredentials) => {
     const info = await login(credentials)
     if ('data' in info) {
-      console.log(info.data.user)
-
       dispatch(setUser(info.data.user))
       return
     }
