@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import { Box, Container, Grid, Paper, Skeleton, Typography } from '@mui/material'
 import { useGetManyCharactersQuery } from 'features/characters/services'
 import { CharacterCard } from '../components'
-import { Pagination3 } from 'shared/components/Pagination3'
+import { Pagination } from 'shared/components/Pagination'
 import { Filtration } from 'shared/components/Filtration'
 import { ErrorMessage } from 'shared/components'
 import { SkeletonList } from 'shared/components/SkeletonList'
@@ -48,7 +48,7 @@ export const MainCharacterPage: FC = () => {
         >
           {!isFetching && data && !isError ? (
             <>
-              <Pagination3 currentPage={data.info.page} pages={data.info.pages} />
+              <Pagination currentPage={data.info.page} pages={data.info.pages} />
 
               <Grid container spacing={2}>
                 {data?.results.map(character => (
