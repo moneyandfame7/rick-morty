@@ -6,12 +6,10 @@ import { useAppDispatch } from 'application/store'
 
 import type { AuthCredentials } from 'features/authorization/type'
 import { useLoginMutation } from 'features/authorization/services'
-
 import { setUser } from 'features/users/services'
 
 import { loginValidationSchema } from 'shared/utils'
 import { HOME_ROUTE } from 'shared/routes'
-import { toast } from 'react-toastify'
 
 export const useLogin = () => {
   const navigate = useNavigate()

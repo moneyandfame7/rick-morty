@@ -1,13 +1,14 @@
+import { useEffect, useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import countryList from 'react-select-country-list'
-
-import { useLogoutMutation, useWelcomeMutation } from 'features/authorization/services'
-import { UserWelcomeDetails } from 'features/users/type'
-import { removeUser, setUser } from 'features/users/services'
 import { useFormik } from 'formik'
+
+import { useWelcomeMutation } from 'features/authorization/services'
+import { UserWelcomeDetails } from 'features/users/type'
+import { setUser } from 'features/users/services'
+
 import { welcomeValidationSchema } from 'shared/utils'
-import { useEffect, useMemo } from 'react'
 import { HOME_ROUTE } from 'shared/routes'
 import { CountryData } from '../type'
 

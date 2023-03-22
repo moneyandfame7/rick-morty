@@ -4,15 +4,12 @@ import { concat, filter, isEmpty } from 'lodash'
 
 import type { ICharacter } from 'features/characters/type'
 
-import { getLocalStorage } from 'shared/utils'
-import { LocalStorageKey } from 'shared/constants'
-
 interface CharacterState {
   characters: ICharacter[]
 }
 
 const initialState: CharacterState = {
-  characters: getLocalStorage<ICharacter[]>(LocalStorageKey.FAVORITE_CHARACTERS) || []
+  characters: /*getLocalStorage<ICharacter[]>(LocalStorageKey.FAVORITE_CHARACTERS) ||*/ []
 }
 
 export const charactersSlice = createSlice({

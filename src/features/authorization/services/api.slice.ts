@@ -44,51 +44,14 @@ export const authApi = rootApi.injectEndpoints({
         url: '/auth/resend-verification',
         method: 'post'
       })
-    }),
-    // TODO: на бекенді переробити endpoint, і зробити окремий api для юзера
-    getUser: builder.query<User, void>({
-      query: () => `/auth/profile`
-    }),
-    getCurrentCountry: builder.query<UserCurrentCountry, void>({
-      query: () => 'https://ipapi.co/json'
-    }),
-    googleLogin: builder.mutation<AuthResponse, void>({
-      query: () => ({
-        url: '/auth/google/login',
-        method: 'post'
-      })
-    }),
-    discordLogin: builder.mutation<AuthResponse, void>({
-      query: () => ({
-        url: '/auth/discord/login',
-        method: 'post'
-      })
-    }),
-    spotifyLogin: builder.mutation<AuthResponse, void>({
-      query: () => ({
-        url: '/auth/spotify/login',
-        method: 'post'
-      })
-    }),
-    githubLogin: builder.mutation<AuthResponse, void>({
-      query: () => ({
-        url: '/auth/github/login',
-        method: 'post'
-      })
     })
   })
 })
 
 export const {
   useLoginMutation,
-  useDiscordLoginMutation,
-  useGithubLoginMutation,
-  useGoogleLoginMutation,
-  useSpotifyLoginMutation,
   useSignupMutation,
   useLogoutMutation,
   useWelcomeMutation,
-  useVerificationSendMutation,
-  useGetUserQuery,
-  useGetCurrentCountryQuery
+  useVerificationSendMutation
 } = authApi

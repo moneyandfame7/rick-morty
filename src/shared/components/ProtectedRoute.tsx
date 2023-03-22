@@ -16,12 +16,10 @@ export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
   }
 
   if (!isUserAuthenticated) {
-    console.log('Not auth')
     return <Navigate to='/login' replace />
   }
 
   if (isUserAuthenticated && !hasUserPassedWelcome) {
-    console.log('Auth but loh')
     return <Navigate to='/welcome' replace />
   }
 

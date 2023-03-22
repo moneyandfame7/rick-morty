@@ -1,6 +1,11 @@
 export const enum LocalStorageKey {
   FAVORITE_CHARACTERS = 'FAVORITE_CHARACTERS',
-  USER = 'USER',
+  USER = 'USER'
+}
+
+export const enum CookieKey {
+  ACCESS_TOKEN = 'ACCESS_TOKEN',
+  REFRESH_TOKEN = 'REFRESH_TOKEN'
 }
 
 export const enum NavigationEnum {

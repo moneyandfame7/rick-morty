@@ -25,7 +25,6 @@ const baseQueryWithRefresh: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQu
 
       console.log(refreshResult, 'Refresh access token')
       if (refreshResult.data) {
-        // const user=refreshResult.
         api.dispatch(setUser((refreshResult.data as AuthResponse).user))
 
         result = await baseQuery(args, api, extraOptions)

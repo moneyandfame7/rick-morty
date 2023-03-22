@@ -1,17 +1,27 @@
 import { FC, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
+import { CSSTransition } from 'react-transition-group'
+/* ui */
 import { Button, Grid, Typography } from '@mui/material'
 import CookieOutlinedIcon from '@mui/icons-material/CookieOutlined'
-import { CSSTransition } from 'react-transition-group'
+/* logic */
 import { useAppDispatch, useAppSelector } from 'application/store'
 import { selectIsAcceptCookie, setAcceptCookie } from 'features/users/services'
+import { getIsAuthorizationRoute } from 'shared/utils/getIsAuthorizationRoute'
 import './style.css'
 
 export const CookieBanner: FC = () => {
+  const location = useLocation()
   const nodeRef = useRef(null)
   const showBanner = useAppSelector(selectIsAcceptCookie)
   const dispatch = useAppDispatch()
+
   const acceptCookie = () => {
     dispatch(setAcceptCookie())
+  }
+
+  if (getIsAuthorizationRoute(location.pathname)) {
+    return null
   }
   return (
     <CSSTransition in={!showBanner} nodeRef={nodeRef} classNames='cookie-banner' unmountOnExit timeout={300}>

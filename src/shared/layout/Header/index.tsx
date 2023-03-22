@@ -16,7 +16,8 @@ import { SettingDrawer } from 'shared/components/SettingDrawer'
 import { HeaderDrawer } from './Drawer'
 import { LINKS_CONFIG } from './utils/links'
 import { AvatarMenu } from './AvatarMenu'
-import { useIsSomethingLoading } from '../../../application/store/selectors'
+import { useIsSomethingLoading } from 'application/store/selectors'
+import { getIsAuthorizationRoute } from '../../utils/getIsAuthorizationRoute'
 
 export const Header: FC = () => {
   const isLoading = useIsSomethingLoading()
@@ -27,13 +28,7 @@ export const Header: FC = () => {
   const handleDrawerToggle = () => {
     setMobileOpen(prevState => !prevState)
   }
-  if (
-    location.pathname === LOGIN_ROUTE.path ||
-    location.pathname === SIGNUP_ROUTE.path ||
-    location.pathname === WELCOME_ROUTE.path ||
-    location.pathname === FORGOT_ROUTE.path ||
-    location.pathname === SUCCESS_LOGIN_ROUTE.path
-  ) {
+  if (getIsAuthorizationRoute(location.pathname)) {
     return null
   }
   return (

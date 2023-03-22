@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from 'react'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
+
 import { Box, Button, Container, LinearProgress, Link, Stack, Typography } from '@mui/material'
 
 import { useAppSelector } from 'application/store'
-
 import { useLogin } from 'features/authorization/hooks'
 import { selectIsAuthenticated } from 'features/authorization/services'
 
@@ -19,12 +19,11 @@ export const LoginPage: FC = () => {
   const isUserAuthenticated = useAppSelector(selectIsAuthenticated)
   const authBadCredentials = errorHandler(error)
   const [social, setSocial] = useState<boolean>(false)
-  console.log(authBadCredentials, error)
   useEffect(() => {
     if (isUserAuthenticated) {
       navigate({ pathname: HOME_ROUTE.path })
     }
-  }, [])
+  }, [isUserAuthenticated])
 
   return (
     <Container sx={{ width: { xs: '100%', sm: '450px' }, p: { xs: 0 }, mt: { sm: 10 } }}>

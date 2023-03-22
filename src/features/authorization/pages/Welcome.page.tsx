@@ -6,18 +6,19 @@ import { useAppSelector } from 'application/store'
 import { selectCurrentUser } from 'features/users/services'
 
 import { useWelcome } from 'features/authorization/hooks'
+import { errorHandler } from '../components/ErrorHandler'
 import { selectHasPassedWelcome } from 'features/authorization/services'
-import { HOME_ROUTE } from 'shared/routes'
+
 import { ValidatedInput } from 'shared/components/Form/ValidatedInput'
 import { CountryAutocompleteInput } from 'shared/components/Form/CountryAutocompleteInput'
-import { errorHandler } from '../components/ErrorHandler'
+import { HOME_ROUTE } from 'shared/routes'
 
 export const WelcomePage: FC = () => {
   const navigate = useNavigate()
+  const hasPassedWelcome = useAppSelector(selectHasPassedWelcome)
   const { countries, formik, isLoading, error } = useWelcome()
   const authBadCredentials = errorHandler(error)
   const user = useAppSelector(selectCurrentUser)
-  const hasPassedWelcome = useAppSelector(selectHasPassedWelcome)
   const onUseMyUsernameClick = () => {
     if (user) {
       const usernameFromEmail = user.email.split('@')[0]
@@ -25,11 +26,11 @@ export const WelcomePage: FC = () => {
     }
   }
 
-  // useEffect(() => {
-  //   if (hasPassedWelcome) {
-  //     navigate({ pathname: HOME_ROUTE.path })
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (hasPassedWelcome) {
+      navigate({ pathname: HOME_ROUTE.path })
+    }
+  }, [hasPassedWelcome])
 
   return (
     <Container

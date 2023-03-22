@@ -2,25 +2,29 @@ import { FC, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import jwt_decode from 'jwt-decode'
+import Image from 'mui-image'
+
 import { Box, Container, Stack, Typography } from '@mui/material'
 
-import { useAppDispatch, useAppSelector } from 'application/store'
-import { selectCurrentUser, setUser } from 'features/users/services'
+import { useAppDispatch } from 'application/store'
+
+import { setUser } from 'features/users/services'
 import { User } from 'features/users/type'
+
 import { HOME_ROUTE } from 'shared/routes'
-import Image from 'mui-image'
+import { CookieKey } from 'shared/constants'
 
 export const SuccessLoginPage: FC = () => {
   const navigate = useNavigate()
   // TODO: refactor
-  const token = Cookies.get('ACCESS_TOKEN')
+  const token = Cookies.get(CookieKey.ACCESS_TOKEN)
   const dispatch = useAppDispatch()
   useEffect(() => {
     if (token) {
       const user: User = jwt_decode(token)
 
-      dispatch(setUser(user))
       if (user) {
+        dispatch(setUser(user))
         setTimeout(() => {
           navigate({ pathname: HOME_ROUTE.path })
         }, 1000)
