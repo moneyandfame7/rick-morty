@@ -1,12 +1,13 @@
+import { FC } from 'react'
 import { Box, Button, Card, CardContent, CardMedia, IconButton, Typography } from '@mui/material'
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined'
-import { FC } from 'react'
-import { ICharacter } from '../type'
 import Image from 'mui-image'
+import { ICharacter } from '../type'
 
 interface CharacterCardProps {
   character: ICharacter
 }
+
 export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
   return (
     <Card variant='outlined' sx={{ padding: '1rem' }}>
@@ -15,10 +16,10 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
           padding: '0 0 10px',
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'flex-start'
+          alignItems: 'center'
         }}
       >
-        <div>
+        <div style={{ minHeight: 60, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <Typography variant='h2' fontSize={16} sx={{ opacity: 0.9 }} fontWeight={500}>
             {character.name}
           </Typography>
@@ -39,7 +40,6 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
           pointerEvents: 'none',
           position: 'relative',
           overflow: 'hidden',
-          // height: { xs: 300, sm: 200 },
           p: 0,
           minHeight: '160px',
           maxHeight: '200px'
@@ -59,8 +59,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
             src={character.image}
             width='100%'
             height='100%'
-            duration={500}
-            showLoading={true}
+            duration={300}
             style={{
               borderRadius: 8
             }}
