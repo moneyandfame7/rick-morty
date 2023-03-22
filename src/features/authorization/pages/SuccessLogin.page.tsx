@@ -8,19 +8,16 @@ import { useAppDispatch, useAppSelector } from 'application/store'
 import { selectCurrentUser, setUser } from 'features/users/services'
 import { User } from 'features/users/type'
 import { HOME_ROUTE } from 'shared/routes'
-import pic from 'shared/img/redirect.png'
 import Image from 'mui-image'
 
 export const SuccessLoginPage: FC = () => {
   const navigate = useNavigate()
   // TODO: refactor
-  const user = useAppSelector(selectCurrentUser)
   const token = Cookies.get('ACCESS_TOKEN')
   const dispatch = useAppDispatch()
   useEffect(() => {
     if (token) {
       const user: User = jwt_decode(token)
-      console.log(user)
 
       dispatch(setUser(user))
       if (user) {

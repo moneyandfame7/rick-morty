@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { SerializedError } from '@reduxjs/toolkit'
-import { Alert, Box, Button, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import Image from 'mui-image'
-import { useSearchParams } from 'react-router-dom'
 
 interface IErrorMessage {
   error: FetchBaseQueryError | SerializedError
@@ -24,7 +24,6 @@ export const ErrorMessage: FC<IErrorMessage> = ({ error }) => {
   }
   const handleError = () => {
     if ('status' in error) {
-      console.log(error)
       switch (error.status) {
         case 404:
           return (

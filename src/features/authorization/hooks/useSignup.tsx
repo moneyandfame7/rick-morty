@@ -22,11 +22,9 @@ export const useSignup = () => {
 
   const onSubmit = async (values: AuthCredentials) => {
     const info = await signup(values)
-    console.log('AASODOASDOAOSDO')
 
     if ('data' in info) {
       dispatch(setUser(info.data.user))
-      console.log(info)
 
       return
     }

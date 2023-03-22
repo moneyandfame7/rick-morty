@@ -1,35 +1,18 @@
-import React, { FC, useEffect } from 'react'
-import { Box, Button, Container, Grid, LinearProgress, Paper, Skeleton, Typography } from '@mui/material'
+import React, { FC } from 'react'
+import { Box, Container, Grid, Paper, Typography } from '@mui/material'
 import { useGetManyCharactersQuery } from 'features/characters/services'
-import { useQueryParams } from 'shared/hooks'
-import { Backdrop } from 'shared/components/Backdrop'
 import { CharacterCard } from '../components'
-import { Pagination2 } from 'shared/components/Pagination2'
-import { Filters } from 'shared/components/Filters'
-import { useLocation, useSearchParams } from 'react-router-dom'
-import { PutinHuiloModel } from 'shared/components/PutinHuiloModel'
-import { useIsSomethingLoading } from '../../../application/store/selectors'
+import { useSearchParams } from 'react-router-dom'
 import { Pagination3 } from '../../../shared/components/Pagination3'
 import { Filtration } from '../../../shared/components/Filtration'
-import { SelectItems } from '../../../shared/components/SelectItems'
-import Image from 'mui-image'
-import { errorHandler } from '../../authorization/components/ErrorHandler'
 import { ErrorMessage } from '../../../shared/components'
 
-const genders = [
-  { value: 'Male' },
-  { value: 'Female' },
-  { value: 'Genderless' },
-  { value: 'unknown', label: 'Unknown' }
-]
 export const MainCharacterPage: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const loading = useIsSomethingLoading()
-
+  // TODO: fix paper when data is fetch
+  // todo: skeleton with array of count ( ?take=number )
   const { data, isLoading, isFetching, isError, error } = useGetManyCharactersQuery(searchParams.toString())
 
-  console.log(data, ' <<< characters <<<')
-  const resetAllFilters = () => {}
   return (
     <>
       <Box component='div'>
@@ -52,7 +35,6 @@ export const MainCharacterPage: FC = () => {
             </Typography>
           </Box>
 
-          <Filters info={data?.info} />
           <Paper
             sx={{
               p: data ? 2 : 0,

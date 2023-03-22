@@ -1,4 +1,3 @@
-import { SvgIcon } from '@mui/material'
 import { FC } from 'react'
 import { BsDiscord } from 'react-icons/bs'
 
