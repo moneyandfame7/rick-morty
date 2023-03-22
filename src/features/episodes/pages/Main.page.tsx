@@ -15,12 +15,12 @@ export const MainEpisodePage: FC = () => {
 
   return (
     <>
-      <Pagination
+      {/* <Pagination
         prev={data?.info.prev}
         next={data?.info.next}
         navigationType={NavigationEnum.EPISODES}
         isLoading={isLoading}
-      />
+      />*/}
       <div
         style={{
           display: 'flex',
