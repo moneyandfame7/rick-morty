@@ -126,6 +126,7 @@ export const SignupPage = () => {
                 fontWeight: 600,
                 padding: 0
               }}
+              disabled={isLoading}
             >
               Sign in instead
             </Button>

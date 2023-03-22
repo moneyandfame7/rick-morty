@@ -19,7 +19,7 @@ export const LoginPage: FC = () => {
   const isUserAuthenticated = useAppSelector(selectIsAuthenticated)
   const authBadCredentials = errorHandler(error)
   const [social, setSocial] = useState<boolean>(false)
-
+  console.log(authBadCredentials, error)
   useEffect(() => {
     if (isUserAuthenticated) {
       navigate({ pathname: HOME_ROUTE.path })
@@ -147,20 +147,27 @@ export const LoginPage: FC = () => {
             >
               Create account
             </Button>
-            <Button
-              variant='contained'
-              type='submit'
-              sx={{
-                textTransform: 'initial',
-                fontWeight: 600
-              }}
-              disabled={isLoading}
-            >
-              Sign in
-            </Button>
+            {!social && (
+              <Button
+                variant='contained'
+                type='submit'
+                sx={{
+                  textTransform: 'initial',
+                  fontWeight: 600
+                }}
+                disabled={isLoading}
+              >
+                Sign in
+              </Button>
+            )}
           </Stack>
         </Box>
-        <Button sx={{ mt: '30px' }} onClick={() => setSocial(prev => !prev)} variant='text' fullWidth>
+        <Button
+          sx={{ mt: '30px', fontWeight: 600 }}
+          onClick={() => setSocial(prev => !prev)}
+          variant='outlined'
+          fullWidth
+        >
           Social login
         </Button>
       </Box>

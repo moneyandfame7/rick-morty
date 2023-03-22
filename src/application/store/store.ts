@@ -14,7 +14,7 @@ import { customizationReducer } from 'application/theme/customization'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['customization']
+  whitelist: ['customization', 'credentials']
 }
 const rootReducer = combineReducers({
   [rootApi.reducerPath]: rootApi.reducer,

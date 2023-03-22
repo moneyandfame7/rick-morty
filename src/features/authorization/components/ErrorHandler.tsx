@@ -15,7 +15,7 @@ export const errorHandler = (error: FetchBaseQueryError | SerializedError | unde
   if ('status' in error) {
     /* todo: зробити якесь поле і виводити помилку*/
   } else {
-    switch (error.code) {
+    switch (error.stack) {
       case HttpStack.EMAIL_NOT_FOUND:
         return {
           email: error.message

@@ -18,35 +18,14 @@ export const PasswordInput: FC<PasswordInputProps & TextFieldProps> = ({
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  // const [state, toggle] = useToggle(false)
-  const handleClickShowPassword = () => setShowPassword(!showPassword)
-
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
   return (
     <Box component='div' sx={{ position: 'relative' }}>
       <TextField
         type={showPassword ? 'text' : 'password'}
-        // autoComplete='password'
         value={value}
         onChange={onChange}
         error={!!errorText}
         helperText={!!errorText ? errorText : ''}
-        /*   InputProps={{
-          startAdornment: <></>,
-          endAdornment: (
-            <InputAdornment position='end'>
-              <IconButton
-                aria-label='toggle password visibility'
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-              >
-                {showPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          )
-        }} */
         FormHelperTextProps={{
           sx: {
             marginLeft: '20px'

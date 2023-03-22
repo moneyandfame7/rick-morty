@@ -4,28 +4,18 @@ export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
   MuiFormLabel: {
     styleOverrides: {
       root: {
-        // color: '#5f6368',
         fontWeight: 500
-        // fontSize: 13
       }
     }
   },
   MuiFormHelperText: {
     styleOverrides: {
       root: {
-        // color: '#5f6368',
         fontWeight: 500,
         fontSize: 11
       }
     }
   },
-  // MuiDialog: {
-  //   styleOverrides: {
-  //     root: {
-  //       backdropFilter: 'blur(8px)'
-  //     }
-  //   }
-  // },
   MuiInputBase: {
     styleOverrides: {
       sizeSmall: {
@@ -40,14 +30,6 @@ export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
       }
     }
   },
-  // MuiSvgIcon: {
-  //   styleOverrides: {
-  //     root: {
-  //       color: theme.palette.primary.lighter
-  //       // fontSize: '1.25rem'
-  //     }
-  //   }
-  // },
   MuiPaper: {
     styleOverrides: {
       root: {

@@ -6,10 +6,12 @@ import { LocalStorageKey } from '../../../shared/constants'
 
 interface AuthState {
   user: User | null
+  acceptCookie: boolean
 }
 
 const initialState: AuthState = {
-  user: getLocalStorage(LocalStorageKey.USER)
+  user: getLocalStorage(LocalStorageKey.USER),
+  acceptCookie: false
 }
 
 export const userSlice = createSlice({
@@ -23,10 +25,13 @@ export const userSlice = createSlice({
     removeUser: state => {
       state.user = null
       removeLocalStorage(LocalStorageKey.USER)
+    },
+    setAcceptCookie: state => {
+      state.acceptCookie = true
     }
   }
 })
 
-export const { setUser, removeUser } = userSlice.actions
+export const { setUser, removeUser, setAcceptCookie } = userSlice.actions
 
 export const userReducer = userSlice.reducer
