@@ -108,7 +108,7 @@ export const Filtration: FC = () => {
           sx: {
             border: '1px solid',
             borderColor: 'primary.border',
-            minWidth: '500px'
+            minWidth: { xs: '100%', sm: 500 }
           }
         }}
         slotProps={{
