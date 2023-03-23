@@ -1,15 +1,7 @@
 import React, { FC } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu'
-import { AppBar, Box, Chip, Container, IconButton, LinearProgress, Toolbar, useTheme } from '@mui/material'
-
-import {
-  FORGOT_ROUTE,
-  LOGIN_ROUTE,
-  SIGNUP_ROUTE,
-  SUCCESS_LOGIN_ROUTE,
-  WELCOME_ROUTE
-} from 'features/authorization/routes'
+import { AppBar, Box, Chip, Container, IconButton, LinearProgress, Toolbar, Tooltip, useTheme } from '@mui/material'
 
 import { Logo } from 'shared/components/icons/Logo'
 import { SettingDrawer } from 'shared/components/SettingDrawer'
@@ -53,7 +45,11 @@ export const Header: FC = () => {
             <IconButton size='large' sx={{ display: { md: 'none' } }} onClick={handleDrawerToggle}>
               <MenuIcon sx={{ color: 'primary.lighter' }} />
             </IconButton>
-            <Logo fontSize='large' fill={theme.palette.primary.lighter} />
+            <Tooltip title='Home'>
+              <Box component={Link} to='/'>
+                <Logo fontSize='large' />
+              </Box>
+            </Tooltip>
             <Box component='div' sx={{ display: { xs: 'none', md: 'flex' }, gap: 5 }}>
               {LINKS_CONFIG.map(link => (
                 <Chip
