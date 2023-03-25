@@ -13,3 +13,9 @@ export const enum NavigationEnum {
   EPISODES = 'episodes',
   LOCATIONS = 'locations'
 }
+
+export const enum Entities {
+  CHARACTER = 'Character',
+  LOCATION = 'Location',
+  EPISODE = 'Episode'
+}

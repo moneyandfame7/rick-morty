@@ -5,16 +5,17 @@ import { Box, Container, Grid, Paper, Skeleton, Typography } from '@mui/material
 import { useGetManyCharactersQuery } from 'features/characters/services'
 import { CharacterCard } from '../components'
 import { Pagination } from 'shared/components/Pagination'
-import { Filtration } from 'shared/components/Filtration'
+import { Filtration } from 'features/filters/components/Filtration'
 import { ErrorMessage } from 'shared/components'
 import { SkeletonList } from 'shared/components/SkeletonList'
+import { useInitialFilters } from 'features/filters/hooks/useInitialFilters'
+import { Entities } from 'shared/constants'
 
 export const MainCharacterPage: FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams()
-  // TODO: fix paper when data is fetch
-  // todo: skeleton with array of count ( ?take=number )
-  const { data, isFetching, isError, error } = useGetManyCharactersQuery(searchParams.toString())
+  const [searchParams] = useSearchParams()
   const currentTake = Number(searchParams.get('take')) || 20
+  const { data, isFetching, isError, error } = useGetManyCharactersQuery(searchParams.toString())
+  const characterFilters = useInitialFilters(Entities.CHARACTER)
   return (
     <Box component='div'>
       <Container
@@ -67,7 +68,7 @@ export const MainCharacterPage: FC = () => {
             <ErrorMessage error={error} />
           ) : null}
         </Paper>
-        <Filtration />
+        <Filtration filters={characterFilters} />
       </Container>
     </Box>
   )
