@@ -68,7 +68,7 @@ const getLightPalette = (customization: Customization): ThemeOptions['palette'] 
     paper: '#fff'
   },
   primary: {
-    main: customization.colorPrimary || 'rgb(26 115 232)',
+    main: customization.colorPrimary || '#1256dc',
     lighter: 'rgb(91 151 230)',
     contrastText: '#fff',
     border: '#d8d8df',

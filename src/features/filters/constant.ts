@@ -1,3 +1,9 @@
+export enum InputType {
+  SELECT = 'select',
+  TEXT = 'text',
+  NUMBER = 'number'
+}
+
 export const MAX_TAKE = 50
 export const MIN_TAKE = 1
 

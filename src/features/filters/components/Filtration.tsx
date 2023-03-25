@@ -3,9 +3,11 @@ import { isEqual } from 'lodash'
 import { Box, Button, Dialog, DialogContent, DialogTitle, Divider, Stack, Tooltip, Typography } from '@mui/material'
 import TuneIconOutlined from '@mui/icons-material/TuneOutlined'
 import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined'
-import { useFiltration } from '../../../shared/hooks/useFiltration'
+
 import { Filters, FiltersTypes, FiltersValues } from 'features/filters/types'
 import { getInputByType } from 'features/filters/utils/getInputByType'
+
+import { useFiltration } from 'shared/hooks/useFiltration'
 import { wordFromUpperCase } from 'shared/utils/wordFromUpperCase'
 
 interface FiltrationProps {
