@@ -60,7 +60,7 @@ export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
   MuiButton: {
     styleOverrides: {
       root: {
-        fontWeight: 500,
+        fontWeight: 600,
         textTransform: 'initial'
       }
     }

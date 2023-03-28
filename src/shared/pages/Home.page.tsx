@@ -13,43 +13,41 @@ const ImgMediaCard = () => {
   const theme = useTheme()
   const video = `https://rick-morty.s3.eu-central-1.amazonaws.com/videos/${getRandomFromInterval(1, 4)}.mp4`
   return (
-    <>
-      <Card sx={{ width: '100%', height: { xs: 'max-content', md: 500 }, position: 'absolute' }}>
+    <Card sx={{ width: '100%', height: { xs: 'max-content', md: 500 }, position: 'absolute' }}>
+      <Box
+        component="div"
+        sx={{
+          zIndex: 2,
+          userSelect: 'none',
+          backgroundColor: '#01010154',
+          height: '100%',
+          width: '100%',
+          position: 'absolute',
+          top: 0
+        }}
+      >
         <Box
-          component='div'
+          component="div"
           sx={{
-            zIndex: 2,
-            userSelect: 'none',
-            backgroundColor: '#01010154',
-            height: '100%',
-            width: '100%',
-            position: 'absolute',
-            top: 0
+            p: { xs: 1, md: 3 },
+            m: '30px 0 0 10px',
+            background: theme.palette.mode === 'light' ? '#ffffff6b' : '#01010154',
+            borderRadius: 4,
+            display: 'inline-block'
           }}
         >
-          <Box
-            component='div'
+          <Typography
             sx={{
-              p: { xs: 1, md: 3 },
-              m: '30px 0 0 10px',
-              background: theme.palette.mode === 'light' ? '#ffffff6b' : '#01010154',
-              borderRadius: 4,
-              display: 'inline-block'
+              fontSize: { xs: 15, sm: 40, md: 50 }
             }}
+            fontWeight={700}
           >
-            <Typography
-              sx={{
-                fontSize: { xs: 15, sm: 40, md: 50 }
-              }}
-              fontWeight={700}
-            >
-              Rick&Morty API
-            </Typography>
-          </Box>
+            Rick&Morty API
+          </Typography>
         </Box>
-        <CardMedia sx={{ zIndex: -5 }} component='video' src={video} autoPlay muted loop />
-      </Card>
-    </>
+      </Box>
+      <CardMedia sx={{ zIndex: -5 }} component="video" src={video} autoPlay muted loop />
+    </Card>
   )
 }
 export const HomePage: FC = () => {
