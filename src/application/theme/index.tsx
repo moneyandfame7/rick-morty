@@ -13,11 +13,12 @@ declare module '@mui/material/styles' {
     border?: string
     transparent?: string
   }
+
   interface TypeText {
     third?: string
   }
 }
-export type Mode = 'dark' | 'light' | 'system' | 'blue'
+export type Mode = 'dark' | 'light' | 'system'
 
 export const enum FontFamily {
   DEFAULT = `"Google Sans", "Noto Sans Myanmar UI", "sans-serif"`,
@@ -68,8 +69,10 @@ const getLightPalette = (customization: Customization): ThemeOptions['palette'] 
     paper: '#fff'
   },
   primary: {
-    main: customization.colorPrimary || '#1256dc',
-    lighter: 'rgb(91 151 230)',
+    main: '#7f56d9',
+    dark: '#53389E',
+    light: '#9e77ed',
+    lighter: '#d6bbfb',
     contrastText: '#fff',
     border: '#d8d8df',
     transparent: '#ffffff57'
@@ -79,26 +82,10 @@ const getLightPalette = (customization: Customization): ThemeOptions['palette'] 
   }
 })
 
-const getBluePalette = (customization: Customization): ThemeOptions['palette'] => ({
-  mode: 'dark',
-  background: {
-    default: 'rgb(12 29 50)',
-    paper: 'rgb(14 25 40 )'
-  },
-  primary: {
-    main: customization.colorPrimary || '#007FFF',
-    lighter: 'rgb(102 178 255)',
-    border: '#132f4c',
-    contrastText: '#fff',
-    transparent: 'rgb(14 25 40 / 21%)'
-  }
-})
 export const getPaletteForMode = (customization: Customization, prefersDarkMode: boolean): ThemeOptions['palette'] => {
   switch (customization.mode) {
     case 'dark':
       return getDarkPalette(customization)
-    case 'blue':
-      return getBluePalette(customization)
     case 'light':
       return getLightPalette(customization)
     case 'system':
@@ -110,24 +97,13 @@ export const useCreateTheme = (customization: Customization) => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
   const palette = getPaletteForMode(customization, prefersDarkMode)
 
-  /*  For blue theme:  */
-  /* Primary color #007fff */
-  /* Paper background  rgb (12 29 50) */
-  /* Body background rgb(14 25 40 ) ? +  */
-
   const themeObj: ThemeOptions = {
     palette,
-    // palette: {
-    //   mode: paletteMode,
-    //   primary: {
-    //     main: customization.colorPrimary
-    //   }
-    // },
     shape: {
       borderRadius: customization.borderRadius
     },
     typography: {
-      fontFamily: customization.fontFamily
+      fontFamily: `"Inter", "sans-serif"`
     }
   }
 

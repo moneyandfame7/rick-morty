@@ -25,12 +25,6 @@ const modeItems = [
     label: 'Dark',
     icon: <DarkModeIcon />,
     value: 'dark'
-  },
-  {
-    id: 4,
-    label: 'Blue',
-    icon: <InvertColorsIcon />,
-    value: 'blue'
   }
 ]
 export const ColorModeToggle = () => {
