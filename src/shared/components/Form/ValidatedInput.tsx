@@ -14,7 +14,7 @@ export const ValidatedInput: FC<ValidatedInputProps & TextFieldProps> = ({
   ...props
 }) => {
   return (
-    <Box component='div' sx={{ position: 'relative' }}>
+    <Box component="div" sx={{ position: 'relative', width: '100%' }}>
       <TextField
         {...props}
         value={value}

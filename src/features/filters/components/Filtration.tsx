@@ -25,10 +25,10 @@ export const Filtration: FC<FiltrationProps> = ({ filters }) => {
   }
   return (
     <>
-      <Tooltip title='Filters'>
+      <Tooltip title="Filters">
         <Button
-          size='small'
-          color='primary'
+          size="small"
+          color="primary"
           sx={{
             width: 'max-content',
             p: 1.5,
@@ -38,7 +38,7 @@ export const Filtration: FC<FiltrationProps> = ({ filters }) => {
             right: -20,
             pr: 4
           }}
-          variant='contained'
+          variant="contained"
           onClick={handleClickOpen}
         >
           <TuneIconOutlined />
@@ -72,17 +72,17 @@ export const Filtration: FC<FiltrationProps> = ({ filters }) => {
             px: 2
           }}
         >
-          <Typography variant='body2' fontWeight={500} sx={{ opacity: 0.7 }}>
+          <Typography variant="body2" fontWeight={500} sx={{ opacity: 0.7 }}>
             Search by species, status, name, etc...
           </Typography>
           <TuneIconOutlined sx={{ opacity: 0.7 }} />
         </DialogTitle>
         <DialogContent sx={{ px: 0, pt: '10px !important', pb: '0px !important' }}>
-          <Box component='form' onSubmit={formik.handleSubmit} noValidate>
+          <Box component="form" onSubmit={formik.handleSubmit} noValidate>
             {Object.keys(filters.values).map(key => (
               <React.Fragment key={key}>
-                <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ px: 2 }}>
-                  <Typography variant='body2' fontWeight={500} sx={{ opacity: 0.7 }}>
+                <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ px: 2 }}>
+                  <Typography variant="body2" fontWeight={500} sx={{ opacity: 0.7 }}>
                     {wordFromUpperCase(key)}
                   </Typography>
                   {getInputByType(filters.type[key as keyof FiltersTypes], key as keyof FiltersValues, formik)}
@@ -91,18 +91,18 @@ export const Filtration: FC<FiltrationProps> = ({ filters }) => {
               </React.Fragment>
             ))}
             <Box
-              component='div'
+              component="div"
               sx={{ display: 'flex', p: 1, backgroundColor: 'background.default', justifyContent: 'space-between' }}
             >
               <Button
                 startIcon={<BackspaceOutlinedIcon sx={{ width: 14 }} />}
-                variant='outlined'
+                variant="outlined"
                 onClick={onReset}
                 disabled={isEqual(formValues, formInitialValues)}
               >
                 Reset all filters
               </Button>
-              <Button variant='contained' type='submit' disabled={isEqual(queryStringObj, formValues)}>
+              <Button variant="contained" type="submit" disabled={isEqual(queryStringObj, formValues)}>
                 Apply filters
               </Button>
             </Box>

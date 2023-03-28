@@ -1,6 +1,6 @@
 import { rootApi } from 'application/store'
 import type { AuthCredentials, AuthResponse } from 'features/authorization/type'
-import type { User, UserCurrentCountry, UserWelcomeDetails } from 'features/users/type'
+import type { ForgotCredentials, ResetPasswordParams, UserWelcomeDetails } from 'features/users/type'
 
 export const authApi = rootApi.injectEndpoints({
   endpoints: builder => ({
@@ -44,6 +44,26 @@ export const authApi = rootApi.injectEndpoints({
         url: '/auth/resend-verification',
         method: 'post'
       })
+    }),
+    forgot: builder.mutation<void, ForgotCredentials>({
+      query: body => ({
+        url: '/auth/forgot',
+        method: 'post',
+        body
+      }),
+      transformErrorResponse: (response: any, meta, arg) => {
+        return response.data
+      }
+    }),
+    reset: builder.mutation<AuthResponse, ResetPasswordParams>({
+      query: details => ({
+        url: `/auth/reset?id=${details.query.id}&token=${details.query.token}`,
+        method: 'post',
+        body: details.body
+      }),
+      transformErrorResponse: (response: any, meta, arg) => {
+        return response.data
+      }
     })
   })
 })
@@ -53,5 +73,7 @@ export const {
   useSignupMutation,
   useLogoutMutation,
   useWelcomeMutation,
-  useVerificationSendMutation
+  useVerificationSendMutation,
+  useForgotMutation,
+  useResetMutation
 } = authApi

@@ -8,14 +8,14 @@ import { SettingDrawer } from 'shared/components/SettingDrawer'
 import { HeaderDrawer } from './Drawer'
 import { LINKS_CONFIG } from './utils/links'
 import { AvatarMenu } from './AvatarMenu'
-import { useIsSomethingLoading } from 'application/store/selectors'
+import { selectIsSomethingLoading } from 'application/store/selectors'
 import { getIsAuthorizationRoute } from '../../utils/getIsAuthorizationRoute'
+import { useAppSelector } from '../../../application/store'
 
 export const Header: FC = () => {
-  const isLoading = useIsSomethingLoading()
+  const isLoading = useAppSelector(selectIsSomethingLoading)
   const location = useLocation()
   const navigate = useNavigate()
-  const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const handleDrawerToggle = () => {
     setMobileOpen(prevState => !prevState)
@@ -26,7 +26,7 @@ export const Header: FC = () => {
   return (
     <React.Fragment>
       <AppBar
-        position='sticky'
+        position="sticky"
         sx={{
           backgroundColor: 'background.paper',
           boxShadow: 'none',
@@ -35,22 +35,22 @@ export const Header: FC = () => {
           position: 'relative'
         }}
       >
-        <Container maxWidth='xl'>
+        <Container maxWidth="xl">
           <Toolbar
             disableGutters
             sx={{
               justifyContent: 'space-between'
             }}
           >
-            <IconButton size='large' sx={{ display: { md: 'none' } }} onClick={handleDrawerToggle}>
+            <IconButton size="large" sx={{ display: { md: 'none' } }} onClick={handleDrawerToggle}>
               <MenuIcon sx={{ color: 'primary.lighter' }} />
             </IconButton>
-            <Tooltip title='Home'>
-              <Box component={Link} to='/'>
-                <Logo fontSize='large' />
+            <Tooltip title="Home">
+              <Box component={Link} to="/">
+                <Logo fontSize="large" />
               </Box>
             </Tooltip>
-            <Box component='div' sx={{ display: { xs: 'none', md: 'flex' }, gap: 5 }}>
+            <Box component="div" sx={{ display: { xs: 'none', md: 'flex' }, gap: 5 }}>
               {LINKS_CONFIG.map(link => (
                 <Chip
                   key={link.id}
@@ -65,7 +65,7 @@ export const Header: FC = () => {
                 />
               ))}
             </Box>
-            <Box component='div' sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box component="div" sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: 2 }}>
               <AvatarMenu />
               <SettingDrawer />
             </Box>

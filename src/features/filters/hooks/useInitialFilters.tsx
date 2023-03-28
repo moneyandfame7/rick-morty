@@ -1,6 +1,7 @@
-import { Entities } from 'shared/constants'
 import { useSearchParams } from 'react-router-dom'
-import { Filters, InputType } from '../types'
+import { Entities } from 'shared/constants'
+import type { Filters } from '../types'
+import { InputType } from '../constant'
 
 export const useInitialFilters = (entity: Entities): Filters => {
   const [searchParams] = useSearchParams()

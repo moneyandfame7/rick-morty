@@ -42,9 +42,6 @@ export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
       root: {
         borderRadius: '6px',
         backgroundColor: theme.palette.mode === 'dark' ? '#000' : '',
-        '&:hover .MuiOutlinedInput-notchedOutline': {
-          borderColor: theme.palette.primary.main
-        },
         '&.Mui-focused fieldset': {
           border: '1px solid !important',
           borderColor: `${theme.palette.primary.main} !important`

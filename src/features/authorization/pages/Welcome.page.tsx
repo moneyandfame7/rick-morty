@@ -13,10 +13,10 @@ import { ValidatedInput } from 'shared/components/Form/ValidatedInput'
 import { CountryAutocompleteInput } from 'shared/components/Form/CountryAutocompleteInput'
 import { HOME_ROUTE } from 'shared/routes'
 import { Backdrop } from 'shared/components/common/Backdrop'
-import { useIsSomethingLoading } from 'application/store/selectors'
+import { selectIsSomethingLoading } from 'application/store/selectors'
 
 export const WelcomePage: FC = () => {
-  const isSomethingLoading = useIsSomethingLoading()
+  const isSomethingLoading = useAppSelector(selectIsSomethingLoading)
   const navigate = useNavigate()
   const hasPassedWelcome = useAppSelector(selectHasPassedWelcome)
   const { makeLogout, isLoading: isLogoutLoading } = useLogout()
@@ -38,7 +38,7 @@ export const WelcomePage: FC = () => {
 
   return (
     <Container
-      maxWidth='xs'
+      maxWidth="xs"
       sx={{
         minWidth: { xs: '100%', sm: '500px', md: '750px' },
         display: 'flex',
@@ -51,7 +51,7 @@ export const WelcomePage: FC = () => {
     >
       {isLogoutLoading && <Backdrop />}
       <Box
-        component='div'
+        component="div"
         sx={{
           border: '1px solid',
           borderColor: { xs: 'transparent', sm: 'primary.border' },
@@ -65,37 +65,37 @@ export const WelcomePage: FC = () => {
         {isLoading && (
           <LinearProgress sx={{ position: 'absolute', top: 0, left: 0, borderRadius: '8px 8px 0 0', width: '100%' }} />
         )}
-        <Box component='div' sx={{ display: 'flex', alignItems: 'start', flexDirection: 'column' }}>
+        <Box component="div" sx={{ display: 'flex', alignItems: 'start', flexDirection: 'column' }}>
           <Box
-            component='img'
+            component="img"
             sx={{ width: '100px' }}
-            src='https://upload.wikimedia.org/wikipedia/ru/c/c8/Rick_and_Morty_logo.png'
+            src="https://upload.wikimedia.org/wikipedia/ru/c/c8/Rick_and_Morty_logo.png"
           />
-          <Typography variant='h1' fontSize={28} sx={{ padding: '15px 0 5px', opacity: 0.9, fontWeight: 500 }}>
+          <Typography variant="h1" fontSize={28} sx={{ padding: '15px 0 5px', opacity: 0.9, fontWeight: 500 }}>
             Welcome
           </Typography>
-          <Typography variant='body2' sx={{ opacity: 0.8 }}>
+          <Typography variant="body2" sx={{ opacity: 0.8 }}>
             Just a few questions to provide you with the best possible experience:
           </Typography>
         </Box>
-        <Box component='form' onSubmit={formik.handleSubmit} sx={{ mt: '40px' }} noValidate>
+        <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: '40px' }} noValidate>
           <ValidatedInput
             fullWidth
-            autoComplete='off'
-            type='username'
-            name='username'
-            label='Username'
-            variant='outlined'
+            autoComplete="off"
+            type="username"
+            name="username"
+            label="Username"
+            variant="outlined"
             value={formik.values.username}
             errorText={formik.errors.username || authBadCredentials?.username}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             disabled={isLoading}
-            size='small'
-            helperText='You can use letters, numbers & periods'
+            size="small"
+            helperText="You can use letters, numbers & periods"
           />
           <Button
-            variant='text'
+            variant="text"
             sx={{ textTransform: 'initial', fontWeight: 500, fontSize: 16, my: '8px' }}
             onClick={onUseMyUsernameClick}
             disabled={isLoading}
@@ -103,7 +103,7 @@ export const WelcomePage: FC = () => {
             Use my username from current email
           </Button>
           <Box
-            component='div'
+            component="div"
             sx={{
               py: '20px',
               display: { sm: 'block', md: 'flex' },
@@ -118,15 +118,15 @@ export const WelcomePage: FC = () => {
               errorText={formik.errors.country}
             />
             <Box
-              component='div'
+              component="div"
               sx={{ mt: { xs: '30px', md: '10px' }, display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}
             >
-              <Typography variant='body1' sx={{ textAlign: 'end' }}>
+              <Typography variant="body1" sx={{ textAlign: 'end' }}>
                 Subscribe to the newsletter?
               </Typography>
               <Checkbox
-                id='mail_subscribe'
-                name='mail_subscribe'
+                id="mail_subscribe"
+                name="mail_subscribe"
                 checked={formik.values.mail_subscribe}
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
@@ -134,13 +134,13 @@ export const WelcomePage: FC = () => {
               />
             </Box>
           </Box>
-          <Box component='div' sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Button variant='outlined' onClick={makeLogout} disabled={isSomethingLoading}>
+          <Box component="div" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Button variant="outlined" onClick={makeLogout} disabled={isSomethingLoading}>
               Sign out
             </Button>
             <Button
-              variant='contained'
-              type='submit'
+              variant="contained"
+              type="submit"
               sx={{
                 mt: '20px',
                 float: 'right',

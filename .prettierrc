@@ -4,7 +4,7 @@
   "tabWidth": 2,
   "trailingComma": "none",
   "bracketSpacing": true,
-  "jsxSingleQuote": true,
+  "jsxSingleQuote": false,
   "bracketSameLine": false,
   "arrowParens": "avoid",
   "html.format.wrapAttributes": "force-aligned",
