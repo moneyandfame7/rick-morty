@@ -23,7 +23,7 @@ export const SignupPage = () => {
   return (
     <Container sx={{ width: { xs: '100%', sm: 450, md: 600 }, p: { xs: 0 }, mt: { sm: 10 } }}>
       <Box
-        component='main'
+        component="main"
         sx={{
           border: '1px solid',
           borderColor: { xs: 'transparent', sm: 'primary.border' },
@@ -38,13 +38,13 @@ export const SignupPage = () => {
           <LinearProgress sx={{ position: 'absolute', top: 0, left: 0, borderRadius: '8px 8px 0 0', width: '100%' }} />
         )}
         <Box
-          component='img'
+          component="img"
           sx={{ width: '100px' }}
-          src='https://upload.wikimedia.org/wikipedia/ru/c/c8/Rick_and_Morty_logo.png'
+          src="https://upload.wikimedia.org/wikipedia/ru/c/c8/Rick_and_Morty_logo.png"
         />
-        <Box component='div' sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
+        <Box component="div" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
           <Typography
-            variant='h1'
+            variant="h1"
             sx={{
               p: '16px 0 0',
               fontSize: 24,
@@ -56,7 +56,7 @@ export const SignupPage = () => {
           </Typography>
         </Box>
         <Box
-          component='form'
+          component="form"
           sx={{
             p: '30px 0 0'
           }}
@@ -65,12 +65,12 @@ export const SignupPage = () => {
         >
           <ValidatedInput
             fullWidth
-            size='small'
-            autoComplete='off'
-            type='email'
-            name='email'
-            label='Email'
-            variant='outlined'
+            size="small"
+            autoComplete="off"
+            type="email"
+            name="email"
+            label="Email"
+            variant="outlined"
             value={formik.values.email}
             errorText={formik.errors.email || authBadCredentials?.email}
             onChange={formik.handleChange}
@@ -79,28 +79,26 @@ export const SignupPage = () => {
           />
           <Grid container spacing={2} mt={2} mb={4}>
             <Grid item xs={12} sm={6}>
-              {
-                <PasswordInput
-                  id='password'
-                  name='password'
-                  fullWidth
-                  size='small'
-                  label='Password'
-                  value={formik.values.password}
-                  errorText={formik.errors.password || authBadCredentials?.password}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  disabled={isLoading}
-                />
-              }
+              <PasswordInput
+                id="password"
+                name="password"
+                fullWidth
+                size="small"
+                label="Password"
+                value={formik.values.password}
+                errorText={formik.errors.password || authBadCredentials?.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                disabled={isLoading}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <PasswordInput
-                id='confirm-password'
-                name='confirmPassword'
+                id="confirm-password"
+                name="confirmPassword"
                 fullWidth
-                size='small'
-                label='Confirm'
+                size="small"
+                label="Confirm"
                 value={formik.values.confirmPassword}
                 errorText={!!formik.values.password ? formik.errors.confirmPassword : ''}
                 onChange={formik.handleChange}
@@ -109,7 +107,7 @@ export const SignupPage = () => {
             </Grid>
           </Grid>
           <Box
-            component='div'
+            component="div"
             sx={{
               mt: '30px',
               display: 'flex',
@@ -118,9 +116,9 @@ export const SignupPage = () => {
             }}
           >
             <Button
-              variant='text'
+              variant="text"
               component={RouterLink}
-              to='/signin'
+              to="/signin"
               sx={{
                 textTransform: 'initial',
                 fontWeight: 600,
@@ -131,8 +129,8 @@ export const SignupPage = () => {
               Sign in instead
             </Button>
             <Button
-              variant='contained'
-              type='submit'
+              variant="contained"
+              type="submit"
               sx={{
                 textTransform: 'initial',
                 fontWeight: 600

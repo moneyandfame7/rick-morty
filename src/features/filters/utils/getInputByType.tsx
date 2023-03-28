@@ -1,11 +1,11 @@
 import React from 'react'
 import { FormikProps } from 'formik'
 import { NumberInput } from 'shared/components/Form/NumberInput'
-import { MAX_TAKE, MIN_TAKE } from '../constant'
+import { InputType, MAX_TAKE, MIN_TAKE } from '../constant'
 import { SelectInput } from 'shared/components/Form/SelectInput'
 import { getItemsByKey } from './getItemsByKey'
 import { TextInput } from 'shared/components/Form/TextInput'
-import { FiltersValues, InputType } from '../types'
+import type { FiltersValues } from '../types'
 import { getClearButton } from './getClearButton'
 import { setMinMaxValueInput } from './setMinMaxValueInput'
 

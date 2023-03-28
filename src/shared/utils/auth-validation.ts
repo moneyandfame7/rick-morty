@@ -1,5 +1,5 @@
-import { AuthCredentials, SignupCredentials } from 'features/authorization/type'
-import { UserWelcomeDetails } from 'features/users/type'
+import { AuthCredentials, ResetPasswordDetails, SignupCredentials } from 'features/authorization/type'
+import { ForgotCredentials, UserWelcomeDetails } from 'features/users/type'
 import * as yup from 'yup'
 
 type ObjectShapeValues = yup.ObjectShape extends Record<string, infer V> ? V : never
@@ -8,6 +8,8 @@ type Shape<T extends Record<any, any>> = Partial<Record<keyof T, ObjectShapeValu
 type AuthSchema = Shape<AuthCredentials>
 type SignupSchema = Shape<SignupCredentials>
 type WelcomeSchema = Shape<UserWelcomeDetails>
+type ForgotSchema = Shape<ForgotCredentials>
+type ResetSchema = Shape<ResetPasswordDetails>
 
 export const signupValidationSchema = yup.object<SignupSchema>({
   email: yup.string().email('Enter a valid email address').required('Enter an email address'),
@@ -25,6 +27,22 @@ export const signupValidationSchema = yup.object<SignupSchema>({
 export const loginValidationSchema = yup.object<AuthSchema>({
   email: yup.string().email('Enter a valid email address').required('Enter an email'),
   password: yup.string().required('Enter a password')
+})
+
+export const forgotValidationSchema = yup.object<ForgotSchema>({
+  email: yup.string().email('Enter a valid email address').required('Enter an email')
+})
+
+export const resetValidationSchema = yup.object<ResetSchema>({
+  password: yup
+    .string()
+    .min(8, 'Password must be at least 8 characters long')
+    .max(20, 'Password must be no more than 20 characters long')
+    .required('Enter a password'),
+  confirmPassword: yup
+    .string()
+    .required('Passwords didn’t match.')
+    .oneOf([yup.ref('password')], 'Passwords didn’t match.')
 })
 
 export const welcomeValidationSchema = yup.object<WelcomeSchema>({

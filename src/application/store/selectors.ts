@@ -1,5 +1,5 @@
 import { useAppSelector } from './hooks'
+import { RootState } from './store'
 
-export const useIsSomethingLoading = () => {
-  return useAppSelector(state => Object.values(state.api.queries).some(query => query?.status === 'pending'))
-}
+export const selectIsSomethingLoading = (state: RootState) =>
+  Object.values(state.api.queries).some(query => query?.status === 'pending')

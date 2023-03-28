@@ -1,8 +1,4 @@
-export enum InputType {
-  SELECT = 'select',
-  TEXT = 'text',
-  NUMBER = 'number'
-}
+import { InputType } from './constant'
 
 export interface EpisodeFilters {
   values: {

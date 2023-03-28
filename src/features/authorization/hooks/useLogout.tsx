@@ -1,6 +1,6 @@
+import { useAppDispatch } from 'application/store'
 import { useLogoutMutation } from 'features/authorization/services'
-import { useAppDispatch } from '../../../application/store'
-import { removeUser } from '../../users/services'
+import { removeUser } from 'features/users/services'
 
 export const useLogout = () => {
   const dispatch = useAppDispatch()

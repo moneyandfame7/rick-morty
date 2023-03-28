@@ -19,8 +19,24 @@ export interface UserWelcomeDetails {
   mail_subscribe: boolean
 }
 
+export interface ForgotCredentials {
+  email: string
+}
+
+export interface ResetPasswordParams {
+  body: {
+    password: string
+    confirmPassword: string
+  }
+  query: {
+    id: string
+    token: string
+  }
+}
+
 export interface UserCurrentCountry {
   country_code: string
   country_name: string
 }
+
 export type UserPublicProfile = Omit<User, 'mail_subscribe' | 'auth_type' | 'role'>

@@ -3,6 +3,7 @@ import { RouteProps } from 'react-router-dom'
 import {
   FORGOT_ROUTE,
   LOGIN_ROUTE,
+  RESET_ROUTE,
   SIGNUP_ROUTE,
   SUCCESS_LOGIN_ROUTE,
   WELCOME_ROUTE
@@ -45,5 +46,6 @@ export const PUBLIC_ROUTES: RouteProps[] = [
   SIGNUP_ROUTE,
   LOGIN_ROUTE,
   FORGOT_ROUTE,
+  RESET_ROUTE,
   SUCCESS_LOGIN_ROUTE
 ]

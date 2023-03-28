@@ -19,26 +19,28 @@ export const PasswordInput: FC<PasswordInputProps & TextFieldProps> = ({
 }) => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   return (
-    <Box component='div' sx={{ position: 'relative' }}>
+    <Box component="div" sx={{ position: 'relative' }}>
       <TextField
         type={showPassword ? 'text' : 'password'}
         value={value}
         onChange={onChange}
         error={!!errorText}
-        helperText={!!errorText ? errorText : ''}
-        FormHelperTextProps={{
-          sx: {
-            marginLeft: '20px'
-          }
-        }}
         InputLabelProps={{
           sx: {
             fontSize: props.size === 'small' ? 13 : '1rem'
           }
         }}
         {...props}
+        helperText={!!errorText ? errorText : props.helperText}
+        FormHelperTextProps={{
+          sx: {
+            marginLeft: '20px'
+          }
+        }}
       />
-      {errorText && <ErrorIcon sx={{ fontSize: 16, position: 'absolute', bottom: 3, color: '#d93025', left: 0 }} />}
+      {errorText && (
+        <ErrorIcon sx={{ fontSize: 16, position: 'absolute', bottom: 3, color: '#d93025', left: 0, mr: 20 }} />
+      )}
     </Box>
   )
 }
