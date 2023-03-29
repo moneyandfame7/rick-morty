@@ -1,6 +1,18 @@
 import React, { FC, useState } from 'react'
 import { isEqual } from 'lodash'
-import { Box, Button, Dialog, DialogContent, DialogTitle, Divider, Stack, Tooltip, Typography } from '@mui/material'
+import {
+  Autocomplete,
+  Box,
+  Button,
+  CircularProgress,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Divider,
+  Stack,
+  Tooltip,
+  Typography
+} from '@mui/material'
 import TuneIconOutlined from '@mui/icons-material/TuneOutlined'
 import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined'
 
@@ -9,6 +21,7 @@ import { getInputByType } from 'features/filters/utils/getInputByType'
 
 import { useFiltration } from 'shared/hooks/useFiltration'
 import { wordFromUpperCase } from 'shared/utils/wordFromUpperCase'
+import { AutocompleteNames } from 'features/characters/components/AutocompleteNames'
 
 interface FiltrationProps {
   filters: Filters
@@ -16,6 +29,7 @@ interface FiltrationProps {
 
 export const Filtration: FC<FiltrationProps> = ({ filters }) => {
   const { formValues, formInitialValues, onReset, queryStringObj, formik } = useFiltration(filters.values)
+
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
   const handleClickOpen = () => {
     setIsOpenModal(true)

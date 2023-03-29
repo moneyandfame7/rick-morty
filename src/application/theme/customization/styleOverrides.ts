@@ -19,7 +19,7 @@ export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
   MuiInputBase: {
     styleOverrides: {
       sizeSmall: {
-        height: '36px'
+        height: '40px'
       }
     }
   },

@@ -9,7 +9,7 @@ interface CharacterState {
 }
 
 const initialState: CharacterState = {
-  characters: /*getLocalStorage<ICharacter[]>(LocalStorageKey.FAVORITE_CHARACTERS) ||*/ []
+  characters: []
 }
 
 export const charactersSlice = createSlice({

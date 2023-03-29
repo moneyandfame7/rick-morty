@@ -31,6 +31,7 @@ export const ColorModeToggle = () => {
   const dispatch = useAppDispatch()
   const smallViewport = useMediaQuery('(max-width:600px)')
   const mode = useAppSelector(selectCustomization).mode
+
   const handleChange = (event: React.MouseEvent<HTMLElement>, mode: Mode | null) => {
     if (mode !== null) {
       dispatch(setMode(mode))

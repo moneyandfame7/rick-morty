@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ListGroup } from 'react-bootstrap'
 
 import { IEpisode } from 'features/episodes/type'
 
@@ -26,7 +25,7 @@ export const EpisodeList: FC<IEpisodeList> = ({ episodes }) => {
   return (
     <>
       {!data && <span style={{ padding: '20px', textAlign: 'center' }}>Error to loading episodes</span>}
-      {data && (
+      {/*  {data && (
         <ListGroup variant='flush' as='ol' numbered>
           {data.map(item => (
             <ListGroup.Item as='li' action key={item.id}>
@@ -34,7 +33,7 @@ export const EpisodeList: FC<IEpisodeList> = ({ episodes }) => {
             </ListGroup.Item>
           ))}
         </ListGroup>
-      )}
+      )}*/}
     </>
   )
 }

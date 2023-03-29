@@ -12,6 +12,7 @@ import { PasswordInput } from 'shared/components/Form/PasswordInput'
 import { HOME_ROUTE } from 'shared/routes'
 import { errorHandler } from '../components/ErrorHandler'
 import { SocialLogin } from '../components/SocialLogin'
+import { LoadingButton } from '@mui/lab'
 
 export const LoginPage: FC = () => {
   const navigate = useNavigate()
@@ -28,10 +29,8 @@ export const LoginPage: FC = () => {
   return (
     <Container sx={{ width: { xs: '100%', sm: '450px' }, p: { xs: 0 }, mt: { sm: 10 } }}>
       <Box
-        component='main'
+        component="main"
         sx={{
-          border: '1px solid',
-          borderColor: { xs: 'transparent', sm: 'primary.border' },
           borderRadius: '8px',
           minHeight: '500px',
           m: '0 auto',
@@ -39,45 +38,24 @@ export const LoginPage: FC = () => {
           position: 'relative'
         }}
       >
-        {isLoading && (
-          <LinearProgress sx={{ position: 'absolute', top: 0, left: 0, borderRadius: '8px 8px 0 0', width: '100%' }} />
-        )}
-        <Box component='div' sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <Box component="div" sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
           <Box
-            component='img'
+            component="img"
             sx={{ width: '100px' }}
-            src='https://upload.wikimedia.org/wikipedia/ru/c/c8/Rick_and_Morty_logo.png'
+            src="https://upload.wikimedia.org/wikipedia/ru/c/c8/Rick_and_Morty_logo.png"
           />
         </Box>
-        <Box component='div' sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Typography
-            variant='h1'
-            sx={{
-              p: '16px 0 0',
-              fontSize: 24,
-              fontWeight: 500,
-              opacity: 0.9
-            }}
-          >
-            Sign in
+        <Box component="div" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Typography variant="h5" fontSize={26} fontWeight="600" sx={{ my: 1 }}>
+            Log in to your account
           </Typography>
-          <Typography
-            variant='body1'
-            sx={{
-              p: '7px 0 0',
-              fontSize: 15,
-              fontWeight: 500,
-              opacity: 0.8,
-
-              letterSpacing: '0.3px'
-            }}
-          >
-            {social ? 'Use your social network' : ' Use your password'}
+          <Typography variant="body2" fontWeight="500" color="text.secondary">
+            Welcome back! Please enter your details.
           </Typography>
         </Box>
 
         <Box
-          component='form'
+          component="form"
           sx={{
             p: '30px 0 0'
           }}
@@ -89,12 +67,13 @@ export const LoginPage: FC = () => {
           ) : (
             <>
               <ValidatedInput
+                size="small"
                 fullWidth
-                autoComplete='email'
-                type='email'
-                name='email'
-                label='Email'
-                variant='outlined'
+                autoComplete="new-password"
+                type="email"
+                name="email"
+                label="Email"
+                variant="outlined"
                 value={formik.values.email}
                 errorText={formik.errors.email || authBadCredentials?.email}
                 onChange={formik.handleChange}
@@ -102,14 +81,14 @@ export const LoginPage: FC = () => {
                 disabled={isLoading}
               />
               <PasswordInput
+                size="small"
                 sx={{
                   m: '20px 0 0'
                 }}
-                autoComplete='password'
-                id='password'
-                name='password'
+                autoComplete="new-password"
+                name="password"
                 fullWidth
-                label='Password'
+                label="Password"
                 value={formik.values.password}
                 errorText={formik.errors.password || authBadCredentials?.password}
                 onChange={formik.handleChange}
@@ -119,56 +98,55 @@ export const LoginPage: FC = () => {
             </>
           )}
 
-          <Box component='div' sx={{ width: '100%', paddingTop: 1 }}>
+          <Box component="div" sx={{ width: '100%', pt: 2, display: 'flex', justifyContent: 'flex-end' }}>
             <Link
               component={RouterLink}
-              to='/forgot'
+              to="/forgot"
               sx={{
                 textTransform: 'initial',
                 fontWeight: 600,
                 fontSize: 14
               }}
-              underline='none'
+              underline="none"
             >
               Forgot password?
             </Link>
           </Box>
-          <Stack direction='row' justifyContent='space-between' paddingTop={3}>
-            <Button
-              variant='text'
-              component={RouterLink}
-              to='/signup'
+          {!social && (
+            <LoadingButton
+              fullWidth
+              variant="contained"
+              type="submit"
               sx={{
                 textTransform: 'initial',
                 fontWeight: 600,
-                padding: 0
+                mt: 3
               }}
+              loading={isLoading}
             >
-              Create account
-            </Button>
-            {!social && (
-              <Button
-                variant='contained'
-                type='submit'
-                sx={{
-                  textTransform: 'initial',
-                  fontWeight: 600
-                }}
-                disabled={isLoading}
-              >
-                Sign in
-              </Button>
-            )}
-          </Stack>
+              Sign in
+            </LoadingButton>
+          )}
         </Box>
-        <Button
-          sx={{ mt: '30px', fontWeight: 600 }}
-          onClick={() => setSocial(prev => !prev)}
-          variant='outlined'
-          fullWidth
-        >
+        <Button sx={{ fontWeight: 600, my: 3 }} onClick={() => setSocial(prev => !prev)} variant="outlined" fullWidth>
           Social login
         </Button>
+
+        <Typography variant="body2" color="text.secondary" textAlign="center">
+          Don't have an account?{' '}
+          <Link
+            component={RouterLink}
+            to="/signup"
+            sx={{
+              textTransform: 'initial',
+              fontWeight: 600,
+              fontSize: 14
+            }}
+            underline="none"
+          >
+            Sign up
+          </Link>
+        </Typography>
       </Box>
     </Container>
   )
