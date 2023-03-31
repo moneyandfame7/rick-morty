@@ -25,34 +25,33 @@ export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
   return (
     <Autocomplete
       sx={{ minWidth: '150px' }}
-      id='autocomplete-country-id'
+      id="autocomplete-country-id"
       getOptionLabel={option => option.label}
       options={items}
       onChange={(e, value) => {
         setFieldValue('country', value?.value)
       }}
-      size='small'
+      size="small"
       renderOption={(props, option) => (
-        <Box component='li' sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
           <img
-            loading='lazy'
-            width='20'
+            width="20"
             src={`https://flagcdn.com/w20/${option.value.toLowerCase()}.png`}
             srcSet={`https://flagcdn.com/w40/${option.value.toLowerCase()}.png 2x`}
-            alt=''
+            alt={option.label}
           />
           {option.label} ({option.value})
         </Box>
       )}
       renderInput={params => (
         <ValidatedInput
-          name='country'
-          label='Country'
+          name="country"
+          label="Country"
           onBlur={onBlur}
           error={!!errorText}
           errorText={errorText}
           helperText={!!errorText ? errorText : props.helperText}
-          autoComplete='shipping country'
+          autoComplete="shipping country"
           {...params}
         />
       )}

@@ -18,6 +18,7 @@ export const useSignup = () => {
   const [signup, { isSuccess, isLoading, error, isError }] = useSignupMutation()
 
   const onSubmit = async (values: AuthCredentials) => {
+    console.log(values)
     const info = await signup(values)
 
     if ('data' in info) {
@@ -38,11 +39,6 @@ export const useSignup = () => {
     validationSchema: signupValidationSchema,
     onSubmit
   })
-  useEffect(() => {
-    if (isSuccess) {
-      navigate({ pathname: WELCOME_ROUTE.path })
-    }
-  }, [isSuccess])
 
   return { formik, isLoading, isSuccess, error, isError }
 }

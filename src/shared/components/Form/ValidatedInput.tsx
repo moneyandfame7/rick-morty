@@ -17,7 +17,6 @@ export const ValidatedInput: FC<ValidatedInputProps & TextFieldProps> = ({
     <Box component="div" sx={{ position: 'relative', width: '100%' }}>
       <TextField
         {...props}
-        autoComplete="new-password"
         value={value}
         error={!!errorText}
         onChange={onChange}
@@ -28,11 +27,11 @@ export const ValidatedInput: FC<ValidatedInputProps & TextFieldProps> = ({
             marginLeft: '20px'
           }
         }}
-        InputLabelProps={{
+        /*   InputLabelProps={{
           sx: {
             fontSize: props.size === 'small' ? 13 : '1rem'
           }
-        }}
+        }}*/
       />
       {errorText && <ErrorIcon sx={{ fontSize: 16, position: 'absolute', bottom: 3, color: '#d93025', left: 0 }} />}
     </Box>

@@ -9,6 +9,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 
 import { ForgotCredentials } from 'features/users/type'
 import { ValidatedInput } from 'shared/components/Form/ValidatedInput'
+import { PrimaryIcon } from 'shared/components/common/icons/PrimaryIcon'
 import { errorHandler } from './ErrorHandler'
 
 interface ForgotPasswordFormProps {
@@ -32,9 +33,7 @@ export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ formik, error,
           gap: '4px'
         }}
       >
-        <LockOutlinedIcon
-          sx={{ fontSize: 50, bgcolor: 'primary.lighter', p: 1.3, borderRadius: '12px', color: 'primary.dark' }}
-        />
+        <PrimaryIcon icon={<LockOutlinedIcon />} />
         <Typography variant="h5" fontWeight="500">
           Forgot password?
         </Typography>

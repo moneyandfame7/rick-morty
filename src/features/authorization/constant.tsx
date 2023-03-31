@@ -8,6 +8,7 @@ interface Social {
   url: string
   label: string
   icon: React.ReactNode
+  id: number
 }
 
 const GOOGLE_REDIRECT = process.env.REACT_APP_API_URL + '/auth/google/login'
@@ -16,8 +17,8 @@ const SPOTIFY_REDIRECT = process.env.REACT_APP_API_URL + '/auth/spotify/login'
 const DISCORD_REDIRECT = process.env.REACT_APP_API_URL + '/auth/discord/login'
 
 export const SOCIALS: Social[] = [
-  { url: GOOGLE_REDIRECT, label: 'Google', icon: <GoogleIcon /> },
-  { url: GITHUB_REDIRECT, label: 'Github', icon: <GitHub /> },
-  { url: SPOTIFY_REDIRECT, label: 'Spotify', icon: <SpotifyIcon /> },
-  { url: DISCORD_REDIRECT, label: 'Spotify', icon: <DiscordIcon /> }
+  { url: GOOGLE_REDIRECT, label: 'Google', icon: <GoogleIcon />, id: 0 },
+  { url: GITHUB_REDIRECT, label: 'Github', icon: <GitHub />, id: 1 },
+  { url: SPOTIFY_REDIRECT, label: 'Spotify', icon: <SpotifyIcon />, id: 2 },
+  { url: DISCORD_REDIRECT, label: 'Spotify', icon: <DiscordIcon />, id: 3 }
 ]

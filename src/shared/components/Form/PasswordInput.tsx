@@ -21,16 +21,11 @@ export const PasswordInput: FC<PasswordInputProps & TextFieldProps> = ({
   return (
     <Box component="div" sx={{ position: 'relative' }}>
       <TextField
+        {...props}
         type={showPassword ? 'text' : 'password'}
         value={value}
         onChange={onChange}
         error={!!errorText}
-        InputLabelProps={{
-          sx: {
-            fontSize: props.size === 'small' ? 13 : '1rem'
-          }
-        }}
-        {...props}
         helperText={!!errorText ? errorText : props.helperText}
         FormHelperTextProps={{
           sx: {

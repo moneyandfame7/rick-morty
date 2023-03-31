@@ -14,20 +14,21 @@ export const Pagination: FC<PaginationProps> = ({ currentPage, pages }) => {
     const search = Object.fromEntries(new URLSearchParams(searchParams))
     setSearchParams(search)
   }
-  const isMobile = useMediaQuery('(max-width:375px)')
+  const isMobile = useMediaQuery('(max-width:485px)')
   const isTablet = useMediaQuery('(max-width:768px)')
   return (
-    <Box component='div' sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Box component="div" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <MuiPagination
         showFirstButton
         showLastButton
         count={pages}
-        shape='rounded'
-        variant='outlined'
+        color="secondary"
+        shape="rounded"
+        variant="outlined"
         onChange={onPaginationChange}
-        size='small'
+        size={isMobile ? 'small' : 'medium'}
         page={currentPage}
-        siblingCount={isMobile ? 0 : isTablet ? 1 : 5}
+        siblingCount={isMobile ? 0 : isTablet ? 1 : 4}
       />
     </Box>
   )

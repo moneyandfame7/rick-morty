@@ -52,13 +52,16 @@ const getDarkPalette = (customization: Customization): ThemeOptions['palette'] =
     paper: '#131318'
   },
   primary: {
-    main: customization.colorPrimary || '#054da7',
-    lighter: '#5ca0e5',
+    main: '#7f56d9',
+    dark: '#42307D',
+    light: '#9e77ed',
+    lighter: '#E9D7FE',
     border: '#25252d',
     transparent: '#13131880'
   },
   text: {
-    third: '#ccc7c7'
+    third: '#ccc7c7',
+    secondary: '#d8d3d3'
   }
 })
 
@@ -70,15 +73,16 @@ const getLightPalette = (customization: Customization): ThemeOptions['palette'] 
   },
   primary: {
     main: '#7f56d9',
-    dark: '#53389E',
+    dark: '#42307D',
     light: '#9e77ed',
-    lighter: '#d6bbfb',
+    lighter: '#E9D7FE',
     contrastText: '#fff',
     border: '#d8d8df',
     transparent: '#ffffff57'
   },
   text: {
-    third: '#ccc7c7'
+    third: '#ccc7c7',
+    secondary: '#4d4e50'
   }
 })
 

@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 import jwt_decode from 'jwt-decode'
 import Image from 'mui-image'
 
-import { Box, Container, Stack, Typography } from '@mui/material'
+import { Box, CircularProgress, Container, Stack, Typography } from '@mui/material'
 
 import { useAppDispatch } from 'application/store'
 
@@ -27,13 +27,14 @@ export const SuccessLoginPage: FC = () => {
         dispatch(setUser(user))
         setTimeout(() => {
           navigate({ pathname: HOME_ROUTE.path })
-        }, 1000)
+        }, 3000)
       }
     }
   }, [token])
   return (
-    <Container maxWidth='md' sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', mt: 20 }}>
-      <Stack direction='column' gap={1}>
+    <Container maxWidth="md" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <CircularProgress color="primary" />
+      {/*  <Stack direction='column' gap={1}>
         <Typography variant='body1' fontWeight={500} textAlign='center'>
           Success!
         </Typography>
@@ -52,7 +53,7 @@ export const SuccessLoginPage: FC = () => {
             borderRadius: 8
           }}
         />
-      </Box>
+      </Box>*/}
     </Container>
   )
 }

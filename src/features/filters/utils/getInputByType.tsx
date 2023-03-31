@@ -16,6 +16,7 @@ export const getInputByType = (type: InputType, key: keyof FiltersValues, formik
         <NumberInput
           id={key}
           name={key}
+          autoComplete="off"
           onChange={e => {
             formik.setFieldValue(key, String(e.target.value))
           }}
@@ -33,6 +34,7 @@ export const getInputByType = (type: InputType, key: keyof FiltersValues, formik
         <SelectInput
           id={key}
           name={key}
+          autoComplete="off"
           onChange={formik.handleChange}
           items={getItemsByKey(key)}
           value={formik.values[key]}
@@ -46,6 +48,7 @@ export const getInputByType = (type: InputType, key: keyof FiltersValues, formik
       return (
         <TextInput
           id={key}
+          autoComplete="off"
           name={key}
           onChange={formik.handleChange}
           value={formik.values[key]}

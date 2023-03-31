@@ -8,6 +8,7 @@ import { errorHandler } from '../components/ErrorHandler'
 import { GoBackButton } from '../components/GoBackButton'
 import { ResetPasswordError } from '../components/ResetPasswordError'
 import { SuccessReset } from '../components/SuccessReset'
+import { PrimaryIcon } from '../../../shared/components/common/icons/PrimaryIcon'
 
 export const ResetPasswordPage: FC = () => {
   const { formik, error, isLoading, isSuccess } = useReset()
@@ -47,9 +48,7 @@ export const ResetPasswordPage: FC = () => {
               gap: 1
             }}
           >
-            <KeyOutlinedIcon
-              sx={{ fontSize: 50, bgcolor: 'primary.lighter', p: 1.3, borderRadius: '12px', color: 'primary.dark' }}
-            />
+            <PrimaryIcon icon={<KeyOutlinedIcon />} />
             <Typography variant="h5" fontWeight="500">
               Set new password
             </Typography>

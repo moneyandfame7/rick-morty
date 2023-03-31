@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
-import { Box, Button } from '@mui/material'
+import { Stack } from '@mui/material'
+import { PrimaryButton } from 'shared/components/common/buttons/PrimaryButton'
 import { SOCIALS } from '../constant'
 
 export const SocialLogin: FC = () => {
@@ -7,20 +8,19 @@ export const SocialLogin: FC = () => {
     window.open(callbackUrl, '_self')
   }
   return (
-    <Box component='div'>
-      {SOCIALS.map((social, index) => (
-        <Button
+    <Stack direction="column" gap={'18px'} width="100%">
+      {SOCIALS.map(social => (
+        <PrimaryButton
           fullWidth
-          variant='contained'
-          sx={{ fontWeight: 600, mt: index === 0 ? 0 : '20px' }}
+          key={social.id}
           startIcon={social.icon}
           onClick={() => {
             socialLogin(social.url)
           }}
         >
           Login with {social.label}
-        </Button>
+        </PrimaryButton>
       ))}
-    </Box>
+    </Stack>
   )
 }

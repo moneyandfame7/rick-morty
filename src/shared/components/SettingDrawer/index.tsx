@@ -27,7 +27,7 @@ export const SettingDrawer: FC = () => {
           sx={{ border: '1px solid', borderColor: 'primary.border', borderRadius: '4px' }}
           onClick={openDrawer}
         >
-          <SettingsOutlinedIcon sx={{ fontSize: '1.25rem', color: 'primary.lighter' }} />
+          <SettingsOutlinedIcon sx={{ fontSize: '1.25rem', color: 'primary.dark' }} />
         </IconButton>
       </Tooltip>
 

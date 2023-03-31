@@ -6,6 +6,7 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined'
 import { ForgotCredentials } from 'features/users/type'
 import { LoadingButton } from '@mui/lab'
+import { PrimaryIcon } from '../../../shared/components/common/icons/PrimaryIcon'
 
 interface CheckEmailProps {
   email: string
@@ -30,9 +31,7 @@ export const CheckEmail: FC<CheckEmailProps> = ({ email, sendLink, isLoading, se
         gap: 1
       }}
     >
-      <EmailOutlinedIcon
-        sx={{ fontSize: 50, bgcolor: 'primary.lighter', p: 1.3, borderRadius: '12px', color: 'primary.dark', mb: 1 }}
-      />
+      <PrimaryIcon icon={<EmailOutlinedIcon />} />
       <Typography variant="h5" fontWeight="500">
         Check your email
       </Typography>
