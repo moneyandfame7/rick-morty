@@ -9,7 +9,7 @@ import { selectCustomization } from 'application/theme/customization'
 
 import { Header } from 'shared/layout'
 import { ProtectedRoute } from 'shared/components'
-import { CookieBanner } from 'shared/components/extra/CookieBanner'
+import { CookieBanner } from 'shared/components/extra'
 
 export const App: React.FC = () => {
   const customization = useAppSelector(selectCustomization)
@@ -19,6 +19,7 @@ export const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
+      {/*<SettingDrawer />*/}
       <CookieBanner />
       <Routes>
         {' '}

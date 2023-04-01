@@ -5,8 +5,7 @@ import {
   LOGIN_ROUTE,
   RESET_ROUTE,
   SIGNUP_ROUTE,
-  SUCCESS_LOGIN_ROUTE,
-  WELCOME_ROUTE
+  SUCCESS_LOGIN_ROUTE
 } from 'features/authorization/routes'
 import { USER_ACCOUNT_ROUTE, USER_PROFILE_ROUTE } from 'features/users/routes'
 import { CREATE_CHARACTER_ROUTE, MAIN_CHARACTER_ROUTE, SINGLE_CHARACTER_ROUTE } from 'features/characters/routes'
@@ -17,7 +16,6 @@ import { NOT_FOUND_ROUTE, HOME_ROUTE, FAVORITE_ROUTE } from 'shared/routes'
 export const PROTECTED_ROUTES: RouteProps[] = [
   /* Common */
   HOME_ROUTE,
-  WELCOME_ROUTE,
   FAVORITE_ROUTE,
   NOT_FOUND_ROUTE,
 

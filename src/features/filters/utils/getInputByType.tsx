@@ -1,10 +1,10 @@
 import React from 'react'
 import { FormikProps } from 'formik'
-import { NumberInput } from 'shared/components/Form/NumberInput'
+import { NumberInput } from 'shared/components/forms/NumberInput'
 import { InputType, MAX_TAKE, MIN_TAKE } from '../constant'
-import { SelectInput } from 'shared/components/Form/SelectInput'
+import { SelectInput } from 'shared/components/forms/SelectInput'
 import { getItemsByKey } from './getItemsByKey'
-import { TextInput } from 'shared/components/Form/TextInput'
+import { TextInput } from 'shared/components/forms/TextInput'
 import type { FiltersValues } from '../types'
 import { getClearButton } from './getClearButton'
 import { setMinMaxValueInput } from './setMinMaxValueInput'
@@ -16,6 +16,7 @@ export const getInputByType = (type: InputType, key: keyof FiltersValues, formik
         <NumberInput
           id={key}
           name={key}
+          autoComplete="off"
           onChange={e => {
             formik.setFieldValue(key, String(e.target.value))
           }}
@@ -33,6 +34,7 @@ export const getInputByType = (type: InputType, key: keyof FiltersValues, formik
         <SelectInput
           id={key}
           name={key}
+          autoComplete="off"
           onChange={formik.handleChange}
           items={getItemsByKey(key)}
           value={formik.values[key]}
@@ -46,6 +48,7 @@ export const getInputByType = (type: InputType, key: keyof FiltersValues, formik
       return (
         <TextInput
           id={key}
+          autoComplete="off"
           name={key}
           onChange={formik.handleChange}
           value={formik.values[key]}

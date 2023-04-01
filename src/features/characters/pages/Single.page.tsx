@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
-import { Card, Accordion } from 'react-bootstrap'
 import { Alert, AlertTitle, Button, CircularProgress, Typography } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from 'application/store'
@@ -38,21 +37,21 @@ export const SingleCharacterPage: FC = () => {
       switch (data?.status) {
         case 'Alive' as CharacterStatus:
           return (
-            <Alert severity='success'>
+            <Alert severity="success">
               <AlertTitle>Alive</AlertTitle>
               She/He is lucky — <strong>alive!</strong>
             </Alert>
           )
         case 'Dead' as CharacterStatus:
           return (
-            <Alert severity='error'>
+            <Alert severity="error">
               <AlertTitle>Dead</AlertTitle>
               Fortunately (or not fortunately for someone) - he is <strong>dead!</strong>
             </Alert>
           )
         default:
           return (
-            <Alert severity='info'>
+            <Alert severity="info">
               <AlertTitle>Unknown</AlertTitle>
               She/he is ... <strong>unknown!</strong>
             </Alert>
@@ -72,7 +71,7 @@ export const SingleCharacterPage: FC = () => {
   return isLoading ? (
     <CircularProgress />
   ) : (
-    <Typography variant='h1'>SINGLE CHARACTER PAGE</Typography>
+    <Typography variant="h1">SINGLE CHARACTER PAGE</Typography>
 
     // <div className={styles.wrapper}>
     //   <div className={styles.main}>

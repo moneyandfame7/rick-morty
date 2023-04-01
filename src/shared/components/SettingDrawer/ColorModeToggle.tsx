@@ -1,8 +1,10 @@
-import { ToggleButton, ToggleButtonGroup, useMediaQuery, useTheme } from '@mui/material'
+import React from 'react'
+
+import { ToggleButton, ToggleButtonGroup, useMediaQuery } from '@mui/material'
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import LightModeIcon from '@mui/icons-material/LightMode'
-import InvertColorsIcon from '@mui/icons-material/InvertColors'
+
 import { Mode } from 'application/theme'
 import { useAppDispatch, useAppSelector } from 'application/store'
 import { selectCustomization, setMode } from 'application/theme/customization'
@@ -21,7 +23,7 @@ const modeItems = [
     value: 'system'
   },
   {
-    id: 3,
+    id: 2,
     label: 'Dark',
     icon: <DarkModeIcon />,
     value: 'dark'
@@ -31,6 +33,7 @@ export const ColorModeToggle = () => {
   const dispatch = useAppDispatch()
   const smallViewport = useMediaQuery('(max-width:600px)')
   const mode = useAppSelector(selectCustomization).mode
+
   const handleChange = (event: React.MouseEvent<HTMLElement>, mode: Mode | null) => {
     if (mode !== null) {
       dispatch(setMode(mode))

@@ -13,6 +13,7 @@ import {
 } from '@mui/material'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 import { LINKS_CONFIG } from 'shared/layout/Header/utils/links'
+import { Logo } from '../../../components/icons/Logo'
 
 interface HeaderDrawerProps {
   window?: () => Window
@@ -24,10 +25,10 @@ export const HeaderDrawer: FC<HeaderDrawerProps> = ({ window, isOpen, onClose })
   const container = window !== undefined ? () => window().document.body : undefined
   const navigate = useNavigate()
   return (
-    <Box component='nav' sx={{ transition: '0.2s' }}>
+    <Box component="nav" sx={{ transition: '0.2s' }}>
       <Drawer
         container={container}
-        variant='temporary'
+        variant="temporary"
         open={isOpen}
         onClose={onClose}
         ModalProps={{
@@ -42,23 +43,24 @@ export const HeaderDrawer: FC<HeaderDrawerProps> = ({ window, isOpen, onClose })
           }
         }}
       >
-        <Box component='div' sx={{ textAlign: 'center', height: '70px' }}>
+        <Box component="div" sx={{ textAlign: 'center', height: '70px' }}>
           <Box
-            component='div'
+            component="div"
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              p: '20px 10px'
+              p: '16px 12px'
             }}
           >
-            <Typography variant='h6'>RICK & MORTY</Typography>
+            <Logo />
+
             <IconButton sx={{ p: 0.5 }} onClick={onClose}>
-              <CloseOutlinedIcon sx={{ fontSize: 25, color: 'primary.lighter' }} />
+              <CloseOutlinedIcon sx={{ fontSize: 25, color: 'text.secondary' }} />
             </IconButton>
           </Box>
           <Divider />
-          <List component='nav'>
+          <List component="nav" sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {LINKS_CONFIG.map(link => (
               <ListItemButton
                 key={link.id}
@@ -66,9 +68,15 @@ export const HeaderDrawer: FC<HeaderDrawerProps> = ({ window, isOpen, onClose })
                   onClose()
                   navigate({ pathname: link.url, search: link.search })
                 }}
+                sx={{ p: 0 }}
               >
-                <ListItemIcon>{link.icon}</ListItemIcon>
-                <ListItemText primary={link.name} />
+                <Typography
+                  fontWeight={600}
+                  color="text.secondary"
+                  sx={{ p: '12px 16px', fontSize: '16px', lineHeight: '24px' }}
+                >
+                  {link.name}
+                </Typography>
               </ListItemButton>
             ))}
           </List>

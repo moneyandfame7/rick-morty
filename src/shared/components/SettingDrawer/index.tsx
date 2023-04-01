@@ -1,24 +1,18 @@
 import { FC, useState } from 'react'
-import { Box, Chip, Divider, Drawer, IconButton, Stack, Tooltip, Typography } from '@mui/material'
+
+import { Box, Divider, Drawer, IconButton, Stack, Tooltip, Typography } from '@mui/material'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
-import ManageHistoryIcon from '@mui/icons-material/ManageHistory'
 
-import { useAppDispatch } from 'application/store'
-import { resetAllSetings } from 'application/theme/customization'
 import { ColorModeToggle } from './ColorModeToggle'
 
 export const SettingDrawer: FC = () => {
-  const dispatch = useAppDispatch()
   const [open, setOpen] = useState<boolean>(false)
   const openDrawer = () => {
     setOpen(true)
   }
   const closeDrawer = () => {
     setOpen(false)
-  }
-  const handleResetSettings = () => {
-    dispatch(resetAllSetings())
   }
   return (
     <>
@@ -27,7 +21,7 @@ export const SettingDrawer: FC = () => {
           sx={{ border: '1px solid', borderColor: 'primary.border', borderRadius: '4px' }}
           onClick={openDrawer}
         >
-          <SettingsOutlinedIcon sx={{ fontSize: '1.25rem', color: 'primary.lighter' }} />
+          <SettingsOutlinedIcon sx={{ fontSize: '1.25rem', color: 'primary.dark' }} />
         </IconButton>
       </Tooltip>
 

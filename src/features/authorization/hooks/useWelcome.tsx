@@ -1,6 +1,5 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router'
 import countryList from 'react-select-country-list'
 import { useFormik } from 'formik'
 
@@ -9,11 +8,9 @@ import { UserWelcomeDetails } from 'features/users/type'
 import { setUser } from 'features/users/services'
 
 import { welcomeValidationSchema } from 'shared/utils'
-import { HOME_ROUTE } from 'shared/routes'
-import { CountryData } from '../type'
+import { CountryData } from 'shared/components/forms'
 
 export const useWelcome = () => {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const countries: CountryData[] = useMemo(() => countryList().getData(), [])
   const [welcome, { isSuccess, isLoading, error }] = useWelcomeMutation()
@@ -38,11 +35,5 @@ export const useWelcome = () => {
     onSubmit
   })
 
-  useEffect(() => {
-    if (isSuccess) {
-      navigate({ pathname: HOME_ROUTE.path })
-    }
-  }, [isSuccess])
-
-  return { countries, formik, isLoading, error }
+  return { countries, formik, isLoading, error, isSuccess }
 }

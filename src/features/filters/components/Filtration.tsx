@@ -1,6 +1,18 @@
 import React, { FC, useState } from 'react'
 import { isEqual } from 'lodash'
-import { Box, Button, Dialog, DialogContent, DialogTitle, Divider, Stack, Tooltip, Typography } from '@mui/material'
+import {
+  Autocomplete,
+  Box,
+  Button,
+  CircularProgress,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Divider,
+  Stack,
+  Tooltip,
+  Typography
+} from '@mui/material'
 import TuneIconOutlined from '@mui/icons-material/TuneOutlined'
 import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined'
 
@@ -9,6 +21,9 @@ import { getInputByType } from 'features/filters/utils/getInputByType'
 
 import { useFiltration } from 'shared/hooks/useFiltration'
 import { wordFromUpperCase } from 'shared/utils/wordFromUpperCase'
+import { AutocompleteNames } from 'features/characters/components/AutocompleteNames'
+import { OutlinedButton } from '../../../shared/components/common/buttons/OutlinedButton'
+import { PrimaryButton } from '../../../shared/components/common/buttons/PrimaryButton'
 
 interface FiltrationProps {
   filters: Filters
@@ -16,6 +31,7 @@ interface FiltrationProps {
 
 export const Filtration: FC<FiltrationProps> = ({ filters }) => {
   const { formValues, formInitialValues, onReset, queryStringObj, formik } = useFiltration(filters.values)
+
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
   const handleClickOpen = () => {
     setIsOpenModal(true)
@@ -94,17 +110,17 @@ export const Filtration: FC<FiltrationProps> = ({ filters }) => {
               component="div"
               sx={{ display: 'flex', p: 1, backgroundColor: 'background.default', justifyContent: 'space-between' }}
             >
-              <Button
+              <OutlinedButton
                 startIcon={<BackspaceOutlinedIcon sx={{ width: 14 }} />}
                 variant="outlined"
                 onClick={onReset}
                 disabled={isEqual(formValues, formInitialValues)}
               >
                 Reset all filters
-              </Button>
-              <Button variant="contained" type="submit" disabled={isEqual(queryStringObj, formValues)}>
+              </OutlinedButton>
+              <PrimaryButton type="submit" disabled={isEqual(queryStringObj, formValues)}>
                 Apply filters
-              </Button>
+              </PrimaryButton>
             </Box>
           </Box>
         </DialogContent>

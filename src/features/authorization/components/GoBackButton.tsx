@@ -1,11 +1,13 @@
+import React, { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { Button } from '@mui/material'
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined'
-import React, { FC } from 'react'
-import { LOGIN_ROUTE } from '../routes'
-import { useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../../application/store'
-import { selectIsAuthenticated } from '../services'
-import { removeUser } from '../../users/services'
+
+import { useAppDispatch, useAppSelector } from 'application/store'
+import { LOGIN_ROUTE } from 'features/authorization/routes'
+import { selectIsAuthenticated } from 'features/authorization/services'
+import { removeUser } from 'features/users/services'
 
 interface GoBackButtonProps {
   isLoading?: boolean

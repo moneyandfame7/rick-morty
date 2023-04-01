@@ -1,11 +1,12 @@
 import React, { FC, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-
 import { Box, Button, Typography } from '@mui/material'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
-import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined'
+
+import { ForgotTitle } from 'features/authorization/components/titles'
 import { ForgotCredentials } from 'features/users/type'
-import { LoadingButton } from '@mui/lab'
+
+import { PrimaryIcon } from 'shared/components/common/icons'
+import { PrimaryButton } from 'shared/components/common/buttons'
 
 interface CheckEmailProps {
   email: string
@@ -18,6 +19,7 @@ export const CheckEmail: FC<CheckEmailProps> = ({ email, sendLink, isLoading, se
   const googleEmail = 'https://mail.google.com'
   useEffect(() => {
     setIsForgotForm(false)
+    /*  eslint-disable-next-line */
   }, [])
   return (
     <Box
@@ -30,26 +32,19 @@ export const CheckEmail: FC<CheckEmailProps> = ({ email, sendLink, isLoading, se
         gap: 1
       }}
     >
-      <EmailOutlinedIcon
-        sx={{ fontSize: 50, bgcolor: 'primary.lighter', p: 1.3, borderRadius: '12px', color: 'primary.dark', mb: 1 }}
-      />
-      <Typography variant="h5" fontWeight="500">
-        Check your email
-      </Typography>
-      <Typography variant="body2" fontWeight="500" color="text.secondary" textAlign="center">
-        We sent a password reset link to <strong>{email}</strong>
-      </Typography>
-      <LoadingButton
+      <PrimaryIcon icon={<EmailOutlinedIcon />} />
+      <ForgotTitle.CheckEmail email={email} />
+      <PrimaryButton
         loading={isLoading}
         fullWidth
         variant="contained"
-        sx={{ fontWeight: 500, my: 3 }}
+        sx={{ my: 3 }}
         onClick={() => {
           window.open(googleEmail, '_blank')
         }}
       >
         Open email app
-      </LoadingButton>
+      </PrimaryButton>
       <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 500, opacity: 0.9 }}>
         Didn't receive the email?{' '}
         <Button

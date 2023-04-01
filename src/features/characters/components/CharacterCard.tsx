@@ -3,6 +3,7 @@ import { Box, Button, Card, CardContent, CardMedia, IconButton, Tooltip, Typogra
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined'
 import Image from 'mui-image'
 import { ICharacter } from '../type'
+import { PrimaryButton } from '../../../shared/components/common/buttons/PrimaryButton'
 
 interface CharacterCardProps {
   character: ICharacter
@@ -10,7 +11,7 @@ interface CharacterCardProps {
 
 export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
   return (
-    <Card variant='outlined' sx={{ padding: '1rem' }}>
+    <Card variant="outlined" sx={{ padding: '1rem' }}>
       <CardContent
         sx={{
           padding: '0 0 10px',
@@ -30,11 +31,11 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
           }}
         >
           <Tooltip title={character.name}>
-            <Typography noWrap variant='h2' fontSize={18} sx={{ opacity: 0.9 }} fontWeight={800}>
+            <Typography noWrap variant="h2" fontSize={18} sx={{ opacity: 0.9 }} fontWeight={800}>
               {character.name}
             </Typography>
           </Tooltip>
-          <Typography variant='body2' sx={{ opacity: 0.7 }}>
+          <Typography variant="body2" sx={{ opacity: 0.7 }}>
             {character.species}
           </Typography>
         </div>
@@ -44,7 +45,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
         </IconButton>
       </CardContent>
       <Box
-        component='div'
+        component="div"
         sx={{
           userSelect: 'none',
           borderRadius: '8px',
@@ -68,8 +69,8 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
         >
           <Image
             src={character.image}
-            width='100%'
-            height='100%'
+            width="100%"
+            height="100%"
             duration={300}
             style={{
               borderRadius: 8
@@ -86,17 +87,15 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
         }}
       >
         <div>
-          <Typography variant='body2' sx={{ opacity: 0.6, fontSize: 12 }}>
+          <Typography variant="body2" sx={{ opacity: 0.6, fontSize: 12 }}>
             Status:
           </Typography>
-          <Typography variant='body2' sx={{ opacity: 1, fontSize: 16 }}>
+          <Typography variant="body2" sx={{ opacity: 1, fontSize: 16 }}>
             {character.status}
           </Typography>
         </div>
 
-        <Button variant='contained' size='small'>
-          Show more
-        </Button>
+        <PrimaryButton>Show more</PrimaryButton>
       </CardContent>
     </Card>
   )

@@ -2,12 +2,12 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import storage from 'redux-persist/lib/storage'
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, persistStore, persistReducer } from 'redux-persist'
+
 import { rootApi } from 'application/store/root-api.slice'
 
+import { customizationReducer } from 'application/theme/customization'
 import { charactersReducer } from 'features/characters/services'
 import { userReducer } from 'features/users/services'
-
-import { customizationReducer } from 'application/theme/customization'
 
 const persistConfig = {
   key: 'root',
@@ -34,11 +34,9 @@ export const store = configureStore({
 })
 
 store.subscribe(() => {
-  const state = store.getState()
-
+  /*const state = store.getState()*/
   // maybe це потрібно щоб працювало?
   /*const { characters } = state.favoriteCharacters*/
-
   /*  setLocalStorage(LocalStorageKey.FAVORITE_CHARACTERS, characters)*/
 })
 

@@ -2,10 +2,10 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { Box, Button, Typography } from '@mui/material'
-import TaskAltIcon from '@mui/icons-material/TaskAlt'
 
-import { GoBackButton } from './GoBackButton'
+import { GoBackButton } from 'features/authorization/components'
 import { HOME_ROUTE } from 'shared/routes'
+import { SuccessIcon } from 'shared/components/common/icons'
 
 export const SuccessReset = () => {
   const navigate = useNavigate()
@@ -25,22 +25,7 @@ export const SuccessReset = () => {
         width: '80%'
       }}
     >
-      <Box
-        component="div"
-        sx={{
-          backgroundColor: '#4dae191f',
-          width: 'max-content',
-          display: 'flex',
-          alignItems: 'center',
-          borderRadius: '50%',
-          p: 1,
-          mb: 1
-        }}
-      >
-        <TaskAltIcon
-          sx={{ fontSize: 50, backgroundColor: '#00800040', p: 1.3, borderRadius: '50%', color: 'success.main' }}
-        />
-      </Box>
+      <SuccessIcon />
       <Typography variant="h5" fontWeight="600" textAlign="center">
         Reset password success
       </Typography>

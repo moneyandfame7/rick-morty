@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 
 import { useAppDispatch } from 'application/store'
@@ -9,15 +7,14 @@ import { useSignupMutation } from 'features/authorization/services'
 import { setUser } from 'features/users/services'
 
 import { signupValidationSchema } from 'shared/utils'
-import { WELCOME_ROUTE } from '../routes'
 
 export const useSignup = () => {
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   const [signup, { isSuccess, isLoading, error, isError }] = useSignupMutation()
 
   const onSubmit = async (values: AuthCredentials) => {
+    console.log(values)
     const info = await signup(values)
 
     if ('data' in info) {
@@ -38,11 +35,6 @@ export const useSignup = () => {
     validationSchema: signupValidationSchema,
     onSubmit
   })
-  useEffect(() => {
-    if (isSuccess) {
-      navigate({ pathname: WELCOME_ROUTE.path })
-    }
-  }, [isSuccess])
 
   return { formik, isLoading, isSuccess, error, isError }
 }

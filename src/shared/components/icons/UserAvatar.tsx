@@ -10,12 +10,12 @@ interface UserAvatarProps extends IconButtonProps {
 
 export const UserAvatar: FC<UserAvatarProps> = ({ user, sx, ...props }) => {
   return (
-    <Tooltip title='You'>
+    <Tooltip title="You">
       <IconButton
         sx={{ ...sx, border: '1px solid', borderColor: 'primary.border', borderRadius: '4px' }}
         onClick={props.onClick}
       >
-        <PersonOutlineOutlinedIcon sx={{ color: 'primary.lighter' }} />
+        <PersonOutlineOutlinedIcon sx={{ color: 'primary.dark' }} />
       </IconButton>
     </Tooltip>
   )

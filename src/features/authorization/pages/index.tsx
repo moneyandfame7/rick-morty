@@ -1,3 +1,7 @@
-export * from './Signup.page'
-export * from './Login.page'
-export * from './Welcome.page'
+export * from './login/index'
+
+export * from './signup/index'
+
+export * from './forgot/index'
+
+export * from './reset/index'
