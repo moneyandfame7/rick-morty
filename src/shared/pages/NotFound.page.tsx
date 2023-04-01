@@ -1,15 +1,15 @@
 import React, { FC } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
 import { Container, Stack, Typography } from '@mui/material'
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined'
-import { OutlinedButton } from '../components/common/buttons/OutlinedButton'
-import { LinkButton } from '../components/common/buttons/LinkButton'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
-import { PrimaryIcon } from '../components/common/icons/PrimaryIcon'
-import { HOME_ROUTE } from '../routes'
+
+import { LinkButton, OutlinedButton } from 'shared/components/common/buttons'
+import { PrimaryIcon } from 'shared/components/common/icons'
+import { HOME_ROUTE } from 'shared/routes'
 
 export const NotFoundPage: FC = () => {
-  const location = useLocation()
   const navigate = useNavigate()
   return (
     <Container

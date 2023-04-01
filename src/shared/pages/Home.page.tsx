@@ -1,13 +1,11 @@
 import React, { FC } from 'react'
 import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
-import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
-import { getRandomFromInterval } from 'shared/utils/randomNumber'
 import { useTheme } from '@mui/material'
+
+import { getRandomFromInterval } from 'shared/utils/randomNumber'
 
 const ImgMediaCard = () => {
   const theme = useTheme()

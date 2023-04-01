@@ -1,16 +1,14 @@
 import React, { FC } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu'
 import {
   alpha,
   AppBar,
   Box,
-  Chip,
   Container,
   darken,
   IconButton,
   LinearProgress,
-  Stack,
   Toolbar,
   Tooltip,
   Typography,

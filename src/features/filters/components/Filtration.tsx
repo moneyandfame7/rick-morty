@@ -1,29 +1,15 @@
 import React, { FC, useState } from 'react'
 import { isEqual } from 'lodash'
-import {
-  Autocomplete,
-  Box,
-  Button,
-  CircularProgress,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Divider,
-  Stack,
-  Tooltip,
-  Typography
-} from '@mui/material'
+import { Box, Button, Dialog, DialogContent, DialogTitle, Divider, Stack, Tooltip, Typography } from '@mui/material'
 import TuneIconOutlined from '@mui/icons-material/TuneOutlined'
 import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined'
 
 import { Filters, FiltersTypes, FiltersValues } from 'features/filters/types'
 import { getInputByType } from 'features/filters/utils/getInputByType'
 
-import { useFiltration } from 'shared/hooks/useFiltration'
-import { wordFromUpperCase } from 'shared/utils/wordFromUpperCase'
-import { AutocompleteNames } from 'features/characters/components/AutocompleteNames'
-import { OutlinedButton } from '../../../shared/components/common/buttons/OutlinedButton'
-import { PrimaryButton } from '../../../shared/components/common/buttons/PrimaryButton'
+import { useFiltration } from 'shared/hooks'
+import { wordFromUpperCase } from 'shared/utils'
+import { PrimaryButton, OutlinedButton } from 'shared/components/common/buttons'
 
 interface FiltrationProps {
   filters: Filters

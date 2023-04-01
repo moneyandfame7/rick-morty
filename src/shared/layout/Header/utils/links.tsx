@@ -1,3 +1,5 @@
+import React from 'react'
+
 import SmartToyIcon from '@mui/icons-material/SmartToy'
 import LocationSearchingIcon from '@mui/icons-material/LocationSearching'
 import MovieIcon from '@mui/icons-material/Movie'

@@ -1,16 +1,16 @@
 import { rootApi } from 'application/store/root-api.slice'
 
-import type { ICharacter, IManyCharacter } from 'features/characters/type'
+import type { Character, ManyCharacter } from 'features/characters/type'
 
 import { NavigationEnum } from 'shared/constants'
 import { CharacterFields } from '../constant'
 
 const characterApi = rootApi.injectEndpoints({
   endpoints: builder => ({
-    getManyCharacters: builder.query<IManyCharacter, string | void>({
+    getManyCharacters: builder.query<ManyCharacter, string | void>({
       query: (query: string) => `api/${NavigationEnum.CHARACTERS}?${query}`
     }),
-    getOneCharacter: builder.query<ICharacter, number | void>({
+    getOneCharacter: builder.query<Character, number | void>({
       query: id => `api/${NavigationEnum.CHARACTERS}/${id}`
     }),
     getCharactersNames: builder.mutation<string[], string>({

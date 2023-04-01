@@ -1,19 +1,11 @@
 import React, { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {
-  Box,
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Typography
-} from '@mui/material'
+
+import { Box, Divider, Drawer, IconButton, List, ListItemButton, Typography } from '@mui/material'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
+
 import { LINKS_CONFIG } from 'shared/layout/Header/utils/links'
-import { Logo } from '../../../components/icons/Logo'
+import { Logo } from 'shared/components/icons'
 
 interface HeaderDrawerProps {
   window?: () => Window

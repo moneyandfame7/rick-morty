@@ -5,8 +5,6 @@ import { useAppSelector } from 'application/store'
 
 import { selectFavoriteCharacters } from 'features/characters/services'
 
-import { Modal } from 'shared/components'
-
 export const FavoritePage: FC = () => {
   const [isEmpty, setIsEmpty] = useState<boolean>(false)
   const characters = useAppSelector(selectFavoriteCharacters)

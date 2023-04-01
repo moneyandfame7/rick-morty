@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { concat, filter, isEmpty } from 'lodash'
 
-import type { ICharacter } from 'features/characters/type'
+import type { Character } from 'features/characters/type'
 
 interface CharacterState {
-  characters: ICharacter[]
+  characters: Character[]
 }
 
 const initialState: CharacterState = {
@@ -16,7 +16,7 @@ export const charactersSlice = createSlice({
   name: 'characters',
   initialState,
   reducers: {
-    addToFavorite: (state, action: PayloadAction<ICharacter>) => {
+    addToFavorite: (state, action: PayloadAction<Character>) => {
       state.characters = filter(concat(state.characters, action.payload), o => !isEmpty(o))
     },
     removeFromFavorite: (state, action: PayloadAction<number>) => {

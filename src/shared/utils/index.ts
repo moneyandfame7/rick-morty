@@ -1,7 +1,5 @@
-export * from './auth-validation'
+export * from './authorizationValidation'
 
-export * from './fetch'
+export * from './getIdFromUrl'
 
-export * from './get-id-from-url'
-
-export * from './local-storage'
+export * from './wordFromUpperCase'

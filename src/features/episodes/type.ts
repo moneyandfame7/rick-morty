@@ -1,4 +1,4 @@
-import { IPageInformation } from 'shared/types'
+import { PageInformation } from 'shared/types'
 
 export interface IEpisode {
   id: number
@@ -10,6 +10,6 @@ export interface IEpisode {
 }
 
 export interface IManyEpisode {
-  info: IPageInformation
+  info: PageInformation
   results: IEpisode[]
 }

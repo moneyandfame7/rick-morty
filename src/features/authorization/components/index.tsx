@@ -12,4 +12,6 @@ export * from './ResetPasswordError'
 
 export * from './SocialLogin'
 
+export * from './ProtectedRoute'
+
 export * from './SuccessReset'

@@ -1,17 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks'
-import { BaseQueryFn, FetchArgs, FetchBaseQueryError, MutationDefinition } from '@reduxjs/toolkit/dist/query'
 import { ListItemIcon, ListItemText, MenuItem } from '@mui/material'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined'
 import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
-
-import { useAppDispatch } from 'application/store'
-
-import { removeUser } from 'features/users/services'
-import { AuthResponse } from 'features/authorization/type'
 
 interface MenuItems {
   id: number

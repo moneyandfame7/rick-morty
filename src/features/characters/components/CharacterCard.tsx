@@ -1,12 +1,12 @@
 import { FC } from 'react'
-import { Box, Button, Card, CardContent, CardMedia, IconButton, Tooltip, Typography } from '@mui/material'
+import { Box, Card, CardContent, CardMedia, IconButton, Tooltip, Typography } from '@mui/material'
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined'
 import Image from 'mui-image'
-import { ICharacter } from '../type'
-import { PrimaryButton } from '../../../shared/components/common/buttons/PrimaryButton'
+import { Character } from '../type'
+import { PrimaryButton } from 'shared/components/common/buttons'
 
 interface CharacterCardProps {
-  character: ICharacter
+  character: Character
 }
 
 export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {

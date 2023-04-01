@@ -1,6 +1,6 @@
-import { IPageInformation } from 'shared/types'
+import { PageInformation } from 'shared/types'
 
-export interface ILocation {
+export interface Location {
   id: number
   name: string
   type: string
@@ -10,6 +10,6 @@ export interface ILocation {
 }
 
 export interface IManyLocation {
-  info: IPageInformation
-  results: ILocation[]
+  info: PageInformation
+  results: Location[]
 }
