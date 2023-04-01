@@ -1,8 +1,9 @@
 import React from 'react'
 import { GitHub } from '@mui/icons-material'
-import { GoogleIcon } from './components/GoogleIcon'
-import { SpotifyIcon } from './components/SpotifyIcon'
-import { DiscordIcon } from './components/DiscordIcon'
+
+import { GoogleIcon } from 'features/authorization/components/icons'
+import { SpotifyIcon } from 'features/authorization/components/icons'
+import { DiscordIcon } from 'features/authorization/components/icons'
 
 interface Social {
   url: string

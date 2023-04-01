@@ -1,13 +1,14 @@
 import { FC, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
-/* ui */
+
 import { Button, Grid, Typography } from '@mui/material'
 import CookieOutlinedIcon from '@mui/icons-material/CookieOutlined'
-/* logic */
+
 import { useAppDispatch, useAppSelector } from 'application/store'
 import { selectIsAcceptCookie, setAcceptCookie } from 'features/users/services'
 import { getIsAuthorizationRoute } from 'shared/utils/getIsAuthorizationRoute'
+
 import 'shared/styles/animation.css'
 
 export const CookieBanner: FC = () => {

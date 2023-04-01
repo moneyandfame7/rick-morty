@@ -32,8 +32,3 @@ export interface Token {
   user_id: string
   refresh_token: string
 }
-
-export interface CountryData {
-  value: string
-  label: string
-}

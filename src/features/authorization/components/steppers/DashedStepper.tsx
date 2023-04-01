@@ -1,17 +1,13 @@
-import { MobileStepper } from '@mui/material'
 import { FC, useContext } from 'react'
-import { StepperContext } from 'features/authorization/pages'
+import { MobileStepper } from '@mui/material'
+import { StepperContext, STEPS } from './utils'
 
-interface DashedStepperProps {
-  steps: number
-}
-
-export const DashedStepper: FC<DashedStepperProps> = ({ steps }) => {
+export const DashedStepper: FC = () => {
   const { activeStep } = useContext(StepperContext)
   return (
     <MobileStepper
       variant="dots"
-      steps={steps}
+      steps={STEPS.length}
       position="static"
       activeStep={activeStep}
       sx={{

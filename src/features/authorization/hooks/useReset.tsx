@@ -1,3 +1,4 @@
+import { useSearchParams } from 'react-router-dom'
 import { useFormik } from 'formik'
 
 import { useAppDispatch } from 'application/store'
@@ -7,8 +8,6 @@ import { useResetMutation } from 'features/authorization/services'
 import { setUser } from 'features/users/services'
 
 import { resetValidationSchema } from 'shared/utils'
-import { useQueryParams } from 'shared/hooks'
-import { useSearchParams } from 'react-router-dom'
 
 export const useReset = () => {
   const [searchParams] = useSearchParams()

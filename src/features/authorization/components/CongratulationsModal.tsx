@@ -1,12 +1,13 @@
 import React, { FC, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Confetti from 'react-confetti'
 import { useWindowSize } from 'react-use'
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, Typography } from '@mui/material'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
-import { PrimaryButton } from 'shared/components/common/buttons/PrimaryButton'
-import { useNavigate } from 'react-router-dom'
-import { HOME_ROUTE } from '../../../shared/routes'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, Typography } from '@mui/material'
+
+import { PrimaryButton } from 'shared/components/common/buttons'
+import { HOME_ROUTE } from 'shared/routes'
 
 export const CongratulationsModal: FC = () => {
   const { width, height } = useWindowSize()

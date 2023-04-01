@@ -2,7 +2,6 @@ import React, { FC, PropsWithChildren } from 'react'
 import { Navigate } from 'react-router-dom'
 
 import { useAppSelector } from 'application/store'
-
 import { selectHasPassedWelcome, selectIsAuthenticated } from 'features/authorization/services'
 
 export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {

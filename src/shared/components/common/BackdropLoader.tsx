@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { Backdrop as MuiBackdrop, CircularProgress } from '@mui/material'
+import { Backdrop, CircularProgress } from '@mui/material'
 
-export const Backdrop: FC = () => {
+export const BackdropLoader: FC = () => {
   return (
-    <MuiBackdrop
+    <Backdrop
       sx={{
         color: 'primary.lighter',
         zIndex: 10000
@@ -11,6 +11,6 @@ export const Backdrop: FC = () => {
       open={true}
     >
       <CircularProgress thickness={7} />
-    </MuiBackdrop>
+    </Backdrop>
   )
 }

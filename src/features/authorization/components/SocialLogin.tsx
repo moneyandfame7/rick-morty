@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import { Stack } from '@mui/material'
-import { PrimaryButton } from 'shared/components/common/buttons/PrimaryButton'
-import { SOCIALS } from '../constant'
+
+import { SOCIALS } from 'features/authorization/constant'
+import { PrimaryButton } from 'shared/components/common/buttons'
 
 export const SocialLogin: FC = () => {
   const socialLogin = (callbackUrl: string) => {

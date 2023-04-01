@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom'
+
 import { useAppDispatch } from 'application/store'
+
 import { useLogoutMutation } from 'features/authorization/services'
 import { removeUser } from 'features/users/services'
-import { useNavigate } from 'react-router-dom'
-import { LOGIN_ROUTE } from '../routes'
+import { LOGIN_ROUTE } from 'features/authorization/routes'
 
 export const useLogout = () => {
   const navigate = useNavigate()

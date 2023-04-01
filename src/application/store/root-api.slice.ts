@@ -1,4 +1,4 @@
-import { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import type { AuthResponse } from 'features/authorization/type'
@@ -41,5 +41,5 @@ const baseQueryWithRefresh: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQu
 
 export const rootApi = createApi({
   baseQuery: baseQueryWithRefresh,
-  endpoints: builder => ({})
+  endpoints: () => ({})
 })

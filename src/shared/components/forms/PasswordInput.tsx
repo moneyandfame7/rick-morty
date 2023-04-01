@@ -1,10 +1,8 @@
-import { Visibility, VisibilityOff } from '@mui/icons-material'
-import { FC, useState } from 'react'
-import { Box, IconButton, InputAdornment, TextField, TextFieldProps } from '@mui/material'
+import { FC } from 'react'
+import { Box, TextField, TextFieldProps } from '@mui/material'
 import ErrorIcon from '@mui/icons-material/Error'
 
 interface PasswordInputProps {
-  // validate: FormikProps<PasswordValidateObject>
   errorText?: string
   touched?: boolean
 }
@@ -17,12 +15,11 @@ export const PasswordInput: FC<PasswordInputProps & TextFieldProps> = ({
   onBlur,
   ...props
 }) => {
-  const [showPassword, setShowPassword] = useState<boolean>(false)
   return (
     <Box component="div" sx={{ position: 'relative' }}>
       <TextField
         {...props}
-        type={showPassword ? 'text' : 'password'}
+        type={'password'}
         value={value}
         onChange={onChange}
         error={!!errorText}

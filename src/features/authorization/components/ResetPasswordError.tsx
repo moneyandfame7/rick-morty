@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import { Box, Typography } from '@mui/material'
 import WarningIcon from '@mui/icons-material/Warning'
-import { GoBackButton } from './GoBackButton'
+
+import { GoBackButton } from 'features/authorization/components'
 
 interface ResetPasswordErrorProps {
   error: string | undefined

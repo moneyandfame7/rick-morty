@@ -1,4 +1,4 @@
-import { darken, lighten, Theme } from '@mui/material'
+import { Theme } from '@mui/material'
 
 export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
   MuiFormLabel: {
@@ -65,8 +65,8 @@ export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
         '&:-webkit-autofill': {
           WebkitBoxShadow: `0 0 0 100px ${
             theme.palette.mode === 'dark'
-              ? lighten(theme.palette.background.default, 0.07)
-              : darken(theme.palette.background.default, 0.03)
+              ? /*lighten(theme.palette.background.default, 0.07)*/ '#1f1739'
+              : /*darken(theme.palette.background.default, 0.03)*/ 'rgb(224 217 254)'
           } inset`,
           WebkitTextFillColor: theme.palette.text.primary
         }

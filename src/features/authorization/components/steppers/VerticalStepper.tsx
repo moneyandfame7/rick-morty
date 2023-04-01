@@ -1,18 +1,17 @@
 import React, { FC, useContext } from 'react'
-import Box from '@mui/material/Box'
 import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
 import StepContent from '@mui/material/StepContent'
 import Typography from '@mui/material/Typography'
-import { StepperContext } from '../../pages'
-import { StepIcon, STEPS } from './utils'
-import { darken } from '@mui/material'
+import { darken, Grid } from '@mui/material'
+
+import { StepIcon, StepperContext, STEPS } from './utils'
 
 export const VerticalStepper: FC = () => {
   const { activeStep } = useContext(StepperContext)
   return (
-    <Box sx={{ maxWidth: 400 }}>
+    <Grid item xs sx={{ width: '100%', mt: 10 }}>
       <Stepper
         activeStep={activeStep}
         orientation="vertical"
@@ -38,7 +37,7 @@ export const VerticalStepper: FC = () => {
                   color: '#fff !important'
                 },
                 '& .Mui-completed': {
-                  color: darken('#fff', 0.15)
+                  color: `${darken('#fff', 0.15)} !important`
                 }
               }}
               StepIconComponent={StepIcon}
@@ -55,6 +54,6 @@ export const VerticalStepper: FC = () => {
           </Step>
         ))}
       </Stepper>
-    </Box>
+    </Grid>
   )
 }

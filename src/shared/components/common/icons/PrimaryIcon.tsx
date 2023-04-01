@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
-import { alpha, Box, lighten, useTheme } from '@mui/material'
+import { alpha, Box, useTheme } from '@mui/material'
 
-interface PrimaryIcon {
+interface PrimaryIconProps {
   icon: React.ReactNode
 }
 
-export const PrimaryIcon: FC<PrimaryIcon> = ({ icon }) => {
+export const PrimaryIcon: FC<PrimaryIconProps> = ({ icon }) => {
   const theme = useTheme()
   return (
     <Box

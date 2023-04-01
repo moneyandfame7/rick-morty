@@ -10,6 +10,7 @@ const getContrastColor = (theme: Theme, coeff: number) => {
       return darken(theme.palette.background.default, coeff)
   }
 }
+
 export const StyledOutlineButton = styled(LoadingButton)<LoadingButtonProps>(({ theme }) => ({
   background: theme.palette.background.default,
   border: `1px solid ${theme.palette.divider}`,
@@ -17,8 +18,8 @@ export const StyledOutlineButton = styled(LoadingButton)<LoadingButtonProps>(({ 
   boxShadow: '0px 1px 2px rgba(16, 24, 40, 0.05)',
   fontWeight: 600,
   fontSize: 14,
-  transition: 'all 0.2s ease',
   color: theme.palette.text.primary,
+  transition: 'none !important',
   '&: hover': {
     backgroundColor: getContrastColor(theme, 0.02)
   },

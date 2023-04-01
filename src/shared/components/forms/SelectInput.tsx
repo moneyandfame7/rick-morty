@@ -1,19 +1,5 @@
-import {
-  FormControl,
-  FormControlTypeMap,
-  FormHelperText,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  SelectProps,
-  TextField,
-  TextFieldProps,
-  Theme
-} from '@mui/material'
-import { DefaultComponentProps } from '@mui/material/OverridableComponent'
-import { FC, useState } from 'react'
-import { makeStyles } from '@mui/material/styles'
+import { FC } from 'react'
+import { MenuItem, TextField, TextFieldProps } from '@mui/material'
 
 interface SelectInputInterface {
   items: string[]
@@ -29,7 +15,7 @@ export const SelectInput: FC<SelectInputProps> = ({ items, ...props }) => {
       select
       onChange={props.onChange}
       value={props.value}
-      size='small'
+      size="small"
       fullWidth
       {...props}
     >

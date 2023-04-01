@@ -1,15 +1,19 @@
 import { FC } from 'react'
-import { Autocomplete, Box, TextField, TextFieldProps } from '@mui/material'
-import ErrorIcon from '@mui/icons-material/Error'
+import { Autocomplete, Box, TextFieldProps } from '@mui/material'
 
-import { CountryData } from 'features/authorization/type'
-import { ValidatedInput } from './ValidatedInput'
+import { ValidatedInput } from 'shared/components/forms/ValidatedInput'
+
+export interface CountryData {
+  value: string
+  label: string
+}
 
 interface CountryAutocompleteInputInterface {
   items: CountryData[]
   errorText?: string
   setFieldValue: (field: string, value: string | undefined) => void
 }
+
 type CountryAutocompleteInputProps = CountryAutocompleteInputInterface & TextFieldProps
 export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
   items,

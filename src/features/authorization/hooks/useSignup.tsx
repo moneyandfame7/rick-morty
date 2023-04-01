@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 
 import { useAppDispatch } from 'application/store'
@@ -9,10 +7,8 @@ import { useSignupMutation } from 'features/authorization/services'
 import { setUser } from 'features/users/services'
 
 import { signupValidationSchema } from 'shared/utils'
-import { WELCOME_ROUTE } from '../routes'
 
 export const useSignup = () => {
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   const [signup, { isSuccess, isLoading, error, isError }] = useSignupMutation()

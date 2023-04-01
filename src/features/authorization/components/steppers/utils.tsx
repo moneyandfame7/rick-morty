@@ -1,8 +1,18 @@
-import React, { FC } from 'react'
+import React, { createContext, FC } from 'react'
 import Box from '@mui/material/Box'
 import { StepIconProps } from '@mui/material/StepIcon'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import AdjustIcon from '@mui/icons-material/Adjust'
+
+interface StepperContextType {
+  activeStep: number
+  setActiveStep: React.Dispatch<React.SetStateAction<number>>
+}
+
+export const StepperContext = createContext<StepperContextType>({
+  activeStep: 0,
+  setActiveStep: () => {}
+})
 
 export const STEPS = [
   {
@@ -22,32 +32,25 @@ export const STEPS = [
   }
 ]
 
-const StepIconCompleted: FC = () => {
-  return <CheckCircleIcon />
-}
-const StepIconActive: FC = () => {
-  return (
-    <Box
-      sx={{
-        backgroundColor: 'primary.lighter',
-        width: 24,
-        height: 24,
-        borderRadius: '50%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      <Box sx={{ backgroundColor: 'primary.main', width: 9, height: 9, borderRadius: '50%' }}></Box>
-    </Box>
-  )
-}
-const StepIconBase: FC = () => {
-  return <AdjustIcon sx={{ color: 'primary.lighter' }} />
-}
+const StepIconCompleted: FC = () => <CheckCircleIcon />
+const StepIconActive: FC = () => (
+  <Box
+    sx={{
+      backgroundColor: 'primary.lighter',
+      width: 24,
+      height: 24,
+      borderRadius: '50%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}
+  >
+    <Box sx={{ backgroundColor: 'primary.main', width: 9, height: 9, borderRadius: '50%' }}></Box>
+  </Box>
+)
+const StepIconBase: FC = () => <AdjustIcon sx={{ color: 'primary.lighter' }} />
 
-export const StepIcon = (props: StepIconProps) => {
-  const { active, completed } = props
+export const StepIcon: FC<StepIconProps> = ({ active, completed }) => {
   if (active) {
     return <StepIconActive />
   } else if (completed) {

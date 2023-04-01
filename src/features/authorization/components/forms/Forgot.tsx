@@ -4,13 +4,14 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
 import { SerializedError } from '@reduxjs/toolkit'
 
 import { Box, Typography } from '@mui/material'
-import { LoadingButton } from '@mui/lab'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 
 import { ForgotCredentials } from 'features/users/type'
-import { ValidatedInput } from 'shared/components/Form/ValidatedInput'
+import { errorHandler } from 'features/authorization/services'
+
+import { ValidatedInput } from 'shared/components/forms/ValidatedInput'
 import { PrimaryIcon } from 'shared/components/common/icons/PrimaryIcon'
-import { errorHandler } from './ErrorHandler'
+import { PrimaryButton } from 'shared/components/common/buttons'
 
 interface ForgotPasswordFormProps {
   formik: FormikProps<ForgotCredentials>
@@ -63,9 +64,9 @@ export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ formik, error,
           onBlur={formik.handleBlur}
           disabled={isLoading}
         />
-        <LoadingButton loading={isLoading} type="submit" fullWidth variant="contained">
+        <PrimaryButton loading={isLoading} type="submit" fullWidth>
           Reset password
-        </LoadingButton>
+        </PrimaryButton>
       </Box>
     </>
   )

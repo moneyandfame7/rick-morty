@@ -1,42 +1,34 @@
 import React, { FC, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Box, Divider, Stack, Typography, useTheme } from '@mui/material'
+
+import { Box, Divider, Stack, Typography } from '@mui/material'
 
 import { useSignup } from 'features/authorization/hooks'
-import { StepperContext } from 'features/authorization/pages'
+import { errorHandler } from 'features/authorization/services'
+import { SocialLogin } from 'features/authorization/components'
+import { StepperContext } from 'features/authorization/components/steppers'
+import Title from 'features/authorization/components/titles/Signup'
 
-import { ValidatedInput } from 'shared/components/Form/ValidatedInput'
-import { PasswordInput } from 'shared/components/Form/PasswordInput'
-import { PrimaryButton } from 'shared/components/common/buttons/PrimaryButton'
-import { OutlinedButton } from 'shared/components/common/buttons/OutlinedButton'
-import { LogoIcon } from 'shared/components/common/icons/LogoIcon'
-import { errorHandler } from '../ErrorHandler'
-import { SocialLogin } from '../SocialLogin'
-
-export const CreateAccountForm: FC = () => {
-  const theme = useTheme()
-  const { formik, isLoading, error, isError, isSuccess } = useSignup()
+import { ValidatedInput } from 'shared/components/forms'
+import { PasswordInput } from 'shared/components/forms'
+import { PrimaryButton } from 'shared/components/common/buttons'
+import { OutlinedButton } from 'shared/components/common/buttons'
+export const SignupForm: FC = () => {
+  const { formik, isLoading, error, isSuccess } = useSignup()
   const [isSocial, setIsSocial] = useState(false)
-  const { activeStep, setActiveStep } = useContext(StepperContext)
+  const { setActiveStep } = useContext(StepperContext)
   useEffect(() => {
     if (isSuccess) {
       setActiveStep(prev => prev + 1)
     }
+    /*  eslint-disable-next-line */
   }, [isSuccess])
   const authBadCredentials = errorHandler(error)
   return (
     <Stack direction="column" width="100%">
       <Box sx={{ width: '100%' }} component="form" onSubmit={formik.handleSubmit} noValidate>
         <Stack direction="column" gap={4} width="100%" alignItems="center">
-          <Stack direction="column" gap="5px" alignItems="center">
-            <LogoIcon color={theme.palette.primary.dark} />
-            <Typography variant="h5" fontWeight="500" textAlign="center">
-              Create an account
-            </Typography>
-            <Typography variant="body2" fontWeight="500" color="text.secondary" textAlign="center">
-              Provide your email and password please.
-            </Typography>
-          </Stack>
+          <Title.CreateAccount />
 
           {isSocial ? (
             <SocialLogin />
