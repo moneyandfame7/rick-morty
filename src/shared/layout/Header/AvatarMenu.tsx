@@ -46,9 +46,9 @@ export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = fal
         anchorEl={anchorEl}
         onClose={handleCloseMenu}
         open={open}
-        sx={{
+        /*  sx={{
           top: { xs: 0, md: 20 }
-        }}
+        }}*/
       >
         <Box
           component="div"

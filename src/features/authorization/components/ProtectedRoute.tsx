@@ -7,6 +7,7 @@ import { selectHasPassedWelcome, selectIsAuthenticated } from 'features/authoriz
 export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
   const isUserAuthenticated = useAppSelector(selectIsAuthenticated)
   const hasUserPassedWelcome = useAppSelector(selectHasPassedWelcome)
+
   if (!isUserAuthenticated) {
     return <Navigate to="/login" replace />
   }

@@ -22,7 +22,6 @@ export const App: React.FC = () => {
       {/*<SettingDrawer />*/}
       <CookieBanner />
       <Routes>
-        {' '}
         {PROTECTED_ROUTES.map(route => (
           <Route
             index={route.index}
@@ -32,7 +31,7 @@ export const App: React.FC = () => {
           />
         ))}
         {PUBLIC_ROUTES.map(route => (
-          <Route path={route.path} key={route.id} element={route.element} />
+          <Route path={route.path} key={route.id} element={route.element} index={route.index} />
         ))}
       </Routes>
     </ThemeProvider>

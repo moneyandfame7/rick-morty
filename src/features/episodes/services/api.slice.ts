@@ -10,8 +10,11 @@ const episodeApi = rootApi.injectEndpoints({
     }),
     getOneEpisode: builder.query<IEpisode, number | void>({
       query: id => `/api/${NavigationEnum.EPISODES}/${id}`
+    }),
+    getCountOfEpisodes: builder.query<number, void>({
+      query: () => `/api/${NavigationEnum.EPISODES}/count`
     })
   })
 })
 
-export const { useGetManyEpisodesQuery, useGetOneEpisodeQuery } = episodeApi
+export const { useGetManyEpisodesQuery, useGetOneEpisodeQuery, useGetCountOfEpisodesQuery } = episodeApi

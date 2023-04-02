@@ -15,7 +15,6 @@ import { NOT_FOUND_ROUTE, HOME_ROUTE, FAVORITE_ROUTE } from 'shared/routes'
 
 export const PROTECTED_ROUTES: RouteProps[] = [
   /* Common */
-  HOME_ROUTE,
   FAVORITE_ROUTE,
   NOT_FOUND_ROUTE,
 
@@ -45,5 +44,7 @@ export const PUBLIC_ROUTES: RouteProps[] = [
   LOGIN_ROUTE,
   FORGOT_ROUTE,
   RESET_ROUTE,
-  SUCCESS_LOGIN_ROUTE
+  SUCCESS_LOGIN_ROUTE,
+
+  HOME_ROUTE
 ]

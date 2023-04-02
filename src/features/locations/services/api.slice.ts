@@ -10,7 +10,10 @@ const locationApi = rootApi.injectEndpoints({
     }),
     getOneLocation: builder.query<Location, number | void>({
       query: id => `/api/${NavigationEnum.LOCATIONS}/${id}`
+    }),
+    getCountOfLocations: builder.query<number, void>({
+      query: () => `api/${NavigationEnum.LOCATIONS}/count`
     })
   })
 })
-export const { useGetManyLocationsQuery, useGetOneLocationQuery } = locationApi
+export const { useGetManyLocationsQuery, useGetOneLocationQuery, useGetCountOfLocationsQuery } = locationApi

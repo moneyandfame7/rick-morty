@@ -17,7 +17,6 @@ export const Side: FC = () => {
       <Image
         src={`https://rick-morty.s3.eu-central-1.amazonaws.com/assets/login-${mode}.jpeg`}
         alt="Login image"
-        /*width="100%"*/
         duration={1000}
         showLoading={true}
         style={{

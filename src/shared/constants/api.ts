@@ -11,7 +11,8 @@ export const enum CookieKey {
 export const enum NavigationEnum {
   CHARACTERS = 'characters',
   EPISODES = 'episodes',
-  LOCATIONS = 'locations'
+  LOCATIONS = 'locations',
+  USERS = 'users'
 }
 
 export const enum Entities {
