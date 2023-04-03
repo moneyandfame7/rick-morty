@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu'
 import {
   alpha,
@@ -24,8 +24,8 @@ import { getIsAuthorizationRoute } from 'shared/utils/getIsAuthorizationRoute'
 import { useAppSelector } from 'application/store'
 import { HOME_ROUTE } from 'shared/routes'
 import { selectIsAuthenticated } from 'features/authorization/services'
-import { OutlinedButton, PrimaryButton } from '../../components/common/buttons'
-import { LOGIN_ROUTE, SIGNUP_ROUTE } from '../../../features/authorization/routes'
+import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
+import { LOGIN_ROUTE, SIGNUP_ROUTE } from 'features/authorization/routes'
 
 export const Header: FC = () => {
   const location = useLocation()
@@ -126,12 +126,27 @@ export const Header: FC = () => {
                   variant="body2"
                   color="text.secondary"
                   fontWeight={600}
-                  component={Link}
+                  component={NavLink}
                   to={{ pathname: link.url, search: link.search }}
                   sx={{
                     textDecoration: 'none',
+                    position: 'relative',
                     '&: hover': {
                       color: darken(theme.palette.text.secondary, 0.2)
+                    },
+                    '&.active': {
+                      '&::after': {
+                        content: '""',
+                        width: '120%',
+                        height: '3px',
+                        backgroundColor: 'primary.main',
+                        borderRadius: '2px',
+                        display: 'block',
+                        position: 'absolute',
+                        bottom: -10,
+                        right: '50%',
+                        transform: 'translateX(50%)'
+                      }
                     }
                   }}
                 >
@@ -145,11 +160,6 @@ export const Header: FC = () => {
             </Box>
           </Toolbar>
         </Container>
-        {/*    {isLoading && (
-          <LinearProgress
-            sx={{ position: 'absolute', bottom: 0, left: 0, borderRadius: '8px 8px 0 0', width: '100%' }}
-          />
-        )}*/}
       </AppBar>
 
       <HeaderDrawer onClose={handleDrawerToggle} isOpen={mobileOpen} />
