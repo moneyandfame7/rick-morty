@@ -37,6 +37,7 @@ export const Metrics: FC = () => {
         <Grid container>
           {Array.from(Array(4).keys()).map(index => (
             <Grid
+              item
               key={index}
               xs={12}
               sm={6}
