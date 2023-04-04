@@ -29,7 +29,7 @@ export const MainCharacterPage: FC = () => {
     >
       <Box component="div" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         <Typography variant="h5" fontWeight={600}>
-          Characters
+          Characterss
         </Typography>
         <Typography variant="h5" fontWeight={600} color="text.third">
           {data?.info?.count}
