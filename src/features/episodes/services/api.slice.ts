@@ -1,13 +1,14 @@
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
 import { rootApi } from 'application/store/root-api.slice'
 import type { IEpisode, IManyEpisode } from 'features/episodes/type'
 
 import { NavigationEnum } from 'shared/constants'
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
 interface ResultsType {
   data: IEpisode[]
   error: FetchBaseQueryError | undefined
 }
+
 const episodeApi = rootApi.injectEndpoints({
   endpoints: builder => ({
     getManyEpisodes: builder.query<IManyEpisode, number | void>({

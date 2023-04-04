@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Stack } from '@mui/material'
-import { Typography } from '@mui/material'
+import Typography from '@mui/material/Typography'
 
 export const HomeTitle: FC = () => {
   return (

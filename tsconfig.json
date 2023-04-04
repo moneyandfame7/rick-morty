@@ -16,11 +16,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "useUnknownInCatchVariables": false,
-    "baseUrl": "./src",
+    "useUnknownInCatchVariables": false
   },
   "include": [
     "src"
