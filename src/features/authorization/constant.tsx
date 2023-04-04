@@ -12,10 +12,10 @@ interface Social {
   id: number
 }
 
-const GOOGLE_REDIRECT = process.env.REACT_APP_API_URL + '/auth/google/login'
-const GITHUB_REDIRECT = process.env.REACT_APP_API_URL + '/auth/github/login'
-const SPOTIFY_REDIRECT = process.env.REACT_APP_API_URL + '/auth/spotify/login'
-const DISCORD_REDIRECT = process.env.REACT_APP_API_URL + '/auth/discord/login'
+const GOOGLE_REDIRECT = import.meta.env.VITE_API_URL + '/auth/google/login'
+const GITHUB_REDIRECT = import.meta.env.VITE_API_URL + '/auth/github/login'
+const SPOTIFY_REDIRECT = import.meta.env.VITE_API_URL + '/auth/spotify/login'
+const DISCORD_REDIRECT = import.meta.env.VITE_API_URL + '/auth/discord/login'
 
 export const SOCIALS: Social[] = [
   { url: GOOGLE_REDIRECT, label: 'Google', icon: <GoogleIcon />, id: 0 },

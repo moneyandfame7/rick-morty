@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react'
-import Box from '@mui/material/Box'
+import { Box } from '@mui/material'
 import { ImageList, ImageListItem, Skeleton, useMediaQuery, useTheme } from '@mui/material'
 import Image from 'mui-image'
 
