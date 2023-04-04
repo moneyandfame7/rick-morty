@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { Alert, Avatar, Box, BoxProps, Divider, Menu, Typography } from '@mui/material'
+import { Alert, Avatar, Badge, Box, BoxProps, Divider, IconButton, Menu, MenuItem, Typography } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import { useAppSelector } from 'application/store'
@@ -11,8 +11,14 @@ import { UserAvatar } from 'shared/components/icons/UserAvatar'
 import { useGetUserMenu } from 'shared/hooks'
 import { useLogout } from 'features/authorization/hooks'
 import { BackdropLoader } from 'shared/components/common/BackdropLoader'
+import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined'
+import { selectFavoriteAmount } from '../../../features/characters/services'
 
-export const AvatarMenu: FC<BoxProps> = () => {
+interface AvatarMenuProps {
+  isWelcomePage?: boolean
+}
+
+export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = false }) => {
   const [resendVerification, { isLoading: isVerificationLoading }] = useVerificationSendMutation()
   const { makeLogout, isLoading: isLogoutLoading } = useLogout()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)

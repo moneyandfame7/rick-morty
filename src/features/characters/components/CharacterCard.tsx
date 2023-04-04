@@ -10,11 +10,11 @@ import { useAppSelector } from 'application/store'
 
 import type { Character } from 'features/characters/type'
 import { selectIsFavorite } from 'features/characters/services'
-import { useToggleFavorite } from 'features/characters/hooks'
 
 import { PrimaryButton } from 'shared/components/common/buttons'
 import { NavigationEnum } from 'shared/constants'
 
+import { useToggleFavorite } from 'features/characters/hooks'
 
 interface CharacterCardProps {
   character: Character
