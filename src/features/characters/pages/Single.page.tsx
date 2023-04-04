@@ -1,43 +1,69 @@
-import React, { FC } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { skipToken } from '@reduxjs/toolkit/query'
-import dayjs from 'dayjs'
-import Image from 'mui-image'
-
-import {
-  Box,
-  CircularProgress,
-  Divider,
-  Grid,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Stack,
-  Typography,
-  useTheme
-} from '@mui/material'
+import React, { FC, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import _ from 'lodash'
+import { Alert, AlertTitle, Button, CircularProgress, Typography } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from 'application/store'
 
-import { selectIsFavorite, useGetOneCharacterQuery } from 'features/characters/services'
+import {
+  addToFavorite,
+  removeFromFavorite,
+  selectFavoriteCharacters,
+  useGetOneCharacterQuery
+} from 'features/characters/services'
+import { CharacterStatus } from 'features/characters/type'
 
 import { ErrorMessage } from 'shared/components'
-import { CircularLoader } from 'shared/components/common'
-import { PrimaryButton } from 'shared/components/common/buttons'
-import { RedButton } from 'shared/components/common/buttons/RedButton'
-import { NavigationEnum } from 'shared/constants'
-
-import { useGetListOfEpisodesQuery } from 'features/episodes/services'
-import { useToggleFavorite } from '../hooks'
 
 export const SingleCharacterPage: FC = () => {
   const { id } = useParams()
-  const theme = useTheme()
+  const [isFavorite, setIsFavorite] = useState<boolean>(false)
   const { data, isLoading, error } = useGetOneCharacterQuery(Number(id))
-  const { data: episodeList } = useGetListOfEpisodesQuery(data?.episodes ?? skipToken)
-  const isFavorite = useAppSelector(state => selectIsFavorite(state, data?.id))
-  const { toggle } = useToggleFavorite(data)
+  const dispatch = useAppDispatch()
+  const favoriteCharacters = useAppSelector(selectFavoriteCharacters)
+  const handleOnFavoriteIconClick = (): void => {
+    if (data) {
+      if (isFavorite) {
+        dispatch(removeFromFavorite(data.id))
+        setIsFavorite(false)
+      } else {
+        dispatch(addToFavorite(data))
+        setIsFavorite(true)
+      }
+    }
+  }
+  const getCharacterStatus = () => {
+    if (data?.status !== undefined) {
+      switch (data?.status) {
+        case 'Alive' as CharacterStatus:
+          return (
+            <Alert severity="success">
+              <AlertTitle>Alive</AlertTitle>
+              She/He is lucky — <strong>alive!</strong>
+            </Alert>
+          )
+        case 'Dead' as CharacterStatus:
+          return (
+            <Alert severity="error">
+              <AlertTitle>Dead</AlertTitle>
+              Fortunately (or not fortunately for someone) - he is <strong>dead!</strong>
+            </Alert>
+          )
+        default:
+          return (
+            <Alert severity="info">
+              <AlertTitle>Unknown</AlertTitle>
+              She/he is ... <strong>unknown!</strong>
+            </Alert>
+          )
+      }
+    }
+  }
+
+  useEffect(() => {
+    const favIndex = _.findIndex(favoriteCharacters, o => o.id === data?.id)
+    favIndex === -1 ? setIsFavorite(false) : setIsFavorite(true)
+  }, [data?.id, favoriteCharacters])
 
   if (error) {
     return <ErrorMessage error={error} />
@@ -45,102 +71,50 @@ export const SingleCharacterPage: FC = () => {
   return isLoading ? (
     <CircularProgress />
   ) : (
-    <>
-      <Box
-        sx={{
-          backgroundColor: 'primary.dark',
-          width: '100%',
-          py: 4
-        }}
-      >
-        <Stack direction="column" alignItems="center">
-          <Stack direction="column" alignItems="center" gap={0.2} sx={{ pb: 1 }}>
-            <Typography variant="body1" fontWeight={600} color="primary.lighter">
-              Character
-            </Typography>
-            <Typography variant="h3" fontWeight={600} color="#fff" sx={{ mt: -1 }}>
-              {data?.name}
-            </Typography>
-          </Stack>
-        </Stack>
-      </Box>
+    <Typography variant="h1">SINGLE CHARACTER PAGE</Typography>
 
-      <Stack direction="row" justifyContent="space-around" alignItems="flex-start" sx={{ pt: 2, userSelect: 'none' }}>
-        <Box sx={{ width: '350px' }}>
-          {data?.image && (
-            <Stack direction="column" gap={2} alignItems="center">
-              <Image
-                src={data?.image}
-                width="100%"
-                duration={300}
-                showLoading={<CircularLoader />}
-                style={{ borderRadius: 8, minHeight: 300 }}
-              />
-              {isFavorite ? (
-                <RedButton sx={{ height: '38px' }} onClick={toggle} fullWidth>
-                  Remove from favorite
-                </RedButton>
-              ) : (
-                <PrimaryButton onClick={toggle} fullWidth>
-                  Add to favorite
-                </PrimaryButton>
-              )}
-            </Stack>
-          )}
-          <Grid container spacing={1} sx={{ pt: 2 }}>
-            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Typography variant="body2" color={theme.palette.mode === 'dark' ? 'primary.lighter' : 'primary.dark'}>
-                <strong>Species:</strong> {data?.species}
-              </Typography>
-            </Grid>
-            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Typography variant="body2" color={theme.palette.mode === 'dark' ? 'primary.lighter' : 'primary.dark'}>
-                <strong>Gender:</strong> {data?.gender}
-              </Typography>
-            </Grid>
-            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Typography variant="body2" color={theme.palette.mode === 'dark' ? 'primary.lighter' : 'primary.dark'}>
-                <strong>Status:</strong> {data?.status}
-              </Typography>
-            </Grid>
-            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Typography variant="body2" color={theme.palette.mode === 'dark' ? 'primary.lighter' : 'primary.dark'}>
-                <strong>Created at:</strong> {dayjs(data?.createdAt).format('DD.MM.YYYY')}
-              </Typography>
-            </Grid>
-          </Grid>
-        </Box>
-        <Stack direction="column" alignItems="center" gap={2} sx={{ pt: 2, maxHeight: 500 }}>
-          <Typography variant="h4" fontWeight={600} sx={{ mt: -3 }}>
-            Episodes list
-          </Typography>
-          <List
-            sx={{
-              backgroundColor: 'primary.dark',
-              width: '300px',
-              height: '100%',
-              overflowY: 'scroll',
-              borderRadius: '8px'
-            }}
-          >
-            {episodeList?.map(episode => (
-              <React.Fragment key={episode.id}>
-                <ListItem disablePadding>
-                  <ListItemButton
-                    disableTouchRipple
-                    component={Link}
-                    to={`/${NavigationEnum.EPISODES}/${episode.id}`}
-                    sx={{ color: '#fff' }}
-                  >
-                    <ListItemText primary={episode.name} />
-                  </ListItemButton>
-                </ListItem>
-                <Divider />
-              </React.Fragment>
-            ))}
-          </List>
-        </Stack>
-      </Stack>
-    </>
+    // <div className={styles.wrapper}>
+    //   <div className={styles.main}>
+    //     <div className={styles.infoCard}>
+    //       <div className={styles.imageWrapper}>
+    //         <img src={data?.image} alt={data?.name} width={300} height={300} />
+    //       </div>
+    //       {getCharacterStatus()}
+    //       {!isFavorite ? (
+    //         <Button color='success' variant='contained' onClick={handleOnFavoriteIconClick} data-testid='btn-favorite'>
+    //           Add to favorite
+    //         </Button>
+    //       ) : (
+    //         <Button variant='contained' color='error' onClick={handleOnFavoriteIconClick}>
+    //           Remove from favorite
+    //         </Button>
+    //       )}
+    //       <div>
+    //         <Accordion>
+    //           <Accordion.Item eventKey='0'>
+    //             <Accordion.Header>Last known location</Accordion.Header>
+    //             <Accordion.Body>{data?.location.name}</Accordion.Body>
+    //           </Accordion.Item>
+    //           <Accordion.Item eventKey='1'>
+    //             <Accordion.Header>Gender</Accordion.Header>
+    //             <Accordion.Body>{data?.gender}</Accordion.Body>
+    //           </Accordion.Item>
+    //           <Accordion.Item eventKey='2'>
+    //             <Accordion.Header>Origin</Accordion.Header>
+    //             <Accordion.Body>{data?.origin.name}</Accordion.Body>
+    //           </Accordion.Item>
+    //           <Accordion.Item eventKey='3'>
+    //             <Accordion.Header>Species</Accordion.Header>
+    //             <Accordion.Body>{data?.species}</Accordion.Body>
+    //           </Accordion.Item>
+    //         </Accordion>
+    //       </div>
+    //     </div>
+    //     <Card>
+    //       <Card.Header>We will meet {data?.name} in the episode: </Card.Header>
+    //       {data?.episodes && <EpisodeList episodes={data.episodes} />}
+    /*        </Card>
+      </div>
+    </div>*/
   )
 }

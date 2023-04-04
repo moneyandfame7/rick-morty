@@ -16,9 +16,12 @@ export const SettingDrawer: FC = () => {
   }
   return (
     <>
-      <Tooltip title="Open settings">
-        <IconButton sx={{ borderRadius: '4px' }} onClick={openDrawer}>
-          <SettingsOutlinedIcon sx={{ fontSize: '1.25rem', color: 'primary.light' }} />
+      <Tooltip title="Open settings drawer">
+        <IconButton
+          sx={{ border: '1px solid', borderColor: 'primary.border', borderRadius: '4px' }}
+          onClick={openDrawer}
+        >
+          <SettingsOutlinedIcon sx={{ fontSize: '1.25rem', color: 'primary.dark' }} />
         </IconButton>
       </Tooltip>
 

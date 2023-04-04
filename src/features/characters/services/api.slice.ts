@@ -6,7 +6,6 @@ import { NavigationEnum } from 'shared/constants'
 import { CharacterFields } from '../constant'
 
 const characterApi = rootApi.injectEndpoints({
-
   endpoints: builder => ({
     getManyCharacters: builder.query<ManyCharacter, string | void>({
       query: (query: string) => `api/${NavigationEnum.CHARACTERS}?${query}`

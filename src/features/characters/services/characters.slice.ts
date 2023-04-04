@@ -18,7 +18,6 @@ export const charactersSlice = createSlice({
   reducers: {
     addToFavorite: (state, action: PayloadAction<Character>) => {
       state.characters = filter(concat(state.characters, action.payload), o => !isEmpty(o))
-      
     },
     removeFromFavorite: (state, action: PayloadAction<number>) => {
       if (state.characters) {

@@ -61,9 +61,6 @@ const getLightPalette = (): ThemeOptions['palette'] => ({
     border: '#d8d8df',
     transparent: '#ffffff57'
   },
-  error: {
-    main: '#D92D20'
-  },
   text: {
     third: '#ccc7c7',
     secondary: '#4d4e50'

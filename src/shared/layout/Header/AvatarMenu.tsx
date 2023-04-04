@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { Alert, Avatar, Badge, Box, BoxProps, Divider, IconButton, Menu, MenuItem, Typography } from '@mui/material'
+import { Alert, Avatar, Box, BoxProps, Divider, Menu, Typography } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 import { useAppSelector } from 'application/store'
@@ -11,8 +11,6 @@ import { UserAvatar } from 'shared/components/icons/UserAvatar'
 import { useGetUserMenu } from 'shared/hooks'
 import { useLogout } from 'features/authorization/hooks'
 import { BackdropLoader } from 'shared/components/common/BackdropLoader'
-import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined'
-import { selectFavoriteAmount } from '../../../features/characters/services'
 
 interface AvatarMenuProps {
   isWelcomePage?: boolean
@@ -33,7 +31,7 @@ export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = fal
     await resendVerification()
   }
   const currentUser = useAppSelector(selectCurrentUser)
-  const currentMenu = useGetUserMenu({ makeLogout, handleCloseMenu })
+  const currentMenu = useGetUserMenu({ isWelcomePage, makeLogout, handleCloseMenu })
   return (
     <Box component="div">
       {isLogoutLoading && <BackdropLoader />}
@@ -96,6 +94,7 @@ export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = fal
             </LoadingButton>
           </Alert>
         ) : null}
+
         {currentMenu}
       </Menu>
     </Box>

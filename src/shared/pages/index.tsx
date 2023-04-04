@@ -1,4 +1,4 @@
-export * from './home'
+export * from './Home.page'
 
 export * from './NotFound.page'
 

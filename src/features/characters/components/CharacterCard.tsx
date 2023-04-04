@@ -1,29 +1,15 @@
 import { FC } from 'react'
-import { useNavigate } from 'react-router-dom'
-
-import Image from 'mui-image'
 import { Box, Card, CardContent, CardMedia, IconButton, Tooltip, Typography } from '@mui/material'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import FavoriteIconOutlined from '@mui/icons-material/FavoriteBorder'
-
-import { useAppSelector } from 'application/store'
-
-import type { Character } from 'features/characters/type'
-import { selectIsFavorite } from 'features/characters/services'
-
+import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined'
+import Image from 'mui-image'
+import { Character } from '../type'
 import { PrimaryButton } from 'shared/components/common/buttons'
-import { NavigationEnum } from 'shared/constants'
-
-import { useToggleFavorite } from 'features/characters/hooks'
 
 interface CharacterCardProps {
   character: Character
 }
 
 export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
-  const isFavorite = useAppSelector(state => selectIsFavorite(state, character.id))
-  const { toggle } = useToggleFavorite(character)
-  const navigate = useNavigate()
   return (
     <Card variant="outlined" sx={{ padding: '1rem' }}>
       <CardContent
@@ -54,21 +40,8 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
           </Typography>
         </div>
 
-        <IconButton
-          aria-label="Add to favorites"
-          size="medium"
-          onClick={toggle}
-          sx={{ color: isFavorite ? 'error.main' : 'text.secondary' }}
-          /*  sx={{
-            position: 'absolute',
-            zIndex: 2,
-            borderRadius: '50%',
-            right: '1rem',
-            bottom: 0,
-            transform: 'translateY(50%)'
-          }}*/
-        >
-          {isFavorite ? <FavoriteIcon sx={{ fontSize: '20px' }} /> : <FavoriteIconOutlined sx={{ fontSize: '20px' }} />}
+        <IconButton sx={{ borderRadius: '4px' }}>
+          <BookmarkAddOutlinedIcon sx={{ fontSize: 20 }} />
         </IconButton>
       </CardContent>
       <Box
@@ -122,13 +95,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
           </Typography>
         </div>
 
-        <PrimaryButton
-          onClick={() => {
-            navigate({ pathname: `/${NavigationEnum.CHARACTERS}/${character.id}` })
-          }}
-        >
-          Show more
-        </PrimaryButton>
+        <PrimaryButton>Show more</PrimaryButton>
       </CardContent>
     </Card>
   )
