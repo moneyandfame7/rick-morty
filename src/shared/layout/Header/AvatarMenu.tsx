@@ -12,11 +12,7 @@ import { useGetUserMenu } from 'shared/hooks'
 import { useLogout } from 'features/authorization/hooks'
 import { BackdropLoader } from 'shared/components/common/BackdropLoader'
 
-interface AvatarMenuProps {
-  isWelcomePage?: boolean
-}
-
-export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = false }) => {
+export const AvatarMenu: FC<BoxProps> = () => {
   const [resendVerification, { isLoading: isVerificationLoading }] = useVerificationSendMutation()
   const { makeLogout, isLoading: isLogoutLoading } = useLogout()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -31,7 +27,7 @@ export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = fal
     await resendVerification()
   }
   const currentUser = useAppSelector(selectCurrentUser)
-  const currentMenu = useGetUserMenu({ isWelcomePage, makeLogout, handleCloseMenu })
+  const currentMenu = useGetUserMenu({ makeLogout, handleCloseMenu })
   return (
     <Box component="div">
       {isLogoutLoading && <BackdropLoader />}
@@ -94,7 +90,6 @@ export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = fal
             </LoadingButton>
           </Alert>
         ) : null}
-
         {currentMenu}
       </Menu>
     </Box>

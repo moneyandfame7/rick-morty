@@ -17,7 +17,6 @@ export const StyledOutlineButton = styled(LoadingButton)<LoadingButtonProps>(({ 
   borderRadius: '8px',
   boxShadow: '0px 1px 2px rgba(16, 24, 40, 0.05)',
   fontWeight: 600,
-  fontSize: 14,
   color: theme.palette.text.primary,
   transition: 'none !important',
   '&: hover': {

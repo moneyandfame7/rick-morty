@@ -1,7 +1,7 @@
 import { RouteProps } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 
-import { HomePage } from 'shared/pages'
+import { HomePage } from 'shared/pages/home'
 
 export const HOME_ROUTE: RouteProps = {
   id: uuidv4(),

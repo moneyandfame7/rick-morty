@@ -1,11 +1,12 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { styled } from '@mui/material'
 import { LoadingButton, LoadingButtonProps } from '@mui/lab'
 import { getBaseButtonStyles } from './baseButtonStyles'
 
 export const StyledPrimaryButton = styled(LoadingButton)<LoadingButtonProps>(({ theme }) => ({
-  ...getBaseButtonStyles(theme.palette.primary.main)
+  ...getBaseButtonStyles(theme.palette.error.main)
 })) as typeof LoadingButton
-export const PrimaryButton: FC<LoadingButtonProps> = ({ ...props }) => {
+
+export const RedButton: FC<LoadingButtonProps> = ({ ...props }) => {
   return <StyledPrimaryButton size="small" disableRipple {...props} />
 }
