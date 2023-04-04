@@ -1,44 +1,84 @@
-import { Box, Button, Card, CardContent, CardMedia, IconButton, Typography } from '@mui/material'
-import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined'
 import { FC } from 'react'
-import { ICharacter } from '../type'
+import { useNavigate } from 'react-router-dom'
+
+import Image from 'mui-image'
+import { Box, Card, CardContent, CardMedia, IconButton, Tooltip, Typography } from '@mui/material'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import FavoriteIconOutlined from '@mui/icons-material/FavoriteBorder'
+
+import { useAppSelector } from 'application/store'
+
+import type { Character } from 'features/characters/type'
+import { selectIsFavorite } from 'features/characters/services'
+
+import { PrimaryButton } from 'shared/components/common/buttons'
+import { NavigationEnum } from 'shared/constants'
+
+import { useToggleFavorite } from 'features/characters/hooks'
 
 interface CharacterCardProps {
-  character: ICharacter
+  character: Character
 }
+
 export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
+  const isFavorite = useAppSelector(state => selectIsFavorite(state, character.id))
+  const { toggle } = useToggleFavorite(character)
+  const navigate = useNavigate()
   return (
-    <Card variant='outlined' sx={{ padding: '1rem' }}>
+    <Card variant="outlined" sx={{ padding: '1rem' }}>
       <CardContent
         sx={{
           padding: '0 0 10px',
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'flex-start'
+          alignItems: 'center'
         }}
       >
-        <div>
-          <Typography variant='h2' fontSize={16} sx={{ opacity: 0.9 }} fontWeight={500}>
-            {character.name}
-          </Typography>
-          <Typography variant='body2' sx={{ opacity: 0.7 }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            textOverflow: 'ellipsis',
+            width: '80%',
+            userSelect: 'none'
+          }}
+        >
+          <Tooltip title={character.name}>
+            <Typography noWrap variant="h2" fontSize={18} sx={{ opacity: 0.9 }} fontWeight={800}>
+              {character.name}
+            </Typography>
+          </Tooltip>
+          <Typography variant="body2" sx={{ opacity: 0.7 }}>
             {character.species}
           </Typography>
         </div>
 
-        <IconButton sx={{ borderRadius: '4px' }}>
-          <BookmarkAddOutlinedIcon sx={{ fontSize: 20 }} />
+        <IconButton
+          aria-label="Add to favorites"
+          size="medium"
+          onClick={toggle}
+          sx={{ color: isFavorite ? 'error.main' : 'text.secondary' }}
+          /*  sx={{
+            position: 'absolute',
+            zIndex: 2,
+            borderRadius: '50%',
+            right: '1rem',
+            bottom: 0,
+            transform: 'translateY(50%)'
+          }}*/
+        >
+          {isFavorite ? <FavoriteIcon sx={{ fontSize: '20px' }} /> : <FavoriteIconOutlined sx={{ fontSize: '20px' }} />}
         </IconButton>
       </CardContent>
       <Box
-        component='div'
+        component="div"
         sx={{
           userSelect: 'none',
           borderRadius: '8px',
           pointerEvents: 'none',
           position: 'relative',
           overflow: 'hidden',
-          // height: { xs: 300, sm: 200 },
           p: 0,
           minHeight: '160px',
           maxHeight: '200px'
@@ -53,10 +93,17 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
             display: 'flex',
             alignItems: 'center'
           }}
-          component='img'
-          image={character.image}
-          loading='lazy'
-        />
+        >
+          <Image
+            src={character.image}
+            width="100%"
+            height="100%"
+            duration={300}
+            style={{
+              borderRadius: 8
+            }}
+          />
+        </CardMedia>
       </Box>
       <CardContent
         sx={{
@@ -67,17 +114,21 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
         }}
       >
         <div>
-          <Typography variant='body2' sx={{ opacity: 0.6, fontSize: 12 }}>
+          <Typography variant="body2" sx={{ opacity: 0.6, fontSize: 12 }}>
             Status:
           </Typography>
-          <Typography variant='body2' sx={{ opacity: 1, fontSize: 16 }}>
+          <Typography variant="body2" sx={{ opacity: 1, fontSize: 16 }}>
             {character.status}
           </Typography>
         </div>
 
-        <Button variant='contained' size='small'>
+        <PrimaryButton
+          onClick={() => {
+            navigate({ pathname: `/${NavigationEnum.CHARACTERS}/${character.id}` })
+          }}
+        >
           Show more
-        </Button>
+        </PrimaryButton>
       </CardContent>
     </Card>
   )

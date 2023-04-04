@@ -2,19 +2,17 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import storage from 'redux-persist/lib/storage'
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, persistStore, persistReducer } from 'redux-persist'
+
 import { rootApi } from 'application/store/root-api.slice'
 
+import { customizationReducer } from 'application/theme/customization'
 import { charactersReducer } from 'features/characters/services'
 import { userReducer } from 'features/users/services'
-
-import { setLocalStorage } from 'shared/utils'
-import { LocalStorageKey } from 'shared/constants'
-import { customizationReducer } from 'application/theme/customization'
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['customization']
+  whitelist: ['customization', 'credentials', 'favoriteCharacters']
 }
 const rootReducer = combineReducers({
   [rootApi.reducerPath]: rootApi.reducer,
@@ -36,14 +34,10 @@ export const store = configureStore({
 })
 
 store.subscribe(() => {
-  const state = store.getState()
-
-  const { characters } = state.favoriteCharacters
-  // const customization = state.customization
-
-  setLocalStorage(LocalStorageKey.FAVORITE_CHARACTERS, characters)
-
-  // setLocalStorage(LocalStorageKey.CUSTOMIZATION, customization)
+  /*const state = store.getState()*/
+  // maybe це потрібно щоб працювало?
+  /*const { characters } = state.favoriteCharacters*/
+  /*  setLocalStorage(LocalStorageKey.FAVORITE_CHARACTERS, characters)*/
 })
 
 setupListeners(store.dispatch)

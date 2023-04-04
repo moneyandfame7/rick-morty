@@ -1,45 +1,35 @@
 import React, { FC } from 'react'
-import { useNavigate } from 'react-router-dom'
-import NavigateNextIcon from '@mui/icons-material/NavigateNext'
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
-import { Button, Stack } from '@mui/material'
+import { useSearchParams } from 'react-router-dom'
+import { Box, Pagination as MuiPagination, useMediaQuery } from '@mui/material'
 
-import { NavigationEnum } from 'shared/constants'
-import { useQueryParams } from 'shared/hooks'
-
-interface INavigationProps {
-  prev: string | null | undefined
-  next: string | null | undefined
-  navigationType: NavigationEnum
-  isLoading: boolean
+interface PaginationProps {
+  currentPage: number
+  pages: number
 }
-export const Pagination: FC<INavigationProps> = ({ prev, next, navigationType, isLoading }) => {
-  const queryPage = Number(useQueryParams().get('page'))
-  const navigate = useNavigate()
 
+export const Pagination: FC<PaginationProps> = ({ currentPage, pages }) => {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const onPaginationChange = (e: React.ChangeEvent<unknown>, page: number) => {
+    searchParams.set('page', String(page))
+    const search = Object.fromEntries(new URLSearchParams(searchParams))
+    setSearchParams(search)
+  }
+  const isMobile = useMediaQuery('(max-width:485px)')
+  const isTablet = useMediaQuery('(max-width:768px)')
   return (
-    <Stack direction='row' gap={3} justifyContent='center'>
-      <Button
-        disabled={!prev || isLoading}
-        onClick={() => {
-          navigate(`/${navigationType}?page=${queryPage - 1}`)
-        }}
-        data-testid='navigation-button-prev-component'
-        startIcon={<NavigateBeforeIcon />}
-      >
-        Previous
-      </Button>
-      <Button
-        title='Next'
-        disabled={!next || isLoading}
-        onClick={() => {
-          navigate(`/${navigationType}?page=${queryPage + 1}`)
-        }}
-        data-testid='navigation-button-next-component'
-        endIcon={<NavigateNextIcon />}
-      >
-        Next
-      </Button>
-    </Stack>
+    <Box component="div" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <MuiPagination
+        showFirstButton
+        showLastButton
+        count={pages}
+        color="secondary"
+        shape="rounded"
+        variant="outlined"
+        onChange={onPaginationChange}
+        size={isMobile ? 'small' : 'medium'}
+        page={currentPage}
+        siblingCount={isMobile ? 0 : isTablet ? 1 : 4}
+      />
+    </Box>
   )
 }

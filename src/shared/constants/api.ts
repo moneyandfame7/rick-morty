@@ -1,14 +1,22 @@
-export const API_URL = 'http://localhost:3001'
-export const CLIENT_URL = 'http://localhost:3000'
-
 export const enum LocalStorageKey {
   FAVORITE_CHARACTERS = 'FAVORITE_CHARACTERS',
-  USER = 'USER',
-  CUSTOMIZATION = 'CUSTOMIZATION'
+  USER = 'USER'
+}
+
+export const enum CookieKey {
+  ACCESS_TOKEN = 'ACCESS_TOKEN',
+  REFRESH_TOKEN = 'REFRESH_TOKEN'
 }
 
 export const enum NavigationEnum {
   CHARACTERS = 'characters',
   EPISODES = 'episodes',
-  LOCATIONS = 'locations'
+  LOCATIONS = 'locations',
+  USERS = 'users'
+}
+
+export const enum Entities {
+  CHARACTER = 'Character',
+  LOCATION = 'Location',
+  EPISODE = 'Episode'
 }

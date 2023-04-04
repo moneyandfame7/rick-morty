@@ -1,6 +1,6 @@
 import { rootApi } from 'application/store'
 import type { AuthCredentials, AuthResponse } from 'features/authorization/type'
-import type { User, UserCurrentCountry, UserWelcomeDetails } from 'features/users/type'
+import type { ForgotCredentials, ResetPasswordParams, UserWelcomeDetails } from 'features/users/type'
 
 export const authApi = rootApi.injectEndpoints({
   endpoints: builder => ({
@@ -45,50 +45,35 @@ export const authApi = rootApi.injectEndpoints({
         method: 'post'
       })
     }),
-    // TODO: на бекенді переробити endpoint, і зробити окремий api для юзера
-    getUser: builder.query<User, void>({
-      query: () => `/auth/profile`
+    forgot: builder.mutation<void, ForgotCredentials>({
+      query: body => ({
+        url: '/auth/forgot',
+        method: 'post',
+        body
+      }),
+      transformErrorResponse: (response: any, meta, arg) => {
+        return response.data
+      }
     }),
-    getCurrentCountry: builder.query<UserCurrentCountry, void>({
-      query: () => 'https://ipapi.co/json'
-    }),
-    googleLogin: builder.mutation<AuthResponse, void>({
-      query: () => ({
-        url: '/auth/google/login',
-        method: 'post'
-      })
-    }),
-    discordLogin: builder.mutation<AuthResponse, void>({
-      query: () => ({
-        url: '/auth/discord/login',
-        method: 'post'
-      })
-    }),
-    spotifyLogin: builder.mutation<AuthResponse, void>({
-      query: () => ({
-        url: '/auth/spotify/login',
-        method: 'post'
-      })
-    }),
-    githubLogin: builder.mutation<AuthResponse, void>({
-      query: () => ({
-        url: '/auth/github/login',
-        method: 'post'
-      })
+    reset: builder.mutation<AuthResponse, ResetPasswordParams>({
+      query: details => ({
+        url: `/auth/reset?id=${details.query.id}&token=${details.query.token}`,
+        method: 'post',
+        body: details.body
+      }),
+      transformErrorResponse: (response: any, meta, arg) => {
+        return response.data
+      }
     })
   })
 })
 
 export const {
   useLoginMutation,
-  useDiscordLoginMutation,
-  useGithubLoginMutation,
-  useGoogleLoginMutation,
-  useSpotifyLoginMutation,
   useSignupMutation,
   useLogoutMutation,
   useWelcomeMutation,
   useVerificationSendMutation,
-  useGetUserQuery,
-  useGetCurrentCountryQuery
+  useForgotMutation,
+  useResetMutation
 } = authApi

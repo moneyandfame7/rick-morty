@@ -11,6 +11,11 @@ export interface SignupCredentials {
   confirmPassword: string
 }
 
+export interface ResetPasswordDetails {
+  password: string
+  confirmPassword: string
+}
+
 export interface Role {
   id: number
   value: string
@@ -26,9 +31,4 @@ export interface Token {
   id: number
   user_id: string
   refresh_token: string
-}
-
-export interface CountryData {
-  value: string
-  label: string
 }

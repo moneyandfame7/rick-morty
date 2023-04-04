@@ -1,13 +1,11 @@
-import { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import type { AuthResponse } from 'features/authorization/type'
-import { removeUser, setUser } from 'features/users/services'
-
-import { API_URL } from 'shared/constants'
+import { removeUser, setUser } from 'features/users/services/user.slice'
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: API_URL,
+  baseUrl: import.meta.env.VITE_API_URL,
   credentials: 'include',
   prepareHeaders: headers => {
     return headers
@@ -27,7 +25,6 @@ const baseQueryWithRefresh: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQu
 
       console.log(refreshResult, 'Refresh access token')
       if (refreshResult.data) {
-        // const user=refreshResult.
         api.dispatch(setUser((refreshResult.data as AuthResponse).user))
 
         result = await baseQuery(args, api, extraOptions)
@@ -44,5 +41,5 @@ const baseQueryWithRefresh: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQu
 
 export const rootApi = createApi({
   baseQuery: baseQueryWithRefresh,
-  endpoints: builder => ({})
+  endpoints: () => ({})
 })
