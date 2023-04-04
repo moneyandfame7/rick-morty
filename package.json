@@ -9,7 +9,7 @@
     "@mui/icons-material": "^5.10.14",
     "@mui/joy": "^5.0.0-alpha.71",
     "@mui/lab": "^5.0.0-alpha.121",
-    "@mui/material": "^5.11.13",
+    "@mui/material": "^5.11.15",
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -39,7 +39,6 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
-    "react-scripts": "5.0.1",
     "react-select-country-list": "^2.2.3",
     "react-transition-group": "^4.4.5",
     "react-use": "^17.4.0",
@@ -53,11 +52,9 @@
     "yup": "^1.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start:prod": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -87,11 +84,15 @@
     "@types/react-select-country-list": "^2.2.1",
     "@types/three": "^0.149.0",
     "@types/uuid": "^9.0.1",
+    "@vitejs/plugin-react": "^3.1.0",
     "env-cmd": "^10.1.0",
     "lodash": "^4.17.21",
     "prettier": "2.7.1",
     "react-router-dom": "^6.4.3",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "vite": "^4.2.1",
+    "vite-plugin-svgr": "^2.4.0",
+    "vite-tsconfig-paths": "^4.0.8"
   }
 }
