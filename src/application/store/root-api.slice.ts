@@ -5,7 +5,7 @@ import type { AuthResponse } from 'features/authorization/type'
 import { removeUser, setUser } from 'features/users/services/user.slice'
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_API_URL,
+  baseUrl: process.env.REACT_APP_API_URL,
   credentials: 'include',
   prepareHeaders: headers => {
     return headers
