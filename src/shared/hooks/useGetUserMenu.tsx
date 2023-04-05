@@ -63,8 +63,8 @@ export const useGetUserMenu = ({ makeLogout, handleCloseMenu }: UseGetUserMenuPa
   return useGetMenuList().map(item => (
     <MenuItem
       onClick={async () => {
+        handleCloseMenu()
         if (item.handle) {
-          handleCloseMenu()
           await makeLogout()
           return
         }

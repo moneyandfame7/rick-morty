@@ -18,7 +18,7 @@ import {
   useTheme
 } from '@mui/material'
 
-import { useAppDispatch, useAppSelector } from 'application/store'
+import { useAppSelector } from 'application/store'
 
 import { selectIsFavorite, useGetOneCharacterQuery } from 'features/characters/services'
 
@@ -26,14 +26,16 @@ import { ErrorMessage } from 'shared/components'
 import { CircularLoader } from 'shared/components/common'
 import { PrimaryButton } from 'shared/components/common/buttons'
 import { RedButton } from 'shared/components/common/buttons/RedButton'
-import { NavigationEnum } from 'shared/constants'
+import { Navigation } from 'shared/constants'
 
 import { useGetListOfEpisodesQuery } from 'features/episodes/services'
-import { useToggleFavorite } from '../hooks'
+import { useToggleFavorite } from 'features/characters/hooks'
+
 
 export const SingleCharacterPage: FC = () => {
   const { id } = useParams()
   const theme = useTheme()
+  
   const { data, isLoading, error } = useGetOneCharacterQuery(Number(id))
   const { data: episodeList } = useGetListOfEpisodesQuery(data?.episodes ?? skipToken)
   const isFavorite = useAppSelector(state => selectIsFavorite(state, data?.id))
@@ -64,7 +66,6 @@ export const SingleCharacterPage: FC = () => {
           </Stack>
         </Stack>
       </Box>
-
       <Stack direction="row" justifyContent="space-around" alignItems="flex-start" sx={{ pt: 2, userSelect: 'none' }}>
         <Box sx={{ width: '350px' }}>
           {data?.image && (
@@ -129,7 +130,7 @@ export const SingleCharacterPage: FC = () => {
                   <ListItemButton
                     disableTouchRipple
                     component={Link}
-                    to={`/${NavigationEnum.EPISODES}/${episode.id}`}
+                    to={`/${Navigation.EPISODES}/${episode.id}`}
                     sx={{ color: '#fff' }}
                   >
                     <ListItemText primary={episode.name} />

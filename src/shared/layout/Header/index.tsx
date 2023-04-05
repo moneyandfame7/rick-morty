@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu'
 import {
@@ -15,17 +15,22 @@ import {
   useTheme
 } from '@mui/material'
 
-import { Logo } from 'shared/components/icons/Logo'
-import { SettingDrawer } from 'shared/components/SettingDrawer'
-import { HeaderDrawer } from './Drawer'
-import { LINKS_CONFIG } from './utils/links'
-import { AvatarMenu } from './AvatarMenu'
-import { getIsAuthorizationRoute } from 'shared/utils/getIsAuthorizationRoute'
 import { useAppSelector } from 'application/store'
-import { HOME_ROUTE } from 'shared/routes'
+
 import { selectIsAuthenticated } from 'features/authorization/services'
 import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
 import { LOGIN_ROUTE, SIGNUP_ROUTE } from 'features/authorization/routes'
+
+import { Logo } from 'shared/components/icons/Logo'
+import { SettingDrawer } from 'shared/components/SettingDrawer'
+import { getIsAuthorizationRoute } from 'shared/utils/getIsAuthorizationRoute'
+import { HOME_ROUTE } from 'shared/routes'
+
+import { HeaderDrawer } from './Drawer'
+import { LINKS_CONFIG } from './utils/links'
+import { AvatarMenu } from './AvatarMenu'
+
+
 
 export const Header: FC = () => {
   const location = useLocation()

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 
-import { Autocomplete, Button, CircularProgress, debounce, TextField } from '@mui/material'
+import { Autocomplete, CircularProgress, debounce, TextField } from '@mui/material'
 import { useGetCharactersNamesMutation } from '../services'
 
 export const AutocompleteNames = () => {

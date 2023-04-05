@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Box, CircularProgress, circularProgressClasses, useTheme } from '@mui/material'
+import { Box, CircularProgress, circularProgressClasses } from '@mui/material'
 
 export const CircularLoader: FC = () => {
   return (

@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { setupListeners } from '@reduxjs/toolkit/query'
 import storage from 'redux-persist/lib/storage'
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, persistStore, persistReducer } from 'redux-persist'
 
@@ -33,14 +32,6 @@ export const store = configureStore({
     }).concat([rootApi.middleware])
 })
 
-store.subscribe(() => {
-  /*const state = store.getState()*/
-  // maybe це потрібно щоб працювало?
-  /*const { characters } = state.favoriteCharacters*/
-  /*  setLocalStorage(LocalStorageKey.FAVORITE_CHARACTERS, characters)*/
-})
-
-setupListeners(store.dispatch)
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 export const persistor = persistStore(store)

@@ -1,6 +1,8 @@
 import React from 'react'
 import { GitHub } from '@mui/icons-material'
 
+import { environmentsConfig } from 'application/config'
+
 import { GoogleIcon } from 'features/authorization/components/icons'
 import { SpotifyIcon } from 'features/authorization/components/icons'
 import { DiscordIcon } from 'features/authorization/components/icons'
@@ -12,14 +14,14 @@ interface Social {
   id: number
 }
 
-const GOOGLE_REDIRECT = process.env.REACT_APP_API_URL + '/auth/google/login'
-const GITHUB_REDIRECT = process.env.REACT_APP_API_URL + '/auth/github/login'
-const SPOTIFY_REDIRECT = process.env.REACT_APP_API_URL + '/auth/spotify/login'
-const DISCORD_REDIRECT = process.env.REACT_APP_API_URL + '/auth/discord/login'
+const GOOGLE_LOGIN = environmentsConfig.apiUrl + '/auth/google/login'
+const GITHUB_LOGIN = environmentsConfig.apiUrl + '/auth/github/login'
+const SPOTIFY_LOGIN = environmentsConfig.apiUrl + '/auth/spotify/login'
+const DISCORD_LOGIN = environmentsConfig.apiUrl + '/auth/discord/login'
 
 export const SOCIALS: Social[] = [
-  { url: GOOGLE_REDIRECT, label: 'Google', icon: <GoogleIcon />, id: 0 },
-  { url: GITHUB_REDIRECT, label: 'Github', icon: <GitHub />, id: 1 },
-  { url: SPOTIFY_REDIRECT, label: 'Spotify', icon: <SpotifyIcon />, id: 2 },
-  { url: DISCORD_REDIRECT, label: 'Spotify', icon: <DiscordIcon />, id: 3 }
+  { url: GOOGLE_LOGIN, label: 'Google', icon: <GoogleIcon />, id: 0 },
+  { url: GITHUB_LOGIN, label: 'Github', icon: <GitHub />, id: 1 },
+  { url: SPOTIFY_LOGIN, label: 'Spotify', icon: <SpotifyIcon />, id: 2 },
+  { url: DISCORD_LOGIN, label: 'Spotify', icon: <DiscordIcon />, id: 3 }
 ]

@@ -46,5 +46,6 @@ export const PUBLIC_ROUTES: RouteProps[] = [
   RESET_ROUTE,
   SUCCESS_LOGIN_ROUTE,
 
+  /* Others */
   HOME_ROUTE
 ]

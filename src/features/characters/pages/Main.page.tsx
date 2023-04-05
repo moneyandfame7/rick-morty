@@ -16,6 +16,7 @@ export const MainCharacterPage: FC = () => {
   const currentTake = Number(searchParams.get('take')) || 20
   const { data, isFetching, isError, error } = useGetManyCharactersQuery(searchParams.toString())
   const characterFilters = useInitialFilters(Entities.CHARACTER)
+  
   return (
     <Container
       maxWidth="lg"

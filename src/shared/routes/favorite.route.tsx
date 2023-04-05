@@ -6,5 +6,5 @@ import { FavoritePage } from 'shared/pages'
 export const FAVORITE_ROUTE: RouteProps = {
   id: uuidv4(),
   element: <FavoritePage />,
-  path: '/'
+  path: '/favorites'
 }
