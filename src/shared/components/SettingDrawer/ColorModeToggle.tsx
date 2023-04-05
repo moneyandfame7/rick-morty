@@ -6,8 +6,9 @@ import DarkModeIcon from '@mui/icons-material/DarkMode'
 import LightModeIcon from '@mui/icons-material/LightMode'
 
 import { Mode } from 'application/theme'
-import { useAppDispatch, useAppSelector } from 'application/store'
-import { selectCustomization, setMode } from 'application/theme/customization'
+import { useAppSelector } from 'application/store'
+import { selectCustomization } from 'application/theme/customization'
+import { useActions } from 'shared/hooks/useActions'
 
 const modeItems = [
   {
@@ -30,13 +31,13 @@ const modeItems = [
   }
 ]
 export const ColorModeToggle = () => {
-  const dispatch = useAppDispatch()
+  const { setMode } = useActions()
   const smallViewport = useMediaQuery('(max-width:600px)')
   const mode = useAppSelector(selectCustomization).mode
 
   const handleChange = (event: React.MouseEvent<HTMLElement>, mode: Mode | null) => {
     if (mode !== null) {
-      dispatch(setMode(mode))
+      setMode(mode)
     }
   }
   return (

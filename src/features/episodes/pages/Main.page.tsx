@@ -4,8 +4,7 @@ import { CircularProgress } from '@mui/material'
 import { useGetManyEpisodesQuery } from 'features/episodes/services'
 
 import { useQueryParams } from 'shared/hooks'
-import { ErrorMessage, Pagination } from 'shared/components'
-import { NavigationEnum } from 'shared/constants'
+import { ErrorMessage } from 'shared/components'
 
 export const MainEpisodePage: FC = () => {
   const queryPage = parseInt(useQueryParams().get('page') ?? '')

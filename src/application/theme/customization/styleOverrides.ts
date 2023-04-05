@@ -63,11 +63,7 @@ export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
       },
       input: {
         '&:-webkit-autofill': {
-          WebkitBoxShadow: `0 0 0 100px ${
-            theme.palette.mode === 'dark'
-              ? /*lighten(theme.palette.background.default, 0.07)*/ '#1f1739'
-              : /*darken(theme.palette.background.default, 0.03)*/ 'rgb(224 217 254)'
-          } inset`,
+          WebkitBoxShadow: `0 0 0 100px ${theme.palette.mode === 'dark' ? '#1f1739' : 'rgb(224 217 254)'} inset`,
           WebkitTextFillColor: theme.palette.text.primary
         }
       }

@@ -2,23 +2,24 @@ import { useEffect, useState } from 'react'
 
 import _ from 'lodash'
 
-import { useAppDispatch, useAppSelector } from 'application/store'
+import { useAppSelector } from 'application/store'
 
-import { addToFavorite, removeFromFavorite, selectFavoriteCharacters } from 'features/characters/services'
+import { selectFavoriteCharacters } from 'features/characters/services'
 import type { Character } from 'features/characters/type'
+import { useActions } from 'shared/hooks/useActions'
 
 export const useToggleFavorite = (character?: Character) => {
   const favoriteCharacters = useAppSelector(selectFavoriteCharacters)
-  const dispatch = useAppDispatch()
+  const { addToFavorite, removeFromFavorite } = useActions()
   const [isFavorite, setIsFavorite] = useState(false)
   const toggle = () => {
     console.log('Click')
     if (character) {
       if (isFavorite) {
-        dispatch(removeFromFavorite(character.id))
+        removeFromFavorite(character.id)
         setIsFavorite(false)
       } else {
-        dispatch(addToFavorite(character))
+        addToFavorite(character)
         setIsFavorite(true)
       }
     }

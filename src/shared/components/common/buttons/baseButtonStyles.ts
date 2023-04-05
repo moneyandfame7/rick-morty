@@ -1,4 +1,4 @@
-import { alpha, darken, Theme } from '@mui/material'
+import { alpha, darken } from '@mui/material'
 
 export const useBaseButtonStyles = (backgroundColor: string) => ({
   background: backgroundColor,

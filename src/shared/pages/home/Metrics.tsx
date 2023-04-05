@@ -12,7 +12,7 @@ export const Metrics: FC = () => {
   return (
     <>
       {countOfEntities ? (
-        <Grid container>
+        <Grid container sx={{ userSelect: 'none' }}>
           {countOfEntities.map(entity => (
             <Grid
               key={entity.label}

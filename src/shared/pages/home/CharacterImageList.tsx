@@ -1,15 +1,15 @@
-import React, { FC, useRef } from 'react'
+import React, { FC } from 'react'
 import Box from '@mui/material/Box'
 import { ImageList, ImageListItem, Skeleton, useMediaQuery, useTheme } from '@mui/material'
 import Image from 'mui-image'
 
-import { useGetManyCharactersQuery } from 'features/characters/services'
+import { useGetCharactersImagesQuery } from 'features/characters/services'
 import { CircularLoader } from 'shared/components/common'
 
 export const CharacterImageList: FC = () => {
   const theme = useTheme()
 
-  const { data, isFetching, isError, error } = useGetManyCharactersQuery(`page=1&take=46`)
+  const { data, isFetching } = useGetCharactersImagesQuery()
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
@@ -36,11 +36,11 @@ export const CharacterImageList: FC = () => {
             }}
             gap={matchDownMd ? 8 : 20}
           >
-            {data.results.map(character => (
-              <ImageListItem key={character.image} sx={{ width: '100%' }}>
+            {data?.map(image => (
+              <ImageListItem key={image} sx={{ width: '100%' }}>
                 <Image
-                  src={character.image}
-                  alt={character.name}
+                  src={image}
+                  alt={'Character image'}
                   duration={300}
                   height="100%"
                   showLoading={<Skeleton width="100%" height="300px" animation="wave" />}

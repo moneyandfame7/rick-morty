@@ -1,19 +1,18 @@
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from 'application/store'
-
 import { useLogoutMutation } from 'features/authorization/services'
-import { removeUser } from 'features/users/services'
 import { LOGIN_ROUTE } from 'features/authorization/routes'
+
+import { useActions } from 'shared/hooks/useActions'
 
 export const useLogout = () => {
   const navigate = useNavigate()
-  const dispatch = useAppDispatch()
+  const { removeUser } = useActions()
   const [logout, { isSuccess, isLoading }] = useLogoutMutation()
 
   const makeLogout = async () => {
     await logout()
-    dispatch(removeUser())
+    removeUser()
     navigate({ pathname: LOGIN_ROUTE.path })
   }
   return { makeLogout, isSuccess, isLoading }

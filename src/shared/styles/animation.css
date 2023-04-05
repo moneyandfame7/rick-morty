@@ -8,9 +8,6 @@
   transition: opacity 300ms, transform 1000ms;
 }
 
-.cookie-banner-exit {
-}
-
 .cookie-banner-exit-active {
   transform: translateY(300px);
   transition: transform 1000ms ease;

@@ -1,7 +1,7 @@
 import { rootApi } from 'application/store/root-api.slice'
 import type { IEpisode, IManyEpisode } from 'features/episodes/type'
 
-import { NavigationEnum } from 'shared/constants'
+import { Navigation } from 'shared/constants'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
 interface ResultsType {
@@ -12,13 +12,13 @@ interface ResultsType {
 const episodeApi = rootApi.injectEndpoints({
   endpoints: builder => ({
     getManyEpisodes: builder.query<IManyEpisode, number | void>({
-      query: (page = 1) => `/api/${NavigationEnum.EPISODES}?page=${page}`
+      query: (page = 1) => `/api/${Navigation.EPISODES}?page=${page}`
     }),
     getOneEpisode: builder.query<IEpisode, number>({
-      query: id => `/api/${NavigationEnum.EPISODES}/${id}`
+      query: id => `/api/${Navigation.EPISODES}/${id}`
     }),
     getCountOfEpisodes: builder.query<number, void>({
-      query: () => `/api/${NavigationEnum.EPISODES}/count`
+      query: () => `/api/${Navigation.EPISODES}/count`
     }),
     getListOfEpisodes: builder.query<IEpisode[], number[]>({
       queryFn: async (ids, _queryApi, _extraOptions, fetchWithBQ) => {

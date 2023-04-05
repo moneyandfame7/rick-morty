@@ -1,24 +1,23 @@
 import { useMemo } from 'react'
-import { useDispatch } from 'react-redux'
 import countryList from 'react-select-country-list'
 import { useFormik } from 'formik'
 
 import { useWelcomeMutation } from 'features/authorization/services'
 import { UserWelcomeDetails } from 'features/users/type'
-import { setUser } from 'features/users/services'
 
 import { welcomeValidationSchema } from 'shared/utils'
 import { CountryData } from 'shared/components/forms'
+import { useActions } from 'shared/hooks/useActions'
 
 export const useWelcome = () => {
-  const dispatch = useDispatch()
   const countries: CountryData[] = useMemo(() => countryList().getData(), [])
   const [welcome, { isSuccess, isLoading, error }] = useWelcomeMutation()
+  const { setUser } = useActions()
 
   const onSubmit = async (details: UserWelcomeDetails) => {
     const info = await welcome(details)
     if ('data' in info) {
-      dispatch(setUser(info.data.user))
+      setUser(info.data.user)
       return
     }
   }
