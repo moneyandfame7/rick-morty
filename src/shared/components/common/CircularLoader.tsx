@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { type FC } from 'react'
 import { Box, CircularProgress, circularProgressClasses } from '@mui/material'
 
 export const CircularLoader: FC = () => {

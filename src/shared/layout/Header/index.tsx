@@ -30,8 +30,6 @@ import { HeaderDrawer } from './Drawer'
 import { LINKS_CONFIG } from './utils/links'
 import { AvatarMenu } from './AvatarMenu'
 
-
-
 export const Header: FC = () => {
   const location = useLocation()
   const navigate = useNavigate()

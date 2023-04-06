@@ -12,7 +12,6 @@ export const useSignup = () => {
   const [signup, { isSuccess, isLoading, error, isError }] = useSignupMutation()
 
   const onSubmit = async (values: AuthCredentials) => {
-    console.log(values)
     const info = await signup(values)
 
     if ('data' in info) {

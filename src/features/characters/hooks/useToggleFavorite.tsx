@@ -12,8 +12,8 @@ export const useToggleFavorite = (character?: Character) => {
   const favoriteCharacters = useAppSelector(selectFavoriteCharacters)
   const { addToFavorite, removeFromFavorite } = useActions()
   const [isFavorite, setIsFavorite] = useState(false)
+
   const toggle = () => {
-    console.log('Click')
     if (character) {
       if (isFavorite) {
         removeFromFavorite(character.id)

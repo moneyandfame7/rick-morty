@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Image from 'mui-image'
@@ -10,11 +10,10 @@ import { useAppSelector } from 'application/store'
 
 import type { Character } from 'features/characters/type'
 import { selectIsFavorite } from 'features/characters/services'
+import { useToggleFavorite } from 'features/characters/hooks'
 
 import { PrimaryButton } from 'shared/components/common/buttons'
 import { Navigation } from 'shared/constants'
-
-import { useToggleFavorite } from 'features/characters/hooks'
 
 interface CharacterCardProps {
   character: Character
@@ -59,14 +58,6 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
           size="medium"
           onClick={toggle}
           sx={{ color: isFavorite ? 'error.main' : 'text.secondary' }}
-          /*  sx={{
-            position: 'absolute',
-            zIndex: 2,
-            borderRadius: '50%',
-            right: '1rem',
-            bottom: 0,
-            transform: 'translateY(50%)'
-          }}*/
         >
           {isFavorite ? <FavoriteIcon sx={{ fontSize: '20px' }} /> : <FavoriteIconOutlined sx={{ fontSize: '20px' }} />}
         </IconButton>

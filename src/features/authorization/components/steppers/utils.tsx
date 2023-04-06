@@ -11,18 +11,19 @@ interface StepperContextType {
 
 export const StepperContext = createContext<StepperContextType>({
   activeStep: 0,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setActiveStep: () => {}
 })
 
 export const STEPS = [
   {
     label: 'Create an account',
-    description: `Please provide your email and password`,
+    description: 'Please provide your email and password',
     id: 0
   },
   {
     label: 'Your details',
-    description: `Just provide some details about you`,
+    description: 'Just provide some details about you',
     id: 1
   },
   {

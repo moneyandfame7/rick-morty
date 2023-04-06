@@ -46,7 +46,7 @@ export const CheckEmail: FC<CheckEmailProps> = ({ email, sendLink, isLoading, se
         Open email app
       </PrimaryButton>
       <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 500, opacity: 0.9 }}>
-        Didn't receive the email?{' '}
+        Didn&apos;t receive the email?{' '}
         <Button
           variant="text"
           sx={{ fontWeight: 500 }}

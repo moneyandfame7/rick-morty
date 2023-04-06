@@ -1,5 +1,3 @@
-export * from './LogoIcon'
-
-export * from './SuccessIcon'
-
-export * from './PrimaryIcon'
+export * from './LogoIcon';
+export * from './PrimaryIcon';
+export * from './SuccessIcon';

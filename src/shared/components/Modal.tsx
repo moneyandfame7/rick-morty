@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from '@mui/material'
 import { TransitionProps } from '@mui/material/transitions'
 
@@ -11,6 +11,7 @@ interface ModalProps {
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     children: React.ReactElement<any, any>
   },
   ref: React.Ref<unknown>

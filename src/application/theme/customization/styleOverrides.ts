@@ -54,10 +54,10 @@ export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
         },
         '&.Mui-error': {
           fieldset: {
-            borderColor: `#f44336 !important`
+            borderColor: '#f44336 !important'
           },
           '&: hover fieldset': {
-            borderColor: `#f44336 !important`
+            borderColor: '#f44336 !important'
           }
         }
       },

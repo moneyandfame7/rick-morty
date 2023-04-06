@@ -17,14 +17,24 @@ export const ValidatedInput: FC<ValidateInputProps> = ({ value, errorText, onCha
         error={!!errorText}
         onChange={onChange}
         onBlur={onBlur}
-        helperText={!!errorText ? errorText : props.helperText}
+        helperText={errorText ? errorText : props.helperText}
         FormHelperTextProps={{
           sx: {
             marginLeft: '20px'
           }
         }}
       />
-      {errorText && <ErrorIcon sx={{ fontSize: 16, position: 'absolute', bottom: 3, color: '#d93025', left: 0 }} />}
+      {errorText && (
+        <ErrorIcon
+          sx={{
+            fontSize: 16,
+            position: 'absolute',
+            bottom: 3,
+            color: '#d93025',
+            left: 0
+          }}
+        />
+      )}
     </Box>
   )
 }

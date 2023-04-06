@@ -1,3 +1,2 @@
-export * from './Logo'
-
-export * from './UserAvatar'
+export * from './Logo';
+export * from './UserAvatar';

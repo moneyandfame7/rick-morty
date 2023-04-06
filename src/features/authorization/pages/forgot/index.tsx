@@ -1,4 +1,5 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
+
 import { Container } from './Container'
 import { Main } from './Main'
 

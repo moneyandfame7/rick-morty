@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { Grid, Stack, Typography } from '@mui/material'
 import CopyrightOutlinedIcon from '@mui/icons-material/CopyrightOutlined'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
@@ -20,7 +20,15 @@ export const Footer: FC = () => {
     >
       <Stack direction="row" gap={1} alignItems="center">
         <CopyrightOutlinedIcon sx={{ color: 'primary.lighter', fontSize: 14 }} />
-        <Typography sx={{ fontWeight: 400, fontSize: 14, color: 'primary.lighter' }}>Rickmorty API</Typography>
+        <Typography
+          sx={{
+            fontWeight: 400,
+            fontSize: 14,
+            color: 'primary.lighter'
+          }}
+        >
+          Rickmorty API
+        </Typography>
       </Stack>
       <Stack
         direction="row"
