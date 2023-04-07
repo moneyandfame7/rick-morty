@@ -1,5 +1,5 @@
+import React, { FC, PropsWithChildren } from 'react'
 import { Grid } from '@mui/material'
-import { FC, PropsWithChildren } from 'react'
 
 export const Root: FC<PropsWithChildren> = ({ children }) => {
   return (

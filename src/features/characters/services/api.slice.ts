@@ -1,18 +1,17 @@
 import { rootApi } from 'application/store/root-api.slice'
 
 import type { Character, ManyCharacter } from 'features/characters/type'
+import { CharacterFields } from 'features/characters/constant'
 
-import { NavigationEnum } from 'shared/constants'
-import { CharacterFields } from '../constant'
+import { Navigation } from 'shared/constants'
 
 const characterApi = rootApi.injectEndpoints({
-
   endpoints: builder => ({
     getManyCharacters: builder.query<ManyCharacter, string | void>({
-      query: (query: string) => `api/${NavigationEnum.CHARACTERS}?${query}`
+      query: (query: string) => `api/${Navigation.CHARACTERS}?${query}`
     }),
     getInfiniteCharacters: builder.query<ManyCharacter, string | void>({
-      query: (query: string) => `api/${NavigationEnum.CHARACTERS}?${query}`,
+      query: (query: string) => `api/${Navigation.CHARACTERS}?${query}`,
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName
       },
@@ -26,11 +25,11 @@ const characterApi = rootApi.injectEndpoints({
       }
     }),
     getOneCharacter: builder.query<Character, number | void>({
-      query: id => `api/${NavigationEnum.CHARACTERS}/${id}`
+      query: id => `api/${Navigation.CHARACTERS}/${id}`
     }),
     getCharactersNames: builder.mutation<string[], string>({
       query: name => ({
-        url: `/api/${NavigationEnum.CHARACTERS}/names`,
+        url: `/api/${Navigation.CHARACTERS}/names`,
         body: {
           name
         },
@@ -39,14 +38,17 @@ const characterApi = rootApi.injectEndpoints({
     }),
     getCharactersByFields: builder.query<{ [field: string]: string[] }, CharacterFields[]>({
       query: fields => ({
-        url: `api/${NavigationEnum.CHARACTERS}/unique`,
+        url: `api/${Navigation.CHARACTERS}/unique`,
         body: {
           fields
         }
       })
     }),
     getCountOfCharacters: builder.query<number, void>({
-      query: () => `api/${NavigationEnum.CHARACTERS}/count`
+      query: () => `api/${Navigation.CHARACTERS}/count`
+    }),
+    getCharactersImages: builder.query<string[], void>({
+      query: () => `api/${Navigation.CHARACTERS}/images`
     })
   })
 })
@@ -57,5 +59,6 @@ export const {
   useGetCharactersNamesMutation,
   useGetCharactersByFieldsQuery,
   useGetInfiniteCharactersQuery,
-  useGetCountOfCharactersQuery
+  useGetCountOfCharactersQuery,
+  useGetCharactersImagesQuery
 } = characterApi

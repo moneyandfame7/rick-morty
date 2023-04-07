@@ -8,7 +8,7 @@ const Forgot: FC = () => {
         Forgot password?
       </Typography>
       <Typography variant="body2" fontWeight="500" color="text.secondary">
-        No worries, we'll send you reset instructions.
+        No worries, we&apos;ll send you reset instructions.
       </Typography>
     </>
   )

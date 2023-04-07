@@ -1,5 +1,6 @@
-import { FC, useContext } from 'react'
+import React, { type FC, useContext } from 'react'
 import { MobileStepper } from '@mui/material'
+
 import { StepperContext, STEPS } from './utils'
 
 export const DashedStepper: FC = () => {

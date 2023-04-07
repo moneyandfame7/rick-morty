@@ -1,9 +1,10 @@
-import React, { FC, PropsWithChildren, useEffect, useState } from 'react'
+import React, { type FC, PropsWithChildren, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { Grid } from '@mui/material'
 
 import { useAppSelector } from 'application/store'
+
 import { selectHasPassedWelcome, selectIsAuthenticated } from 'features/authorization/services'
 import { StepperContext } from 'features/authorization/components/steppers'
 

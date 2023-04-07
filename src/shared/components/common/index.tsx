@@ -1,3 +1,2 @@
-export * from './BackdropLoader'
-
-export * from './CircularLoader'
+export * from './BackdropLoader';
+export * from './CircularLoader';

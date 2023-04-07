@@ -8,12 +8,11 @@ import { useGetCount } from 'shared/hooks'
 
 export const Metrics: FC = () => {
   const countOfEntities = useGetCount()
-  console.log(countOfEntities)
 
   return (
     <>
       {countOfEntities ? (
-        <Grid container>
+        <Grid container sx={{ userSelect: 'none' }}>
           {countOfEntities.map(entity => (
             <Grid
               key={entity.label}

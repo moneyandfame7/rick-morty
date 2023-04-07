@@ -1,4 +1,4 @@
-import { PageInformation } from 'shared/types'
+import type { PageInformation } from 'shared/types'
 
 export interface IEpisode {
   id: number

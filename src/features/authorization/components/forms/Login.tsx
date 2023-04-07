@@ -6,8 +6,7 @@ import { Box, Link, Stack, Typography } from '@mui/material'
 import { useAppSelector } from 'application/store'
 
 import { useLogin } from 'features/authorization/hooks'
-import { selectIsAuthenticated } from 'features/authorization/services'
-import { errorHandler } from 'features/authorization/services'
+import { errorHandler, selectIsAuthenticated } from 'features/authorization/services'
 
 import { HOME_ROUTE } from 'shared/routes'
 import { ValidatedInput } from 'shared/components/forms'
@@ -73,7 +72,7 @@ export const LoginForm: FC = () => {
           Sign in
         </PrimaryButton>
         <Typography variant="body2" color="text.secondary" textAlign="center">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <Typography
             component={RouterLink}
             to="/signup"

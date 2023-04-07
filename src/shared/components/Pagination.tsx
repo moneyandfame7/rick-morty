@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Box, Pagination as MuiPagination, useMediaQuery } from '@mui/material'
 

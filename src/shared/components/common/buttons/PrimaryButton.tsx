@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { styled, darken, alpha } from '@mui/material'
 import { LoadingButton, LoadingButtonProps } from '@mui/lab'
 

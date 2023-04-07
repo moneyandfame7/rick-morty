@@ -1,14 +1,15 @@
 import React, { FC } from 'react'
 import { useSearchParams } from 'react-router-dom'
-
 import { Box, Container, Grid, Paper, Skeleton, Typography } from '@mui/material'
+
 import { useGetManyCharactersQuery } from 'features/characters/services'
-import { CharacterCard } from '../components'
-import { Pagination } from 'shared/components/Pagination'
 import { Filtration } from 'features/filters/components/Filtration'
-import { ErrorMessage } from 'shared/components'
-import { SkeletonList } from 'shared/components/SkeletonList'
 import { useInitialFilters } from 'features/filters/hooks/useInitialFilters'
+import { CharacterCard } from 'features/characters/components'
+
+import { Pagination } from 'shared/components'
+import { ErrorMessage } from 'shared/components'
+import { SkeletonList } from 'shared/components'
 import { Entities } from 'shared/constants'
 
 export const MainCharacterPage: FC = () => {
@@ -30,7 +31,7 @@ export const MainCharacterPage: FC = () => {
     >
       <Box component="div" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         <Typography variant="h5" fontWeight={600}>
-          Characterss
+          Characters
         </Typography>
         <Typography variant="h5" fontWeight={600} color="text.third">
           {data?.info?.count}

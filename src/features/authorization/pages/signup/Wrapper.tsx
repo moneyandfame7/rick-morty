@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from 'react'
+import React, { type FC, type PropsWithChildren } from 'react'
 import { Grid } from '@mui/material'
 
 export const Wrapper: FC<PropsWithChildren> = ({ children }) => {

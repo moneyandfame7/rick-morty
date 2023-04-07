@@ -1,12 +1,12 @@
 {
-  "semi": false,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "trailingComma": "none",
-  "bracketSpacing": true,
-  "jsxSingleQuote": false,
-  "bracketSameLine": false,
-  "arrowParens": "avoid",
-  "html.format.wrapAttributes": "force-aligned",
-  "printWidth": 120
+	"semi": false,
+	"singleQuote": true,
+	"tabWidth": 2,
+	"trailingComma": "none",
+	"bracketSpacing": true,
+	"jsxSingleQuote": false,
+	"bracketSameLine": false,
+	"arrowParens": "avoid",
+	"html.format.wrapAttributes": "force-aligned",
+	"printWidth": 120
 }

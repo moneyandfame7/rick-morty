@@ -1,29 +1,26 @@
-import { type FC, useEffect } from 'react'
+import React, { type FC, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Cookies from 'js-cookie'
 import jwt_decode from 'jwt-decode'
 
 import { Container } from '@mui/material'
 
-import { useAppDispatch } from 'application/store'
-
-import { setUser } from 'features/users/services'
 import type { User } from 'features/users/type'
+import { CookieKey, cookies } from 'features/authorization/services'
 
 import { HOME_ROUTE } from 'shared/routes'
-import { CookieKey } from 'shared/constants'
 import { CircularLoader } from 'shared/components/common'
+import { useActions } from 'shared/hooks'
 
 export const SuccessLoginPage: FC = () => {
   const navigate = useNavigate()
-  const token = Cookies.get(CookieKey.ACCESS_TOKEN)
-  const dispatch = useAppDispatch()
+  const token = cookies.get(CookieKey.ACCESS_TOKEN)
+  const { setUser } = useActions()
   useEffect(() => {
     if (token) {
       const user: User = jwt_decode(token)
 
       if (user) {
-        dispatch(setUser(user))
+        setUser(user)
         setTimeout(() => {
           navigate({ pathname: HOME_ROUTE.path })
         }, 1000)

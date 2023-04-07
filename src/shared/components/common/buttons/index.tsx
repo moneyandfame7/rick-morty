@@ -1,5 +1,3 @@
-export * from './OutlinedButton'
-
-export * from './PrimaryButton'
-
-export * from './LinkButton'
+export * from './LinkButton';
+export * from './OutlinedButton';
+export * from './PrimaryButton';

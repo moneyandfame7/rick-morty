@@ -2,24 +2,23 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 
-import { useAppDispatch } from 'application/store'
-
 import type { AuthCredentials } from 'features/authorization/type'
 import { useLoginMutation } from 'features/authorization/services'
-import { setUser } from 'features/users/services'
 
 import { loginValidationSchema } from 'shared/utils'
 import { HOME_ROUTE } from 'shared/routes'
+import { useActions } from 'shared/hooks/useActions'
 
 export const useLogin = () => {
   const navigate = useNavigate()
-  const dispatch = useAppDispatch()
 
   const [login, { isSuccess, isLoading, error }] = useLoginMutation()
+  const { setUser } = useActions()
+
   const onSubmit = async (credentials: AuthCredentials) => {
     const info = await login(credentials)
     if ('data' in info) {
-      dispatch(setUser(info.data.user))
+      setUser(info.data.user)
       return
     }
   }

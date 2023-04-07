@@ -1,24 +1,21 @@
 import { useFormik } from 'formik'
 
-import { useAppDispatch } from 'application/store'
-
 import type { AuthCredentials, SignupCredentials } from 'features/authorization/type'
 import { useSignupMutation } from 'features/authorization/services'
-import { setUser } from 'features/users/services'
 
 import { signupValidationSchema } from 'shared/utils'
+import { useActions } from 'shared/hooks/useActions'
 
 export const useSignup = () => {
-  const dispatch = useAppDispatch()
+  const { setUser } = useActions()
 
   const [signup, { isSuccess, isLoading, error, isError }] = useSignupMutation()
 
   const onSubmit = async (values: AuthCredentials) => {
-    console.log(values)
     const info = await signup(values)
 
     if ('data' in info) {
-      dispatch(setUser(info.data.user))
+      setUser(info.data.user)
 
       return
     }

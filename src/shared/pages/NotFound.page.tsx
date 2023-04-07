@@ -29,7 +29,7 @@ export const NotFoundPage: FC = () => {
         Page not found
       </Typography>
       <Typography variant="body1" color="text.secondary" textAlign={'center'} sx={{ width: '80%' }}>
-        The page you are looking for doesn't exist. Here are some helpful links:
+        The page you are looking for doesn&apos;t exist. Here are some helpful links:
       </Typography>
       <Stack direction="row" gap={3} flexWrap="wrap" alignItems="start">
         <OutlinedButton

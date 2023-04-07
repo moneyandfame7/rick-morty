@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { Box, Button, Grid, Skeleton } from '@mui/material'
 
 interface SkeletonListProps {
@@ -11,7 +11,7 @@ export const SkeletonList: FC<SkeletonListProps> = ({ count }) => {
       {Array.from(Array(count).keys()).map(index => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
           <Box
-            component='div'
+            component="div"
             sx={{
               p: 2,
               border: '1px solid',
@@ -20,18 +20,18 @@ export const SkeletonList: FC<SkeletonListProps> = ({ count }) => {
             }}
           >
             <div style={{ paddingBottom: '10px' }}>
-              <Skeleton width='45%' animation='wave' />
-              <Skeleton width='30%' animation='wave' />
+              <Skeleton width="45%" animation="wave" />
+              <Skeleton width="30%" animation="wave" />
             </div>
-            <Skeleton variant='rectangular' width='100%' sx={{ borderRadius: '8px' }} animation='wave'>
+            <Skeleton variant="rectangular" width="100%" sx={{ borderRadius: '8px' }} animation="wave">
               <div style={{ minHeight: '160px', maxHeight: '200px' }} />
             </Skeleton>
-            <Box component='div' sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Box component="div" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div style={{ paddingTop: '10px', width: '100%' }}>
-                <Skeleton width='20%' animation='wave' />
-                <Skeleton width='30%' animation='wave' />
+                <Skeleton width="20%" animation="wave" />
+                <Skeleton width="30%" animation="wave" />
               </div>
-              <Skeleton animation='wave'>
+              <Skeleton animation="wave">
                 <Button>Show more</Button>
               </Skeleton>
             </Box>

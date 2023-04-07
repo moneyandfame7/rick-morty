@@ -88,7 +88,7 @@ export const useCreateTheme = (customization: Customization) => {
   const themeObj: ThemeOptions = {
     palette,
     typography: {
-      fontFamily: `"Inter", "sans-serif"`
+      fontFamily: '"Inter", "sans-serif"'
     }
   }
 
