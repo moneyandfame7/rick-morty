@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import MuiContainer from '@mui/material/Container'
 
 export const Container: FC<PropsWithChildren> = ({ children }) => {

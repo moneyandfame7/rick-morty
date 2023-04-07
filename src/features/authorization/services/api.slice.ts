@@ -1,4 +1,7 @@
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+
 import { rootApi } from 'application/store'
+
 import type { AuthCredentials, AuthResponse } from 'features/authorization/type'
 import type { ForgotCredentials, ResetPasswordParams, UserWelcomeDetails } from 'features/users/type'
 
@@ -10,7 +13,7 @@ export const authApi = rootApi.injectEndpoints({
         method: 'post',
         body
       }),
-      transformErrorResponse: (response: any, meta, arg) => {
+      transformErrorResponse: (response: FetchBaseQueryError) => {
         return response.data
       }
     }),
@@ -20,7 +23,7 @@ export const authApi = rootApi.injectEndpoints({
         method: 'post',
         body
       }),
-      transformErrorResponse: (response: any, meta, arg) => {
+      transformErrorResponse: (response: FetchBaseQueryError) => {
         return response.data
       }
     }),
@@ -51,7 +54,7 @@ export const authApi = rootApi.injectEndpoints({
         method: 'post',
         body
       }),
-      transformErrorResponse: (response: any, meta, arg) => {
+      transformErrorResponse: (response: FetchBaseQueryError) => {
         return response.data
       }
     }),
@@ -61,7 +64,7 @@ export const authApi = rootApi.injectEndpoints({
         method: 'post',
         body: details.body
       }),
-      transformErrorResponse: (response: any, meta, arg) => {
+      transformErrorResponse: (response: FetchBaseQueryError) => {
         return response.data
       }
     })

@@ -66,7 +66,7 @@ export const SignupForm: FC = () => {
                 size="small"
                 label="Confirm a password"
                 value={formik.values.confirmPassword}
-                errorText={!!formik.values.password ? formik.errors.confirmPassword : ''}
+                errorText={formik.values.password ? formik.errors.confirmPassword : ''}
                 onChange={formik.handleChange}
                 disabled={isLoading}
               />

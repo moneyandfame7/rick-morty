@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react'
+import React, { type FC, useContext } from 'react'
 import { Container, Grid, Typography } from '@mui/material'
 
 import { SignupForm } from 'features/authorization/components/forms'

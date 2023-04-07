@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react'
+import React, { type FC, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
@@ -6,7 +6,9 @@ import { Button, Grid, Typography } from '@mui/material'
 import CookieOutlinedIcon from '@mui/icons-material/CookieOutlined'
 
 import { useAppDispatch, useAppSelector } from 'application/store'
+
 import { selectIsAcceptCookie, setAcceptCookie } from 'features/users/services'
+
 import { getIsAuthorizationRoute } from 'shared/utils/getIsAuthorizationRoute'
 
 import 'shared/styles/animation.css'
@@ -46,14 +48,34 @@ export const CookieBanner: FC = () => {
           userSelect: 'none'
         }}
       >
-        <Grid item xs={12} md={0.5} sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
+        <Grid
+          item
+          xs={12}
+          md={0.5}
+          sx={{
+            display: 'flex',
+            justifyContent: { xs: 'center', md: 'flex-start' }
+          }}
+        >
           <CookieOutlinedIcon />
         </Grid>
-        <Grid item xs={12} md={10.5} sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
+        <Grid
+          item
+          xs={12}
+          md={10.5}
+          sx={{
+            display: 'flex',
+            justifyContent: { xs: 'center', md: 'flex-start' }
+          }}
+        >
           <Typography
             variant="body1"
             fontWeight={500}
-            sx={{ width: '85%', textAlign: { xs: 'center', md: 'start' }, fontSize: 12 }}
+            sx={{
+              width: '85%',
+              textAlign: { xs: 'center', md: 'start' },
+              fontSize: 12
+            }}
           >
             Please be aware that this awesome cookies banner informs you that this awesome website uses cookies. Why?
             Because cookies are an awesome delight of course!

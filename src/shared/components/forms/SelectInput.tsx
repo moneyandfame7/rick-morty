@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { type FC } from 'react'
 import { MenuItem, TextField, TextFieldProps } from '@mui/material'
 
 interface SelectInputInterface {

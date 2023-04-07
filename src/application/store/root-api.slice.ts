@@ -23,17 +23,15 @@ const baseQueryWithRefresh: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQu
   if (result.error && result.error.status === 401) {
     try {
       const refreshResult = await baseQuery({ url: '/auth/refresh', method: 'get' }, api, extraOptions)
-      console.log(refreshResult)
       if (refreshResult.data) {
         api.dispatch(setUser((refreshResult.data as AuthResponse).user))
 
         result = await baseQuery(args, api, extraOptions)
       } else {
-        console.log('Unauthorized user')
         api.dispatch(removeUser())
       }
     } catch (error) {
-      console.log('error :>> ', error)
+      /* empty */
     }
   }
   return result

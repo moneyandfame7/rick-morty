@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import React, { type FC, useState } from 'react'
 
 import { Box, Divider, Drawer, IconButton, Stack, Tooltip, Typography } from '@mui/material'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
@@ -50,7 +50,13 @@ export const SettingDrawer: FC = () => {
             <Box component="div">
               <Typography
                 variant="subtitle1"
-                sx={{ fontWeight: 600, textTransform: 'uppercase', opacity: 0.5, fontSize: 12, mb: 1 }}
+                sx={{
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  opacity: 0.5,
+                  fontSize: 12,
+                  mb: 1
+                }}
               >
                 Mode
               </Typography>

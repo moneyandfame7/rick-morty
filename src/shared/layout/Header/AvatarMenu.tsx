@@ -2,21 +2,18 @@ import React, { FC, useState } from 'react'
 import { Alert, Avatar, Box, BoxProps, Divider, Menu, Typography } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
+
 import { useAppSelector } from 'application/store'
 
 import { selectCurrentUser } from 'features/users/services'
 import { useVerificationSendMutation } from 'features/authorization/services'
-
-import { UserAvatar } from 'shared/components/icons/UserAvatar'
-import { useGetUserMenu } from 'shared/hooks'
 import { useLogout } from 'features/authorization/hooks'
-import { BackdropLoader } from 'shared/components/common/BackdropLoader'
 
-interface AvatarMenuProps {
-  isWelcomePage?: boolean
-}
+import { UserAvatar } from 'shared/components/icons'
+import { useGetUserMenu } from 'shared/hooks'
+import { BackdropLoader } from 'shared/components/common'
 
-export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = false }) => {
+export const AvatarMenu: FC<BoxProps> = () => {
   const [resendVerification, { isLoading: isVerificationLoading }] = useVerificationSendMutation()
   const { makeLogout, isLoading: isLogoutLoading } = useLogout()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -46,9 +43,6 @@ export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = fal
         anchorEl={anchorEl}
         onClose={handleCloseMenu}
         open={open}
-        /*  sx={{
-          top: { xs: 0, md: 20 }
-        }}*/
       >
         <Box
           component="div"
@@ -67,12 +61,13 @@ export const AvatarMenu: FC<AvatarMenuProps & BoxProps> = ({ isWelcomePage = fal
             </Typography>
           </div>
         </Box>
+
         <Divider sx={{ mb: 2 }} />
-        {/* {currentUser.} */}
+
         {!currentUser?.is_verified ? (
           <Alert severity="warning" sx={{ maxWidth: 300 }}>
             <Typography variant="h6" fontSize={14} fontWeight={600}>
-              You haven't verified your email address yet.
+              You haven&apos;t verified your email address yet.
             </Typography>
             <Typography variant="body2" fontWeight={500} sx={{ py: 1, opacity: 0.8 }}>
               Please click on the link we emailed you to verify your email.

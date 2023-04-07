@@ -1,5 +1,3 @@
 export * from './DashedStepper'
-
-export * from './VerticalStepper'
-
 export * from './utils'
+export * from './VerticalStepper'

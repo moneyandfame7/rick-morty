@@ -1,3 +1,3 @@
-export * from './Main.page'
-export * from './Create.page'
-export * from './Single.page'
+export * from './Create.page';
+export * from './Main.page';
+export * from './Single.page';

@@ -3,11 +3,6 @@ export const enum LocalStorageKey {
   USER = 'USER'
 }
 
-export const enum CookieKey {
-  ACCESS_TOKEN = 'ACCESS_TOKEN',
-  REFRESH_TOKEN = 'REFRESH_TOKEN'
-}
-
 export const enum Navigation {
   CHARACTERS = 'characters',
   EPISODES = 'episodes',

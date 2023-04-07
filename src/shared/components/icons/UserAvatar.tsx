@@ -10,13 +10,13 @@ import { selectFavoriteAmount } from 'features/characters/services'
 interface UserAvatarProps extends IconButtonProps {
   user: User | null
 }
-const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+const StyledBadge = styled(Badge)<BadgeProps>(() => ({
   '& .MuiBadge-badge': {
     right: -1,
     top: 5
   }
 }))
-export const UserAvatar: FC<UserAvatarProps> = ({ user, sx, ...props }) => {
+export const UserAvatar: FC<UserAvatarProps> = ({ sx, ...props }) => {
   const countOfFavorites = useAppSelector(selectFavoriteAmount)
   return (
     <Tooltip title="You">

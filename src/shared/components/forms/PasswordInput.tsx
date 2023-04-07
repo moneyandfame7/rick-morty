@@ -1,20 +1,12 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { Box, TextField, TextFieldProps } from '@mui/material'
 import ErrorIcon from '@mui/icons-material/Error'
 
 interface PasswordInputProps {
   errorText?: string
-  touched?: boolean
 }
 
-export const PasswordInput: FC<PasswordInputProps & TextFieldProps> = ({
-  value,
-  errorText,
-  touched,
-  onChange,
-  onBlur,
-  ...props
-}) => {
+export const PasswordInput: FC<PasswordInputProps & TextFieldProps> = ({ value, errorText, onChange, ...props }) => {
   return (
     <Box component="div" sx={{ position: 'relative' }}>
       <TextField
@@ -23,7 +15,7 @@ export const PasswordInput: FC<PasswordInputProps & TextFieldProps> = ({
         value={value}
         onChange={onChange}
         error={!!errorText}
-        helperText={!!errorText ? errorText : props.helperText}
+        helperText={errorText ? errorText : props.helperText}
         FormHelperTextProps={{
           sx: {
             marginLeft: '20px'
@@ -31,7 +23,16 @@ export const PasswordInput: FC<PasswordInputProps & TextFieldProps> = ({
         }}
       />
       {errorText && (
-        <ErrorIcon sx={{ fontSize: 16, position: 'absolute', bottom: 3, color: '#d93025', left: 0, mr: 20 }} />
+        <ErrorIcon
+          sx={{
+            fontSize: 16,
+            position: 'absolute',
+            bottom: 3,
+            color: '#d93025',
+            left: 0,
+            mr: 20
+          }}
+        />
       )}
     </Box>
   )

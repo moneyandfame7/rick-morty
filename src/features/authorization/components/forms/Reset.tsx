@@ -43,7 +43,7 @@ export const ResetPasswordForm: FC<FormProps<ResetPasswordDetails>> = ({ formik,
         size="small"
         label="Confirm"
         value={formik.values.confirmPassword}
-        errorText={!!formik.values.password ? formik.errors.confirmPassword : ''}
+        errorText={formik.values.password ? formik.errors.confirmPassword : ''}
         onChange={formik.handleChange}
         disabled={isLoading}
       />

@@ -1,3 +1,4 @@
+import React from 'react'
 import { RouteProps } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -21,4 +22,4 @@ const CREATE_CHARACTER_ROUTE: RouteProps = {
   path: '/create-character'
 }
 
-export { MAIN_CHARACTER_ROUTE, SINGLE_CHARACTER_ROUTE, CREATE_CHARACTER_ROUTE }
+export { CREATE_CHARACTER_ROUTE, MAIN_CHARACTER_ROUTE, SINGLE_CHARACTER_ROUTE }

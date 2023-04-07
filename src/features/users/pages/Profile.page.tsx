@@ -1,5 +1,5 @@
-import { FC } from 'react'
+import React, {FC} from 'react';
 
 export const UserProfilePage: FC = () => {
-  return <></>
-}
+	return <></>;
+};

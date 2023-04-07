@@ -1,7 +1,6 @@
-import Cookies from 'js-cookie'
-import { CookieKey } from 'shared/constants'
+import { CookieKey, cookies } from 'features/authorization/services'
 
 export const useIsAuthenticated = () => {
-  const token = Cookies.get(CookieKey.ACCESS_TOKEN)
+  const token = cookies.get(CookieKey.ACCESS_TOKEN)
   return !!token
 }

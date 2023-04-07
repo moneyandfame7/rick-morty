@@ -1,3 +1,4 @@
+import React from 'react'
 import { RouteProps } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -34,4 +35,4 @@ const SUCCESS_LOGIN_ROUTE: RouteProps = {
   path: '/login/success'
 }
 
-export { SIGNUP_ROUTE, LOGIN_ROUTE, FORGOT_ROUTE, RESET_ROUTE, SUCCESS_LOGIN_ROUTE }
+export { FORGOT_ROUTE, LOGIN_ROUTE, RESET_ROUTE, SIGNUP_ROUTE, SUCCESS_LOGIN_ROUTE }

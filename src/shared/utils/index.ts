@@ -1,7 +1,4 @@
-export * from './authorizationValidation'
-
-export * from './getIdFromUrl'
-
-export * from './wordFromUpperCase'
-
-export * from './randomNumber'
+export * from './authorizationValidation';
+export * from './getIdFromUrl';
+export * from './randomNumber';
+export * from './wordFromUpperCase';

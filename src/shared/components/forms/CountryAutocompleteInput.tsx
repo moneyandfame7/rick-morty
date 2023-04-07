@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { Autocomplete, Box, TextFieldProps } from '@mui/material'
 
 import { ValidatedInput } from 'shared/components/forms/ValidatedInput'
@@ -17,10 +17,6 @@ interface CountryAutocompleteInputInterface {
 type CountryAutocompleteInputProps = CountryAutocompleteInputInterface & TextFieldProps
 export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
   items,
-  name,
-  label,
-  value,
-  onChange,
   setFieldValue,
   errorText,
   onBlur,
@@ -54,7 +50,7 @@ export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
           onBlur={onBlur}
           error={!!errorText}
           errorText={errorText}
-          helperText={!!errorText ? errorText : props.helperText}
+          helperText={errorText ? errorText : props.helperText}
           autoComplete="shipping country"
           {...params}
         />
