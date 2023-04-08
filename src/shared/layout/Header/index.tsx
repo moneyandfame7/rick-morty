@@ -28,7 +28,8 @@ import { HOME_ROUTE } from 'shared/routes'
 
 import { HeaderDrawer } from './Drawer'
 import { LINKS_CONFIG } from './utils/links'
-import { AvatarMenu } from './AvatarMenu'
+import { UserMenu } from './AvatarMenu'
+import { selectCurrentUser } from 'features/users/services'
 
 export const Header: FC = () => {
   const location = useLocation()
@@ -36,7 +37,7 @@ export const Header: FC = () => {
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
-
+  const user = useAppSelector(selectCurrentUser)
   const handleDrawerToggle = () => {
     setMobileOpen(prevState => !prevState)
   }
@@ -158,7 +159,7 @@ export const Header: FC = () => {
               ))}
             </Box>
             <Box component="div" sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: 2 }}>
-              <AvatarMenu />
+              <UserMenu />
               <SettingDrawer />
             </Box>
           </Toolbar>

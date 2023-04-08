@@ -10,7 +10,7 @@ module.exports = {
     'no-multi-spaces': ['error'],
     'no-unneeded-ternary': ['error'],
     /*    'object-curly-newline': ['error', { consistent: true }], */
-    'no-console': 2,
+    'no-console': 'warn',
     'no-trailing-spaces': ['error'],
     quotes: ['error', 'single'],
     'simple-import-sort/exports': 'error',

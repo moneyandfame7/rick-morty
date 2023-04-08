@@ -49,6 +49,13 @@ const characterApi = rootApi.injectEndpoints({
     }),
     getCharactersImages: builder.query<string[], void>({
       query: () => `api/${Navigation.CHARACTERS}/images`
+    }),
+    createCharacter: builder.mutation<Character, FormData>({
+      query: body => ({
+        url: `api/${Navigation.CHARACTERS}`,
+        body,
+        method: 'post'
+      })
     })
   })
 })
@@ -60,5 +67,6 @@ export const {
   useGetCharactersByFieldsQuery,
   useGetInfiniteCharactersQuery,
   useGetCountOfCharactersQuery,
-  useGetCharactersImagesQuery
+  useGetCharactersImagesQuery,
+  useCreateCharacterMutation
 } = characterApi

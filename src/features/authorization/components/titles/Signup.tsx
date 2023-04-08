@@ -19,9 +19,11 @@ const CreateAccount: FC = () => {
 }
 
 const Welcome: FC = () => {
+  const theme = useTheme()
+
   return (
     <Stack direction="column" gap="5px" alignItems="center">
-      <LogoIcon color="#fff" />
+      <LogoIcon color={theme.palette.primary.dark} />
       <Typography variant="h5" fontWeight="500" textAlign="center">
         Welcome!
       </Typography>

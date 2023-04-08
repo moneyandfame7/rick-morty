@@ -40,7 +40,6 @@ export const LoginForm: FC = () => {
           value={formik.values.email}
           errorText={formik.errors.email || authBadCredentials?.email}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
           disabled={isLoading}
         />
         <PasswordInput

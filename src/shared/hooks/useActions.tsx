@@ -4,13 +4,14 @@ import { bindActionCreators } from 'redux'
 
 import { setMode } from 'application/theme/customization'
 import { addToFavorite, removeFromFavorite } from 'features/characters/services'
-import { setUser, removeUser, setAcceptCookie } from 'features/users/services'
+import { setUser, removeUser, updateUser, setAcceptCookie } from 'features/users/services'
 
 const rootActions = {
   addToFavorite,
   removeFromFavorite,
   setMode,
   setUser,
+  updateUser,
   removeUser,
   setAcceptCookie
 }

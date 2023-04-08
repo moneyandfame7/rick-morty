@@ -1,3 +1,4 @@
-export * from './Favorite.page';
-export * from './home';
-export * from './NotFound.page';
+export * from './admin'
+export * from './Favorite.page'
+export * from './home'
+export * from './NotFound.page'

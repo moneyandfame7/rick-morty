@@ -25,3 +25,10 @@ export const SOCIALS: Social[] = [
   { url: SPOTIFY_LOGIN, label: 'Spotify', icon: <SpotifyIcon />, id: 2 },
   { url: DISCORD_LOGIN, label: 'Spotify', icon: <DiscordIcon />, id: 3 }
 ]
+
+export enum Role {
+  USER = 'user',
+  ADMIN = 'admin',
+  OWNER = 'owner'
+}
+export const privilegedRoles = [Role.ADMIN, Role.OWNER]
