@@ -1,4 +1,4 @@
-import React, { useEffect, type FC } from 'react'
+import React, { type FC } from 'react'
 
 import { Container, Grid, Typography } from '@mui/material'
 
@@ -15,9 +15,6 @@ export const CreateCharacterPage: FC = () => {
   const { formik, isLoading, data, error } = useCreateCharacter()
   const serverError = characterHandler(error)
 
-  useEffect(() => {
-    console.log(data)
-  }, [data])
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
       {serverError?.character && <Alert variant="error" text={serverError.character} />}

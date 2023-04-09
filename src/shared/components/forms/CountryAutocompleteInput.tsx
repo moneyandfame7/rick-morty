@@ -19,7 +19,6 @@ export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
   items,
   setFieldValue,
   errorText,
-  onBlur,
   ...props
 }) => {
   return (

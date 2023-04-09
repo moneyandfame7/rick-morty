@@ -14,7 +14,6 @@ export const PrivilegedRoute: FC<PropsWithChildren> = ({ children }) => {
   const user = useAppSelector(selectCurrentUser)
   useEffect(() => {
     if (user && !hasPermission(user.role.value as Role)) {
-      console.log('Haven`t permission')
       navigate(-1)
     }
   }, [user])

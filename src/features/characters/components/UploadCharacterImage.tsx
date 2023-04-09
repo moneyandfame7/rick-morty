@@ -23,7 +23,7 @@ const convertSize = (size: number) => {
     return Number((size / 1000 / 1000).toFixed(1)) + ' MB'
   }
 }
-export const UploadCharacterImage: FC<UploadCharacterImageProps> = ({ formik, errorText }) => {
+export const UploadCharacterImage: FC<UploadCharacterImageProps> = ({ formik }) => {
   const theme = useTheme()
   const [parent] = useAutoAnimate({ duration: 150, easing: 'ease-out' })
 

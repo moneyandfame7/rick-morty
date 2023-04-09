@@ -24,13 +24,13 @@ export const MyBreadcrumbs: FC = () => {
     }
   }) as typeof Chip
   return (
-    <Breadcrumbs aria-label='breadcrumb' separator={<NavigateNextIcon fontSize='small' />} sx={{ px: 3 }}>
+    <Breadcrumbs aria-label="breadcrumb" separator={<NavigateNextIcon fontSize="small" />} sx={{ px: 3 }}>
       {useMakeArchitectureBreadcrumbs()?.map(link => (
         <NavLink key={link.id} to={link.path}>
           <StyledBreadcrumb
-            component='span'
+            component="span"
             label={link.label}
-            icon={link.label === 'Home' ? <HomeIcon fontSize='small' /> : undefined}
+            icon={link.label === 'Home' ? <HomeIcon fontSize="small" /> : undefined}
             sx={link.isActive ? { color: theme.palette.primary.main } : undefined}
           />
         </NavLink>
