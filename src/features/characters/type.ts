@@ -28,8 +28,8 @@ export interface ManyCharacter {
 export interface CreateCharacter {
   name: string
   type: string
-  status: CharacterStatus
-  gender: CharacterGender
+  status: string
+  gender: string
   species: string
-  image: File
+  image: File | null
 }

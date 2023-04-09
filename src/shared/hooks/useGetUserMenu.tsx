@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
+
 import { Badge, MenuItem } from '@mui/material'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined'
@@ -13,11 +14,11 @@ import { useAppSelector } from 'application/store'
 import { selectFavoriteAmount } from 'features/characters/services'
 import { CREATE_CHARACTER_ROUTE } from 'features/characters/routes'
 import { Role } from 'features/authorization/constant'
+import { selectCurrentUser } from 'features/users/services'
 
 import { hasPermission } from 'shared/utils'
 import { insert } from 'shared/utils/insert'
 import { ADMIN_ROUTE } from 'shared/routes'
-import { selectCurrentUser } from 'features/users/services'
 
 interface MenuItems {
   id: string
@@ -74,12 +75,11 @@ export const useGetMenuList = (): MenuItems[] => {
     }
   ]
   const user = useAppSelector(selectCurrentUser)
-  useEffect(() => {
-    if (user && hasPermission(user.role.value as Role)) {
-      /* Insert menu items for priveleged list before 6 index */
-      insert(baseList, 3, forPrivelegedList)
-    }
-  }, [user])
+
+  if (user && hasPermission(user.role.value as Role)) {
+    /* Insert menu items for priveleged list before 3 index */
+    insert(baseList, 3, forPrivelegedList)
+  }
 
   return baseList
 }

@@ -147,7 +147,7 @@ export const Header: FC = () => {
                         borderRadius: '2px',
                         display: 'block',
                         position: 'absolute',
-                        bottom: -10,
+                        bottom: -15,
                         right: '50%',
                         transform: 'translateX(50%)'
                       }

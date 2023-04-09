@@ -6,7 +6,7 @@ import { Box, Link, Stack, Typography } from '@mui/material'
 import { useAppSelector } from 'application/store'
 
 import { useLogin } from 'features/authorization/hooks'
-import { errorHandler, selectIsAuthenticated } from 'features/authorization/services'
+import { authHandler, selectIsAuthenticated } from 'features/authorization/services'
 
 import { HOME_ROUTE } from 'shared/routes'
 import { ValidatedInput } from 'shared/components/forms'
@@ -17,7 +17,7 @@ export const LoginForm: FC = () => {
   const navigate = useNavigate()
   const { formik, isLoading, error } = useLogin()
   const isUserAuthenticated = useAppSelector(selectIsAuthenticated)
-  const authBadCredentials = errorHandler(error)
+  const authBadCredentials = authHandler(error)
 
   useEffect(() => {
     if (isUserAuthenticated) {

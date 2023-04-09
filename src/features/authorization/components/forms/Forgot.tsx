@@ -3,14 +3,14 @@ import { FormikProps } from 'formik'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
 import { SerializedError } from '@reduxjs/toolkit'
 
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, useTheme } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 
 import { ForgotCredentials } from 'features/users/type'
-import { errorHandler } from 'features/authorization/services'
+import { authHandler } from 'features/authorization/services'
 
 import { ValidatedInput } from 'shared/components/forms/ValidatedInput'
-import { PrimaryIcon } from 'shared/components/common/icons/PrimaryIcon'
+import { BaseIcon } from 'shared/components/common/icons/BaseIcon'
 import { PrimaryButton } from 'shared/components/common/buttons'
 
 interface ForgotPasswordFormProps {
@@ -20,8 +20,8 @@ interface ForgotPasswordFormProps {
 }
 
 export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ formik, error, isLoading }) => {
-  const forgotBadCredentials = errorHandler(error)
-
+  const forgotBadCredentials = authHandler(error)
+  const theme = useTheme()
   return (
     <>
       <Box
@@ -34,7 +34,7 @@ export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ formik, error,
           gap: '4px'
         }}
       >
-        <PrimaryIcon icon={<LockOutlinedIcon />} />
+        <BaseIcon icon={<LockOutlinedIcon />} color={theme.palette.primary.main} />
         <Typography variant="h5" fontWeight="500">
           Forgot password?
         </Typography>

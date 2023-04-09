@@ -25,43 +25,47 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
   const navigate = useNavigate()
   return (
     <Card variant="outlined" sx={{ padding: '1rem' }}>
-      <CardContent
-        sx={{
-          padding: '0 0 10px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}
-      >
-        <div
-          style={{
+      <Tooltip title={character.name}>
+        <CardContent
+          sx={{
+            padding: '0 0 10px',
             display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            textOverflow: 'ellipsis',
-            width: '80%',
-            userSelect: 'none'
+            justifyContent: 'space-between',
+            alignItems: 'center'
           }}
         >
-          <Tooltip title={character.name}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              textOverflow: 'ellipsis',
+              width: '80%',
+              userSelect: 'none'
+            }}
+          >
             <Typography noWrap variant="h2" fontSize={18} sx={{ opacity: 0.9 }} fontWeight={800}>
               {character.name}
             </Typography>
-          </Tooltip>
-          <Typography variant="body2" sx={{ opacity: 0.7 }}>
-            {character.species}
-          </Typography>
-        </div>
+            <Typography variant="body2" sx={{ opacity: 0.7 }}>
+              {character.species}
+            </Typography>
+          </div>
 
-        <IconButton
-          aria-label="Add to favorites"
-          size="medium"
-          onClick={toggle}
-          sx={{ color: isFavorite ? 'error.main' : 'text.secondary' }}
-        >
-          {isFavorite ? <FavoriteIcon sx={{ fontSize: '20px' }} /> : <FavoriteIconOutlined sx={{ fontSize: '20px' }} />}
-        </IconButton>
-      </CardContent>
+          <IconButton
+            aria-label="Add to favorites"
+            size="medium"
+            onClick={toggle}
+            sx={{ color: isFavorite ? 'error.main' : 'text.secondary' }}
+          >
+            {isFavorite ? (
+              <FavoriteIcon sx={{ fontSize: '20px' }} />
+            ) : (
+              <FavoriteIconOutlined sx={{ fontSize: '20px' }} />
+            )}
+          </IconButton>
+        </CardContent>
+      </Tooltip>
       <Box
         component="div"
         sx={{
@@ -96,12 +100,14 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
           />
         </CardMedia>
       </Box>
+
       <CardContent
         sx={{
           p: '10px 0 0 0 !important',
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
+          userSelect: 'none'
         }}
       >
         <div>

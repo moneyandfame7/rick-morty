@@ -1,22 +1,19 @@
 import { useFormik } from 'formik'
 
 import { useCreateCharacterMutation } from 'features/characters/services'
-import type { CharacterGender, CharacterStatus, CreateCharacter } from 'features/characters/type'
+import type { CreateCharacter } from 'features/characters/type'
+
 import { createCharacterSchema } from 'shared/utils'
 
 export const useCreateCharacter = () => {
-  const [create, { error, isSuccess, isLoading }] = useCreateCharacterMutation()
+  const [create, { data, error, isSuccess, isLoading }] = useCreateCharacterMutation()
 
   const onSubmit = async (values: CreateCharacter) => {
     const formData = new FormData()
     Object.keys(values).forEach(key => {
       formData.append(key, values[key as never])
     })
-    // eslint-disable-next-line no-console
-    const info = await create(formData)
-    if ('data' in info) {
-      console.log(info.data)
-    }
+    await create(formData)
   }
 
   const formik = useFormik<CreateCharacter>({
@@ -24,9 +21,9 @@ export const useCreateCharacter = () => {
       name: '',
       type: '',
       species: '',
-      status: '' as CharacterStatus,
-      gender: '' as CharacterGender,
-      image: {} as File
+      status: '',
+      gender: '',
+      image: null
     },
     validateOnBlur: false,
     validateOnChange: false,
@@ -34,5 +31,5 @@ export const useCreateCharacter = () => {
     onSubmit
   })
 
-  return { formik, isLoading, error, isSuccess }
+  return { formik, isLoading, error, isSuccess, data }
 }

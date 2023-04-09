@@ -1,3 +1,5 @@
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+
 import { rootApi } from 'application/store/root-api.slice'
 
 import type { Character, ManyCharacter } from 'features/characters/type'
@@ -55,7 +57,10 @@ const characterApi = rootApi.injectEndpoints({
         url: `api/${Navigation.CHARACTERS}`,
         body,
         method: 'post'
-      })
+      }),
+      transformErrorResponse: (response: FetchBaseQueryError) => {
+        return response.data
+      }
     })
   })
 })

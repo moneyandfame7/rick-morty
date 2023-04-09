@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from 'react'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Typography, useTheme } from '@mui/material'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 
 import { ForgotTitle } from 'features/authorization/components/titles'
 import { ForgotCredentials } from 'features/users/type'
 
-import { PrimaryIcon } from 'shared/components/common/icons'
+import { BaseIcon } from 'shared/components/common/icons'
 import { PrimaryButton } from 'shared/components/common/buttons'
 
 interface CheckEmailProps {
@@ -17,6 +17,7 @@ interface CheckEmailProps {
 
 export const CheckEmail: FC<CheckEmailProps> = ({ email, sendLink, isLoading, setIsForgotForm }) => {
   const googleEmail = 'https://mail.google.com'
+  const theme = useTheme()
   useEffect(() => {
     setIsForgotForm(false)
     /*  eslint-disable-next-line */
@@ -32,7 +33,7 @@ export const CheckEmail: FC<CheckEmailProps> = ({ email, sendLink, isLoading, se
         gap: 1
       }}
     >
-      <PrimaryIcon icon={<EmailOutlinedIcon />} />
+      <BaseIcon icon={<EmailOutlinedIcon />} color={theme.palette.primary.main} />
       <ForgotTitle.CheckEmail email={email} />
       <PrimaryButton
         loading={isLoading}

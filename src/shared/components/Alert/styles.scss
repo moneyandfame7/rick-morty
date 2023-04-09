@@ -1,0 +1,17 @@
+@import 'react-toastify/dist/ReactToastify.css';
+
+.Toastify__toast-container {
+  @media only screen and (max-width: 480px) {
+    width: 80%;
+    right: 20px;
+    left: auto;
+    top: 20px;
+  }
+}
+.Toastify__toast-body {
+  > div {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Inter, sans-serif;
+  }
+}

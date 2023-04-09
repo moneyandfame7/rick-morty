@@ -1,3 +1,4 @@
+export * from './Alert'
 export * from './ErrorMessage'
 export * from './Modal'
 export * from './Pagination'
