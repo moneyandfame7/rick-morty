@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect } from 'react'
+import React, { type FC, useContext, useEffect } from 'react'
 import { Checkbox, Stack, Typography } from '@mui/material'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import DoneOutlineOutlinedIcon from '@mui/icons-material/DoneOutlineOutlined'
@@ -6,20 +6,20 @@ import DoneOutlineOutlinedIcon from '@mui/icons-material/DoneOutlineOutlined'
 import { useAppSelector } from 'application/store'
 
 import { useLogout, useWelcome } from 'features/authorization/hooks'
-import { selectCurrentUser } from 'features/users/services'
-import { errorHandler } from 'features/authorization/services'
+import { authHandler } from 'features/authorization/services'
 import Title from 'features/authorization/components/titles/Signup'
+import { StepperContext } from 'features/authorization/components/steppers'
+import { selectCurrentUser } from 'features/users/services'
 
 import { ValidatedInput } from 'shared/components/forms'
 import { CountryAutocompleteInput } from 'shared/components/forms'
 import { OutlinedButton } from 'shared/components/common/buttons'
 import { PrimaryButton } from 'shared/components/common/buttons'
-import { StepperContext } from '../steppers'
 
 export const WelcomeForm: FC = () => {
   const { countries, formik, isLoading, error, isSuccess } = useWelcome()
   const { isLoading: isLogoutLoading, makeLogout } = useLogout()
-  const authBadCredentials = errorHandler(error)
+  const authBadCredentials = authHandler(error)
   const user = useAppSelector(selectCurrentUser)
   const { setActiveStep } = useContext(StepperContext)
 

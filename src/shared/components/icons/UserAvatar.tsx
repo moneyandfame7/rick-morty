@@ -1,26 +1,22 @@
 import React, { FC } from 'react'
-import { Badge, BadgeProps, IconButton, IconButtonProps, styled, Tooltip } from '@mui/material'
+import { Badge, BadgeProps, IconButton, type IconButtonProps, styled, Tooltip } from '@mui/material'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 
 import { useAppSelector } from 'application/store'
 
-import type { User } from 'features/users/type'
 import { selectFavoriteAmount } from 'features/characters/services'
 
-interface UserAvatarProps extends IconButtonProps {
-  user: User | null
-}
 const StyledBadge = styled(Badge)<BadgeProps>(() => ({
   '& .MuiBadge-badge': {
     right: -1,
     top: 5
   }
 }))
-export const UserAvatar: FC<UserAvatarProps> = ({ sx, ...props }) => {
+export const UserAvatar: FC<IconButtonProps> = ({ ...props }) => {
   const countOfFavorites = useAppSelector(selectFavoriteAmount)
   return (
     <Tooltip title="You">
-      <IconButton sx={{ ...sx, borderRadius: '4px' }} onClick={props.onClick}>
+      <IconButton {...props}>
         <StyledBadge color="primary" variant="dot" invisible={!countOfFavorites}>
           <PersonOutlineOutlinedIcon sx={{ color: 'primary.light' }} />
         </StyledBadge>

@@ -1,4 +1,4 @@
-import type { Role } from 'features/authorization/type'
+import type { UserRole } from 'features/authorization/type'
 
 export interface User {
   readonly id: string
@@ -6,7 +6,7 @@ export interface User {
   readonly username: string | null
   readonly auth_type: string
   readonly banned: boolean
-  readonly role: Role
+  readonly role: UserRole
   readonly country: string | null
   readonly photo: string | null
   readonly is_verified: boolean

@@ -5,16 +5,20 @@ import jwt_decode from 'jwt-decode'
 import { Container } from '@mui/material'
 
 import type { User } from 'features/users/type'
-import { CookieKey, cookies } from 'features/authorization/services'
+import { CookieKey, cookies, selectHasPassedWelcome } from 'features/authorization/services'
 
 import { HOME_ROUTE } from 'shared/routes'
 import { CircularLoader } from 'shared/components/common'
 import { useActions } from 'shared/hooks'
+import { useAppSelector } from 'application/store'
+import { SIGNUP_ROUTE } from '../routes'
 
 export const SuccessLoginPage: FC = () => {
   const navigate = useNavigate()
   const token = cookies.get(CookieKey.ACCESS_TOKEN)
   const { setUser } = useActions()
+  const hasPassedWelcome = useAppSelector(selectHasPassedWelcome)
+
   useEffect(() => {
     if (token) {
       const user: User = jwt_decode(token)
@@ -22,7 +26,7 @@ export const SuccessLoginPage: FC = () => {
       if (user) {
         setUser(user)
         setTimeout(() => {
-          navigate({ pathname: HOME_ROUTE.path })
+          navigate({ pathname: hasPassedWelcome ? HOME_ROUTE.path : SIGNUP_ROUTE.path })
         }, 1000)
       }
     }

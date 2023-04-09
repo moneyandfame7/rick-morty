@@ -1,16 +1,17 @@
 import React, { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Container, Stack, Typography } from '@mui/material'
+import { Container, Stack, Typography, useTheme } from '@mui/material'
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 
 import { LinkButton, OutlinedButton } from 'shared/components/common/buttons'
-import { PrimaryIcon } from 'shared/components/common/icons'
+import { BaseIcon } from 'shared/components/common/icons'
 import { HOME_ROUTE } from 'shared/routes'
 
 export const NotFoundPage: FC = () => {
   const navigate = useNavigate()
+  const theme = useTheme()
   return (
     <Container
       maxWidth="xs"
@@ -24,7 +25,7 @@ export const NotFoundPage: FC = () => {
         gap: 2
       }}
     >
-      <PrimaryIcon icon={<InfoOutlinedIcon />} />
+      <BaseIcon icon={<InfoOutlinedIcon />} color={theme.palette.primary.main} />
       <Typography variant="h3" fontWeight={700}>
         Page not found
       </Typography>

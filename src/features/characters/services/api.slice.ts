@@ -1,3 +1,5 @@
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+
 import { rootApi } from 'application/store/root-api.slice'
 
 import type { Character, ManyCharacter } from 'features/characters/type'
@@ -49,6 +51,16 @@ const characterApi = rootApi.injectEndpoints({
     }),
     getCharactersImages: builder.query<string[], void>({
       query: () => `api/${Navigation.CHARACTERS}/images`
+    }),
+    createCharacter: builder.mutation<Character, FormData>({
+      query: body => ({
+        url: `api/${Navigation.CHARACTERS}`,
+        body,
+        method: 'post'
+      }),
+      transformErrorResponse: (response: FetchBaseQueryError) => {
+        return response.data
+      }
     })
   })
 })
@@ -60,5 +72,6 @@ export const {
   useGetCharactersByFieldsQuery,
   useGetInfiniteCharactersQuery,
   useGetCountOfCharactersQuery,
-  useGetCharactersImagesQuery
+  useGetCharactersImagesQuery,
+  useCreateCharacterMutation
 } = characterApi
