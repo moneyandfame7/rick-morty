@@ -4,7 +4,7 @@ import {
   RESET_ROUTE,
   SIGNUP_ROUTE,
   SUCCESS_LOGIN_ROUTE
-} from 'features/authorization/routes'
+} from '@features/authorization/routes'
 
 const authorizationRoutes: Array<string | undefined> = [
   SIGNUP_ROUTE.path,

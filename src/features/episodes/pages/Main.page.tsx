@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import { CircularProgress } from '@mui/material'
 
-import { useGetManyEpisodesQuery } from 'features/episodes/services'
+import { useGetManyEpisodesQuery } from '@features/episodes/services'
 
-import { useQueryParams } from 'shared/hooks'
-import { ErrorMessage } from 'shared/components'
+import { useQueryParams } from '@shared/hooks'
+import { ErrorMessage } from '@shared/components'
 
 export const MainEpisodePage: FC = () => {
   const queryPage = parseInt(useQueryParams().get('page') ?? '')

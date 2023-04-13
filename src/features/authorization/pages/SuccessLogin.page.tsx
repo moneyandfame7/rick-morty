@@ -4,13 +4,14 @@ import jwt_decode from 'jwt-decode'
 
 import { Container } from '@mui/material'
 
-import type { User } from 'features/users/type'
-import { CookieKey, cookies, selectHasPassedWelcome } from 'features/authorization/services'
+import { useAppSelector } from '@application/store'
 
-import { HOME_ROUTE } from 'shared/routes'
-import { CircularLoader } from 'shared/components/common'
-import { useActions } from 'shared/hooks'
-import { useAppSelector } from 'application/store'
+import type { User } from '@features/users/type'
+import { CookieKey, cookies, selectHasPassedWelcome } from '@features/authorization/services'
+
+import { HOME_ROUTE } from '@shared/routes'
+import { CircularLoader } from '@shared/components/common'
+import { useActions } from '@shared/hooks'
 import { SIGNUP_ROUTE } from '../routes'
 
 export const SuccessLoginPage: FC = () => {

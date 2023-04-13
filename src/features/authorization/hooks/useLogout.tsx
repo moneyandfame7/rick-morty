@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 
-import { useLogoutMutation } from 'features/authorization/services'
-import { LOGIN_ROUTE } from 'features/authorization/routes'
+import { useLogoutMutation } from '@features/authorization/services'
+import { LOGIN_ROUTE } from '@features/authorization/routes'
 
-import { useActions } from 'shared/hooks/useActions'
+import { useActions } from '@shared/hooks/useActions'
 
 export const useLogout = () => {
   const navigate = useNavigate()

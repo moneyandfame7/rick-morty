@@ -6,8 +6,8 @@ import { useWindowSize } from 'react-use'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, Typography } from '@mui/material'
 
-import { PrimaryButton } from 'shared/components/common/buttons'
-import { HOME_ROUTE } from 'shared/routes'
+import { PrimaryButton } from '@shared/components/common/buttons'
+import { HOME_ROUTE } from '@shared/routes'
 
 export const CongratulationsModal: FC = () => {
   const { width, height } = useWindowSize()

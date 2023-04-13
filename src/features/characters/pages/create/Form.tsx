@@ -3,11 +3,11 @@ import { FormikProps } from 'formik'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { Grid, Stack } from '@mui/material'
 
-import type { CreateCharacter } from 'features/characters/type'
-import { getClearButton, getItemsByKey } from 'features/filters/utils'
+import type { CreateCharacter } from '@features/characters/type'
+import { getClearButton, getItemsByKey } from '@features/filters/utils'
 
-import { SelectInput, ValidatedInput } from 'shared/components/forms'
-import { PrimaryButton } from 'shared/components/common/buttons'
+import { SelectInput, ValidatedInput } from '@shared/components/forms'
+import { PrimaryButton } from '@shared/components/common/buttons'
 
 interface CreateCharacterFormProps {
   formik: FormikProps<CreateCharacter>

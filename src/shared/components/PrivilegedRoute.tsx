@@ -1,13 +1,13 @@
 import React, { PropsWithChildren, type FC, useEffect } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 
-import { useAppSelector } from 'application/store'
+import { useAppSelector } from '@application/store'
 
-import { Role } from 'features/authorization/constant'
-import { LOGIN_ROUTE } from 'features/authorization/routes'
-import { selectCurrentUser } from 'features/users/services'
+import { Role } from '@features/authorization/constant'
+import { LOGIN_ROUTE } from '@features/authorization/routes'
+import { selectCurrentUser } from '@features/users/services'
 
-import { hasPermission } from 'shared/utils'
+import { hasPermission } from '@shared/utils'
 
 export const PrivilegedRoute: FC<PropsWithChildren> = ({ children }) => {
   const navigate = useNavigate()

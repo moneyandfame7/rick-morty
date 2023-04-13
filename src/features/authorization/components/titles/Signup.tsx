@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Stack, Typography, useTheme } from '@mui/material'
 
-import { LogoIcon } from 'shared/components/common/icons/LogoIcon'
+import { LogoIcon } from '@shared/components/common/icons/LogoIcon'
 
 const CreateAccount: FC = () => {
   const theme = useTheme()

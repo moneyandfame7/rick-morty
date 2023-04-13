@@ -1,4 +1,4 @@
-import type { UserRole } from 'features/authorization/type'
+import type { UserRole } from '@features/authorization/type'
 
 export interface User {
   readonly id: string

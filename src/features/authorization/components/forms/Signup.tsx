@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 
 import { Box, Divider, Stack, Typography } from '@mui/material'
 
-import { useSignup } from 'features/authorization/hooks'
-import { authHandler } from 'features/authorization/services'
-import { SocialLogin } from 'features/authorization/components'
-import { StepperContext } from 'features/authorization/components/steppers'
-import Title from 'features/authorization/components/titles/Signup'
+import { useSignup } from '@features/authorization/hooks'
+import { authHandler } from '@features/authorization/services'
+import { SocialLogin } from '@features/authorization/components'
+import { StepperContext } from '@features/authorization/components/steppers'
+import Title from '@features/authorization/components/titles/Signup'
 
-import { ValidatedInput } from 'shared/components/forms'
-import { PasswordInput } from 'shared/components/forms'
-import { PrimaryButton } from 'shared/components/common/buttons'
-import { OutlinedButton } from 'shared/components/common/buttons'
+import { ValidatedInput } from '@shared/components/forms'
+import { PasswordInput } from '@shared/components/forms'
+import { PrimaryButton } from '@shared/components/common/buttons'
+import { OutlinedButton } from '@shared/components/common/buttons'
 export const SignupForm: FC = () => {
   const { formik, isLoading, error, isSuccess } = useSignup()
   const [isSocial, setIsSocial] = useState(false)

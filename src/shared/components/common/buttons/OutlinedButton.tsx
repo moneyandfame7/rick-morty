@@ -1,7 +1,7 @@
 import React, { type FC } from 'react'
 import { styled } from '@mui/material'
 import { LoadingButton, LoadingButtonProps } from '@mui/lab'
-import { getContrastColor } from 'shared/utils/getContrastColor'
+import { getContrastColor } from '@shared/utils/getContrastColor'
 
 export const StyledOutlineButton = styled(LoadingButton)<LoadingButtonProps>(({ theme }) => ({
   background: theme.palette.background.default,

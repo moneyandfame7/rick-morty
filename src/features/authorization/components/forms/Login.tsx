@@ -3,15 +3,15 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { Box, Link, Stack, Typography } from '@mui/material'
 
-import { useAppSelector } from 'application/store'
+import { useAppSelector } from '@application/store'
 
-import { useLogin } from 'features/authorization/hooks'
-import { authHandler, selectIsAuthenticated } from 'features/authorization/services'
+import { useLogin } from '@features/authorization/hooks'
+import { authHandler, selectIsAuthenticated } from '@features/authorization/services'
 
-import { HOME_ROUTE } from 'shared/routes'
-import { ValidatedInput } from 'shared/components/forms'
-import { PasswordInput } from 'shared/components/forms'
-import { PrimaryButton } from 'shared/components/common/buttons'
+import { HOME_ROUTE } from '@shared/routes'
+import { ValidatedInput } from '@shared/components/forms'
+import { PasswordInput } from '@shared/components/forms'
+import { PrimaryButton } from '@shared/components/common/buttons'
 
 export const LoginForm: FC = () => {
   const navigate = useNavigate()

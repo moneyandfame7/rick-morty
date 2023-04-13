@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Autocomplete, CircularProgress, debounce, TextField } from '@mui/material'
 
-import { useGetCharactersNamesMutation } from 'features/characters/services'
+import { useGetCharactersNamesMutation } from '@features/characters/services'
 
 export const AutocompleteNames = () => {
   const [fetchNames, { data, isLoading }] = useGetCharactersNamesMutation()

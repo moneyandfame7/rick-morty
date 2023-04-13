@@ -1,4 +1,4 @@
-import { RecentUsers } from 'features/admin/type'
+import { RecentUsers } from '@features/admin/type'
 import { Column, NeedToFormatValues } from '.'
 import _ from 'lodash'
 

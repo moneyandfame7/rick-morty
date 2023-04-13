@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 
-import { useForgotMutation } from 'features/authorization/services'
-import { LOGIN_ROUTE } from 'features/authorization/routes'
-import { ForgotCredentials } from 'features/users/type'
+import { useForgotMutation } from '@features/authorization/services'
+import { LOGIN_ROUTE } from '@features/authorization/routes'
+import { ForgotCredentials } from '@features/users/type'
 
-import { forgotValidationSchema } from 'shared/utils'
+import { forgotValidationSchema } from '@shared/utils'
 
 export const useForgot = () => {
   const navigate = useNavigate()

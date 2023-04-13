@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppSelector } from 'application/store'
+import { useAppSelector } from '@application/store'
 
-import { selectFavoriteCharacters } from 'features/characters/services'
+import { selectFavoriteCharacters } from '@features/characters/services'
 
 export const FavoritePage: FC = () => {
   const [isEmpty, setIsEmpty] = useState<boolean>(false)

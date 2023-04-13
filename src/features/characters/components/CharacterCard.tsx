@@ -6,14 +6,14 @@ import { Box, Card, CardContent, CardMedia, IconButton, Tooltip, Typography } fr
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteIconOutlined from '@mui/icons-material/FavoriteBorder'
 
-import { useAppSelector } from 'application/store'
+import { useAppSelector } from '@application/store'
 
-import type { Character } from 'features/characters/type'
-import { selectIsFavorite } from 'features/characters/services'
-import { useToggleFavorite } from 'features/characters/hooks'
+import type { Character } from '@features/characters/type'
+import { selectIsFavorite } from '@features/characters/services'
+import { useToggleFavorite } from '@features/characters/hooks'
 
-import { PrimaryButton } from 'shared/components/common/buttons'
-import { Navigation } from 'shared/constants'
+import { PrimaryButton } from '@shared/components/common/buttons'
+import { Navigation } from '@shared/constants'
 
 interface CharacterCardProps {
   character: Character

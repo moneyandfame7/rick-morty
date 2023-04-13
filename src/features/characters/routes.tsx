@@ -2,7 +2,7 @@ import React from 'react'
 import { RouteProps } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 
-import { CreateCharacterPage, MainCharacterPage, SingleCharacterPage } from 'features/characters/pages'
+import { CreateCharacterPage, MainCharacterPage, SingleCharacterPage } from '@features/characters/pages'
 
 const MAIN_CHARACTER_ROUTE: RouteProps = {
   id: uuidv4(),

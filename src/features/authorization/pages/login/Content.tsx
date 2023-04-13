@@ -1,11 +1,11 @@
 import React, { FC, useState } from 'react'
 import { Grid } from '@mui/material'
 
-import { SocialLogin } from 'features/authorization/components'
-import { LoginForm } from 'features/authorization/components/forms'
-import { LoginTitle } from 'features/authorization/components/titles'
+import { SocialLogin } from '@features/authorization/components'
+import { LoginForm } from '@features/authorization/components/forms'
+import { LoginTitle } from '@features/authorization/components/titles'
 
-import { OutlinedButton } from 'shared/components/common/buttons'
+import { OutlinedButton } from '@shared/components/common/buttons'
 
 export const Content: FC = () => {
   const [isSocial, setIsSocial] = useState<boolean>(false)

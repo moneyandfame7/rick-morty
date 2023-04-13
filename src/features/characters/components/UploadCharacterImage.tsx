@@ -9,8 +9,8 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined'
 
-import { CreateCharacter } from 'features/characters/type'
-import { BaseIcon } from 'shared/components/common/icons'
+import type { CreateCharacter } from '@features/characters/type'
+import { BaseIcon } from '@shared/components/common/icons'
 
 interface UploadCharacterImageProps {
   formik: FormikProps<CreateCharacter>

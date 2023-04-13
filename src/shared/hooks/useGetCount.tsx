@@ -1,7 +1,7 @@
-import { useGetCountOfCharactersQuery } from 'features/characters/services'
-import { useGetCountOfEpisodesQuery } from 'features/episodes/services'
-import { useGetCountOfLocationsQuery } from 'features/locations'
-import { useGetCountOfUsersQuery } from 'features/users/services'
+import { useGetCountOfCharactersQuery } from '@features/characters/services'
+import { useGetCountOfEpisodesQuery } from '@features/episodes/services'
+import { useGetCountOfLocationsQuery } from '@features/locations'
+import { useGetCountOfUsersQuery } from '@features/users/services'
 
 interface CountType {
   count: number
