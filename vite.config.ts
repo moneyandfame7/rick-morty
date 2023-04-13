@@ -9,8 +9,6 @@ export default defineConfig({
   },
   appType: 'spa',
   build: {
-    outDir: './public',
-    assetsDir: '.',
     rollupOptions: {
       input: {
         main: './index.html'
