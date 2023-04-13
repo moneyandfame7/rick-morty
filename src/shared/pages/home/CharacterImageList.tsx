@@ -3,8 +3,8 @@ import Box from '@mui/material/Box'
 import { ImageList, ImageListItem, Skeleton, useMediaQuery, useTheme } from '@mui/material'
 import Image from 'mui-image'
 
-import { useGetCharactersImagesQuery } from 'features/characters/services'
-import { CircularLoader } from 'shared/components/common'
+import { useGetCharactersImagesQuery } from '@features/characters/services'
+import { CircularLoader } from '@shared/components/common'
 
 export const CharacterImageList: FC = () => {
   const theme = useTheme()

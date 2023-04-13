@@ -3,7 +3,7 @@ import { styled } from '@mui/material'
 import { LoadingButton, LoadingButtonProps } from '@mui/lab'
 import { useBaseButtonStyles } from './baseButtonStyles'
 
-export const StyledPrimaryButton = styled(LoadingButton)<LoadingButtonProps>(({ theme }) => ({
+const StyledPrimaryButton = styled(LoadingButton)<LoadingButtonProps>(({ theme }) => ({
   ...useBaseButtonStyles(theme.palette.error.main)
 })) as typeof LoadingButton
 

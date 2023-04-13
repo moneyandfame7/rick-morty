@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react'
 
-import { ForgotPasswordForm } from 'features/authorization/components/forms'
-import { CheckEmail, GoBackButton } from 'features/authorization/components'
-import { useForgot } from 'features/authorization/hooks'
+import { ForgotPasswordForm } from '@features/authorization/components/forms'
+import { CheckEmail, GoBackButton } from '@features/authorization/components'
+import { useForgot } from '@features/authorization/hooks'
 
 export const Main: FC = () => {
   const { formik, isLoading, error, isSuccess, sendLink } = useForgot()

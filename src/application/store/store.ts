@@ -2,11 +2,11 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage'
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, persistStore, persistReducer } from 'redux-persist'
 
-import { rootApi } from 'application/store/root-api.slice'
+import { rootApi } from '@application/store/root-api.slice'
 
-import { customizationReducer } from 'application/theme/customization'
-import { charactersReducer } from 'features/characters/services'
-import { userReducer } from 'features/users/services'
+import { customizationReducer } from '@application/theme/customization'
+import { charactersReducer } from '@features/characters/services'
+import { userReducer } from '@features/users/services'
 
 const persistConfig = {
   key: 'root',

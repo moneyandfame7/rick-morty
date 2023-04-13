@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { Box, Divider, Drawer, IconButton, List, ListItemButton, Typography } from '@mui/material'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 
-import { LINKS_CONFIG } from 'shared/layout/Header/utils/links'
-import { Logo } from 'shared/components/icons'
+import { Logo } from '@shared/components/icons'
+import { LINKS_CONFIG } from './utils/links'
 
 interface HeaderDrawerProps {
   window?: () => Window

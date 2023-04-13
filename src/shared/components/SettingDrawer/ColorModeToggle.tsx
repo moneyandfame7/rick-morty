@@ -5,10 +5,10 @@ import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import LightModeIcon from '@mui/icons-material/LightMode'
 
-import { Mode } from 'application/theme'
-import { useAppSelector } from 'application/store'
-import { selectCustomization } from 'application/theme/customization'
-import { useActions } from 'shared/hooks/useActions'
+import { Mode } from '@application/theme'
+import { useAppSelector } from '@application/store'
+import { selectCustomization } from '@application/theme/customization'
+import { useActions } from '@shared/hooks/useActions'
 
 const modeItems = [
   {

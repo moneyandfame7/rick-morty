@@ -2,11 +2,11 @@ import React, { type FC } from 'react'
 
 import { Container, Grid, Typography } from '@mui/material'
 
-import { characterHandler } from 'features/authorization/services'
-import { useCreateCharacter } from 'features/characters/hooks'
-import { UploadCharacterImage } from 'features/characters/components'
+import { characterHandler } from '@features/authorization/services'
+import { useCreateCharacter } from '@features/characters/hooks'
+import { UploadCharacterImage } from '@features/characters/components'
 
-import { Alert } from 'shared/components'
+import { Alert } from '@shared/components'
 
 import { CreateCharacterForm } from './Form'
 import { SuccessfullyCreatedDialog } from './Dialog'

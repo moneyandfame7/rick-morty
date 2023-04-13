@@ -5,10 +5,10 @@ import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
 import { IconButton } from '@mui/material'
 import { SvgIconProps } from '@mui/material'
 
-import { useAppSelector } from 'application/store'
-import { selectCustomization } from 'application/theme/customization'
+import { useAppSelector } from '@application/store'
+import { selectCustomization } from '@application/theme/customization'
 
-import { useActions } from 'shared/hooks/useActions'
+import { useActions } from '@shared/hooks/useActions'
 
 export const ColorSchemeToggle: FC<SvgIconProps> = ({ ...sx }) => {
   const mode = useAppSelector(selectCustomization).mode

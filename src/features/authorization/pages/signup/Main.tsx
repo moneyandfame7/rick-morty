@@ -1,11 +1,11 @@
 import React, { type FC, useContext } from 'react'
 import { Container, Grid, Typography } from '@mui/material'
 
-import { SignupForm } from 'features/authorization/components/forms'
-import { WelcomeForm } from 'features/authorization/components/forms'
-import { DashedStepper } from 'features/authorization/components/steppers'
-import { StepperContext, STEPS } from 'features/authorization/components/steppers'
-import { CongratulationsModal } from 'features/authorization/components'
+import { SignupForm } from '@features/authorization/components/forms'
+import { WelcomeForm } from '@features/authorization/components/forms'
+import { DashedStepper } from '@features/authorization/components/steppers'
+import { StepperContext, STEPS } from '@features/authorization/components/steppers'
+import { CongratulationsModal } from '@features/authorization/components'
 
 export const Main: FC = () => {
   const { activeStep } = useContext(StepperContext)

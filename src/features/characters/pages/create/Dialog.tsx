@@ -4,13 +4,13 @@ import Image from 'mui-image'
 
 import { Dialog, DialogActions, DialogContent, Grid, Stack, Typography } from '@mui/material'
 
-import { environmentsConfig } from 'application/config'
+import { environmentsConfig } from '@application/config'
 
-import { MAIN_CHARACTER_ROUTE } from 'features/characters/routes'
-import type { Character } from 'features/characters/type'
+import { MAIN_CHARACTER_ROUTE } from '@features/characters/routes'
+import type { Character } from '@features/characters/type'
 
-import { Navigation } from 'shared/constants'
-import { CopyButton, PrimaryButton } from 'shared/components/common/buttons'
+import { Navigation } from '@shared/constants'
+import { CopyButton, PrimaryButton } from '@shared/components/common/buttons'
 
 interface SuccessfullyCreatedDialogProps {
   createdCharacter: Character

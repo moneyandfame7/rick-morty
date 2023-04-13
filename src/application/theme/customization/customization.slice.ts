@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { Customization, Mode } from 'application/theme'
+import { Customization, Mode } from '@application/theme'
 
 const initialState: Customization = {
   mode: 'system'

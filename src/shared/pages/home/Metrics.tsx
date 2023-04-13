@@ -4,7 +4,7 @@ import CountUp from 'react-countup'
 import { Grid, Skeleton } from '@mui/material'
 import Typography from '@mui/material/Typography'
 
-import { useGetCount } from 'shared/hooks'
+import { useGetCount } from '@shared/hooks'
 
 export const Metrics: FC = () => {
   const countOfEntities = useGetCount()

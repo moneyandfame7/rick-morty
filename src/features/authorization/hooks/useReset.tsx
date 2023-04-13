@@ -1,11 +1,11 @@
 import { useSearchParams } from 'react-router-dom'
 import { useFormik } from 'formik'
 
-import type { ResetPasswordDetails } from 'features/authorization/type'
-import { useResetMutation } from 'features/authorization/services'
+import type { ResetPasswordDetails } from '@features/authorization/type'
+import { useResetMutation } from '@features/authorization/services'
 
-import { resetValidationSchema } from 'shared/utils'
-import { useActions } from 'shared/hooks/useActions'
+import { resetValidationSchema } from '@shared/utils'
+import { useActions } from '@shared/hooks/useActions'
 
 export const useReset = () => {
   const [searchParams] = useSearchParams()

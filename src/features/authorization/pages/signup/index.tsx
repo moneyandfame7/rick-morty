@@ -1,6 +1,6 @@
 import React, { type FC } from 'react'
 
-import { VerticalStepper } from 'features/authorization/components/steppers'
+import { VerticalStepper } from '@features/authorization/components/steppers'
 
 import { Main } from './Main'
 import { Root } from './Root'

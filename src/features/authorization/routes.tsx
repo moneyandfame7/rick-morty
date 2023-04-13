@@ -2,7 +2,7 @@ import React from 'react'
 import { RouteProps } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 
-import { LoginPage, SignupPage, ForgotPasswordPage, ResetPasswordPage } from 'features/authorization/pages'
+import { LoginPage, SignupPage, ForgotPasswordPage, ResetPasswordPage } from '@features/authorization/pages'
 import { SuccessLoginPage } from './pages/SuccessLogin.page'
 
 const SIGNUP_ROUTE: RouteProps = {

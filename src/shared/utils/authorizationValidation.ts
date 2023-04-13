@@ -1,8 +1,8 @@
 import * as yup from 'yup'
 
-import type { AuthCredentials, ResetPasswordDetails, SignupCredentials } from 'features/authorization/type'
-import type { CreateCharacter } from 'features/characters/type'
-import type { ForgotCredentials, UserWelcomeDetails } from 'features/users/type'
+import type { AuthCredentials, ResetPasswordDetails, SignupCredentials } from '@features/authorization/type'
+import type { CreateCharacter } from '@features/characters/type'
+import type { ForgotCredentials, UserWelcomeDetails } from '@features/users/type'
 
 type ObjectShapeValues = yup.ObjectShape extends Record<string, infer V> ? V : never
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

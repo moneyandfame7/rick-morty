@@ -2,8 +2,8 @@ import React, { type FC } from 'react'
 import dayjs from 'dayjs'
 import { Avatar, Chip, Stack } from '@mui/material'
 
-import { RecentUsers } from 'features/admin/type'
-import { Table } from 'features/admin/components'
+import type { RecentUsers } from '@features/admin/type'
+import { Table } from '@features/admin/components'
 
 const getFormattedDate = (row: RecentUsers) => {
   return dayjs(row.created_at).locale('en').format('MMMM D, YYYY')

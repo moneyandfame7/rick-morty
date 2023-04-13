@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined'
 
-import { LOGIN_ROUTE } from 'features/authorization/routes'
-import { useActions } from 'shared/hooks/useActions'
-import { useAppSelector } from 'application/store'
+import { LOGIN_ROUTE } from '@features/authorization/routes'
+import { useActions } from '@shared/hooks/useActions'
+import { useAppSelector } from '@application/store'
 import { selectIsAuthenticated } from '../services'
 
 interface GoBackButtonProps {

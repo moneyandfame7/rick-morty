@@ -1,10 +1,10 @@
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
-import { rootApi } from 'application/store/root-api.slice'
+import { rootApi } from '@application/store/root-api.slice'
 
-import type { IEpisode, IManyEpisode } from 'features/episodes/type'
+import type { IEpisode, IManyEpisode } from '@features/episodes/type'
 
-import { Navigation } from 'shared/constants'
+import { Navigation } from '@shared/constants'
 
 interface ResultsType {
   data: IEpisode[]

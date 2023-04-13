@@ -1,6 +1,6 @@
-import { rootApi } from 'application/store/root-api.slice'
+import { rootApi } from '@application/store/root-api.slice'
 
-import { Navigation } from 'shared/constants'
+import { Navigation } from '@shared/constants'
 import { User } from '../type'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 

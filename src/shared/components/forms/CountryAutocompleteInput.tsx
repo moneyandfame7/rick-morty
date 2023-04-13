@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Autocomplete, Box, TextFieldProps } from '@mui/material'
 
-import { ValidatedInput } from 'shared/components/forms/ValidatedInput'
+import { ValidatedInput } from '@shared/components/forms/ValidatedInput'
 
 export interface CountryData {
   value: string

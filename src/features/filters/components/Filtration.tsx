@@ -4,12 +4,12 @@ import { Box, Button, Dialog, DialogContent, DialogTitle, Divider, Stack, Toolti
 import TuneIconOutlined from '@mui/icons-material/TuneOutlined'
 import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined'
 
-import { Filters, FiltersTypes, FiltersValues } from 'features/filters/types'
-import { getInputByType } from 'features/filters/utils/getInputByType'
+import { Filters, FiltersTypes, FiltersValues } from '@features/filters/types'
+import { getInputByType } from '@features/filters/utils/getInputByType'
 
-import { useFiltration } from 'shared/hooks'
-import { wordFromUpperCase } from 'shared/utils'
-import { PrimaryButton, OutlinedButton } from 'shared/components/common/buttons'
+import { useFiltration } from '@shared/hooks'
+import { wordFromUpperCase } from '@shared/utils'
+import { PrimaryButton, OutlinedButton } from '@shared/components/common/buttons'
 
 interface FiltrationProps {
   filters: Filters
