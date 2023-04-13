@@ -8,6 +8,15 @@ export default defineConfig({
     open: true
   },
   appType: 'spa',
+  build: {
+    outDir: './public',
+    assetsDir: '.',
+    rollupOptions: {
+      input: {
+        main: './index.html'
+      }
+    }
+  },
   resolve: {
     alias: {
       '@application': '/src/application',
