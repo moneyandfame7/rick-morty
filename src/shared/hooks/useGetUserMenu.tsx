@@ -18,7 +18,6 @@ import { selectCurrentUser } from 'features/users/services'
 
 import { hasPermission } from 'shared/utils'
 import { insert } from 'shared/utils/insert'
-import { ADMIN_ROUTE } from 'shared/routes'
 
 interface MenuItems {
   id: string
@@ -60,7 +59,7 @@ export const useGetMenuList = (): MenuItems[] => {
       handle: true
     }
   ]
-  const forPrivelegedList: MenuItems[] = [
+  const forPrivilegedList: MenuItems[] = [
     {
       id: uuidv4(),
       name: 'Create character',
@@ -69,16 +68,16 @@ export const useGetMenuList = (): MenuItems[] => {
     },
     {
       id: uuidv4(),
-      name: 'Admin panel',
+      name: 'Admin dashboard',
       icon: <SupervisorAccountOutlinedIcon sx={{ fontSize: 20 }} />,
-      url: ADMIN_ROUTE.path
+      url: '/dashboard'
     }
   ]
   const user = useAppSelector(selectCurrentUser)
 
   if (user && hasPermission(user.role.value as Role)) {
     /* Insert menu items for priveleged list before 3 index */
-    insert(baseList, 3, forPrivelegedList)
+    insert(baseList, 3, forPrivilegedList)
   }
 
   return baseList

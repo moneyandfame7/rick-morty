@@ -36,6 +36,7 @@ export const WelcomeForm: FC = () => {
     }
   }
 
+  console.log(formik.values.country)
   return (
     <Stack
       component="form"

@@ -11,13 +11,19 @@ import { USER_ACCOUNT_ROUTE, USER_PROFILE_ROUTE } from 'features/users/routes'
 import { CREATE_CHARACTER_ROUTE, MAIN_CHARACTER_ROUTE, SINGLE_CHARACTER_ROUTE } from 'features/characters/routes'
 import { CREATE_EPISODE_ROUTE, MAIN_EPISODE_ROUTE, SINGLE_EPISODE_ROUTE } from 'features/episodes/routes'
 import { CREATE_LOCATION_ROUTE, MAIN_LOCATION_ROUTE, SINGLE_LOCATION_ROUTE } from 'features/locations/routes'
-import { NOT_FOUND_ROUTE, HOME_ROUTE, FAVORITE_ROUTE, ADMIN_ROUTE } from 'shared/routes'
+import { DASHBOARD_ROUTE, MANAGEMENT_ROUTE, STATISTICS_ROUTE } from 'features/admin/routes'
+
+import { NOT_FOUND_ROUTE, HOME_ROUTE, FAVORITE_ROUTE } from 'shared/routes'
 
 export const PRIVILEGED_ROUTES: RouteProps[] = [
   CREATE_CHARACTER_ROUTE,
   CREATE_EPISODE_ROUTE,
   CREATE_LOCATION_ROUTE,
-  ADMIN_ROUTE
+
+  /* Admin */
+  DASHBOARD_ROUTE,
+  MANAGEMENT_ROUTE,
+  STATISTICS_ROUTE
 ]
 
 export const PROTECTED_ROUTES: RouteProps[] = [
@@ -32,7 +38,6 @@ export const PROTECTED_ROUTES: RouteProps[] = [
   /* Characters */
   MAIN_CHARACTER_ROUTE,
   SINGLE_CHARACTER_ROUTE,
-  CREATE_CHARACTER_ROUTE,
 
   /* Episodes */
   MAIN_EPISODE_ROUTE,
