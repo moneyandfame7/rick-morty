@@ -1,5 +1,5 @@
 import React, { type FC, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 
 import { Container } from '@mui/material'
@@ -16,13 +16,21 @@ import { SIGNUP_ROUTE } from '../routes'
 
 export const SuccessLoginPage: FC = () => {
   const navigate = useNavigate()
-  const token = cookies.get(CookieKey.ACCESS_TOKEN)
+  const [searchParams] = useSearchParams()
+
   const { setUser } = useActions()
   const hasPassedWelcome = useAppSelector(selectHasPassedWelcome)
 
   useEffect(() => {
-    if (token) {
-      const user: User = jwt_decode(token)
+    const refresh = searchParams.get('refresh')
+    const access = searchParams.get('access')
+    if (refresh && access) {
+      const accessExpires = new Date(Date.now() + 15 * 60 * 1000)
+      const refreshExpires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+      cookies.set(CookieKey.ACCESS_TOKEN, access, { expires: accessExpires })
+      cookies.set(CookieKey.REFRESH_TOKEN, refresh, { expires: refreshExpires })
+
+      const user = jwt_decode<User>(access)
 
       if (user) {
         setUser(user)
@@ -31,8 +39,7 @@ export const SuccessLoginPage: FC = () => {
         }, 1000)
       }
     }
-    /*  eslint-disable-next-line */
-  }, [token])
+  }, [])
   return (
     <Container maxWidth="md" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <CircularLoader />
