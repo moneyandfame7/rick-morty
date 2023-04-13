@@ -16,12 +16,12 @@ import {
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
 import WindowIcon from '@mui/icons-material/Window'
 import CategoryIcon from '@mui/icons-material/Category'
-import { LogoIcon } from '@shared/components/common/icons'
-import { HOME_ROUTE } from '@shared/routes'
+import { LogoIcon } from 'shared/components/common/icons'
+import { HOME_ROUTE } from 'shared/routes'
 import LogoutIcon from '@mui/icons-material/Logout'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
-import { useLogout } from '@features/authorization/hooks'
+import { useLogout } from 'features/authorization/hooks'
 const drawerWidth = 80
 
 const sidebarItems = [

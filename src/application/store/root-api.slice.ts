@@ -1,9 +1,9 @@
 import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { environmentsConfig } from '@application/config'
+import { environmentsConfig } from 'application/config'
 
-import type { AuthResponse } from '@features/authorization/type'
-import { removeUser, setUser } from '@features/users/services/user.slice'
+import type { AuthResponse } from 'features/authorization/type'
+import { removeUser, setUser } from 'features/users/services/user.slice'
 
 const baseQuery = fetchBaseQuery({
   baseUrl: environmentsConfig.apiUrl,

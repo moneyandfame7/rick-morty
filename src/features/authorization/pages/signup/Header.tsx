@@ -1,8 +1,8 @@
 import React, { type FC } from 'react'
 import { Grid } from '@mui/material'
 
-import { ColorSchemeToggle } from '@features/authorization/components'
-import { Logo } from '@shared/components/icons'
+import { ColorSchemeToggle } from 'features/authorization/components'
+import { Logo } from 'shared/components/icons'
 
 export const Header: FC = () => {
   return (

@@ -9,15 +9,15 @@ import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
 import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined'
-import { useAppSelector } from '@application/store'
+import { useAppSelector } from 'application/store'
 
-import { selectFavoriteAmount } from '@features/characters/services'
-import { CREATE_CHARACTER_ROUTE } from '@features/characters/routes'
-import { Role } from '@features/authorization/constant'
-import { selectCurrentUser } from '@features/users/services'
+import { selectFavoriteAmount } from 'features/characters/services'
+import { CREATE_CHARACTER_ROUTE } from 'features/characters/routes'
+import { Role } from 'features/authorization/constant'
+import { selectCurrentUser } from 'features/users/services'
 
-import { hasPermission } from '@shared/utils'
-import { insert } from '@shared/utils/insert'
+import { hasPermission } from 'shared/utils'
+import { insert } from 'shared/utils/insert'
 
 interface MenuItems {
   id: string

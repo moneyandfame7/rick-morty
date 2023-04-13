@@ -1,9 +1,9 @@
 import { useFormik } from 'formik'
 
-import { useCreateCharacterMutation } from '@features/characters/services'
-import type { CreateCharacter } from '@features/characters/type'
+import { useCreateCharacterMutation } from 'features/characters/services'
+import type { CreateCharacter } from 'features/characters/type'
 
-import { createCharacterSchema } from '@shared/utils'
+import { createCharacterSchema } from 'shared/utils'
 
 export const useCreateCharacter = () => {
   const [create, { data, error, isSuccess, isLoading }] = useCreateCharacterMutation()

@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 import { Box, Grid, useTheme } from '@mui/material'
 
-import { ColorSchemeToggle } from '@features/authorization/components'
+import { ColorSchemeToggle } from 'features/authorization/components'
 
-import { Logo } from '@shared/components/icons'
-import { HOME_ROUTE } from '@shared/routes'
+import { Logo } from 'shared/components/icons'
+import { HOME_ROUTE } from 'shared/routes'
 
 export const Header: FC = () => {
   const theme = useTheme()

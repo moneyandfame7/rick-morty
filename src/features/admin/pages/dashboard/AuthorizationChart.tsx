@@ -1,7 +1,7 @@
-import React, { type FC } from 'react'
 import { purple } from '@mui/material/colors'
-import { StatisticsChart } from '@features/admin/components'
-import type { UserStatistics } from '@features/admin/type'
+import { StatisticsChart } from 'features/admin/components/StatisticsChart'
+import { UserStatistics } from 'features/admin/type'
+import React, { type FC } from 'react'
 
 export interface ChartProps {
   userStats: UserStatistics

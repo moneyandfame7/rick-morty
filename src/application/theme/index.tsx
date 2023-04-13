@@ -1,6 +1,6 @@
 import { createTheme, ThemeOptions, useMediaQuery } from '@mui/material'
 
-import { getComponentOverrides } from '@application/theme/customization'
+import { getComponentOverrides } from 'application/theme/customization'
 
 declare module '@mui/material/styles' {
   interface PaletteColor {

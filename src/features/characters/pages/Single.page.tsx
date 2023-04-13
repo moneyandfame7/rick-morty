@@ -18,16 +18,17 @@ import {
   useTheme
 } from '@mui/material'
 
-import { useAppSelector } from '@application/store'
+import { useAppSelector } from 'application/store'
 
-import { selectIsFavorite, useGetOneCharacterQuery } from '@features/characters/services'
-import { useGetListOfEpisodesQuery } from '@features/episodes/services'
-import { useToggleFavorite } from '@features/characters/hooks'
+import { selectIsFavorite, useGetOneCharacterQuery } from 'features/characters/services'
+import { useGetListOfEpisodesQuery } from 'features/episodes/services'
+import { useToggleFavorite } from 'features/characters/hooks'
 
-import { ErrorMessage } from '@shared/components'
-import { CircularLoader } from '@shared/components/common'
-import { PrimaryButton, RedButton } from '@shared/components/common/buttons'
-import { Navigation } from '@shared/constants'
+import { ErrorMessage } from 'shared/components'
+import { CircularLoader } from 'shared/components/common'
+import { PrimaryButton } from 'shared/components/common/buttons'
+import { RedButton } from 'shared/components/common/buttons/RedButton'
+import { Navigation } from 'shared/constants'
 
 export const SingleCharacterPage: FC = () => {
   const { id } = useParams()

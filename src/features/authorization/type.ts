@@ -1,4 +1,4 @@
-import type { User } from '@features/users/type'
+import type { User } from 'features/users/type'
 
 export interface AuthCredentials {
   email: string

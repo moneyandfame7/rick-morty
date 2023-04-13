@@ -3,9 +3,9 @@ import { FormikProps } from 'formik'
 
 import { Box } from '@mui/material'
 
-import { PasswordInput } from '@shared/components/forms'
-import { ResetPasswordDetails } from '@features/authorization/type'
-import { PrimaryButton } from '@shared/components/common/buttons'
+import { PasswordInput } from 'shared/components/forms'
+import { ResetPasswordDetails } from 'features/authorization/type'
+import { PrimaryButton } from 'shared/components/common/buttons'
 
 interface FormProps<Type> {
   formik: FormikProps<Type>

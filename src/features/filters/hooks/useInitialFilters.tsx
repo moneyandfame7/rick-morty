@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom'
-import { Entities } from '@shared/constants'
+import { Entities } from 'shared/constants'
 import type { Filters } from '../types'
 import { InputType } from '../constant'
 

@@ -3,15 +3,15 @@ import { Alert, Avatar, Box, BoxProps, Divider, Menu, Typography } from '@mui/ma
 import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
 
-import { useAppSelector } from '@application/store'
+import { useAppSelector } from 'application/store'
 
-import { useVerificationSendMutation } from '@features/authorization/services'
-import { useLogout } from '@features/authorization/hooks'
-import { selectCurrentUser } from '@features/users/services'
+import { useVerificationSendMutation } from 'features/authorization/services'
+import { useLogout } from 'features/authorization/hooks'
+import { selectCurrentUser } from 'features/users/services'
 
-import { UserAvatar } from '@shared/components/icons'
-import { useGetUserMenu } from '@shared/hooks'
-import { BackdropLoader } from '@shared/components/common'
+import { UserAvatar } from 'shared/components/icons'
+import { useGetUserMenu } from 'shared/hooks'
+import { BackdropLoader } from 'shared/components/common'
 
 export const UserMenu: FC<BoxProps> = () => {
   const [resendVerification, { isLoading: isVerificationLoading }] = useVerificationSendMutation()

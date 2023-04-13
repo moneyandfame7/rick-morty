@@ -6,12 +6,12 @@ import { SerializedError } from '@reduxjs/toolkit'
 import { Box, Typography, useTheme } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 
-import { ForgotCredentials } from '@features/users/type'
-import { authHandler } from '@features/authorization/services'
+import { ForgotCredentials } from 'features/users/type'
+import { authHandler } from 'features/authorization/services'
 
-import { ValidatedInput } from '@shared/components/forms/ValidatedInput'
-import { BaseIcon } from '@shared/components/common/icons/BaseIcon'
-import { PrimaryButton } from '@shared/components/common/buttons'
+import { ValidatedInput } from 'shared/components/forms/ValidatedInput'
+import { BaseIcon } from 'shared/components/common/icons/BaseIcon'
+import { PrimaryButton } from 'shared/components/common/buttons'
 
 interface ForgotPasswordFormProps {
   formik: FormikProps<ForgotCredentials>

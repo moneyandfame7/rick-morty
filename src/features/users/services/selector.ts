@@ -1,6 +1,6 @@
-import { RootState } from '@application/store'
+import { RootState } from 'application/store'
 
-import type { User } from '@features/users/type'
+import type { User } from 'features/users/type'
 
 export const selectCurrentUser = (state: RootState): User | null => state.credentials.user
 

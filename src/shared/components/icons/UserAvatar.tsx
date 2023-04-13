@@ -2,9 +2,9 @@ import React, { FC } from 'react'
 import { Badge, BadgeProps, IconButton, type IconButtonProps, styled, Tooltip } from '@mui/material'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 
-import { useAppSelector } from '@application/store'
+import { useAppSelector } from 'application/store'
 
-import { selectFavoriteAmount } from '@features/characters/services'
+import { selectFavoriteAmount } from 'features/characters/services'
 
 const StyledBadge = styled(Badge)<BadgeProps>(() => ({
   '& .MuiBadge-badge': {

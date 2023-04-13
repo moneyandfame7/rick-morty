@@ -3,18 +3,18 @@ import { Checkbox, Stack, Typography } from '@mui/material'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import DoneOutlineOutlinedIcon from '@mui/icons-material/DoneOutlineOutlined'
 
-import { useAppSelector } from '@application/store'
+import { useAppSelector } from 'application/store'
 
-import { useLogout, useWelcome } from '@features/authorization/hooks'
-import { authHandler } from '@features/authorization/services'
-import Title from '@features/authorization/components/titles/Signup'
-import { StepperContext } from '@features/authorization/components/steppers'
-import { selectCurrentUser } from '@features/users/services'
+import { useLogout, useWelcome } from 'features/authorization/hooks'
+import { authHandler } from 'features/authorization/services'
+import Title from 'features/authorization/components/titles/Signup'
+import { StepperContext } from 'features/authorization/components/steppers'
+import { selectCurrentUser } from 'features/users/services'
 
-import { ValidatedInput } from '@shared/components/forms'
-import { CountryAutocompleteInput } from '@shared/components/forms'
-import { OutlinedButton } from '@shared/components/common/buttons'
-import { PrimaryButton } from '@shared/components/common/buttons'
+import { ValidatedInput } from 'shared/components/forms'
+import { CountryAutocompleteInput } from 'shared/components/forms'
+import { OutlinedButton } from 'shared/components/common/buttons'
+import { PrimaryButton } from 'shared/components/common/buttons'
 
 export const WelcomeForm: FC = () => {
   const { countries, formik, isLoading, error, isSuccess } = useWelcome()

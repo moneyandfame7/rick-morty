@@ -1,11 +1,11 @@
 import React, { type FC } from 'react'
 import { Box, Grid } from '@mui/material'
 
-import { useAppSelector } from '@application/store'
+import { useAppSelector } from 'application/store'
 
-import { selectCurrentUser } from '@features/users/services'
-import { AdminHeader, Wrapper, StatsBox, SkeletonTable, SkeletonChart } from '@features/admin/components'
-import { useGetRecentUsersQuery, useGetUserStatisticsQuery } from '@features/admin/services'
+import { selectCurrentUser } from 'features/users/services'
+import { AdminHeader, Wrapper, StatsBox, SkeletonTable, SkeletonChart } from 'features/admin/components'
+import { useGetRecentUsersQuery, useGetUserStatisticsQuery } from 'features/admin/services'
 
 import { RecentUsersTable } from './RecentUsersTable'
 import { AuthorizationChart } from './AuthorizationChart'

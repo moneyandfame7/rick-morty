@@ -1,11 +1,11 @@
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
-import { rootApi } from '@application/store/root-api.slice'
+import { rootApi } from 'application/store/root-api.slice'
 
-import type { Character, ManyCharacter } from '@features/characters/type'
-import { CharacterFields } from '@features/characters/constant'
+import type { Character, ManyCharacter } from 'features/characters/type'
+import { CharacterFields } from 'features/characters/constant'
 
-import { Navigation } from '@shared/constants'
+import { Navigation } from 'shared/constants'
 
 const characterApi = rootApi.injectEndpoints({
   endpoints: builder => ({

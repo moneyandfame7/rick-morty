@@ -1,11 +1,11 @@
 import React from 'react'
 import { GitHub } from '@mui/icons-material'
 
-import { environmentsConfig } from '@application/config'
+import { environmentsConfig } from 'application/config'
 
-import { GoogleIcon } from '@features/authorization/components/icons'
-import { SpotifyIcon } from '@features/authorization/components/icons'
-import { DiscordIcon } from '@features/authorization/components/icons'
+import { GoogleIcon } from 'features/authorization/components/icons'
+import { SpotifyIcon } from 'features/authorization/components/icons'
+import { DiscordIcon } from 'features/authorization/components/icons'
 
 interface Social {
   url: string

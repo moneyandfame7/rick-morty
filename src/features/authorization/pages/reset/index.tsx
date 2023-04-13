@@ -2,10 +2,10 @@ import React, { FC } from 'react'
 
 import { Box } from '@mui/material'
 
-import { authHandler, GoBackButton, ResetPasswordError, SuccessReset } from '@features/authorization/components'
-import { ResetTitle } from '@features/authorization/components/titles'
-import { ResetPasswordForm } from '@features/authorization/components/forms'
-import { useReset } from '@features/authorization/hooks'
+import { authHandler, GoBackButton, ResetPasswordError, SuccessReset } from 'features/authorization/components'
+import { ResetTitle } from 'features/authorization/components/titles'
+import { ResetPasswordForm } from 'features/authorization/components/forms'
+import { useReset } from 'features/authorization/hooks'
 
 import { Container } from './Container'
 

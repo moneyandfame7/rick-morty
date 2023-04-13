@@ -1,9 +1,9 @@
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
-import { rootApi } from '@application/store'
+import { rootApi } from 'application/store'
 
-import type { AuthCredentials, AuthResponse } from '@features/authorization/type'
-import type { ForgotCredentials, ResetPasswordParams, UserWelcomeDetails } from '@features/users/type'
+import type { AuthCredentials, AuthResponse } from 'features/authorization/type'
+import type { ForgotCredentials, ResetPasswordParams, UserWelcomeDetails } from 'features/users/type'
 
 export const authApi = rootApi.injectEndpoints({
   endpoints: builder => ({

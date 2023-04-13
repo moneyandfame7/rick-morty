@@ -1,4 +1,4 @@
-import type { RootState } from '@application/store'
+import type { RootState } from 'application/store'
 
 export const selectIsAuthenticated = (state: RootState): boolean => !!state.credentials.user
 export const selectHasPassedWelcome = (state: RootState): boolean =>

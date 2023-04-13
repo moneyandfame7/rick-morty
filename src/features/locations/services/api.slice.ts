@@ -1,7 +1,7 @@
-import { rootApi } from '@application/store/root-api.slice'
-import type { Location, IManyLocation } from '@features/locations'
+import { rootApi } from 'application/store/root-api.slice'
+import type { Location, IManyLocation } from 'features/locations'
 
-import { Navigation } from '@shared/constants'
+import { Navigation } from 'shared/constants'
 
 const locationApi = rootApi.injectEndpoints({
   endpoints: builder => ({

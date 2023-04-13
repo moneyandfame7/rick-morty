@@ -2,15 +2,15 @@ import React, { FC } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Box, Container, Grid, Paper, Skeleton, Typography } from '@mui/material'
 
-import { useGetManyCharactersQuery } from '@features/characters/services'
-import { Filtration } from '@features/filters/components/Filtration'
-import { useInitialFilters } from '@features/filters/hooks/useInitialFilters'
-import { CharacterCard } from '@features/characters/components'
+import { useGetManyCharactersQuery } from 'features/characters/services'
+import { Filtration } from 'features/filters/components/Filtration'
+import { useInitialFilters } from 'features/filters/hooks/useInitialFilters'
+import { CharacterCard } from 'features/characters/components'
 
-import { Pagination } from '@shared/components'
-import { ErrorMessage } from '@shared/components'
-import { SkeletonList } from '@shared/components'
-import { Entities } from '@shared/constants'
+import { Pagination } from 'shared/components'
+import { ErrorMessage } from 'shared/components'
+import { SkeletonList } from 'shared/components'
+import { Entities } from 'shared/constants'
 
 export const MainCharacterPage: FC = () => {
   const [searchParams] = useSearchParams()

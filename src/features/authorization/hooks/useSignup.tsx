@@ -1,10 +1,10 @@
 import { useFormik } from 'formik'
 
-import type { AuthCredentials, SignupCredentials } from '@features/authorization/type'
-import { useSignupMutation } from '@features/authorization/services'
+import type { AuthCredentials, SignupCredentials } from 'features/authorization/type'
+import { useSignupMutation } from 'features/authorization/services'
 
-import { signupValidationSchema } from '@shared/utils'
-import { useActions } from '@shared/hooks/useActions'
+import { signupValidationSchema } from 'shared/utils'
+import { useActions } from 'shared/hooks/useActions'
 
 export const useSignup = () => {
   const { setUser } = useActions()
