@@ -52,10 +52,6 @@ export const resetValidationSchema = yup.object<ResetSchema>({
 export const welcomeValidationSchema = yup.object<WelcomeSchema>({
   username: yup
     .string()
-    .matches(
-      /^[a-zA-Z0-9]+[a-zA-Z0-9]*[a-zA-Z0-9]$/,
-      'Sorry, only letters (a-z), numbers (0-9), and periods (.) are allowed.'
-    )
     .min(6, 'Sorry, your username must be between 6 and 30 characters long.')
     .max(30, 'Sorry, your username must be between 6 and 30 characters long.')
     .required('Enter an username'),

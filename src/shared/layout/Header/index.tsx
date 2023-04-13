@@ -29,6 +29,7 @@ import { HOME_ROUTE } from 'shared/routes'
 import { HeaderDrawer } from './Drawer'
 import { LINKS_CONFIG } from './utils/links'
 import { UserMenu } from './AvatarMenu'
+import { getIsAdminRoute } from '../../utils/getAdminRoutes'
 
 export const Header: FC = () => {
   const location = useLocation()
@@ -40,7 +41,7 @@ export const Header: FC = () => {
     setMobileOpen(prevState => !prevState)
   }
 
-  if (getIsAuthorizationRoute(location.pathname)) {
+  if (getIsAuthorizationRoute(location.pathname) || getIsAdminRoute(location.pathname)) {
     return null
   }
   if (location.pathname === HOME_ROUTE.path) {
