@@ -5,6 +5,11 @@ export interface AuthCredentials {
   password: string
 }
 
+export interface AuthTokens {
+  refresh: string
+  access: string
+}
+
 export interface SignupCredentials {
   email: string
   password: string
