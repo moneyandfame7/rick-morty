@@ -1,7 +1,7 @@
 import { SerializedError } from '@reduxjs/toolkit'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
 
-const enum HttpStack {
+const enum AuthHttpStack {
   EMAIL_NOT_FOUND = 'EMAIL_NOT_FOUND',
   INCORRECT_PASSWORD = 'INCORRECT_PASSWORD',
   USERNAME_ALREADY_USED = 'USERNAME_ALREADY_USED',
@@ -13,7 +13,12 @@ const enum HttpStack {
   ID_NOT_FOUND = 'ID_NOT_FOUND'
 }
 
-export const errorHandler = (error: FetchBaseQueryError | SerializedError | undefined) => {
+const enum CharacterHttpStack {
+  EMPTY_FILE = 'EMPTY_FILE',
+  CHARACTER_EXIST = 'CHARACTER_EXIST'
+}
+
+export const authHandler = (error: FetchBaseQueryError | SerializedError | undefined) => {
   if (!error) {
     return undefined
   }
@@ -21,37 +26,57 @@ export const errorHandler = (error: FetchBaseQueryError | SerializedError | unde
     /* todo: зробити якесь поле і виводити помилку*/
   } else {
     switch (error.stack) {
-      case HttpStack.EMAIL_NOT_FOUND:
+      case AuthHttpStack.EMAIL_NOT_FOUND:
         return {
           email: error.message
         }
-      case HttpStack.INCORRECT_PASSWORD:
+      case AuthHttpStack.INCORRECT_PASSWORD:
         return {
           password: error.message
         }
-      case HttpStack.USERNAME_ALREADY_USED:
+      case AuthHttpStack.USERNAME_ALREADY_USED:
         return {
           username: error.message
         }
-      case HttpStack.EMAIL_ALREADY_USED:
+      case AuthHttpStack.EMAIL_ALREADY_USED:
         return {
           email: error.message
         }
-      case HttpStack.PASSWORD_IS_EQUAL_OLD:
+      case AuthHttpStack.PASSWORD_IS_EQUAL_OLD:
         return {
           password: error.message
         }
-      case HttpStack.TOKEN_EXPIRED:
+      case AuthHttpStack.TOKEN_EXPIRED:
         return {
           token: error.message
         }
-      case HttpStack.INVALID_TOKEN:
+      case AuthHttpStack.INVALID_TOKEN:
         return {
           token: error.message
         }
-      case HttpStack.ID_NOT_FOUND:
+      case AuthHttpStack.ID_NOT_FOUND:
         return {
           id: error.message
+        }
+    }
+  }
+}
+
+export const characterHandler = (error: FetchBaseQueryError | SerializedError | undefined) => {
+  if (!error) {
+    return undefined
+  }
+  if ('status' in error) {
+    /*  */
+  } else {
+    switch (error.stack) {
+      case CharacterHttpStack.EMPTY_FILE:
+        return {
+          image: error.message
+        }
+      case CharacterHttpStack.CHARACTER_EXIST:
+        return {
+          character: error.message
         }
     }
   }

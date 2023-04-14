@@ -1,6 +1,5 @@
-import { FormEvent, useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { TextField } from '@mui/material'
 
 export const Form = () => {
   const [file, setFile] = useState<string | Blob>()

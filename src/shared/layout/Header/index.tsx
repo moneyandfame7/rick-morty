@@ -28,7 +28,8 @@ import { HOME_ROUTE } from 'shared/routes'
 
 import { HeaderDrawer } from './Drawer'
 import { LINKS_CONFIG } from './utils/links'
-import { AvatarMenu } from './AvatarMenu'
+import { UserMenu } from './AvatarMenu'
+import { getIsAdminRoute } from '../../utils/getAdminRoutes'
 
 export const Header: FC = () => {
   const location = useLocation()
@@ -36,12 +37,11 @@ export const Header: FC = () => {
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
-
   const handleDrawerToggle = () => {
     setMobileOpen(prevState => !prevState)
   }
 
-  if (getIsAuthorizationRoute(location.pathname)) {
+  if (getIsAuthorizationRoute(location.pathname) || getIsAdminRoute(location.pathname)) {
     return null
   }
   if (location.pathname === HOME_ROUTE.path) {
@@ -146,7 +146,7 @@ export const Header: FC = () => {
                         borderRadius: '2px',
                         display: 'block',
                         position: 'absolute',
-                        bottom: -10,
+                        bottom: -15,
                         right: '50%',
                         transform: 'translateX(50%)'
                       }
@@ -158,7 +158,7 @@ export const Header: FC = () => {
               ))}
             </Box>
             <Box component="div" sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: 2 }}>
-              <AvatarMenu />
+              <UserMenu />
               <SettingDrawer />
             </Box>
           </Toolbar>

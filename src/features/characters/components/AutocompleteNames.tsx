@@ -25,6 +25,7 @@ export const AutocompleteNames = () => {
       return undefined
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-extra-semi
     ;(async () => {
       await fetch(inputValue)
       if (active) {
@@ -73,7 +74,7 @@ export const AutocompleteNames = () => {
           />
         )}
         loading={isLoading}
-        onChange={(event: any, newValue: string | null) => {
+        onChange={(event: React.SyntheticEvent<Element, Event>, newValue: string | null) => {
           setOptions(newValue ? [newValue, ...options] : options)
           setValue(newValue)
         }}

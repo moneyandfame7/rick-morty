@@ -8,23 +8,26 @@ import { UserWelcomeDetails } from 'features/users/type'
 import { welcomeValidationSchema } from 'shared/utils'
 import { CountryData } from 'shared/components/forms'
 import { useActions } from 'shared/hooks/useActions'
+import { useAppSelector } from 'application/store'
+import { selectCurrentUser } from 'features/users/services'
 
 export const useWelcome = () => {
+  const user = useAppSelector(selectCurrentUser)
   const countries: CountryData[] = useMemo(() => countryList().getData(), [])
   const [welcome, { isSuccess, isLoading, error }] = useWelcomeMutation()
-  const { setUser } = useActions()
+  const { updateUser } = useActions()
 
   const onSubmit = async (details: UserWelcomeDetails) => {
     const info = await welcome(details)
     if ('data' in info) {
-      setUser(info.data.user)
+      updateUser(info.data.user)
       return
     }
   }
 
   const formik = useFormik<UserWelcomeDetails>({
     initialValues: {
-      username: '',
+      username: user?.username ?? '',
       country: '',
       mail_subscribe: false
     },

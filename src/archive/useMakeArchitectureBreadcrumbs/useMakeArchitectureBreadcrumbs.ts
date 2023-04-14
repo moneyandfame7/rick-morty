@@ -1,41 +1,41 @@
-import { uniqBy } from "lodash";
-import { useLocation } from "react-router";
+import { uniqBy } from 'lodash'
+import { useLocation } from 'react-router'
 
 export interface IBreadcrumbsConfig {
-  id: number;
-  label: string;
-  path: string;
-  isActive?: boolean;
+  id: number
+  label: string
+  path: string
+  isActive?: boolean
 }
 
 export function useMakeArchitectureBreadcrumbs(): IBreadcrumbsConfig[] {
-  const location = useLocation();
-  const arr: string[] = location.pathname.split("/");
+  const location = useLocation()
+  const arr: string[] = location.pathname.split('/')
 
   const newArr = arr.map((path, index) => {
-    const isActive = index + 1 === arr.length;
+    const isActive = index + 1 === arr.length
     if (path.length === 0)
       return {
         id: index,
-        label: "Home",
-        path: "/",
-        isActive,
-      };
+        label: 'Home',
+        path: '/',
+        isActive
+      }
 
-    if (path.includes("character") || path.includes("episode"))
+    if (path.includes('character') || path.includes('episode'))
       return {
         id: index,
-        label: path[0].toUpperCase() + path.substring(1) + "s",
-        path: "/" + path + "?page=1",
-        isActive,
-      };
+        label: path[0].toUpperCase() + path.substring(1) + 's',
+        path: '/' + path + '?page=1',
+        isActive
+      }
     else
       return {
         id: index,
-        label: "Information page",
+        label: 'Information page',
         path: location.pathname,
-        isActive,
-      };
-  });
-  return uniqBy(newArr, "path");
+        isActive
+      }
+  })
+  return uniqBy(newArr, 'path')
 }

@@ -16,7 +16,7 @@ export interface ResetPasswordDetails {
   confirmPassword: string
 }
 
-export interface Role {
+export interface UserRole {
   id: number
   value: string
 }

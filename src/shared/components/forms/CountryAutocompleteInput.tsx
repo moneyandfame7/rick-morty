@@ -19,7 +19,6 @@ export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
   items,
   setFieldValue,
   errorText,
-  onBlur,
   ...props
 }) => {
   return (
@@ -35,6 +34,7 @@ export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
       renderOption={(props, option) => (
         <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
           <img
+            loading="lazy"
             width="20"
             src={`https://flagcdn.com/w20/${option.value.toLowerCase()}.png`}
             srcSet={`https://flagcdn.com/w40/${option.value.toLowerCase()}.png 2x`}
@@ -47,7 +47,6 @@ export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
         <ValidatedInput
           name="country"
           label="Country"
-          onBlur={onBlur}
           error={!!errorText}
           errorText={errorText}
           helperText={errorText ? errorText : props.helperText}

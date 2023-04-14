@@ -1,11 +1,12 @@
 import React, { FC } from 'react'
 
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, useTheme } from '@mui/material'
 import KeyOutlinedIcon from '@mui/icons-material/KeyOutlined'
 
-import { PrimaryIcon, SuccessIcon } from 'shared/components/common/icons'
+import { BaseIcon, SuccessIcon } from 'shared/components/common/icons'
 
 const Reset: FC = () => {
+  const theme = useTheme()
   return (
     <Box
       component="div"
@@ -17,7 +18,7 @@ const Reset: FC = () => {
         gap: 1
       }}
     >
-      <PrimaryIcon icon={<KeyOutlinedIcon />} />
+      <BaseIcon icon={<KeyOutlinedIcon />} color={theme.palette.primary.main} />
       <Typography variant="h5" fontWeight="500">
         Set new password
       </Typography>

@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
-import { alpha, Box, useTheme } from '@mui/material'
+import { alpha, Box } from '@mui/material'
 
 interface PrimaryIconProps {
   icon: React.ReactNode
+  color: string
 }
 
-export const PrimaryIcon: FC<PrimaryIconProps> = ({ icon }) => {
-  const theme = useTheme()
+export const BaseIcon: FC<PrimaryIconProps> = ({ icon, color }) => {
   return (
     <Box
       sx={{
@@ -15,7 +15,7 @@ export const PrimaryIcon: FC<PrimaryIconProps> = ({ icon }) => {
         justifyContent: 'center',
         borderRadius: '50%',
         p: 1,
-        backgroundColor: alpha(theme.palette.primary.main, 0.05),
+        backgroundColor: alpha(color, 0.05),
         color: 'primary.main'
       }}
     >
@@ -26,7 +26,7 @@ export const PrimaryIcon: FC<PrimaryIconProps> = ({ icon }) => {
           justifyContent: 'center',
           borderRadius: '50%',
           p: 1,
-          backgroundColor: alpha(theme.palette.primary.main, 0.1)
+          backgroundColor: alpha(color, 0.1)
         }}
       >
         {icon}

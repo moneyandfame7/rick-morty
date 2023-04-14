@@ -24,3 +24,12 @@ export interface ManyCharacter {
   info: PageInformation
   results: Character[]
 }
+
+export interface CreateCharacter {
+  name: string
+  type: string
+  status: string
+  gender: string
+  species: string
+  image: File | null
+}

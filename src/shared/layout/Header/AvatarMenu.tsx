@@ -5,15 +5,15 @@ import SendIcon from '@mui/icons-material/Send'
 
 import { useAppSelector } from 'application/store'
 
-import { selectCurrentUser } from 'features/users/services'
 import { useVerificationSendMutation } from 'features/authorization/services'
 import { useLogout } from 'features/authorization/hooks'
+import { selectCurrentUser } from 'features/users/services'
 
 import { UserAvatar } from 'shared/components/icons'
 import { useGetUserMenu } from 'shared/hooks'
 import { BackdropLoader } from 'shared/components/common'
 
-export const AvatarMenu: FC<BoxProps> = () => {
+export const UserMenu: FC<BoxProps> = () => {
   const [resendVerification, { isLoading: isVerificationLoading }] = useVerificationSendMutation()
   const { makeLogout, isLoading: isLogoutLoading } = useLogout()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -27,12 +27,12 @@ export const AvatarMenu: FC<BoxProps> = () => {
   const handleClickSend = async () => {
     await resendVerification()
   }
-  const currentUser = useAppSelector(selectCurrentUser)
+  const user = useAppSelector(selectCurrentUser)
   const currentMenu = useGetUserMenu({ makeLogout, handleCloseMenu })
   return (
     <Box component="div">
       {isLogoutLoading && <BackdropLoader />}
-      <UserAvatar onClick={handleClick} user={currentUser} sx={{ width: 30, height: 30 }} />
+      <UserAvatar onClick={handleClick} sx={{ width: 30, height: 30 }} />
       <Menu
         PaperProps={{
           sx: {
@@ -53,18 +53,18 @@ export const AvatarMenu: FC<BoxProps> = () => {
             mb: 2
           }}
         >
-          <Avatar src={currentUser ? (currentUser.photo ? currentUser.photo : '') : ''} />
+          <Avatar src={user?.photo ?? ''} />
           <div>
-            <Typography variant="body1">{currentUser?.username}</Typography>
+            <Typography variant="body1">{user?.username}</Typography>
             <Typography variant="body2" sx={{ opacity: 0.8 }}>
-              {currentUser?.email}
+              {user?.email}
             </Typography>
           </div>
         </Box>
 
         <Divider sx={{ mb: 2 }} />
 
-        {!currentUser?.is_verified ? (
+        {!user?.is_verified ? (
           <Alert severity="warning" sx={{ maxWidth: 300 }}>
             <Typography variant="h6" fontSize={14} fontWeight={600}>
               You haven&apos;t verified your email address yet.

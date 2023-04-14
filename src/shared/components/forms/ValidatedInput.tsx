@@ -1,5 +1,6 @@
-import React, { FC } from 'react'
-import { Box, TextField, TextFieldProps } from '@mui/material'
+import React, { type FC } from 'react'
+
+import { Box, TextField, TextFieldProps, Typography } from '@mui/material'
 import ErrorIcon from '@mui/icons-material/Error'
 
 interface ValidateInputInterface {
@@ -17,24 +18,31 @@ export const ValidatedInput: FC<ValidateInputProps> = ({ value, errorText, onCha
         error={!!errorText}
         onChange={onChange}
         onBlur={onBlur}
-        helperText={errorText ? errorText : props.helperText}
+        helperText={
+          <Typography component="span" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            {errorText ? (
+              <>
+                <ErrorIcon
+                  sx={{
+                    fontSize: 16,
+                    color: '#d93025'
+                  }}
+                />
+                <Typography component="span" color="error.main" fontSize="11px" fontWeight="500">
+                  {errorText}
+                </Typography>
+              </>
+            ) : (
+              <Typography component="span">{props.helperText}</Typography>
+            )}
+          </Typography>
+        }
         FormHelperTextProps={{
           sx: {
-            marginLeft: '20px'
+            ml: '3px'
           }
         }}
       />
-      {errorText && (
-        <ErrorIcon
-          sx={{
-            fontSize: 16,
-            position: 'absolute',
-            bottom: 3,
-            color: '#d93025',
-            left: 0
-          }}
-        />
-      )}
     </Box>
   )
 }
