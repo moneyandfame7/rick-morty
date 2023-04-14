@@ -20,5 +20,6 @@ export interface RecentUsers {
   username: string
   country: string
   role: string
+  is_verified: boolean
   photo?: string
 }
