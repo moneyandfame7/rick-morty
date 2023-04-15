@@ -1,9 +1,9 @@
 import React from 'react'
 import { RouteProps } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
-import { DashboardPage } from './pages/dashboard'
-import { ManagementPage } from './pages/management'
-import { StatisticsPage } from './pages/statistics'
+import { ManagementPage } from './pages'
+import { StatisticsPage } from './pages'
+import { DashboardPage } from './pages'
 
 const DASHBOARD_ROUTE: RouteProps = {
   id: uuidv4(),

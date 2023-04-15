@@ -4,6 +4,7 @@ import { PieTooltipProps } from '@nivo/pie/dist/types/types'
 
 import { Box, Stack, Typography, useTheme } from '@mui/material'
 import '../styles.scss'
+
 interface StatisticsChartValues {
   id: string
   label: string
@@ -14,7 +15,8 @@ interface StatisticsChartValues {
 
 const StatisticsTooltip: FC<PieTooltipProps<StatisticsChartValues>> = ({ datum }) => {
   const theme = useTheme()
-  const { id, label, value, color, data } = datum
+  const { label, color, data } = datum
+
   return (
     <Box
       bgcolor={theme.palette.background.default}
@@ -43,9 +45,6 @@ interface StatisticsChartProps {
 }
 export const StatisticsChart: FC<StatisticsChartProps> = ({ data, count, enableLabels = false, lined, labelColor }) => {
   const theme = useTheme()
-  if (!data) {
-    return <>Loading...</>
-  }
 
   return (
     <Box height="325px" minHeight={325} position="relative">
@@ -61,9 +60,6 @@ export const StatisticsChart: FC<StatisticsChartProps> = ({ data, count, enableL
         startAngle={-180}
         innerRadius={0.6}
         cornerRadius={3}
-        onClick={datum => {
-          console.log(datum)
-        }}
         arcLabel={e => e.data.percentage}
         activeOuterRadiusOffset={4}
         activeInnerRadiusOffset={2}
@@ -111,8 +107,13 @@ export const StatisticsChart: FC<StatisticsChartProps> = ({ data, count, enableL
         position="absolute"
         left={20}
         bottom={10}
-        sx={{ userSelect: 'none' }}
-        gap={3}
+        sx={{
+          userSelect: 'none',
+          flexDirection: { xs: 'column', sm: 'row' },
+          gap: { xs: 1, sm: 3 },
+          bottom: { xs: 5, sm: 10 },
+          left: { xs: 5, sm: 20 }
+        }}
       >
         {data.map(item => (
           <Stack direction="row" alignItems="center" gap={1} key={item.id}>

@@ -1,11 +1,11 @@
 import React, { type FC } from 'react'
 import { Box, Button, Grid, Skeleton } from '@mui/material'
 
-interface SkeletonListProps {
+interface SkeletonCharacterListProps {
   count: number
 }
 
-export const SkeletonList: FC<SkeletonListProps> = ({ count }) => {
+export const SkeletonCharacterList: FC<SkeletonCharacterListProps> = ({ count }) => {
   return (
     <Grid container spacing={2}>
       {Array.from(Array(count).keys()).map(index => (

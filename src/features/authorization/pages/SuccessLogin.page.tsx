@@ -4,13 +4,15 @@ import jwt_decode from 'jwt-decode'
 
 import { Container } from '@mui/material'
 
+import { useAppSelector } from 'application/store'
+
 import type { User } from 'features/users/type'
 import { selectHasPassedWelcome, useSuccessSocialLoginMutation } from 'features/authorization/services'
 
 import { HOME_ROUTE } from 'shared/routes'
 import { CircularLoader } from 'shared/components/common'
 import { useActions } from 'shared/hooks'
-import { useAppSelector } from 'application/store'
+
 import { SIGNUP_ROUTE } from '../routes'
 
 export const SuccessLoginPage: FC = () => {
@@ -37,7 +39,6 @@ export const SuccessLoginPage: FC = () => {
 
   useEffect(() => {
     if (data && isSuccess) {
-      console.log(data, isSuccess)
       setTimeout(() => {
         navigate({ pathname: hasPassedWelcome ? HOME_ROUTE.path : SIGNUP_ROUTE.path })
       }, 1000)

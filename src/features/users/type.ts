@@ -39,4 +39,10 @@ export interface UserCurrentCountry {
   country_name: string
 }
 
+export interface GetManyUsers {
+  readonly users: User[]
+
+  readonly count: number
+}
+
 export type UserPublicProfile = Omit<User, 'mail_subscribe' | 'auth_type' | 'role'>

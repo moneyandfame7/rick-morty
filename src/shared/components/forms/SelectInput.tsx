@@ -5,13 +5,14 @@ import ErrorIcon from '@mui/icons-material/Error'
 interface SelectInputInterface {
   items: string[]
   errorText?: string
+  width?: string
 }
 
 type SelectInputProps = TextFieldProps & SelectInputInterface
 
-export const SelectInput: FC<SelectInputProps> = ({ items, errorText, ...props }) => {
+export const SelectInput: FC<SelectInputProps> = ({ items, errorText, width, ...props }) => {
   return (
-    <Box component="div" sx={{ position: 'relative', width: '100%' }}>
+    <Box component="div" sx={{ position: 'relative', width: width || '100%' }}>
       <TextField
         id={props.name}
         name={props.name}

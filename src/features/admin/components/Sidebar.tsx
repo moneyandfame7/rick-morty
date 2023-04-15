@@ -22,6 +22,8 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import { useLogout } from 'features/authorization/hooks'
+import { useAppSelector } from 'application/store'
+import { selectCurrentUser } from 'features/users/services'
 const drawerWidth = 80
 
 const sidebarItems = [
@@ -42,22 +44,25 @@ const sidebarItems = [
   }
 ]
 
-const sidebarItems2 = [
-  {
-    icon: <AccountCircleIcon />,
-    label: 'Profile',
-    path: '/profile'
-  },
-  {
-    icon: <ManageAccountsIcon />,
-    label: 'Account settings',
-    path: '/account'
-  },
-  {
-    icon: <LogoutIcon />,
-    label: 'Logout'
-  }
-]
+const getSidebarItems2 = () => {
+  const user = useAppSelector(selectCurrentUser)
+  return [
+    {
+      icon: <AccountCircleIcon />,
+      label: 'Profile',
+      path: `/profile/${user?.id}`
+    },
+    {
+      icon: <ManageAccountsIcon />,
+      label: 'Account settings',
+      path: '/account'
+    },
+    {
+      icon: <LogoutIcon />,
+      label: 'Logout'
+    }
+  ]
+}
 
 const DrawerHeader: FC = () => {
   const navigate = useNavigate()
@@ -76,8 +81,10 @@ const DrawerHeader: FC = () => {
 }
 
 export const Sidebar: FC = () => {
-  const { makeLogout, isLoading: isLogoutLoading } = useLogout()
   const theme = useTheme()
+
+  const { makeLogout } = useLogout()
+
   return (
     <Drawer
       sx={{
@@ -125,7 +132,7 @@ export const Sidebar: FC = () => {
           ))}
         </List>
         <List>
-          {sidebarItems2.map(item => (
+          {getSidebarItems2().map(item => (
             <Tooltip title={item.label} key={item.label} placement="right">
               <ListItem key={item.label} disablePadding>
                 <ListItemButton

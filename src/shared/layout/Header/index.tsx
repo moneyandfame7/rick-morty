@@ -22,14 +22,14 @@ import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
 import { LOGIN_ROUTE, SIGNUP_ROUTE } from 'features/authorization/routes'
 
 import { Logo } from 'shared/components/icons/Logo'
-import { SettingDrawer } from 'shared/components/SettingDrawer'
+import { SettingDrawer } from 'shared/components'
 import { getIsAuthorizationRoute } from 'shared/utils/getIsAuthorizationRoute'
 import { HOME_ROUTE } from 'shared/routes'
+import { getIsAdminRoute } from 'shared/utils'
 
 import { HeaderDrawer } from './Drawer'
 import { LINKS_CONFIG } from './utils/links'
 import { UserMenu } from './AvatarMenu'
-import { getIsAdminRoute } from '../../utils/getAdminRoutes'
 
 export const Header: FC = () => {
   const location = useLocation()

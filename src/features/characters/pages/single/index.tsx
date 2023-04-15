@@ -53,15 +53,13 @@ export const SingleCharacterPage: FC = () => {
           py: 4
         }}
       >
-        <Stack direction="column" alignItems="center">
-          <Stack direction="column" alignItems="center" gap={0.2} sx={{ pb: 1 }}>
-            <Typography variant="body1" fontWeight={600} color="primary.lighter">
-              Character
-            </Typography>
-            <Typography variant="h3" fontWeight={600} color="#fff" sx={{ mt: -1 }}>
-              {data?.name}
-            </Typography>
-          </Stack>
+        <Stack direction="column" alignItems="center" gap={0.2} sx={{ pb: 1 }}>
+          <Typography variant="body1" fontWeight={600} color="primary.lighter">
+            Character
+          </Typography>
+          <Typography variant="h3" fontWeight={600} color="#fff" sx={{ mt: -1 }}>
+            {data?.name}
+          </Typography>
         </Stack>
       </Box>
       <Stack direction="row" justifyContent="space-around" alignItems="flex-start" sx={{ pt: 2, userSelect: 'none' }}>
