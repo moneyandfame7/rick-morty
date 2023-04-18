@@ -29,17 +29,17 @@ interface TableProps {
   excludedFields: Array<keyof RecentUsers>
   needToFormat: Array<NeedToFormatValues>
 }
-export const Table: FC<TableProps> = ({ data, excludedFields, needToFormat }) => {
-  function excludeByFields<T>(arr: Column[], excludedFields: Array<keyof T>): Column[] {
-    return arr.filter(item => {
-      for (const field of excludedFields) {
-        if (item.field === field) {
-          return false
-        }
+export function excludeByFields<T>(arr: Column[], excludedFields: Array<keyof T>): Column[] {
+  return arr.filter(item => {
+    for (const field of excludedFields) {
+      if (item.field === field) {
+        return false
       }
-      return true
-    })
-  }
+    }
+    return true
+  })
+}
+export const Table: FC<TableProps> = ({ data, excludedFields, needToFormat }) => {
   function formatValues<T extends object>(data: T[], needToFormat: Array<NeedToFormatValues>) {
     return data.map(row => {
       const formatted = needToFormat.map(format => ({

@@ -8,7 +8,7 @@ import { Table } from 'features/admin/components'
 const getFormattedDate = (row: RecentUsers) => {
   return dayjs(row.created_at).locale('en').format('MMMM D, YYYY')
 }
-const getFormattedRole = (row: RecentUsers) => {
+export const getFormattedRole = (row: RecentUsers) => {
   const getRoleBackground = () => {
     switch (row.role) {
       case 'owner':
@@ -33,7 +33,7 @@ const getUsernameWithAvatar = (row: RecentUsers) => {
   }
   return <Chip avatar={<Avatar />} />
 }
-const getCountryImage = (row: RecentUsers) => {
+export const getCountryImage = (row: RecentUsers) => {
   if (row.country) {
     return (
       <Stack direction="row" gap={1} justifyContent="end" sx={{ fontWeight: 500 }}>
@@ -48,7 +48,7 @@ const getCountryImage = (row: RecentUsers) => {
     </Typography>
   )
 }
-const getVerifiedField = (row: RecentUsers) => {
+export const getVerifiedField = (row: RecentUsers) => {
   if (row.is_verified) {
     return <Chip color="success" label="Verified" />
   }

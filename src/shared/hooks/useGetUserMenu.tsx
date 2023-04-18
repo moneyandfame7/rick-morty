@@ -76,7 +76,7 @@ export const useGetMenuList = (): MenuItems[] => {
     }
   ]
 
-  if (user && hasPermission(user.role.value as Role)) {
+  if (user && user.role.value && hasPermission(user.role.value as Role)) {
     /* Insert menu items for priveleged list before 3 index */
     insert(baseList, 3, forPrivilegedList)
   }
