@@ -1,7 +1,13 @@
 import React, { type FC } from 'react'
 
-import { Wrapper } from 'features/admin/components'
+import { AdminHeader, Wrapper } from 'features/admin/components'
+import { UserManagement } from './user'
 
 export const ManagementPage: FC = () => {
-  return <Wrapper>Management</Wrapper>
+  return (
+    <Wrapper>
+      <AdminHeader title="Management" subtitle="Planning, organizing, directing, and controlling resources" />
+      <UserManagement />
+    </Wrapper>
+  )
 }
