@@ -1,18 +1,21 @@
-import React from 'react'
+import React, { FC, useState } from 'react'
 
-import { Alert, AlertProps, Snackbar as MuiSnackbar } from '@mui/material'
+import { Alert, AlertProps, Snackbar as MuiSnackbar, Slide, SlideProps } from '@mui/material'
+
+const SlideTransition = (props: SlideProps) => {
+  return <Slide {...props} direction="up" />
+}
 
 export const useSnackbar = () => {
-  const [snackbar, setSnackbar] = React.useState<Pick<AlertProps, 'children' | 'severity'> | null>(null)
+  const [snackbar, setSnackbar] = useState<Pick<AlertProps, 'children' | 'severity'> | null>(null)
 
   const handleCloseSnackbar = () => setSnackbar(null)
-
-  const Snackbar = (
+  const Snackbar: FC = () => (
     <MuiSnackbar
       open={!!snackbar}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       onClose={handleCloseSnackbar}
       autoHideDuration={6000}
+      TransitionComponent={SlideTransition}
     >
       <Alert {...snackbar} onClose={handleCloseSnackbar} />
     </MuiSnackbar>

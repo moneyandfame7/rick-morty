@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AlertProps, Avatar, Chip, IconButton, useMediaQuery } from '@mui/material'
 
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined'
-import { GridColDef, GridRowSelectionModel } from '@mui/x-data-grid'
 import dayjs from 'dayjs'
-import { useSnackbar } from 'shared/components/Snackbar/useSnackbar'
-import { User } from 'features/users/type'
-import _ from 'lodash'
-import { useDeleteUsersMutation, useLazyGetUsersQuery, useUpdateUserMutation } from 'features/users/services'
 
-const getRoleBackground = (role: string) => {
+import { Avatar, Chip, IconButton, useMediaQuery } from '@mui/material'
+import { GridColDef } from '@mui/x-data-grid'
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined'
+
+export const getRoleBackground = (role: string) => {
   const getRoleBackground = () => {
     switch (role) {
       case 'owner':
@@ -24,14 +21,14 @@ const getRoleBackground = (role: string) => {
   return <Chip color={getRoleBackground()} label={role} />
 }
 
-const getVerifiedStatus = (isVerified: boolean) => {
+export const getVerifiedStatus = (isVerified: boolean) => {
   if (isVerified) {
     return <Chip color="success" label="Verified" />
   }
   return <Chip label="Unverified" />
 }
 
-const getProfileColumn = (id: string) => {
+export const getProfileColumn = (id: string) => {
   const navigate = useNavigate()
   return (
     <IconButton
@@ -44,20 +41,8 @@ const getProfileColumn = (id: string) => {
   )
 }
 
-export const useUserTable = (
-  setSnackbar: React.Dispatch<React.SetStateAction<Pick<AlertProps, 'children' | 'severity'> | null>>
-) => {
+export const useUserColumns = () => {
   const isNotDesktop = useMediaQuery('(max-width:900px)')
-
-  const [paginationModel, setPaginationModel] = useState({
-    pageSize: 20,
-    page: 0
-  })
-  const [selected, setSelected] = useState<string[]>([])
-
-  const [get, { data, isLoading: isDataLoading }] = useLazyGetUsersQuery()
-  const [update, { isLoading: isUpdateLoading, error: onUpdateError }] = useUpdateUserMutation()
-  const [deleteUsers, { isLoading: isDeleteloading, error: onDeleteError }] = useDeleteUsersMutation()
 
   const columns: GridColDef[] = [
     {
@@ -134,60 +119,5 @@ export const useUserTable = (
     }
   ]
 
-  const processRowUpdate = async (newRow: User, oldRow: User) => {
-    if (_.isEqual(newRow, oldRow)) {
-      return oldRow
-    }
-    const updated = _.pickBy(newRow, (value, key) => {
-      return !_.isEqual(value, oldRow[key as keyof User])
-    })
-
-    const info = await update({ id: newRow.id, updated })
-    if ('data' in info) {
-      setSnackbar({ children: 'User successfully updated', severity: 'success' })
-      return info.data
-    }
-
-    setSnackbar({ children: 'User update failed', severity: 'error' })
-    return oldRow
-  }
-
-  const onSelect = async (ids: GridRowSelectionModel) => {
-    setSelected(ids as string[])
-  }
-  const onRemove = async () => {
-    const info = await deleteUsers(selected as string[])
-    if ('data' in info) {
-      setSnackbar({ children: 'Users successfully removed', severity: 'success' })
-      await handleUpdate()
-    } else {
-      setSnackbar({ children: 'User removing failed', severity: 'error' })
-    }
-  }
-  const handleUpdate = async () => {
-    await get({ ...paginationModel })
-  }
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-extra-semi
-    ;(async () => {
-      await handleUpdate()
-    })()
-  }, [])
-  return {
-    data,
-    columns,
-    selected,
-    paginationModel,
-    isDataLoading,
-    isUpdateLoading,
-    isDeleteloading,
-    onUpdateError,
-    onDeleteError,
-    processRowUpdate,
-    handleUpdate,
-    onSelect,
-    onRemove,
-    setPaginationModel
-  }
+  return columns
 }
