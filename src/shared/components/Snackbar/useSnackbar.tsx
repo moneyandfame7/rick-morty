@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react'
 import { Alert, AlertProps, Snackbar as MuiSnackbar, Slide, SlideProps } from '@mui/material'
 
 const SlideTransition = (props: SlideProps) => {
-  return <Slide {...props} direction="up" />
+  return <Slide {...props} direction="down" />
 }
 
 export const useSnackbar = () => {
@@ -12,10 +12,15 @@ export const useSnackbar = () => {
   const handleCloseSnackbar = () => setSnackbar(null)
   const Snackbar: FC = () => (
     <MuiSnackbar
+      sx={{ mt: 3 }}
       open={!!snackbar}
       onClose={handleCloseSnackbar}
       autoHideDuration={6000}
       TransitionComponent={SlideTransition}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center'
+      }}
     >
       <Alert {...snackbar} onClose={handleCloseSnackbar} />
     </MuiSnackbar>

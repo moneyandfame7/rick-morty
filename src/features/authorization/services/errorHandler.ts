@@ -10,7 +10,9 @@ const enum AuthHttpStack {
 
   TOKEN_EXPIRED = 'TOKEN_EXPIRED',
   INVALID_TOKEN = 'INVALID_TOKEN',
-  ID_NOT_FOUND = 'ID_NOT_FOUND'
+  ID_NOT_FOUND = 'ID_NOT_FOUND',
+  ALREADY_VERIFIED = 'ALREADY_VERIFIED',
+  INVALID_LINK = 'INVALID_LINK'
 }
 
 const enum CharacterHttpStack {
@@ -22,9 +24,7 @@ export const authHandler = (error: FetchBaseQueryError | SerializedError | undef
   if (!error) {
     return undefined
   }
-  if ('status' in error) {
-    /* todo: зробити якесь поле і виводити помилку*/
-  } else {
+  if ('stack' in error) {
     switch (error.stack) {
       case AuthHttpStack.EMAIL_NOT_FOUND:
         return {
@@ -58,7 +58,13 @@ export const authHandler = (error: FetchBaseQueryError | SerializedError | undef
         return {
           id: error.message
         }
+      case AuthHttpStack.ALREADY_VERIFIED || AuthHttpStack.INVALID_LINK:
+        return {
+          message: error.message
+        }
     }
+  } else {
+    return undefined
   }
 }
 

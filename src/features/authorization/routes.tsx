@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { LoginPage, SignupPage, ForgotPasswordPage, ResetPasswordPage } from 'features/authorization/pages'
 import { SuccessLoginPage } from './pages/SuccessLogin.page'
+import { VerifyPage } from './pages/verify'
 
 const SIGNUP_ROUTE: RouteProps = {
   id: uuidv4(),
@@ -35,4 +36,10 @@ const SUCCESS_LOGIN_ROUTE: RouteProps = {
   path: '/login/success'
 }
 
-export { FORGOT_ROUTE, LOGIN_ROUTE, RESET_ROUTE, SIGNUP_ROUTE, SUCCESS_LOGIN_ROUTE }
+const VERIFY_ROUTE: RouteProps = {
+  id: uuidv4(),
+  element: <VerifyPage />,
+  path: '/verify/:link'
+}
+
+export { FORGOT_ROUTE, LOGIN_ROUTE, RESET_ROUTE, SIGNUP_ROUTE, SUCCESS_LOGIN_ROUTE, VERIFY_ROUTE }
