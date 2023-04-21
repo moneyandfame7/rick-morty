@@ -5,12 +5,19 @@ export interface User {
   readonly email: string
   readonly username: string | null
   readonly auth_type: string
+  readonly password: string
   readonly banned: boolean
   readonly role: UserRole
   readonly country: string | null
   readonly photo: string | null
   readonly is_verified: boolean
   readonly mail_subscribe: boolean | null
+  readonly created_at: Date
+}
+
+export interface UpdateUser {
+  id: string
+  updated: Partial<User>
 }
 
 export interface UserWelcomeDetails {
@@ -37,6 +44,12 @@ export interface ResetPasswordParams {
 export interface UserCurrentCountry {
   country_code: string
   country_name: string
+}
+
+export interface GetManyUsers {
+  readonly users: User[]
+
+  readonly count: number
 }
 
 export type UserPublicProfile = Omit<User, 'mail_subscribe' | 'auth_type' | 'role'>

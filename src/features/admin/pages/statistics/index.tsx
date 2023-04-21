@@ -1,8 +1,7 @@
 import React, { type FC } from 'react'
-import { Wrapper } from '../components/Wrapper'
 import { Box } from '@mui/material'
 
-import { AdminHeader } from '../components'
+import { AdminHeader, Wrapper } from 'features/admin/components'
 
 export const StatisticsPage: FC = () => {
   return (

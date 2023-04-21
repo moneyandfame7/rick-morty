@@ -1,8 +1,8 @@
 import React, { type FC } from 'react'
 import { blue } from '@mui/material/colors'
 
-import { StatisticsChart } from 'features/admin/components/StatisticsChart'
 import { ChartProps } from './AuthorizationChart'
+import { StatisticsChart } from 'features/admin/components'
 
 export const VerifiedChart: FC<ChartProps> = ({ userStats }) => {
   const colors = [blue[500], blue[800], blue[700], blue[600], blue[400], blue[300]]

@@ -1,3 +1,4 @@
 export * from './create'
-export * from './Main.page'
-export * from './Single.page'
+export * from './favorite'
+export * from './main'
+export * from './single'

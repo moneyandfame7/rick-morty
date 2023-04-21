@@ -38,7 +38,7 @@ export const CookieBanner: FC = () => {
           bottom: 0,
           left: 0,
           right: 0,
-          zIndex: 3,
+          zIndex: 5000,
           backgroundColor: 'background.paper',
           alignItems: 'center',
           gap: { xs: 2, md: 0 },

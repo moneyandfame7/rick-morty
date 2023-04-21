@@ -38,7 +38,7 @@ export const getInputByType = (type: InputType, key: keyof FiltersValues, formik
           onChange={formik.handleChange}
           items={getItemsByKey(key)}
           value={formik.values[key]}
-          sx={{ width: 200 }}
+          width="200px"
           InputProps={{
             endAdornment: getClearButton(formik, key)
           }}

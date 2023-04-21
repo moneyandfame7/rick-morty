@@ -18,6 +18,7 @@ import { selectCurrentUser } from 'features/users/services'
 
 import { hasPermission } from 'shared/utils'
 import { insert } from 'shared/utils/insert'
+import { USER_ACCOUNT_SETTINGS_ROUTE } from 'features/users/routes'
 
 interface MenuItems {
   id: string
@@ -29,18 +30,19 @@ interface MenuItems {
 
 export const useGetMenuList = (): MenuItems[] => {
   const favoriteCount = useAppSelector(selectFavoriteAmount)
+  const user = useAppSelector(selectCurrentUser)
   const baseList: MenuItems[] = [
     {
       id: uuidv4(),
       name: 'Profile',
       icon: <AccountCircleOutlinedIcon sx={{ fontSize: 20 }} />,
-      url: '/profile'
+      url: `/profile/${user?.id}`
     },
     {
       id: uuidv4(),
-      name: 'Account',
+      name: 'Account settings',
       icon: <ManageAccountsOutlinedIcon sx={{ fontSize: 20 }} />,
-      url: '/account'
+      url: USER_ACCOUNT_SETTINGS_ROUTE.path
     },
     {
       id: uuidv4(),
@@ -73,9 +75,8 @@ export const useGetMenuList = (): MenuItems[] => {
       url: '/dashboard'
     }
   ]
-  const user = useAppSelector(selectCurrentUser)
 
-  if (user && hasPermission(user.role.value as Role)) {
+  if (user && user.role.value && hasPermission(user.role.value as Role)) {
     /* Insert menu items for priveleged list before 3 index */
     insert(baseList, 3, forPrivilegedList)
   }

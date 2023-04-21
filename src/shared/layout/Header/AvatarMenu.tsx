@@ -12,6 +12,7 @@ import { selectCurrentUser } from 'features/users/services'
 import { UserAvatar } from 'shared/components/icons'
 import { useGetUserMenu } from 'shared/hooks'
 import { BackdropLoader } from 'shared/components/common'
+import { UnverifiedAlert } from './UnverifiedAlert'
 
 export const UserMenu: FC<BoxProps> = () => {
   const [resendVerification, { isLoading: isVerificationLoading }] = useVerificationSendMutation()
@@ -64,31 +65,7 @@ export const UserMenu: FC<BoxProps> = () => {
 
         <Divider sx={{ mb: 2 }} />
 
-        {!user?.is_verified ? (
-          <Alert severity="warning" sx={{ maxWidth: 300 }}>
-            <Typography variant="h6" fontSize={14} fontWeight={600}>
-              You haven&apos;t verified your email address yet.
-            </Typography>
-            <Typography variant="body2" fontWeight={500} sx={{ py: 1, opacity: 0.8 }}>
-              Please click on the link we emailed you to verify your email.
-            </Typography>
-            <Typography variant="body2" fontWeight={500} sx={{ opacity: 0.8 }}>
-              Did not receive the email?
-            </Typography>
-            <LoadingButton
-              loading={isVerificationLoading}
-              loadingPosition="start"
-              variant="contained"
-              color="success"
-              onClick={handleClickSend}
-              sx={{ fontWeight: 600, mt: 1 }}
-              startIcon={<SendIcon />}
-              size="small"
-            >
-              Resend verification email
-            </LoadingButton>
-          </Alert>
-        ) : null}
+        {!user?.is_verified && <UnverifiedAlert />}
         {currentMenu}
       </Menu>
     </Box>
