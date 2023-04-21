@@ -74,6 +74,15 @@ export const authApi = rootApi.injectEndpoints({
       transformErrorResponse: (response: FetchBaseQueryError) => {
         return response.data
       }
+    }),
+    verify: builder.mutation<AuthResponse, string>({
+      query: link => ({
+        url: `auth/verify/${link}`,
+        method: 'post'
+      }),
+      transformErrorResponse: (response: FetchBaseQueryError) => {
+        return response.data
+      }
     })
   })
 })
@@ -86,5 +95,6 @@ export const {
   useWelcomeMutation,
   useVerificationSendMutation,
   useForgotMutation,
-  useResetMutation
+  useResetMutation,
+  useVerifyMutation
 } = authApi

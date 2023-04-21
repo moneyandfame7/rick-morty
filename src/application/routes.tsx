@@ -6,7 +6,8 @@ import {
   LOGIN_ROUTE,
   RESET_ROUTE,
   SIGNUP_ROUTE,
-  SUCCESS_LOGIN_ROUTE
+  SUCCESS_LOGIN_ROUTE,
+  VERIFY_ROUTE
 } from 'features/authorization/routes'
 import { USER_ACCOUNT_SETTINGS_ROUTE, USER_PROFILE_ROUTE } from 'features/users/routes'
 import {
@@ -38,6 +39,7 @@ export const PROTECTED_ROUTES: RouteProps[] = [
   /* Common */
 
   NOT_FOUND_ROUTE,
+  VERIFY_ROUTE,
 
   /* Users */
   USER_ACCOUNT_SETTINGS_ROUTE,
