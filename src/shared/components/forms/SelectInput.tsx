@@ -1,5 +1,5 @@
 import React, { type FC } from 'react'
-import { Box, MenuItem, TextField, TextFieldProps, Typography } from '@mui/material'
+import { Box, MenuItem, TextField, type TextFieldProps, Typography } from '@mui/material'
 import ErrorIcon from '@mui/icons-material/Error'
 
 interface SelectInputInterface {

@@ -13,7 +13,7 @@ import { useAppSelector } from 'application/store'
 
 import { selectFavoriteAmount } from 'features/characters/services'
 import { CREATE_CHARACTER_ROUTE } from 'features/characters/routes'
-import { Role } from 'features/authorization/constant'
+import { type Role } from 'features/authorization/constant'
 import { selectCurrentUser } from 'features/users/services'
 
 import { hasPermission } from 'shared/utils'

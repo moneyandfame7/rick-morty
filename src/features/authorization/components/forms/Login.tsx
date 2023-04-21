@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { type FC, useEffect } from 'react'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { Box, Link, Stack, Typography } from '@mui/material'

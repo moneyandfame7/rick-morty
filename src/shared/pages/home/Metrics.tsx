@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import CountUp from 'react-countup'
 
 import { Grid, Skeleton } from '@mui/material'

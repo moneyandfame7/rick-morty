@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { isEmpty, omitBy, pick } from 'lodash'
 
-import { FiltersValues } from 'features/filters/types'
+import { type FiltersValues } from 'features/filters/types'
 
 export const useFiltration = (initialFiltersValue: FiltersValues) => {
   const [searchParams, setSearchParams] = useSearchParams()

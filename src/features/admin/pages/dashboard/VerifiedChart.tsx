@@ -1,7 +1,7 @@
 import React, { type FC } from 'react'
 import { blue } from '@mui/material/colors'
 
-import { ChartProps } from './AuthorizationChart'
+import { type ChartProps } from './AuthorizationChart'
 import { StatisticsChart } from 'features/admin/components'
 
 export const VerifiedChart: FC<ChartProps> = ({ userStats }) => {

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { alpha, Box } from '@mui/material'
 
 interface PrimaryIconProps {

@@ -1,6 +1,6 @@
 import React, { type FC } from 'react'
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from '@mui/material'
-import { TransitionProps } from '@mui/material/transitions'
+import { type TransitionProps } from '@mui/material/transitions'
 
 interface ModalProps {
   open: boolean

@@ -11,10 +11,8 @@ import Title from 'features/authorization/components/titles/Signup'
 import { StepperContext } from 'features/authorization/components/steppers'
 import { selectCurrentUser } from 'features/users/services'
 
-import { ValidatedInput } from 'shared/components/forms'
-import { CountryAutocompleteInput } from 'shared/components/forms'
-import { OutlinedButton } from 'shared/components/common/buttons'
-import { PrimaryButton } from 'shared/components/common/buttons'
+import { ValidatedInput, CountryAutocompleteInput } from 'shared/components/forms'
+import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
 
 export const WelcomeForm: FC = () => {
   const { countries, formik, isLoading, error, isSuccess } = useWelcome()
@@ -36,7 +34,6 @@ export const WelcomeForm: FC = () => {
     }
   }
 
-  console.log(formik.values.country)
   return (
     <Stack
       component="form"

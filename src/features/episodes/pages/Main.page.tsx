@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { CircularProgress } from '@mui/material'
 
 import { useGetManyEpisodesQuery } from 'features/episodes/services'

@@ -1,9 +1,9 @@
-import React, { FC, PropsWithChildren } from 'react'
-import { LinkProps, useNavigate } from 'react-router-dom'
+import React, { type FC, type PropsWithChildren } from 'react'
+import { type LinkProps, useNavigate } from 'react-router-dom'
 
 import { StyledOutlineButton } from './OutlinedButton'
 import { StyledPrimaryButton } from './PrimaryButton'
-import { ButtonProps } from '@mui/material'
+import { type ButtonProps } from '@mui/material'
 
 type ButtonVariant = 'outlined' | 'primary'
 type ButtonSize = 'small' | 'medium' | 'large'

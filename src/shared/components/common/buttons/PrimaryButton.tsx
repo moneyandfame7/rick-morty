@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { styled, darken, alpha } from '@mui/material'
-import { LoadingButton, LoadingButtonProps } from '@mui/lab'
+import { LoadingButton, type LoadingButtonProps } from '@mui/lab'
 
 export const StyledPrimaryButton = styled(LoadingButton)<LoadingButtonProps>(({ theme }) => ({
   background: theme.palette.primary.main,

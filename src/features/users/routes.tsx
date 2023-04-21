@@ -1,4 +1,4 @@
-import React, { RouteProps } from 'react-router-dom'
+import React, { type RouteProps } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 
 import { UserAccountSettingsPage } from 'features/users/pages'

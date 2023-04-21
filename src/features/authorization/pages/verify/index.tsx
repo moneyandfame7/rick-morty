@@ -1,25 +1,24 @@
 import React, { useEffect, type FC, useMemo } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
-import { Alert, Container, Stack, Typography } from '@mui/material'
+import { Container, Stack, Typography } from '@mui/material'
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
+
+import { useAppSelector } from 'application/store'
 
 import { authHandler, useVerifyMutation } from 'features/authorization/services'
-
-import { CircularLoader } from 'shared/components/common'
-import { useActions } from 'shared/hooks'
-import { useSnackbar } from 'shared/components'
-import { HOME_ROUTE } from 'shared/routes'
-import { BaseIcon, SuccessIcon } from 'shared/components/common/icons'
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
-import { LinkButton } from 'shared/components/common/buttons'
-import { useAppSelector } from 'application/store'
 import { selectCurrentUser } from 'features/users/services'
 
+import { useActions } from 'shared/hooks'
+import { HOME_ROUTE } from 'shared/routes'
+import { CircularLoader } from 'shared/components/common'
+import { BaseIcon, SuccessIcon } from 'shared/components/common/icons'
+import { LinkButton } from 'shared/components/common/buttons'
+
 export const VerifyPage: FC = () => {
-  const [verify, { data, isSuccess, isLoading, error }] = useVerifyMutation()
+  const [verify, { data, isSuccess, error }] = useVerifyMutation()
   const { setUser } = useActions()
   const { link } = useParams()
-  const navigate = useNavigate()
   const user = useAppSelector(selectCurrentUser)
   const verifyError = useMemo(() => authHandler(error), [error])
   useEffect(() => {

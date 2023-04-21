@@ -1,5 +1,5 @@
 import React, { type FC } from 'react'
-import { FormikProps } from 'formik'
+import { type FormikProps } from 'formik'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { Grid, Stack } from '@mui/material'
 

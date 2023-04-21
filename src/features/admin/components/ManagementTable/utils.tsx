@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react'
 import {
-  BaseQueryFn,
-  FetchArgs,
-  FetchBaseQueryError,
-  MutationDefinition,
-  QueryDefinition
+  type BaseQueryFn,
+  type FetchArgs,
+  type FetchBaseQueryError,
+  type MutationDefinition,
+  type QueryDefinition
 } from '@reduxjs/toolkit/dist/query'
-import { UseLazyQuery, UseMutation } from '@reduxjs/toolkit/dist/query/react/buildHooks'
+import { type UseLazyQuery, type UseMutation } from '@reduxjs/toolkit/dist/query/react/buildHooks'
 import _ from 'lodash'
 
-import { GridRowSelectionModel } from '@mui/x-data-grid'
+import { type GridRowSelectionModel } from '@mui/x-data-grid'
 
-import { useSnackbar } from 'shared/components'
-import { AlertProps } from '@mui/material'
+import { type AlertProps } from '@mui/material'
 
 interface UseTableProps<DeleteArg, DeleteResult, UpdateArg, UpdateResult, GetArg, GetResult> {
   useRemove: UseMutation<
@@ -41,6 +40,7 @@ interface UseTableProps<DeleteArg, DeleteResult, UpdateArg, UpdateResult, GetArg
   onUpdateErrorMessage?: string
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useTable = <DeleteArg, DeleteResult, UpdateArg, UpdateResult extends { id: any }, GetArg, GetResult>({
   useGet,
   useUpdate,
@@ -67,6 +67,7 @@ export const useTable = <DeleteArg, DeleteResult, UpdateArg, UpdateResult extend
     const updated = _.pickBy(newRow, (value, key) => {
       return !_.isEqual(value, oldRow[key as never])
     })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const info = await update({ id: newRow.id, updated } as any)
     if ('data' in info) {
       setSnackbar({ children: onUpdateSuccessMessage, severity: 'success' })

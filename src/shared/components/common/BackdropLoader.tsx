@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {type FC} from 'react';
 import {Backdrop, CircularProgress} from '@mui/material';
 
 export const BackdropLoader: FC = () => {

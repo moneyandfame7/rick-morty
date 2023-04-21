@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { Grid, Stack, Typography } from '@mui/material'
 import CopyrightOutlinedIcon from '@mui/icons-material/CopyrightOutlined'
 

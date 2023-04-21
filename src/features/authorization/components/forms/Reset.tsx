@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
-import { FormikProps } from 'formik'
+import React, { type FC } from 'react'
+import { type FormikProps } from 'formik'
 
 import { Box } from '@mui/material'
 
 import { PasswordInput } from 'shared/components/forms'
-import { ResetPasswordDetails } from 'features/authorization/type'
+import { type ResetPasswordDetails } from 'features/authorization/type'
 import { PrimaryButton } from 'shared/components/common/buttons'
 
 interface FormProps<Type> {

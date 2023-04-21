@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 import { Box, Typography, useTheme } from '@mui/material'
 import KeyOutlinedIcon from '@mui/icons-material/KeyOutlined'

@@ -51,6 +51,7 @@
   "scripts": {
     "start": "react-scripts start",
     "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
     "build": "react-scripts build",
     "test": "react-scripts test"
   },

@@ -1,7 +1,7 @@
 import React, { type FC } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
-import { SerializedError } from '@reduxjs/toolkit'
+import { type FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import { type SerializedError } from '@reduxjs/toolkit'
 
 import Image from 'mui-image'
 import { Box, Button, Typography } from '@mui/material'
@@ -51,16 +51,10 @@ export const ErrorMessage: FC<ErrorMessageProps> = ({ error }) => {
               <div>
                 <Typography variant="h6">{error.status}</Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ py: 1 }}>
+                  {/*  eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                   {(error.data as any).message}
                 </Typography>
-                <Button
-                  variant="contained"
-                  size="small"
-                  /* onClick={() => {
-                 resetAllFilters()
-               }}*/
-                  onClick={resetFilters}
-                >
+                <Button variant="contained" size="small" onClick={resetFilters}>
                   Reset all filters
                 </Button>
               </div>
@@ -93,14 +87,7 @@ export const ErrorMessage: FC<ErrorMessageProps> = ({ error }) => {
                 <Typography variant="body2" color="text.secondary" sx={{ py: 1 }}>
                   The filter data is incorrect. Try resetting the filters.
                 </Typography>
-                <Button
-                  variant="contained"
-                  size="small"
-                  /* onClick={() => {
-                 resetAllFilters()
-               }}*/
-                  onClick={resetFilters}
-                >
+                <Button variant="contained" size="small" onClick={resetFilters}>
                   Reset all filters
                 </Button>
               </div>
@@ -137,13 +124,7 @@ export const ErrorMessage: FC<ErrorMessageProps> = ({ error }) => {
             <Typography variant="body2" color="text.secondary" sx={{ py: 1 }}>
               {error.message}
             </Typography>
-            <Button
-              variant="contained"
-              size="small"
-              /* onClick={() => {
-                 resetAllFilters()
-               }}*/
-            >
+            <Button variant="contained" size="small">
               Reset all filters
             </Button>
           </div>

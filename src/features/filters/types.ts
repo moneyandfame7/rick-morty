@@ -1,4 +1,4 @@
-import { InputType } from './constant'
+import { type InputType } from './constant'
 
 export interface EpisodeFilters {
   values: {

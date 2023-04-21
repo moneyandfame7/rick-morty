@@ -1,5 +1,5 @@
 import { SvgIcon, useTheme } from '@mui/material'
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 export interface LogoIconProps {
   color?: string

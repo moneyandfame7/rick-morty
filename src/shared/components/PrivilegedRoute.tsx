@@ -1,9 +1,9 @@
-import React, { PropsWithChildren, type FC, useEffect } from 'react'
+import React, { type PropsWithChildren, type FC, useEffect } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from 'application/store'
 
-import { Role } from 'features/authorization/constant'
+import { type Role } from 'features/authorization/constant'
 import { LOGIN_ROUTE } from 'features/authorization/routes'
 import { selectCurrentUser } from 'features/users/services'
 

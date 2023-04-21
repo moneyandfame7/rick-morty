@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import { Autocomplete, Box, TextFieldProps } from '@mui/material'
+import React, { type FC } from 'react'
+import { Autocomplete, Box, type TextFieldProps } from '@mui/material'
 
 import { ValidatedInput } from 'shared/components/forms/ValidatedInput'
 

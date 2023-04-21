@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import React, { type FC } from 'react'
 
 export const Title: FC = () => {

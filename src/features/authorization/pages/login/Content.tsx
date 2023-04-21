@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { type FC, useState } from 'react'
 import { Grid } from '@mui/material'
 
 import { SocialLogin } from 'features/authorization/components'

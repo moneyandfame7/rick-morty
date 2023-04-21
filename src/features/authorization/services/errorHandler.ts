@@ -1,5 +1,5 @@
-import { SerializedError } from '@reduxjs/toolkit'
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
+import { type SerializedError } from '@reduxjs/toolkit'
+import { type FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
 
 const enum AuthHttpStack {
   EMAIL_NOT_FOUND = 'EMAIL_NOT_FOUND',

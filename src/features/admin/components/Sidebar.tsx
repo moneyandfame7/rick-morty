@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import React, { type FC } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import {
   useTheme,
@@ -9,15 +9,11 @@ import {
   Container,
   AppBar,
   Toolbar,
-  Typography,
-  Button,
-  List,
   ListItem,
   ListItemButton,
   ListItemText,
   ListItemIcon
 } from '@mui/material'
-import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
 import WindowIcon from '@mui/icons-material/Window'
 import CategoryIcon from '@mui/icons-material/Category'
 import { LogoIcon } from 'shared/components/common/icons'
@@ -28,7 +24,6 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import { useLogout } from 'features/authorization/hooks'
 import { useAppSelector } from 'application/store'
 import { selectCurrentUser } from 'features/users/services'
-const drawerWidth = 80
 
 const sidebarItems = [
   {

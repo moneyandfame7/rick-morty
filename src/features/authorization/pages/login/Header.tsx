@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Box, Grid, useTheme } from '@mui/material'

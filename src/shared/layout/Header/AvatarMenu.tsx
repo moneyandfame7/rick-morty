@@ -1,11 +1,8 @@
-import React, { FC, useState } from 'react'
-import { Alert, Avatar, Box, BoxProps, Divider, Menu, Typography } from '@mui/material'
-import LoadingButton from '@mui/lab/LoadingButton'
-import SendIcon from '@mui/icons-material/Send'
+import React, { type FC, useState } from 'react'
+import { Avatar, Box, type BoxProps, Divider, Menu, Typography } from '@mui/material'
 
 import { useAppSelector } from 'application/store'
 
-import { useVerificationSendMutation } from 'features/authorization/services'
 import { useLogout } from 'features/authorization/hooks'
 import { selectCurrentUser } from 'features/users/services'
 
@@ -15,7 +12,6 @@ import { BackdropLoader } from 'shared/components/common'
 import { UnverifiedAlert } from './UnverifiedAlert'
 
 export const UserMenu: FC<BoxProps> = () => {
-  const [resendVerification, { isLoading: isVerificationLoading }] = useVerificationSendMutation()
   const { makeLogout, isLoading: isLogoutLoading } = useLogout()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -25,9 +21,7 @@ export const UserMenu: FC<BoxProps> = () => {
   const handleCloseMenu = () => {
     setAnchorEl(null)
   }
-  const handleClickSend = async () => {
-    await resendVerification()
-  }
+
   const user = useAppSelector(selectCurrentUser)
   const currentMenu = useGetUserMenu({ makeLogout, handleCloseMenu })
   return (

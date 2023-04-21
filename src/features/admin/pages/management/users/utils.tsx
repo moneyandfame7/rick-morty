@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 
 import { Avatar, Chip, IconButton, useMediaQuery } from '@mui/material'
-import { GridColDef } from '@mui/x-data-grid'
+import { type GridColDef } from '@mui/x-data-grid'
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined'
 
 export const getRoleBackground = (role: string) => {

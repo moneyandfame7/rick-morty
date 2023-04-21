@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import { Box, TextField, TextFieldProps } from '@mui/material'
+import React, { type FC } from 'react'
+import { Box, TextField, type TextFieldProps } from '@mui/material'
 import ErrorIcon from '@mui/icons-material/Error'
 
 interface PasswordInputProps {

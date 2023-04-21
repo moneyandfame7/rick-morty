@@ -1,6 +1,6 @@
-import { Stack, SxProps, Typography, TypographyProps } from '@mui/material'
-import React, { FC } from 'react'
-import { LogoIcon, LogoIconProps } from '../common/icons'
+import { Stack, type SxProps, Typography, type TypographyProps } from '@mui/material'
+import React, { type FC } from 'react'
+import { LogoIcon, type LogoIconProps } from '../common/icons'
 
 interface LogoProps {
   logoIcon?: LogoIconProps

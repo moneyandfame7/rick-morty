@@ -1,6 +1,6 @@
-import React, { createContext, FC } from 'react'
+import React, { createContext, type FC } from 'react'
 import Box from '@mui/material/Box'
-import { StepIconProps } from '@mui/material/StepIcon'
+import { type StepIconProps } from '@mui/material/StepIcon'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import AdjustIcon from '@mui/icons-material/Adjust'
 

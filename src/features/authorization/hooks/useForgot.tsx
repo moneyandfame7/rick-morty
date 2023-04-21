@@ -3,7 +3,7 @@ import { useFormik } from 'formik'
 
 import { useForgotMutation } from 'features/authorization/services'
 import { LOGIN_ROUTE } from 'features/authorization/routes'
-import { ForgotCredentials } from 'features/users/type'
+import { type ForgotCredentials } from 'features/users/type'
 
 import { forgotValidationSchema } from 'shared/utils'
 

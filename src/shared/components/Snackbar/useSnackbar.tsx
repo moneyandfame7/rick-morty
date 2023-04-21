@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react'
+import React, { type FC, useState } from 'react'
 
-import { Alert, AlertProps, Snackbar as MuiSnackbar, Slide, SlideProps } from '@mui/material'
+import { Alert, type AlertProps, Snackbar as MuiSnackbar, Slide, type SlideProps } from '@mui/material'
 
 const SlideTransition = (props: SlideProps) => {
   return <Slide {...props} direction="down" />

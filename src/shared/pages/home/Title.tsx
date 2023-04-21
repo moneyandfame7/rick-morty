@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { Stack } from '@mui/material'
 import { Typography } from '@mui/material'
 

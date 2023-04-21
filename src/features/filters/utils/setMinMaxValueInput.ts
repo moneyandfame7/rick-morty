@@ -1,6 +1,6 @@
-import React from 'react'
-import { FormikProps } from 'formik'
-import { FiltersValues } from '../types'
+import type React from 'react'
+import { type FormikProps } from 'formik'
+import { type FiltersValues } from '../types'
 import { MAX_TAKE, MIN_TAKE } from '../constant'
 
 /*todo: можливо винести в shared, і зробити тут generic для FormikProps?*/
