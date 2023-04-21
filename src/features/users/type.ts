@@ -3,15 +3,15 @@ import type { UserRole } from 'features/authorization/type'
 export interface User {
   readonly id: string
   readonly email: string
-  readonly username: string | null
+  readonly username?: string
   readonly auth_type: string
   readonly password: string
   readonly banned: boolean
   readonly role: UserRole
-  readonly country: string | null
-  readonly photo: string | null
+  readonly country?: string
+  readonly photo?: string
   readonly is_verified: boolean
-  readonly mail_subscribe: boolean | null
+  readonly mail_subscribe?: boolean
   readonly created_at: Date
 }
 

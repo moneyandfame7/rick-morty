@@ -46,7 +46,7 @@ const StepIconActive: FC = () => (
       justifyContent: 'center'
     }}
   >
-    <Box sx={{ backgroundColor: 'primary.main', width: 9, height: 9, borderRadius: '50%' }}></Box>
+    <Box sx={{ backgroundColor: 'primary.main', width: 9, height: 9, borderRadius: '50%' }} />
   </Box>
 )
 const StepIconBase: FC = () => <AdjustIcon sx={{ color: 'primary.lighter' }} />

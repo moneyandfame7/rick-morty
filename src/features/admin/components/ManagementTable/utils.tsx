@@ -83,6 +83,7 @@ export const useTable = <DeleteArg, DeleteResult, UpdateArg, UpdateResult extend
   }
 
   const onRemove = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const info = await remove(selected as any)
     if ('data' in info) {
       setSnackbar({ children: 'User successfully removed', severity: 'success' })
@@ -93,6 +94,7 @@ export const useTable = <DeleteArg, DeleteResult, UpdateArg, UpdateResult extend
   }
 
   const handleUpdate = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await get({ ...paginationModel } as any)
   }
 

@@ -52,8 +52,8 @@ export const resetValidationSchema = yup.object<ResetSchema>({
 export const welcomeValidationSchema = yup.object<WelcomeSchema>({
   username: yup
     .string()
-    .min(6, 'Sorry, your username must be between 6 and 30 characters long.')
-    .max(30, 'Sorry, your username must be between 6 and 30 characters long.')
+    .min(3, 'Sorry, your username must be between 3 and 50 characters long.')
+    .max(50, 'Sorry, your username must be between 3 and 50 characters long.')
     .required('Enter an username'),
   country: yup.string().required('Please select a country'),
   mail_subscribe: yup.boolean().notRequired()

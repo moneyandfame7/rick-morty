@@ -22,6 +22,9 @@ const userApi = rootApi.injectEndpoints({
         return response.data
       }
     }),
+    getUser: builder.query<User, string>({
+      query: id => `api/${Navigation.USERS}/${id}`
+    }),
     updateUser: builder.mutation<User, UpdateUser>({
       query: ({ id, updated }) => ({
         url: `api/${Navigation.USERS}/${id}`,
@@ -38,4 +41,10 @@ const userApi = rootApi.injectEndpoints({
     })
   })
 })
-export const { useGetCountOfUsersQuery, useLazyGetUsersQuery, useUpdateUserMutation, useDeleteUsersMutation } = userApi
+export const {
+  useGetCountOfUsersQuery,
+  useLazyGetUsersQuery,
+  useGetUserQuery,
+  useUpdateUserMutation,
+  useDeleteUsersMutation
+} = userApi

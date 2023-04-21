@@ -23,6 +23,16 @@ export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
       }
     }
   },
+  MuiTooltip: {
+    styleOverrides: {
+      tooltip: {
+        backgroundColor: '#2a2a2aeb'
+      },
+      arrow: {
+        color: '#2a2a2aeb'
+      }
+    }
+  },
   MuiIconButton: {
     styleOverrides: {
       root: {

@@ -9,7 +9,7 @@ import {
   SUCCESS_LOGIN_ROUTE,
   VERIFY_ROUTE
 } from 'features/authorization/routes'
-import { USER_ACCOUNT_SETTINGS_ROUTE, USER_PROFILE_ROUTE } from 'features/users/routes'
+import { ACCOUNT_SETTINGS_ROUTE, USER_PROFILE_ROUTE } from 'features/users/routes'
 import {
   CREATE_CHARACTER_ROUTE,
   FAVORITE_CHARACTER_ROUTE,
@@ -42,7 +42,7 @@ export const PROTECTED_ROUTES: RouteProps[] = [
   VERIFY_ROUTE,
 
   /* Users */
-  USER_ACCOUNT_SETTINGS_ROUTE,
+  ACCOUNT_SETTINGS_ROUTE,
   USER_PROFILE_ROUTE,
 
   /* Characters */

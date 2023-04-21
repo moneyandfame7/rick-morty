@@ -13,6 +13,4 @@ const authorizationRoutes: Array<string | undefined> = [
   SUCCESS_LOGIN_ROUTE.path,
   RESET_ROUTE.path
 ]
-export const getIsAuthorizationRoute = (pathname: string) => {
-  return authorizationRoutes.includes(pathname)
-}
+export const getIsAuthorizationRoute = (pathname: string) => authorizationRoutes.includes(pathname)
