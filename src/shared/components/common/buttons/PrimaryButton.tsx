@@ -41,8 +41,8 @@ export const StyledPrimaryButton = styled(LoadingButton)<LoadingButtonProps>(({ 
     lineHeight: '24px'
   },
   '&.MuiButton-sizeSmall': {
-    padding: '8px 14px 8px 14px',
-    fontSize: 14,
+    padding: '4px 10px',
+    fontSize: 13,
     lineHeight: '20px'
   }
 }))

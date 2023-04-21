@@ -1,6 +1,6 @@
 import React, { type FC } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
-import MenuIcon from '@mui/icons-material/Menu'
+
 import {
   alpha,
   AppBar,
@@ -12,8 +12,10 @@ import {
   Toolbar,
   Tooltip,
   Typography,
+  useMediaQuery,
   useTheme
 } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
 
 import { useAppSelector } from 'application/store'
 
@@ -32,11 +34,12 @@ import { LINKS_CONFIG } from './utils/links'
 import { UserMenu } from './AvatarMenu'
 
 export const Header: FC = () => {
+  const [mobileOpen, setMobileOpen] = React.useState(false)
   const location = useLocation()
   const navigate = useNavigate()
   const theme = useTheme()
-  const [mobileOpen, setMobileOpen] = React.useState(false)
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
+  const isMobile = useMediaQuery('(max-width:900px)')
   const handleDrawerToggle = () => {
     setMobileOpen(prevState => !prevState)
   }
@@ -165,7 +168,7 @@ export const Header: FC = () => {
         </Container>
       </AppBar>
 
-      <HeaderDrawer onClose={handleDrawerToggle} isOpen={mobileOpen} />
+      {isMobile && <HeaderDrawer onClose={handleDrawerToggle} isOpen={mobileOpen} />}
     </React.Fragment>
   )
 }

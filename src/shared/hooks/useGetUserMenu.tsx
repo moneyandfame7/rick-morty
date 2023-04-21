@@ -42,7 +42,7 @@ export const useGetMenuList = (): MenuItems[] => {
       id: uuidv4(),
       name: 'Account settings',
       icon: <ManageAccountsOutlinedIcon sx={{ fontSize: 20 }} />,
-      url: ACCOUNT_SETTINGS_ROUTE.path
+      url: '/settings'
     },
     {
       id: uuidv4(),

@@ -1,7 +1,5 @@
 import React, { type FC } from 'react'
-import { Autocomplete, Box, type TextFieldProps } from '@mui/material'
-
-import { ValidatedInput } from 'shared/components/forms/ValidatedInput'
+import { Autocomplete, Box, TextField, type TextFieldProps } from '@mui/material'
 
 export interface CountryData {
   value: string
@@ -12,20 +10,24 @@ interface CountryAutocompleteInputInterface {
   items: CountryData[]
   errorText?: string
   setFieldValue: (field: string, value: string | undefined) => void
+  defaultValue?: CountryData
 }
 
 type CountryAutocompleteInputProps = CountryAutocompleteInputInterface & TextFieldProps
 export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
   items,
   setFieldValue,
+  defaultValue,
   errorText,
   ...props
 }) => {
   return (
     <Autocomplete
+      isOptionEqualToValue={(option, value) => option.value === value.value}
+      defaultValue={defaultValue}
       sx={{ minWidth: '150px' }}
       id="autocomplete-country-id"
-      getOptionLabel={option => option.label}
+      getOptionLabel={(option: CountryData) => option.label}
       options={items}
       onChange={(e, value) => {
         setFieldValue('country', value?.value)
@@ -44,14 +46,18 @@ export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
         </Box>
       )}
       renderInput={params => (
-        <ValidatedInput
-          name="country"
+        <TextField
           label="Country"
+          name="country"
+          autoComplete="off"
           error={!!errorText}
-          errorText={errorText}
           helperText={errorText ? errorText : props.helperText}
-          autoComplete="shipping country"
           {...params}
+          inputProps={{
+            ...params.inputProps,
+            autoComplete: 'off' // disable autocomplete and autofill,
+          }}
+          InputLabelProps={{ shrink: true }}
         />
       )}
     />

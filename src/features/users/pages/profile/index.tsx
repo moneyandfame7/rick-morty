@@ -1,22 +1,33 @@
-import React, { type FC } from 'react'
+import React, { useEffect, type FC } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { skipToken } from '@reduxjs/toolkit/dist/query'
+import countryList from 'react-select-country-list'
 
 import { Avatar, Box, Container, Divider, Stack, Tooltip, Typography } from '@mui/material'
+import MailOutlinedIcon from '@mui/icons-material/MailOutlined'
+import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined'
 import Image from 'mui-image'
 
-import { selectCurrentUser, useGetUserQuery } from 'features/users/services'
-import { CircularLoader } from 'shared/components/common'
-import { ACCOUNT_SETTINGS_ROUTE } from 'features/users/routes'
 import { useAppSelector } from 'application/store'
-import { OutlinedButton } from 'shared/components/common/buttons'
-import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined'
-import countryList from 'react-select-country-list'
+
+import { selectCurrentUser, useLazyGetUserQuery } from 'features/users/services'
+import { ACCOUNT_SETTINGS_ROUTE } from 'features/users/routes'
+
+import { CircularLoader } from 'shared/components/common'
+import { EditSettings } from './EditSettings'
+
 export const ProfilePage: FC = () => {
   const { id } = useParams()
-  const { data, isLoading } = useGetUserQuery(id ?? skipToken)
+  const [get, { data, isLoading }] = useLazyGetUserQuery()
   const currentUser = useAppSelector(selectCurrentUser)
-  if (!data && isLoading) {
+
+  useEffect(() => {
+    ;(async () => {
+      if (id) {
+        await get(id)
+      }
+    })()
+  }, [id])
+  if ((!data && isLoading) || !id) {
     return <CircularLoader />
   }
 
@@ -32,13 +43,7 @@ export const ProfilePage: FC = () => {
     if (currentUser?.id === data?.id) {
       return (
         <Tooltip arrow title="Change your avatar">
-          <Box
-            component={Link}
-            width="100%"
-            height={300}
-            display="block"
-            to={{ pathname: ACCOUNT_SETTINGS_ROUTE.path }}
-          >
+          <Box component={Link} width="100%" height={300} display="block" to="/settings/profile">
             {getAvatar()}
           </Box>
         </Tooltip>
@@ -55,15 +60,23 @@ export const ProfilePage: FC = () => {
         <Typography sx={{ mt: 2 }} fontSize={20} color="text.secondary">
           {data?.username}
         </Typography>
-        {data?.id === currentUser?.id && (
-          <OutlinedButton fullWidth sx={{ my: 2 }}>
-            Edit profile
-          </OutlinedButton>
-        )}
+        {data?.id === currentUser?.id && <EditSettings getUser={get} userId={id} />}
+
         <Divider sx={{ my: 3 }} />
-        <Stack direction="row" alignItems="center">
-          <PlaceOutlinedIcon sx={{ fontSize: 18 }} />
-          {data?.country && <Typography fontSize={14}>{countryList().getLabel(data?.country)}</Typography>}
+
+        <Stack gap={1}>
+          {data?.country && (
+            <Stack direction="row" alignItems="center" gap={1}>
+              <PlaceOutlinedIcon sx={{ fontSize: 18 }} />
+              <Typography fontSize={14}>{countryList().getLabel(data?.country)}</Typography>
+            </Stack>
+          )}
+          {data?.mail_subscribe && (
+            <Stack direction="row" alignItems="center" gap={1}>
+              <MailOutlinedIcon sx={{ fontSize: 18 }} />
+              <Typography fontSize={14}>Subscribed to the mail</Typography>
+            </Stack>
+          )}
         </Stack>
       </Box>
     </Container>

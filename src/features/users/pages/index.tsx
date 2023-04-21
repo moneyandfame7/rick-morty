@@ -1,2 +1,2 @@
-export * from './Account.page'
-export * from './Profile.page'
+export * from './profile/index'
+export * from './settings/page'
