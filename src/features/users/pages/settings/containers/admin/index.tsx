@@ -18,7 +18,7 @@ export const AdminContainer: FC = () => {
   return (
     <>
       <Subheader title="Delete account" color="error.main" />
-      <Typography sx={{ my: 2 }} color="text.secondary" fontWeight={500}>
+      <Typography fontWeight={500} fontSize={14} sx={{ my: 2, maxWidth: { xs: '100%', lg: '80%' } }}>
         Once you delete your account, there is no going back. Please be certain.
       </Typography>
       <OutlinedButton size="medium" onClick={handleOpenDialog}>
