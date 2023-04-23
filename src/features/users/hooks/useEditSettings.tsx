@@ -17,7 +17,7 @@ import { useVerificationSendMutation } from 'features/authorization/services'
 
 export const useEditSettings = <T,>(initialValues: EditSettings, validationSchema?: ValidationSchemaType<T>) => {
   const [update, { isLoading, error, isSuccess }] = useEditSettingsMutation()
-  const [resendVerification, { isLoading: isVerificationLoading }] = useVerificationSendMutation()
+  useVerificationSendMutation()
 
   const countries: CountryData[] = useMemo(() => countryList().getData(), [])
   const { updateUser } = useActions()
@@ -44,11 +44,7 @@ export const useEditSettings = <T,>(initialValues: EditSettings, validationSchem
 
     const info = await update(unique)
 
-    console.log(unique)
     if ('data' in info) {
-      if (unique.is_verified === false) {
-        await resendVerification()
-      }
       updateUser(info.data)
       return
     }
@@ -64,7 +60,7 @@ export const useEditSettings = <T,>(initialValues: EditSettings, validationSchem
   return {
     countries,
     formik,
-    isLoading: isLoading || isVerificationLoading,
+    isLoading: isLoading,
     error,
     isSuccess,
     update,
