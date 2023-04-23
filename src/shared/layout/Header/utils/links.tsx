@@ -12,7 +12,7 @@ export interface HeaderLinkType {
   search: string
 }
 
-export const LINKS_CONFIG: HeaderLinkType[] = [
+export const NAV_LINKS: HeaderLinkType[] = [
   {
     id: 0,
     url: '/characters',

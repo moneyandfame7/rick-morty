@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Box, Divider, Drawer, IconButton, List, ListItemButton, Typography } from '@mui/material'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 
-import { LINKS_CONFIG } from 'shared/layout/Header/utils/links'
+import { NAV_LINKS } from 'shared/layout/Header/utils/links'
 import { Logo } from 'shared/components/icons'
 
 interface HeaderDrawerProps {
@@ -53,7 +53,7 @@ export const HeaderDrawer: FC<HeaderDrawerProps> = ({ window, isOpen, onClose })
         </Box>
         <Divider />
         <List component="nav" sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          {LINKS_CONFIG.map(link => (
+          {NAV_LINKS.map(link => (
             <ListItemButton
               key={link.id}
               onClick={() => {
