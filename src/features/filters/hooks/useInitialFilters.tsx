@@ -33,9 +33,8 @@ export const useInitialFilters = (entity: Entities): Filters => {
         },
         type: {
           name: InputType.TEXT,
-          episode: InputType.TEXT /* TODO: мейбі зробити по іншому ( робити запит на список усіх епізодів і звідти
-           брати список для select */,
-          character_name: InputType.TEXT /*TODO: мейбі теж робити запит і отримувати список всіх персонажів*/,
+          episode: InputType.TEXT,
+          character_name: InputType.TEXT,
           take: InputType.NUMBER
         }
       }

@@ -3,7 +3,6 @@ import { type FormikProps } from 'formik'
 import { type FiltersValues } from '../types'
 import { MAX_TAKE, MIN_TAKE } from '../constant'
 
-/*todo: можливо винести в shared, і зробити тут generic для FormikProps?*/
 export const setMinMaxValueInput = (
   e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>,
   formik: FormikProps<FiltersValues>,
