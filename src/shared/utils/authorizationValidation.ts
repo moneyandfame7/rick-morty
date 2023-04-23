@@ -2,7 +2,7 @@ import * as yup from 'yup'
 
 import type { AuthCredentials, ResetPasswordDetails, SignupCredentials } from 'features/authorization/type'
 import type { CreateCharacter } from 'features/characters/type'
-import type { ForgotCredentials, UpdatePassword, UserWelcomeDetails } from 'features/users/type'
+import type { ForgotCredentials, UpdatePassword, User, UserWelcomeDetails } from 'features/users/type'
 
 type ObjectShapeValues = yup.ObjectShape extends Record<string, infer V> ? V : never
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,7 +15,14 @@ type ForgotSchema = Shape<ForgotCredentials>
 type ResetSchema = Shape<ResetPasswordDetails>
 type CreateCharacterSchema = Shape<CreateCharacter>
 type UpdatePasswordSchema = Shape<UpdatePassword>
+type EmailValidationSchema = Shape<Pick<User, 'email'>>
 
+export type ValidationSchemaType<T> = yup.ObjectSchema<
+  object,
+  Partial<Record<keyof T, yup.ISchema<any, any, any, any> | any>>,
+  object,
+  ''
+>
 export const signupValidationSchema = yup.object<SignupSchema>({
   email: yup.string().email('Enter a valid email address').required('Enter an email address'),
   password: yup
@@ -80,4 +87,8 @@ export const createCharacterSchema = yup.object<CreateCharacterSchema>({
   gender: yup.string().required('Enter a gender').oneOf(['Female', 'Male', 'Genderless', 'unknown']),
   species: yup.string().required('Enter a species'),
   image: yup.mixed().nullable().required('A file is required')
+})
+
+export const emailValidationSchema = yup.object<EmailValidationSchema>({
+  email: yup.string().email('Enter a valid email address').required('Enter an email')
 })

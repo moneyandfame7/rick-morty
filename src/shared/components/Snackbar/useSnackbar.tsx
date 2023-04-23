@@ -15,7 +15,7 @@ export const useSnackbar = () => {
       sx={{ mt: 3 }}
       open={!!snackbar}
       onClose={handleCloseSnackbar}
-      autoHideDuration={6000}
+      autoHideDuration={3000}
       TransitionComponent={SlideTransition}
       anchorOrigin={{
         vertical: 'top',
