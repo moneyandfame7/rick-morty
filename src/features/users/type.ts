@@ -32,6 +32,12 @@ export interface ForgotCredentials {
   email: string
 }
 
+export interface UpdatePassword {
+  oldPassword: string
+  newPassword: string
+  confirmPassword: string
+}
+
 export interface ResetPasswordParams {
   body: {
     password: string

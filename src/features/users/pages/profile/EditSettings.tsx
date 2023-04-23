@@ -1,23 +1,17 @@
 import React, { useState, type FC, useEffect } from 'react'
 
-import { Box, Stack, type BoxProps, Typography, Checkbox } from '@mui/material'
-import { CountryAutocompleteInput, CountryData, ValidatedInput } from 'shared/components/forms'
-import { useEditSettings } from 'features/users/hooks/useEditSettings'
-import { authHandler } from 'features/authorization/services'
-import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { type LazyQueryTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks'
-import {
-  type BaseQueryFn,
-  type FetchArgs,
-  type FetchBaseQueryError,
-  type QueryDefinition
-} from '@reduxjs/toolkit/dist/query'
-import { type User } from 'features/users/type'
-import { useAppSelector } from 'application/store'
-import { selectCurrentUser } from 'features/users/services'
-import countryList from 'react-select-country-list'
-import { getUserCountry } from 'shared/utils/getUserCountry'
+import type { BaseQueryFn, FetchArgs, FetchBaseQueryError, QueryDefinition } from '@reduxjs/toolkit/dist/query'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { Box, Stack, type BoxProps, Typography, Checkbox } from '@mui/material'
+
+import type { User } from 'features/users/type'
+import { useEditSettings } from 'features/users/hooks'
+import { authHandler } from 'features/authorization/services'
+
+import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
+import { CountryAutocompleteInput, ValidatedInput } from 'shared/components/forms'
+import { getUserCountry } from 'shared/utils'
 
 interface EditSettingsProps {
   getUser: LazyQueryTrigger<
@@ -29,7 +23,6 @@ export const EditSettings: FC<EditSettingsProps & BoxProps> = ({ getUser, userId
   const { formik, isLoading, isSuccess, countries, error } = useEditSettings()
   const [parent] = useAutoAnimate({ duration: 200 })
   const [showEditSettings, setShowEditSettings] = useState(false)
-  const currentUser = useAppSelector(selectCurrentUser)
   const toggleShowForm = () => {
     setShowEditSettings(prev => !prev)
   }

@@ -1,6 +1,6 @@
 import React, { type FC } from 'react'
 
-import { Box, TextField, type TextFieldProps, Typography } from '@mui/material'
+import { TextField, type TextFieldProps, Typography } from '@mui/material'
 import ErrorIcon from '@mui/icons-material/Error'
 
 interface ValidateInputInterface {

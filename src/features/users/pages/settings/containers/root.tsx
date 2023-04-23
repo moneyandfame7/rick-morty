@@ -7,6 +7,7 @@ import { AdminContainer } from './admin'
 import { AppearenceContainer } from './appearence'
 import { EmailContainer } from './email'
 import { PublicProfileContainer } from './public-profile'
+import { SecurityContainer } from './security'
 
 export const RootContainer: FC = () => {
   return (
@@ -19,6 +20,7 @@ export const RootContainer: FC = () => {
         <Route path="profile" element={<PublicProfileContainer />} />
         <Route path="admin" element={<AdminContainer />} />
         <Route path="email" element={<EmailContainer />} />
+        <Route path="security" element={<SecurityContainer />} />
       </Routes>
     </Grid>
   )
