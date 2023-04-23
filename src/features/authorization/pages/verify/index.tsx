@@ -6,13 +6,13 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 
 import { useAppSelector } from 'application/store'
 
-import { authHandler, useVerifyMutation } from 'features/authorization/services'
+import { errorHandler, useVerifyMutation } from 'features/authorization/services'
 import { selectCurrentUser } from 'features/users/services'
 
 import { useActions } from 'shared/hooks'
 import { HOME_ROUTE } from 'shared/routes'
 import { CircularLoader } from 'shared/components/common'
-import { BaseIcon, SuccessIcon } from 'shared/components/common/icons'
+import { BaseIcon, SuccessIcon } from 'shared/components/icons'
 import { LinkButton } from 'shared/components/common/buttons'
 
 export const VerifyPage: FC = () => {
@@ -20,7 +20,7 @@ export const VerifyPage: FC = () => {
   const { setUser } = useActions()
   const { link } = useParams()
   const user = useAppSelector(selectCurrentUser)
-  const verifyError = useMemo(() => authHandler(error), [error])
+  const verifyError = useMemo(() => errorHandler(error), [error])
   useEffect(() => {
     if (link) {
       // eslint-disable-next-line @typescript-eslint/no-extra-semi

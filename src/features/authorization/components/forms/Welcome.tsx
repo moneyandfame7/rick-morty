@@ -6,7 +6,7 @@ import DoneOutlineOutlinedIcon from '@mui/icons-material/DoneOutlineOutlined'
 import { useAppSelector } from 'application/store'
 
 import { useLogout, useWelcome } from 'features/authorization/hooks'
-import { authHandler } from 'features/authorization/services'
+import { errorHandler } from 'features/authorization/services'
 import Title from 'features/authorization/components/titles/Signup'
 import { StepperContext } from 'features/authorization/components/steppers'
 import { selectCurrentUser } from 'features/users/services'
@@ -18,7 +18,7 @@ import { getUserCountry } from 'shared/utils/getUserCountry'
 export const WelcomeForm: FC = () => {
   const { countries, formik, isLoading, error, isSuccess } = useWelcome()
   const { isLoading: isLogoutLoading, makeLogout } = useLogout()
-  const authBadCredentials = authHandler(error)
+  const authBadCredentials = errorHandler(error)
   const user = useAppSelector(selectCurrentUser)
   const { setActiveStep } = useContext(StepperContext)
 

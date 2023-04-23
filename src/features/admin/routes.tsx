@@ -1,6 +1,7 @@
 import React from 'react'
 import { type RouteProps } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
+
 import { ManagementPage } from './pages'
 import { StatisticsPage } from './pages'
 import { DashboardPage } from './pages'

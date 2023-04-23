@@ -1,7 +1,7 @@
 import React, { type FC, type PropsWithChildren } from 'react'
 import { Box } from '@mui/material'
 
-import { Sidebar } from './Sidebar'
+import { Sidebar } from './Header'
 
 export const Wrapper: FC<PropsWithChildren> = ({ children }) => {
   return (

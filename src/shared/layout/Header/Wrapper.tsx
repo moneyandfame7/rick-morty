@@ -8,7 +8,7 @@ export const HeaderWrapper: FC<PropsWithChildren> = ({ children }) => {
       position="sticky"
       sx={{
         backgroundColor: alpha(theme.palette.background.default, 0.65),
-        backdropFilter: 'blur(6px)',
+        backdropFilter: 'blur(12px)',
         boxShadow: 'none',
         borderBottom: '1px solid rgb(77 72 72 / 20%)',
         transition: '0.2s',

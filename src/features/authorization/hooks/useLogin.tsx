@@ -5,9 +5,9 @@ import { useFormik } from 'formik'
 import type { AuthCredentials } from 'features/authorization/type'
 import { useLoginMutation } from 'features/authorization/services'
 
-import { loginValidationSchema } from 'shared/utils'
 import { HOME_ROUTE } from 'shared/routes'
 import { useActions } from 'shared/hooks/useActions'
+import { loginValidationSchema } from 'shared/validations/authorization'
 
 export const useLogin = () => {
   const navigate = useNavigate()

@@ -10,7 +10,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined'
 
 import { type CreateCharacter } from 'features/characters/type'
-import { BaseIcon } from 'shared/components/common/icons'
+import { BaseIcon } from 'shared/components/icons'
 
 interface UploadCharacterImageProps {
   formik: FormikProps<CreateCharacter>

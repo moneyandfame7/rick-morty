@@ -9,11 +9,13 @@ export const HeaderLink: FC<HeaderLinkType> = ({ url, search, name }) => {
   const theme = useTheme()
   const styles = {
     textDecoration: 'none',
+    color: 'text.secondary',
     position: 'relative',
     '&: hover': {
       color: darken(theme.palette.text.secondary, 0.2)
     },
     '&.active': {
+      color: 'text.primary',
       '&::after': {
         content: '""',
         width: '120%',
@@ -29,14 +31,7 @@ export const HeaderLink: FC<HeaderLinkType> = ({ url, search, name }) => {
     }
   }
   return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      fontWeight={600}
-      component={NavLink}
-      to={{ pathname: url, search: search }}
-      sx={styles}
-    >
+    <Typography variant="body2" fontWeight={600} component={NavLink} to={{ pathname: url, search: search }} sx={styles}>
       {name}
     </Typography>
   )

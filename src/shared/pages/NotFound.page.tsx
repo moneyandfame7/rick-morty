@@ -6,8 +6,8 @@ import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 
 import { LinkButton, OutlinedButton } from 'shared/components/common/buttons'
-import { BaseIcon } from 'shared/components/common/icons'
 import { HOME_ROUTE } from 'shared/routes'
+import { BaseIcon } from 'shared/components/icons'
 
 export const NotFoundPage: FC = () => {
   const navigate = useNavigate()

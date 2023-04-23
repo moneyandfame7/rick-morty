@@ -1,8 +1,10 @@
+import { useFormik } from 'formik'
+
 import { useUpdatePasswordMutation } from 'features/users/services'
 import type { UpdatePassword } from 'features/users/type'
-import { useFormik } from 'formik'
+
 import { useActions } from 'shared/hooks'
-import { updatePasswordSchema } from 'shared/utils'
+import { updatePasswordSchema } from 'shared/validations/users'
 
 export const useUpdatePassword = () => {
   const [update, { isLoading, isSuccess, error }] = useUpdatePasswordMutation()

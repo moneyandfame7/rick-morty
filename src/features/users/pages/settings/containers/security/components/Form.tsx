@@ -1,16 +1,18 @@
-import { Box, Stack, Typography } from '@mui/material'
 import React, { useEffect, type FC } from 'react'
 
-import { PasswordInput, ValidatedInput } from 'shared/components/forms'
+import { Box, Stack, Typography } from '@mui/material'
+
+import { errorHandler } from 'features/authorization/services'
 import { useUpdatePassword } from 'features/users/hooks'
+
 import { OutlinedButton } from 'shared/components/common/buttons'
-import { useSnackbar } from 'shared/components'
-import { authHandler } from 'features/authorization/services'
+import { PasswordInput } from 'shared/components/forms'
+import { useSnackbar } from 'shared/hooks'
 
 export const Form: FC = () => {
   const { formik, isLoading, isSuccess, error } = useUpdatePassword()
   const { Snackbar, setSnackbar } = useSnackbar()
-  const serverError = authHandler(error)
+  const serverError = errorHandler(error)
   useEffect(() => {
     if (isSuccess) {
       setSnackbar({ children: 'Password updated successfully', severity: 'success' })

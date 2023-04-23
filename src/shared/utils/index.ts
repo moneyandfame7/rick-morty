@@ -1,4 +1,3 @@
-export * from './authorizationValidation'
 export * from './getIdFromUrl'
 export * from './hasPermission'
 export * from './randomNumber'

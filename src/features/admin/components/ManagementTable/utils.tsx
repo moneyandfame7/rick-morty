@@ -60,6 +60,17 @@ export const useTable = <DeleteArg, DeleteResult, UpdateArg, UpdateResult extend
     page: 0
   })
 
+  const handleUpdate = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await get({ ...paginationModel } as any)
+  }
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-extra-semi
+    ;(async () => {
+      await handleUpdate()
+    })()
+  }, [])
+
   const processRowUpdate = async (newRow: UpdateResult, oldRow: UpdateResult) => {
     if (_.isEqual(newRow, oldRow)) {
       return oldRow
@@ -93,18 +104,6 @@ export const useTable = <DeleteArg, DeleteResult, UpdateArg, UpdateResult extend
       setSnackbar({ children: 'User removing failed', severity: 'error' })
     }
   }
-
-  const handleUpdate = async () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await get({ ...paginationModel } as any)
-  }
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-extra-semi
-    ;(async () => {
-      await handleUpdate()
-    })()
-  }, [])
 
   return {
     isLoading: isGetLoading || isRemoveLoading || isUpdateLoading,

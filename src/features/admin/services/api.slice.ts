@@ -1,8 +1,8 @@
 import { rootApi } from 'application/store/root-api.slice'
 
-import { Navigation } from 'shared/constants'
-
 import type { RecentUsers, UserStatistics } from 'features/admin/type'
+
+import { Navigation } from 'shared/constants'
 
 const adminApi = rootApi.injectEndpoints({
   endpoints: builder => ({

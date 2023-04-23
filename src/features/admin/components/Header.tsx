@@ -16,14 +16,16 @@ import {
 } from '@mui/material'
 import WindowIcon from '@mui/icons-material/Window'
 import CategoryIcon from '@mui/icons-material/Category'
-import { LogoIcon } from 'shared/components/common/icons'
-import { HOME_ROUTE } from 'shared/routes'
 import LogoutIcon from '@mui/icons-material/Logout'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
-import { useLogout } from 'features/authorization/hooks'
+
 import { useAppSelector } from 'application/store'
+
+import { useLogout } from 'features/authorization/hooks'
 import { selectCurrentUser } from 'features/users/services'
+
+import { LogoIcon } from 'shared/components/icons'
+import { HOME_ROUTE } from 'shared/routes'
 
 const sidebarItems = [
   {
@@ -45,11 +47,6 @@ const getSidebarItems2 = () => {
       icon: <AccountCircleIcon />,
       label: 'Profile',
       path: `/profile/${user?.id}`
-    },
-    {
-      icon: <ManageAccountsIcon />,
-      label: 'Account settings',
-      path: '/account'
     },
     {
       icon: <LogoutIcon />,
@@ -92,7 +89,7 @@ export const Sidebar: FC = () => {
           disableGutters
           sx={{
             minHeight: '50px !important',
-            gap: 10
+            gap: { xs: 3, md: 10 }
           }}
         >
           <DrawerHeader />
@@ -105,11 +102,12 @@ export const Sidebar: FC = () => {
                       disableRipple
                       sx={{
                         justifyContent: 'center',
-                        py: 2,
+                        py: { xs: 1, md: 2 },
+                        px: { xs: 0.25, md: 1 },
                         '&.active .MuiListItemIcon-root .MuiSvgIcon-root': {
                           fill: theme.palette.primary.main
                         },
-                        gap: 2
+                        gap: { xs: 1, md: 2 }
                       }}
                       component={NavLink}
                       to={{ pathname: item.path }}
@@ -146,6 +144,7 @@ export const Sidebar: FC = () => {
                     <ListItemButton
                       disableRipple
                       component={NavLink}
+                      sx={{ py: { xs: 1, md: 2 }, px: { xs: 0.25, md: 1 } }}
                       to={{ pathname: item.path }}
                       end={true}
                       onClick={async () => {

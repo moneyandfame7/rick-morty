@@ -7,10 +7,10 @@ import { Box, Typography, useTheme } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 
 import { type ForgotCredentials } from 'features/users/type'
-import { authHandler } from 'features/authorization/services'
+import { errorHandler } from 'features/authorization/services'
 
 import { ValidatedInput } from 'shared/components/forms/ValidatedInput'
-import { BaseIcon } from 'shared/components/common/icons/BaseIcon'
+import { BaseIcon } from 'shared/components/icons/BaseIcon'
 import { PrimaryButton } from 'shared/components/common/buttons'
 
 interface ForgotPasswordFormProps {
@@ -20,7 +20,7 @@ interface ForgotPasswordFormProps {
 }
 
 export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ formik, error, isLoading }) => {
-  const forgotBadCredentials = authHandler(error)
+  const forgotBadCredentials = errorHandler(error)
   const theme = useTheme()
   return (
     <>

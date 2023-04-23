@@ -5,18 +5,18 @@ import { Box, Typography, Stack, Checkbox } from '@mui/material'
 import { useAppSelector } from 'application/store'
 
 import type { User } from 'features/users/type'
-import { authHandler, useVerificationSendMutation } from 'features/authorization/services'
+import { errorHandler, useVerificationSendMutation } from 'features/authorization/services'
 import { useEditSettings } from 'features/users/hooks'
 import { selectCurrentUser } from 'features/users/services'
 
 import { OutlinedButton } from 'shared/components/common/buttons'
 import { ValidatedInput } from 'shared/components/forms'
-import { emailValidationSchema } from 'shared/utils'
-import { useSnackbar } from 'shared/components'
+import { emailValidationSchema } from 'shared/validations/users'
+import { useSnackbar } from 'shared/hooks'
 
 export const Form: FC = () => {
   const currentUser = useAppSelector(selectCurrentUser)
-  const [sendVerification, { isLoading: isVerifyLoading }] = useVerificationSendMutation()
+  const [sendVerification, { isLoading: isVerifyLoading, isSuccess: isVerifySuccess }] = useVerificationSendMutation()
   const { formik, isLoading, isSuccess, error } = useEditSettings(
     {
       mail_subscribe: currentUser?.mail_subscribe,
@@ -25,12 +25,17 @@ export const Form: FC = () => {
     emailValidationSchema
   )
   const { Snackbar, setSnackbar } = useSnackbar()
-  const serverError = authHandler(error)
+  const serverError = errorHandler(error)
   useEffect(() => {
     if (isSuccess) {
       setSnackbar({ children: 'Email settings updated successfully', severity: 'success' })
     }
   }, [isSuccess])
+  useEffect(() => {
+    if (isVerifySuccess) {
+      setSnackbar({ children: `Letter sent to the mail ${currentUser?.email}`, severity: 'success' })
+    }
+  }, [isVerifySuccess])
   if (!currentUser) {
     return null
   }

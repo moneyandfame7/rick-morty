@@ -2,18 +2,18 @@ import { useMemo } from 'react'
 import countryList from 'react-select-country-list'
 
 import { useFormik } from 'formik'
+import _ from 'lodash'
 
 import { useAppSelector } from 'application/store'
 
 import { selectCurrentUser, useEditSettingsMutation } from 'features/users/services'
 import type { User, EditSettings } from 'features/users/type'
+import { useVerificationSendMutation } from 'features/authorization/services'
 
 import type { CountryData } from 'shared/components/forms'
 
 import { useActions } from 'shared/hooks'
-import { type ValidationSchemaType } from 'shared/utils'
-import _ from 'lodash'
-import { useVerificationSendMutation } from 'features/authorization/services'
+import type { ValidationSchemaType } from 'shared/validations/type'
 
 export const useEditSettings = <T,>(initialValues: EditSettings, validationSchema?: ValidationSchemaType<T>) => {
   const [update, { isLoading, error, isSuccess }] = useEditSettingsMutation()
@@ -22,14 +22,7 @@ export const useEditSettings = <T,>(initialValues: EditSettings, validationSchem
   const countries: CountryData[] = useMemo(() => countryList().getData(), [])
   const { updateUser } = useActions()
   const currentUser = useAppSelector(selectCurrentUser)
-  const getDefaultCountry = (user: User | null) => {
-    if (user && user.country) {
-      return {
-        value: user.country,
-        label: countryList().getLabel(user.country)
-      }
-    }
-  }
+
   if (!currentUser) {
     throw new Error('unauthorized')
   }
@@ -63,7 +56,6 @@ export const useEditSettings = <T,>(initialValues: EditSettings, validationSchem
     isLoading: isLoading,
     error,
     isSuccess,
-    update,
-    getDefaultCountry
+    update
   }
 }

@@ -1,6 +1,6 @@
 import { alpha, darken } from '@mui/material'
 
-export const useBaseButtonStyles = (backgroundColor: string) => ({
+export const getBaseButtonStyles = (backgroundColor: string) => ({
   background: backgroundColor,
   border: `1px solid ${backgroundColor}`,
   borderRadius: '8px',
@@ -39,8 +39,8 @@ export const useBaseButtonStyles = (backgroundColor: string) => ({
     lineHeight: '24px'
   },
   '&.MuiButton-sizeSmall': {
-    padding: '8px 14px 8px 14px',
-    fontSize: 14,
+    padding: '4px 10px',
+    fontSize: 13,
     lineHeight: '20px'
   }
 })

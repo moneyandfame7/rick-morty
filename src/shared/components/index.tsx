@@ -1,6 +1,5 @@
 export * from './Alert'
 export * from './ErrorMessage'
-export * from './Modal'
 export * from './Pagination'
 export * from './PrivilegedRoute'
-export * from './Snackbar/useSnackbar'
+export * from './CookieBanner'

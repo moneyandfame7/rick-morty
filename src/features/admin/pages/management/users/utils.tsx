@@ -88,6 +88,14 @@ export const useUserColumns = () => {
       }
     },
     {
+      field: 'auth_type',
+      headerName: 'Auth type',
+      sortable: false,
+      editable: false,
+      disableColumnMenu: true,
+      flex: isNotDesktop ? undefined : 0.3
+    },
+    {
       field: 'is_verified',
       headerName: 'Verified status',
       sortable: false,

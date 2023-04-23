@@ -7,7 +7,7 @@ import { Box, Stack, type BoxProps, Typography, Checkbox } from '@mui/material'
 
 import type { User } from 'features/users/type'
 import { useEditSettings } from 'features/users/hooks'
-import { authHandler } from 'features/authorization/services'
+import { errorHandler } from 'features/authorization/services'
 
 import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
 import { CountryAutocompleteInput, ValidatedInput } from 'shared/components/forms'
@@ -45,7 +45,7 @@ export const EditSettings: FC<EditSettingsProps & BoxProps> = ({ getUser, userId
     setShowEditSettings(false)
   }
 
-  const serverError = authHandler(error)
+  const serverError = errorHandler(error)
   return (
     <>
       <OutlinedButton fullWidth sx={{ my: 2 }} onClick={toggleShowForm}>

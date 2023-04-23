@@ -62,7 +62,17 @@ export const SingleCharacterPage: FC = () => {
           </Typography>
         </Stack>
       </Box>
-      <Stack direction="row" justifyContent="space-around" alignItems="flex-start" sx={{ pt: 2, userSelect: 'none' }}>
+      <Stack
+        justifyContent="space-around"
+        alignItems="flex-start"
+        sx={{
+          pt: 2,
+          userSelect: 'none',
+          flexDirection: { xs: 'column', md: 'row' },
+          gap: { xs: 3, md: 0 },
+          alignItems: { xs: 'center', md: 'start' }
+        }}
+      >
         <Box sx={{ width: '350px' }}>
           {data?.image && (
             <Stack direction="column" gap={2} alignItems="center">
@@ -74,11 +84,11 @@ export const SingleCharacterPage: FC = () => {
                 style={{ borderRadius: 8, minHeight: 300 }}
               />
               {isFavorite ? (
-                <RedButton sx={{ height: '38px' }} onClick={toggle} fullWidth>
+                <RedButton size="medium" onClick={toggle} fullWidth>
                   Remove from favorite
                 </RedButton>
               ) : (
-                <PrimaryButton onClick={toggle} fullWidth>
+                <PrimaryButton size="medium" onClick={toggle} fullWidth>
                   Add to favorite
                 </PrimaryButton>
               )}

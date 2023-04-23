@@ -5,7 +5,7 @@ import { useForgotMutation } from 'features/authorization/services'
 import { LOGIN_ROUTE } from 'features/authorization/routes'
 import { type ForgotCredentials } from 'features/users/type'
 
-import { forgotValidationSchema } from 'shared/utils'
+import { forgotValidationSchema } from 'shared/validations/authorization'
 
 export const useForgot = () => {
   const navigate = useNavigate()

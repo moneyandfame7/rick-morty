@@ -5,27 +5,25 @@ import { Grid, Box } from '@mui/material'
 import { useAppSelector } from 'application/store'
 
 import { type User } from 'features/users/type'
-import { authHandler } from 'features/authorization/services'
+import { errorHandler } from 'features/authorization/services'
 import { useEditSettings } from 'features/users/hooks'
 import { selectCurrentUser } from 'features/users/services'
 
 import { PrimaryButton } from 'shared/components/common/buttons'
 import { ValidatedInput, CountryAutocompleteInput } from 'shared/components/forms'
-import { useSnackbar } from 'shared/components'
 import { getUserCountry } from 'shared/utils/getUserCountry'
+import { useSnackbar } from 'shared/hooks'
 
-// TODO: спитати за useCallback, useMemo, чи правильно розумію їх використання ( знаю, що тут вони не дуже потрібні )
-// показати на бекенді прєкол з new Date()
 export const Form: FC = () => {
   const currentUser = useAppSelector(selectCurrentUser)
 
-  const { formik, isLoading, isSuccess, countries, error, getDefaultCountry } = useEditSettings({
+  const { formik, isLoading, isSuccess, countries, error } = useEditSettings({
     username: currentUser?.username,
     country: currentUser?.country
   })
   const { Snackbar, setSnackbar } = useSnackbar()
 
-  const serverError = authHandler(error)
+  const serverError = errorHandler(error)
 
   if (!currentUser) {
     return null
