@@ -10,7 +10,7 @@ export interface User {
   readonly role: UserRole
   readonly country?: string
   readonly photo?: string
-  readonly is_verified: boolean
+  is_verified: boolean
   readonly mail_subscribe?: boolean
   readonly created_at: Date
 }

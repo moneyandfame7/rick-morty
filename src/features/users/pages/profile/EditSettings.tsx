@@ -12,6 +12,8 @@ import { authHandler } from 'features/authorization/services'
 import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
 import { CountryAutocompleteInput, ValidatedInput } from 'shared/components/forms'
 import { getUserCountry } from 'shared/utils'
+import { useAppSelector } from 'application/store'
+import { selectCurrentUser } from 'features/users/services'
 
 interface EditSettingsProps {
   getUser: LazyQueryTrigger<
@@ -20,7 +22,11 @@ interface EditSettingsProps {
   userId: string
 }
 export const EditSettings: FC<EditSettingsProps & BoxProps> = ({ getUser, userId, ...props }) => {
-  const { formik, isLoading, isSuccess, countries, error } = useEditSettings()
+  const currentUser = useAppSelector(selectCurrentUser)
+  const { formik, isLoading, isSuccess, countries, error } = useEditSettings({
+    username: currentUser?.username,
+    country: currentUser?.country
+  })
   const [parent] = useAutoAnimate({ duration: 200 })
   const [showEditSettings, setShowEditSettings] = useState(false)
   const toggleShowForm = () => {

@@ -26,7 +26,7 @@ export const EditMenu: FC = () => {
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop })
   const { updateUser } = useActions()
-  const { update } = useEditSettings()
+  const { update } = useEditSettings({})
 
   const handleOpenDialog = () => {
     setShowDialog(true)

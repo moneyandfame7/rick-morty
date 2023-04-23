@@ -17,9 +17,13 @@ import { getUserCountry } from 'shared/utils/getUserCountry'
 // TODO: спитати за useCallback, useMemo, чи правильно розумію їх використання ( знаю, що тут вони не дуже потрібні )
 // показати на бекенді прєкол з new Date()
 export const Form: FC = () => {
-  const { formik, isLoading, isSuccess, countries, error, getDefaultCountry } = useEditSettings()
-  const { Snackbar, setSnackbar } = useSnackbar()
   const currentUser = useAppSelector(selectCurrentUser)
+
+  const { formik, isLoading, isSuccess, countries, error, getDefaultCountry } = useEditSettings({
+    username: currentUser?.username,
+    country: currentUser?.country
+  })
+  const { Snackbar, setSnackbar } = useSnackbar()
 
   const serverError = authHandler(error)
 

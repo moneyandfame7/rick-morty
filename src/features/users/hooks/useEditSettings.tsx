@@ -11,9 +11,14 @@ import type { User, EditSettings } from 'features/users/type'
 import type { CountryData } from 'shared/components/forms'
 
 import { useActions } from 'shared/hooks'
+import { type ValidationSchemaType } from 'shared/utils'
+import _ from 'lodash'
+import { useVerificationSendMutation } from 'features/authorization/services'
 
-export const useEditSettings = () => {
+export const useEditSettings = <T,>(initialValues: EditSettings, validationSchema?: ValidationSchemaType<T>) => {
   const [update, { isLoading, error, isSuccess }] = useEditSettingsMutation()
+  const [resendVerification, { isLoading: isVerificationLoading }] = useVerificationSendMutation()
+
   const countries: CountryData[] = useMemo(() => countryList().getData(), [])
   const { updateUser } = useActions()
   const currentUser = useAppSelector(selectCurrentUser)
@@ -26,25 +31,43 @@ export const useEditSettings = () => {
     }
   }
   if (!currentUser) {
-    throw new Error('User not authorized')
+    throw new Error('unauthorized')
   }
+  const onSubmit = async (values: EditSettings) => {
+    const unique: EditSettings = _.pickBy(values, (value, key) => {
+      return !_.isEqual(value, currentUser[key as keyof User])
+    })
 
-  const onSubmit = async (updated: EditSettings) => {
-    const info = await update(updated)
+    if ('email' in unique) {
+      unique.is_verified = false
+    }
+
+    const info = await update(unique)
+
+    console.log(unique)
     if ('data' in info) {
+      if (unique.is_verified === false) {
+        await resendVerification()
+      }
       updateUser(info.data)
       return
     }
   }
 
   const formik = useFormik<EditSettings>({
-    initialValues: {
-      username: currentUser.username,
-      country: currentUser.country
-    },
+    initialValues,
     validateOnBlur: false,
     validateOnChange: false,
+    validationSchema,
     onSubmit
   })
-  return { countries, formik, isLoading, error, isSuccess, update, getDefaultCountry }
+  return {
+    countries,
+    formik,
+    isLoading: isLoading || isVerificationLoading,
+    error,
+    isSuccess,
+    update,
+    getDefaultCountry
+  }
 }
