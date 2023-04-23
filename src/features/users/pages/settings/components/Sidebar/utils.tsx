@@ -4,7 +4,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined'
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
-
+import PrivacyTipOutlinedIcon from '@mui/icons-material/PrivacyTipOutlined'
 export interface NavigationLinkType {
   label: string
   icon: React.ReactNode
@@ -34,5 +34,10 @@ export const accessLinks: NavigationLinkType[] = [
     label: 'Email',
     icon: <EmailOutlinedIcon sx={{ color: 'text.secondary', fontSize: 20 }} />,
     url: 'email'
+  },
+  {
+    label: 'Password',
+    icon: <PrivacyTipOutlinedIcon sx={{ color: 'text.secondary', fontSize: 20 }} />,
+    url: 'security'
   }
 ]

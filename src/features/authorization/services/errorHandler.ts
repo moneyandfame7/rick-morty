@@ -42,7 +42,7 @@ export const authHandler = (error: FetchBaseQueryError | SerializedError | undef
         return {
           email: error.message
         }
-      case AuthHttpStack.PASSWORD_IS_EQUAL_OLD:
+      case AuthHttpStack.PASSWORD_IS_EQUAL_OLD || AuthHttpStack.INCORRECT_PASSWORD:
         return {
           password: error.message
         }
