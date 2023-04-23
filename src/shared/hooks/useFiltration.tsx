@@ -18,6 +18,7 @@ export const useFiltration = (initialFiltersValue: FiltersValues) => {
     const query = Object.fromEntries(new URLSearchParams(searchParams))
     setSearchParams(query)
   }
+
   const onReset = () => {
     Object.keys(formik.values).map((key: string) => {
       if (formik.values[key as keyof FiltersValues].length) {

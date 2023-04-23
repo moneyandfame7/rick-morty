@@ -7,9 +7,9 @@ import { useLogout } from 'features/authorization/hooks'
 import { selectCurrentUser } from 'features/users/services'
 
 import { UserAvatar } from 'shared/components/icons'
-import { useGetUserMenu } from 'shared/hooks'
 import { BackdropLoader } from 'shared/components/common'
 import { UnverifiedAlert } from './UnverifiedAlert'
+import { useGetUserMenu } from './utils/useGetUserMenu'
 
 export const UserMenu: FC<BoxProps> = () => {
   const { makeLogout, isLoading: isLogoutLoading } = useLogout()

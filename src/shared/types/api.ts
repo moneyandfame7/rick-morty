@@ -7,7 +7,7 @@ export interface PageInformation {
   prev: string | null
 }
 
-export interface Pagination {
+export interface UserPagination {
   readonly page: number
 
   readonly pageSize: number

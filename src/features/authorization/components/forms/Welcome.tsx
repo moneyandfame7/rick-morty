@@ -13,6 +13,7 @@ import { selectCurrentUser } from 'features/users/services'
 
 import { ValidatedInput, CountryAutocompleteInput } from 'shared/components/forms'
 import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
+import { getUserCountry } from 'shared/utils/getUserCountry'
 
 export const WelcomeForm: FC = () => {
   const { countries, formik, isLoading, error, isSuccess } = useWelcome()
@@ -64,8 +65,11 @@ export const WelcomeForm: FC = () => {
         />
         <CountryAutocompleteInput
           items={countries}
-          setFieldValue={formik.setFieldValue}
-          onBlur={formik.handleBlur}
+          value={getUserCountry(formik.values.country)}
+          disabled={isLoading}
+          onChange={(e, country) => {
+            formik.setFieldValue('country', country?.value)
+          }}
           errorText={formik.errors.country}
         />
         <Stack direction="row" alignItems="center" width="100%" justifyContent="space-between">

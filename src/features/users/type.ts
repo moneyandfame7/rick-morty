@@ -20,6 +20,8 @@ export interface UpdateUser {
   updated: Partial<User>
 }
 
+export type EditSettings = Partial<User>
+
 export interface UserWelcomeDetails {
   username: string
   country: string

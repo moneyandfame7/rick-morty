@@ -1,35 +1,34 @@
 import React, { type FC } from 'react'
-import { Autocomplete, Box, type TextFieldProps } from '@mui/material'
-
-import { ValidatedInput } from 'shared/components/forms/ValidatedInput'
+import { Autocomplete, Box, TextField, type AutocompleteValue } from '@mui/material'
 
 export interface CountryData {
   value: string
   label: string
 }
 
-interface CountryAutocompleteInputInterface {
+interface CountryAutocompleteInputProps {
   items: CountryData[]
   errorText?: string
-  setFieldValue: (field: string, value: string | undefined) => void
+  value?: CountryData
+  disabled: boolean
+  onChange: (
+    event: React.SyntheticEvent,
+    value: AutocompleteValue<CountryData, undefined, undefined, undefined>
+  ) => void
 }
 
-type CountryAutocompleteInputProps = CountryAutocompleteInputInterface & TextFieldProps
-export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
-  items,
-  setFieldValue,
-  errorText,
-  ...props
-}) => {
+export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({ items, value, errorText, onChange }) => {
   return (
     <Autocomplete
+      isOptionEqualToValue={(option, value) => {
+        return option?.value === value?.value
+      }}
+      value={value}
       sx={{ minWidth: '150px' }}
       id="autocomplete-country-id"
-      getOptionLabel={option => option.label}
+      getOptionLabel={option => (option ? option.label : '')}
       options={items}
-      onChange={(e, value) => {
-        setFieldValue('country', value?.value)
-      }}
+      onChange={onChange}
       size="small"
       renderOption={(props, option) => (
         <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
@@ -44,14 +43,18 @@ export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
         </Box>
       )}
       renderInput={params => (
-        <ValidatedInput
-          name="country"
+        <TextField
           label="Country"
+          name="country"
+          autoComplete="off"
           error={!!errorText}
-          errorText={errorText}
-          helperText={errorText ? errorText : props.helperText}
-          autoComplete="shipping country"
+          helperText={errorText ? errorText : ''}
           {...params}
+          inputProps={{
+            ...params.inputProps,
+            autoComplete: 'off' // disable autocomplete and autofill,
+          }}
+          InputLabelProps={{ shrink: true }}
         />
       )}
     />
