@@ -1,31 +1,40 @@
-import React, { type FC, useCallback } from 'react'
+import React, { type FC, useCallback, useEffect } from 'react'
 
 import { Grid, Box } from '@mui/material'
 
 import { useAppSelector } from 'application/store'
 
+import { type User } from 'features/users/type'
 import { authHandler } from 'features/authorization/services'
 import { useEditSettings } from 'features/users/hooks'
 import { selectCurrentUser } from 'features/users/services'
 
 import { PrimaryButton } from 'shared/components/common/buttons'
 import { ValidatedInput, CountryAutocompleteInput } from 'shared/components/forms'
+import { useSnackbar } from 'shared/components'
+import { getUserCountry } from 'shared/utils/getUserCountry'
 
 // TODO: спитати за useCallback, useMemo, чи правильно розумію їх використання ( знаю, що тут вони не дуже потрібні )
 // показати на бекенді прєкол з new Date()
 export const Form: FC = () => {
   const { formik, isLoading, isSuccess, countries, error, getDefaultCountry } = useEditSettings()
+  const { Snackbar, setSnackbar } = useSnackbar()
+  const currentUser = useAppSelector(selectCurrentUser)
 
   const serverError = authHandler(error)
-  const currentUser = useAppSelector(selectCurrentUser)
 
   if (!currentUser) {
     return null
   }
 
+  useEffect(() => {
+    if (isSuccess) {
+      setSnackbar({ children: 'Profile updated successfully', severity: 'success' })
+    }
+  }, [isSuccess])
   const isValuesDifferent = useCallback(() => {
     const isFieldsEquals = Object.keys(formik.values).map(
-      key => currentUser[key as never] === formik.values[key as never]
+      key => currentUser[key as keyof User] === formik.values[key as keyof User]
     )
     return isFieldsEquals.includes(false)
   }, [formik.values, currentUser])
@@ -40,6 +49,7 @@ export const Form: FC = () => {
       flexDirection="column"
       gap={2}
       sx={{ order: { xs: 2, md: 1 } }}
+      onSubmit={formik.handleSubmit}
     >
       <ValidatedInput
         fullWidth
@@ -54,19 +64,21 @@ export const Form: FC = () => {
         size="small"
         helperText="You can use letters, numbers & periods"
       />
-      <Box width={200}>
+      <Box sx={{ maxWidth: { xs: '100%', lg: '200px' } }}>
         <CountryAutocompleteInput
-          defaultValue={getDefaultCountry(currentUser)}
+          value={getUserCountry(formik.values.country)}
+          onChange={(e, country) => {
+            formik.setFieldValue('country', country?.value)
+          }}
           disabled={isLoading}
           items={countries}
-          setFieldValue={formik.setFieldValue}
-          onBlur={formik.handleBlur}
           errorText={formik.errors.country}
         />
       </Box>
-      <PrimaryButton disabled={!isValuesDifferent()} sx={{ width: 'max-content' }}>
+      <PrimaryButton type="submit" disabled={!isValuesDifferent()} sx={{ width: 'max-content' }}>
         Update profile
       </PrimaryButton>
+      <Snackbar />
     </Grid>
   )
 }

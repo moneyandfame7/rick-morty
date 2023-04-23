@@ -9,6 +9,7 @@ import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
 import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined'
+
 import { useAppSelector } from 'application/store'
 
 import { selectFavoriteAmount } from 'features/characters/services'
@@ -18,7 +19,6 @@ import { selectCurrentUser } from 'features/users/services'
 
 import { hasPermission } from 'shared/utils'
 import { insert } from 'shared/utils/insert'
-import { ACCOUNT_SETTINGS_ROUTE } from 'features/users/routes'
 
 interface MenuItems {
   id: string

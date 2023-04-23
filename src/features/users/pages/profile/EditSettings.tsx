@@ -1,7 +1,7 @@
 import React, { useState, type FC, useEffect } from 'react'
 
 import { Box, Stack, type BoxProps, Typography, Checkbox } from '@mui/material'
-import { CountryAutocompleteInput, ValidatedInput } from 'shared/components/forms'
+import { CountryAutocompleteInput, CountryData, ValidatedInput } from 'shared/components/forms'
 import { useEditSettings } from 'features/users/hooks/useEditSettings'
 import { authHandler } from 'features/authorization/services'
 import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
@@ -14,6 +14,10 @@ import {
   type QueryDefinition
 } from '@reduxjs/toolkit/dist/query'
 import { type User } from 'features/users/type'
+import { useAppSelector } from 'application/store'
+import { selectCurrentUser } from 'features/users/services'
+import countryList from 'react-select-country-list'
+import { getUserCountry } from 'shared/utils/getUserCountry'
 
 interface EditSettingsProps {
   getUser: LazyQueryTrigger<
@@ -25,7 +29,7 @@ export const EditSettings: FC<EditSettingsProps & BoxProps> = ({ getUser, userId
   const { formik, isLoading, isSuccess, countries, error } = useEditSettings()
   const [parent] = useAutoAnimate({ duration: 200 })
   const [showEditSettings, setShowEditSettings] = useState(false)
-
+  const currentUser = useAppSelector(selectCurrentUser)
   const toggleShowForm = () => {
     setShowEditSettings(prev => !prev)
   }
@@ -41,6 +45,7 @@ export const EditSettings: FC<EditSettingsProps & BoxProps> = ({ getUser, userId
   const closeForm = () => {
     setShowEditSettings(false)
   }
+
   const serverError = authHandler(error)
   return (
     <>
@@ -70,12 +75,15 @@ export const EditSettings: FC<EditSettingsProps & BoxProps> = ({ getUser, userId
               errorText={formik.errors.username || serverError?.username}
             />
             <CountryAutocompleteInput
+              value={getUserCountry(formik.values.country || 'UA')}
               disabled={isLoading}
               items={countries}
-              setFieldValue={formik.setFieldValue}
-              onBlur={formik.handleBlur}
+              onChange={(e, country) => {
+                formik.setFieldValue('country', country?.value)
+              }}
               errorText={formik.errors.country}
             />
+
             <Stack direction="row" alignItems="center" width="100%" justifyContent="space-between">
               <Typography variant="body2" color="text.secondary">
                 Subscribe to the newsletter?

@@ -14,6 +14,7 @@ export const ValidatedInput: FC<ValidateInputProps> = ({ value, errorText, onCha
     <TextField
       {...props}
       inputProps={{
+        ...props.inputProps,
         autoComplete: 'off'
       }}
       value={value}

@@ -42,7 +42,7 @@ export const NotFoundPage: FC = () => {
         >
           Go back
         </OutlinedButton>
-        <LinkButton to={HOME_ROUTE.path as string} variant="primary" size="small">
+        <LinkButton to={{ pathname: HOME_ROUTE.path }} variant="primary" size="small">
           Take me home
         </LinkButton>
       </Stack>

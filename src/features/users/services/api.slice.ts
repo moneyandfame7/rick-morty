@@ -5,14 +5,14 @@ import { rootApi } from 'application/store/root-api.slice'
 import type { EditSettings, GetManyUsers, UpdateUser, User } from 'features/users/type'
 
 import { Navigation } from 'shared/constants'
-import type { Pagination } from 'shared/types'
+import type { UserPagination } from 'shared/types'
 
 const userApi = rootApi.injectEndpoints({
   endpoints: builder => ({
     getCountOfUsers: builder.query<number, void>({
       query: () => `api/${Navigation.USERS}/count`
     }),
-    getUsers: builder.query<GetManyUsers, Pagination>({
+    getUsers: builder.query<GetManyUsers, UserPagination>({
       query: ({ page, pageSize }) => ({
         url: `api/${Navigation.USERS}`,
         method: 'GET',
@@ -58,6 +58,15 @@ const userApi = rootApi.injectEndpoints({
         method: 'DELETE',
         body: { ids }
       })
+    }),
+    deleteUser: builder.mutation<void, string>({
+      query: id => ({
+        url: `api/${Navigation.USERS}/${id}`,
+        method: 'DELETE'
+      }),
+      transformErrorResponse: (response: FetchBaseQueryError) => {
+        return response.data
+      }
     })
   })
 })
@@ -69,5 +78,6 @@ export const {
   useUpdateUserMutation,
   useEditSettingsMutation,
   useUploadPhotoMutation,
-  useDeleteUsersMutation
+  useDeleteUsersMutation,
+  useDeleteUserMutation
 } = userApi

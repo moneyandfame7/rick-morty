@@ -1,37 +1,34 @@
 import React, { type FC } from 'react'
-import { Autocomplete, Box, TextField, type TextFieldProps } from '@mui/material'
+import { Autocomplete, Box, TextField, type AutocompleteValue } from '@mui/material'
 
 export interface CountryData {
   value: string
   label: string
 }
 
-interface CountryAutocompleteInputInterface {
+interface CountryAutocompleteInputProps {
   items: CountryData[]
   errorText?: string
-  setFieldValue: (field: string, value: string | undefined) => void
-  defaultValue?: CountryData
+  value?: CountryData
+  disabled: boolean
+  onChange: (
+    event: React.SyntheticEvent,
+    value: AutocompleteValue<CountryData, undefined, undefined, undefined>
+  ) => void
 }
 
-type CountryAutocompleteInputProps = CountryAutocompleteInputInterface & TextFieldProps
-export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
-  items,
-  setFieldValue,
-  defaultValue,
-  errorText,
-  ...props
-}) => {
+export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({ items, value, errorText, onChange }) => {
   return (
     <Autocomplete
-      isOptionEqualToValue={(option, value) => option.value === value.value}
-      defaultValue={defaultValue}
+      isOptionEqualToValue={(option, value) => {
+        return option?.value === value?.value
+      }}
+      value={value}
       sx={{ minWidth: '150px' }}
       id="autocomplete-country-id"
-      getOptionLabel={(option: CountryData) => option.label}
+      getOptionLabel={option => (option ? option.label : '')}
       options={items}
-      onChange={(e, value) => {
-        setFieldValue('country', value?.value)
-      }}
+      onChange={onChange}
       size="small"
       renderOption={(props, option) => (
         <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
@@ -51,7 +48,7 @@ export const CountryAutocompleteInput: FC<CountryAutocompleteInputProps> = ({
           name="country"
           autoComplete="off"
           error={!!errorText}
-          helperText={errorText ? errorText : props.helperText}
+          helperText={errorText ? errorText : ''}
           {...params}
           inputProps={{
             ...params.inputProps,

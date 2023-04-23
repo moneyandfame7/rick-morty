@@ -10,7 +10,7 @@
 }
 .cropper-point {
   background-color: #7f56d9;
-  .point-se {
+  &.point-se {
     width: 5px;
     height: 5px;
   }

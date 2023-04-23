@@ -10,7 +10,6 @@ import Image from 'mui-image'
 import { useAppSelector } from 'application/store'
 
 import { selectCurrentUser, useLazyGetUserQuery } from 'features/users/services'
-import { ACCOUNT_SETTINGS_ROUTE } from 'features/users/routes'
 
 import { CircularLoader } from 'shared/components/common'
 import { EditSettings } from './EditSettings'
@@ -32,11 +31,7 @@ export const ProfilePage: FC = () => {
   }
 
   const getAvatar = () => {
-    return data?.photo ? (
-      <Image showLoading={false} duration={0} style={{ borderRadius: '50%' }} src={data.photo} alt={data.username} />
-    ) : (
-      <Avatar sx={{ width: '100%', height: 300 }} />
-    )
+    return <Avatar src={data?.photo} sx={{ width: '100%', height: 300 }} />
   }
 
   const showAvatar = () => {
