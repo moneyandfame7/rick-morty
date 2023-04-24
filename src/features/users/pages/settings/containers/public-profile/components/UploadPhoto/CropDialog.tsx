@@ -19,7 +19,7 @@ interface CropDialogProps {
   open: boolean
 }
 export const CropDialog: FC<CropDialogProps> = ({ previewImage, open, onClose }) => {
-  const [upload, { isLoading, isSuccess, error }] = useUploadPhotoMutation()
+  const [upload, { isLoading }] = useUploadPhotoMutation()
   const { updateUser } = useActions()
   const cropperRef = createRef<ReactCropperElement>()
   const currentUser = useAppSelector(selectCurrentUser)

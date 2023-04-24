@@ -1,7 +1,6 @@
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
 import { rootApi } from 'application/store/root-api.slice'
-import { type AuthResponse } from 'features/authorization/type'
 
 import type { EditSettings, GetManyUsers, UpdatePassword, UpdateUser, User } from 'features/users/type'
 

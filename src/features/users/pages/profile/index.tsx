@@ -5,7 +5,6 @@ import countryList from 'react-select-country-list'
 import { Avatar, Box, Container, Divider, Stack, Tooltip, Typography } from '@mui/material'
 import MailOutlinedIcon from '@mui/icons-material/MailOutlined'
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined'
-import Image from 'mui-image'
 
 import { useAppSelector } from 'application/store'
 

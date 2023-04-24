@@ -1,14 +1,16 @@
 import React, { useState, type FC, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton, Typography } from '@mui/material'
+import { Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 
-import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
-import { ValidatedInput } from 'shared/components/forms'
-import { selectCurrentUser, useDeleteUserMutation } from 'features/users/services'
 import { useAppSelector } from 'application/store'
-import { useNavigate } from 'react-router-dom'
+
+import { selectCurrentUser, useDeleteUserMutation } from 'features/users/services'
 import { LOGIN_ROUTE } from 'features/authorization/routes'
+
+import { OutlinedButton } from 'shared/components/common/buttons'
+import { ValidatedInput } from 'shared/components/forms'
 import { useActions } from 'shared/hooks'
 
 interface DialogProps {

@@ -9,6 +9,7 @@ type ObjectShapeValues = yup.ObjectShape extends Record<string, infer V> ? V : n
 type Shape<T extends Record<any, any>> = Partial<Record<keyof T, ObjectShapeValues>>
 export type ValidationSchemaType<T> = yup.ObjectSchema<
   object,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Partial<Record<keyof T, yup.ISchema<any, any, any, any> | any>>,
   object,
   ''
