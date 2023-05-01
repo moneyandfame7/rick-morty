@@ -13,6 +13,7 @@ import { useActions } from 'shared/hooks/useActions'
 export const ColorSchemeToggle: FC<SvgIconProps> = ({ ...sx }) => {
   const mode = useAppSelector(selectCustomization).mode
   const { setMode } = useActions()
+
   const handleClick = () => {
     mode === 'dark' ? setMode('light') : setMode('dark')
   }
