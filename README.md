@@ -1,5 +1,9 @@
 
 # Rick&Morty client
+<p align="center">
+  <a href="https://the-rick-morty.vercel.app" target="_blank"><img src="https://www.freepnglogos.com/uploads/rick-and-morty-png/rick-and-morty-portal-shoes-white-clothing-zavvi-23.png" width="300" alt="Nest Logo" /></a>
+</p>
+
 
 A project based on the animated TV series Rick and Morty.
 With roles ( user and admin). You can see backend [here](https://github.com/moneyandfame7/rick-morty-api-nest).
