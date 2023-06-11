@@ -9,7 +9,6 @@ interface CopyButtonProps {
 export const CopyButton: FC<CopyButtonProps> = ({ link, children }) => {
   const [disabled, setDisabled] = useState(false)
   const [btnText, setBtnText] = useState(children)
-
   const handleClick = () => {
     navigator.clipboard.writeText(link)
     setDisabled(true)
