@@ -33,7 +33,7 @@ and more
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`REACT_APP_API_URL - https://the-rick-morty.vercel.app` 
+`REACT_APP_API_URL - [https://the-rick-morty.vercel.app](https://rick-morty-api.up.railway.app/)` 
 
 
 
