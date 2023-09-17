@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormikProps } from 'formik'
+import { type FormikProps } from 'formik'
 import { NumberInput } from 'shared/components/forms/NumberInput'
 import { InputType, MAX_TAKE, MIN_TAKE } from '../constant'
 import { SelectInput } from 'shared/components/forms/SelectInput'

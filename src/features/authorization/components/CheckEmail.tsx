@@ -1,11 +1,11 @@
-import React, { FC, useEffect } from 'react'
+import React, { type FC, useEffect } from 'react'
 import { Box, Button, Typography, useTheme } from '@mui/material'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 
 import { ForgotTitle } from 'features/authorization/components/titles'
-import { ForgotCredentials } from 'features/users/type'
+import { type ForgotCredentials } from 'features/users/type'
 
-import { BaseIcon } from 'shared/components/common/icons'
+import { BaseIcon } from 'shared/components/icons'
 import { PrimaryButton } from 'shared/components/common/buttons'
 
 interface CheckEmailProps {

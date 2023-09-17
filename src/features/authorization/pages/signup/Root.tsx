@@ -1,4 +1,4 @@
-import React, { type FC, PropsWithChildren, useEffect, useState } from 'react'
+import React, { type FC, type PropsWithChildren, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { Grid } from '@mui/material'

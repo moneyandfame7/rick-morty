@@ -4,8 +4,8 @@ import { useFormik } from 'formik'
 import type { ResetPasswordDetails } from 'features/authorization/type'
 import { useResetMutation } from 'features/authorization/services'
 
-import { resetValidationSchema } from 'shared/utils'
 import { useActions } from 'shared/hooks/useActions'
+import { resetValidationSchema } from 'shared/validations/authorization'
 
 export const useReset = () => {
   const [searchParams] = useSearchParams()

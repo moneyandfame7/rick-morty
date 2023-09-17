@@ -1,4 +1,4 @@
-import { Theme, darken, lighten } from '@mui/material'
+import { type Theme, darken, lighten } from '@mui/material'
 
 export const getContrastColor = (theme: Theme, coeff: number) => {
   switch (theme.palette.mode) {

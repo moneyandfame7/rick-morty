@@ -1,5 +1,5 @@
-import { RecentUsers } from 'features/admin/type'
-import { Column, NeedToFormatValues } from '.'
+import { type RecentUsers } from 'features/admin/type'
+import { type Column, type NeedToFormatValues } from '.'
 import _ from 'lodash'
 
 /* Прибирає обʼєкт, у якого поле field дорівнює вхідному параметру */

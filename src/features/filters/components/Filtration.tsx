@@ -1,13 +1,13 @@
-import React, { FC, useState } from 'react'
+import React, { type FC, useState } from 'react'
 import { isEqual } from 'lodash'
 import { Box, Button, Dialog, DialogContent, DialogTitle, Divider, Stack, Tooltip, Typography } from '@mui/material'
 import TuneIconOutlined from '@mui/icons-material/TuneOutlined'
 import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined'
 
-import { Filters, FiltersTypes, FiltersValues } from 'features/filters/types'
-import { getInputByType } from 'features/filters/utils/getInputByType'
+import type { Filters, FiltersTypes, FiltersValues } from 'features/filters/types'
+import { getInputByType } from 'features/filters/utils'
+import { useFiltration } from 'features/filters/hooks'
 
-import { useFiltration } from 'shared/hooks'
 import { wordFromUpperCase } from 'shared/utils'
 import { PrimaryButton, OutlinedButton } from 'shared/components/common/buttons'
 

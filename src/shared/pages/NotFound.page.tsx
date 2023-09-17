@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { Container, Stack, Typography, useTheme } from '@mui/material'
@@ -6,8 +6,8 @@ import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 
 import { LinkButton, OutlinedButton } from 'shared/components/common/buttons'
-import { BaseIcon } from 'shared/components/common/icons'
 import { HOME_ROUTE } from 'shared/routes'
+import { BaseIcon } from 'shared/components/icons'
 
 export const NotFoundPage: FC = () => {
   const navigate = useNavigate()
@@ -42,7 +42,7 @@ export const NotFoundPage: FC = () => {
         >
           Go back
         </OutlinedButton>
-        <LinkButton to={HOME_ROUTE.path as string} variant="primary" size="small">
+        <LinkButton to={{ pathname: HOME_ROUTE.path }} variant="primary" size="small">
           Take me home
         </LinkButton>
       </Stack>

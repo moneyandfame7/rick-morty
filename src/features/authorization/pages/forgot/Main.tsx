@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { type FC, useState } from 'react'
 
 import { ForgotPasswordForm } from 'features/authorization/components/forms'
 import { CheckEmail, GoBackButton } from 'features/authorization/components'

@@ -1,4 +1,4 @@
-import { Theme } from '@mui/material'
+import { type Theme } from '@mui/material'
 
 export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
   MuiFormLabel: {
@@ -20,6 +20,16 @@ export const getComponentOverrides = (theme: Theme): Theme['components'] => ({
     styleOverrides: {
       sizeSmall: {
         height: '40px'
+      }
+    }
+  },
+  MuiTooltip: {
+    styleOverrides: {
+      tooltip: {
+        backgroundColor: '#2a2a2aeb'
+      },
+      arrow: {
+        color: '#2a2a2aeb'
       }
     }
   },

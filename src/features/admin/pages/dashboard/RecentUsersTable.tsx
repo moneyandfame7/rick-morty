@@ -2,7 +2,7 @@ import React, { type FC } from 'react'
 import dayjs from 'dayjs'
 import { Avatar, Chip, Stack, Typography } from '@mui/material'
 
-import { RecentUsers } from 'features/admin/type'
+import { type RecentUsers } from 'features/admin/type'
 import { Table } from 'features/admin/components'
 
 const getFormattedDate = (row: RecentUsers) => {
@@ -66,6 +66,5 @@ interface RecentUsersTableProps {
   recentUsers: RecentUsers[]
 }
 export const RecentUsersTable: FC<RecentUsersTableProps> = ({ recentUsers }) => {
-  console.log(recentUsers)
   return <Table data={recentUsers} excludedFields={['photo']} needToFormat={needToFormat} />
 }

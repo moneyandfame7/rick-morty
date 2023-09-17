@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { ResponsivePie } from '@nivo/pie'
-import { PieTooltipProps } from '@nivo/pie/dist/types/types'
+import { type PieTooltipProps } from '@nivo/pie/dist/types/types'
 
 import { Box, Stack, Typography, useTheme } from '@mui/material'
 import '../styles.scss'

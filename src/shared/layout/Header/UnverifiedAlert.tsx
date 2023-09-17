@@ -1,9 +1,12 @@
-import { Alert, Typography } from '@mui/material'
-import { useVerificationSendMutation } from 'features/authorization/services'
 import React, { type FC } from 'react'
+
+import { Alert, Typography } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send'
+
+import { useVerificationSendMutation } from 'features/authorization/services'
+
 import { PrimaryButton } from 'shared/components/common/buttons'
-import { useSnackbar } from 'shared/components'
+import { useSnackbar } from 'shared/hooks'
 
 export const UnverifiedAlert: FC = () => {
   const [resendVerification, { isLoading: isVerificationLoading }] = useVerificationSendMutation()

@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 
 import { Avatar, Chip, IconButton, useMediaQuery } from '@mui/material'
-import { GridColDef } from '@mui/x-data-grid'
+import { type GridColDef } from '@mui/x-data-grid'
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined'
 
-export const getRoleBackground = (role: string) => {
+export const RoleBackground = ({ role }: { role: string }) => {
   const getRoleBackground = () => {
     switch (role) {
       case 'owner':
@@ -21,14 +21,14 @@ export const getRoleBackground = (role: string) => {
   return <Chip color={getRoleBackground()} label={role} />
 }
 
-export const getVerifiedStatus = (isVerified: boolean) => {
+export const VerifiedStatus = ({ isVerified }: { isVerified: boolean }) => {
   if (isVerified) {
     return <Chip color="success" label="Verified" />
   }
   return <Chip label="Unverified" />
 }
 
-export const getProfileColumn = (id: string) => {
+export const ProfileColumn = ({ id }: { id: string }) => {
   const navigate = useNavigate()
   return (
     <IconButton
@@ -80,12 +80,20 @@ export const useUserColumns = () => {
       type: 'singleSelect',
       valueOptions: ['user', 'admin'],
       flex: isNotDesktop ? undefined : 0.3,
-      renderCell: ({ value }) => getRoleBackground(value),
+      renderCell: ({ value }) => <RoleBackground role={value} />,
       valueGetter: params => params.value.value,
       valueSetter: params => {
         const newRole = { ...params.row.role, value: params.value }
         return { ...params.row, role: newRole }
       }
+    },
+    {
+      field: 'auth_type',
+      headerName: 'Auth type',
+      sortable: false,
+      editable: false,
+      disableColumnMenu: true,
+      flex: isNotDesktop ? undefined : 0.3
     },
     {
       field: 'is_verified',
@@ -94,7 +102,7 @@ export const useUserColumns = () => {
       editable: true,
       type: 'boolean',
       disableColumnMenu: true,
-      renderCell: ({ value }) => getVerifiedStatus(value),
+      renderCell: ({ value }) => <VerifiedStatus isVerified={value} />,
       flex: isNotDesktop ? undefined : 0.5
     },
     {
@@ -115,7 +123,7 @@ export const useUserColumns = () => {
       flex: isNotDesktop ? undefined : 0.2,
       hideable: false,
       disableColumnMenu: true,
-      renderCell: ({ value }) => getProfileColumn(value)
+      renderCell: ({ value }) => <ProfileColumn id={value} />
     }
   ]
 

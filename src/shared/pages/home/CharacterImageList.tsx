@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import Box from '@mui/material/Box'
 import { ImageList, ImageListItem, Skeleton, useMediaQuery, useTheme } from '@mui/material'
 import Image from 'mui-image'

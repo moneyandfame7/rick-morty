@@ -8,7 +8,7 @@ import { useCreateTheme } from 'application/theme'
 import { selectCustomization } from 'application/theme/customization'
 
 import { Header } from 'shared/layout'
-import { CookieBanner } from 'shared/components/extra'
+import { CookieBanner } from 'shared/components'
 
 export const App: React.FC = () => {
   const customization = useAppSelector(selectCustomization)

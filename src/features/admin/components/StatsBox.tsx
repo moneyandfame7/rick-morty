@@ -1,5 +1,5 @@
-import { Box, Grid, GridProps, Typography } from '@mui/material'
-import React, { PropsWithChildren, type FC } from 'react'
+import { Box, Grid, type GridProps, Typography } from '@mui/material'
+import React, { type PropsWithChildren, type FC } from 'react'
 
 interface StatsBoxProps {
   title: string

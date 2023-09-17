@@ -4,8 +4,6 @@ import Image from 'mui-image'
 
 import { Dialog, DialogActions, DialogContent, Grid, Stack, Typography } from '@mui/material'
 
-import { environmentsConfig } from 'application/config'
-
 import { MAIN_CHARACTER_ROUTE } from 'features/characters/routes'
 import type { Character } from 'features/characters/type'
 
@@ -64,7 +62,7 @@ export const SuccessfullyCreatedDialog: FC<SuccessfullyCreatedDialogProps> = ({ 
       >
         <Grid container spacing={2}>
           <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
-            <CopyButton link={`${environmentsConfig.baseUrl}/${Navigation.CHARACTERS}/${createdCharacter.id}`}>
+            <CopyButton link={`${location.origin}/${Navigation.CHARACTERS}/${createdCharacter.id}`}>
               Copy link
             </CopyButton>
           </Grid>

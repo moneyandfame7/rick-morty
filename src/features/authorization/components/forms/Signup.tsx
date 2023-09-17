@@ -1,10 +1,10 @@
-import React, { FC, useContext, useEffect, useState } from 'react'
+import React, { type FC, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Box, Divider, Stack, Typography } from '@mui/material'
 
 import { useSignup } from 'features/authorization/hooks'
-import { authHandler } from 'features/authorization/services'
+import { errorHandler } from 'features/authorization/services'
 import { SocialLogin } from 'features/authorization/components'
 import { StepperContext } from 'features/authorization/components/steppers'
 import Title from 'features/authorization/components/titles/Signup'
@@ -23,7 +23,7 @@ export const SignupForm: FC = () => {
     }
     /*  eslint-disable-next-line */
   }, [isSuccess])
-  const authBadCredentials = authHandler(error)
+  const authBadCredentials = errorHandler(error)
   return (
     <Stack direction="column" width="100%">
       <Box sx={{ width: '100%' }} component="form" onSubmit={formik.handleSubmit} noValidate>

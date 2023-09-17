@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { type FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Confetti from 'react-confetti'
 import { useWindowSize } from 'react-use'

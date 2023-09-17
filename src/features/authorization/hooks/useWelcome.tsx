@@ -2,14 +2,15 @@ import { useMemo } from 'react'
 import countryList from 'react-select-country-list'
 import { useFormik } from 'formik'
 
-import { useWelcomeMutation } from 'features/authorization/services'
-import { UserWelcomeDetails } from 'features/users/type'
-
-import { welcomeValidationSchema } from 'shared/utils'
-import { CountryData } from 'shared/components/forms'
-import { useActions } from 'shared/hooks/useActions'
 import { useAppSelector } from 'application/store'
+
+import { useWelcomeMutation } from 'features/authorization/services'
+import type { UserWelcomeDetails } from 'features/users/type'
 import { selectCurrentUser } from 'features/users/services'
+
+import { type CountryData } from 'shared/components/forms'
+import { useActions } from 'shared/hooks/useActions'
+import { welcomeValidationSchema } from 'shared/validations/authorization'
 
 export const useWelcome = () => {
   const user = useAppSelector(selectCurrentUser)

@@ -1,16 +1,16 @@
-import React, { FC } from 'react'
-import { FormikProps } from 'formik'
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
-import { SerializedError } from '@reduxjs/toolkit'
+import React, { type FC } from 'react'
+import { type FormikProps } from 'formik'
+import { type FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
+import { type SerializedError } from '@reduxjs/toolkit'
 
 import { Box, Typography, useTheme } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 
-import { ForgotCredentials } from 'features/users/type'
-import { authHandler } from 'features/authorization/services'
+import { type ForgotCredentials } from 'features/users/type'
+import { errorHandler } from 'features/authorization/services'
 
 import { ValidatedInput } from 'shared/components/forms/ValidatedInput'
-import { BaseIcon } from 'shared/components/common/icons/BaseIcon'
+import { BaseIcon } from 'shared/components/icons/BaseIcon'
 import { PrimaryButton } from 'shared/components/common/buttons'
 
 interface ForgotPasswordFormProps {
@@ -20,7 +20,7 @@ interface ForgotPasswordFormProps {
 }
 
 export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ formik, error, isLoading }) => {
-  const forgotBadCredentials = authHandler(error)
+  const forgotBadCredentials = errorHandler(error)
   const theme = useTheme()
   return (
     <>

@@ -1,11 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 import { GoBackButton } from 'features/authorization/components'
+
 import { HOME_ROUTE } from 'shared/routes'
-import { SuccessIcon } from 'shared/components/common/icons'
+import { SuccessIcon } from 'shared/components/icons'
+import { PrimaryButton } from 'shared/components/common/buttons'
 
 export const SuccessReset = () => {
   const navigate = useNavigate()
@@ -40,9 +42,9 @@ export const SuccessReset = () => {
       >
         Your password has been successfully reset. Click bellow to log in magically
       </Typography>
-      <Button fullWidth variant="contained" sx={{ m: '20px 0 30px' }} onClick={onClick}>
+      <PrimaryButton fullWidth sx={{ m: '20px 0 30px' }} onClick={onClick}>
         Continue
-      </Button>
+      </PrimaryButton>
 
       <GoBackButton />
     </Box>

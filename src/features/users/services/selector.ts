@@ -1,4 +1,4 @@
-import { RootState } from 'application/store'
+import { type RootState } from 'application/store'
 
 import type { User } from 'features/users/type'
 

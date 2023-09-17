@@ -31,6 +31,7 @@
     "react-color": "^2.19.3",
     "react-confetti": "^6.1.0",
     "react-countup": "^6.4.2",
+    "react-cropper": "^2.3.3",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-icons": "^4.8.0",
@@ -50,7 +51,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "lint": "npx eslint .",
+    "lint": "eslint --ext .tsx,.ts src",
+    "lint:fix": "eslint --ext .tsx,.ts src --fix",
     "build": "react-scripts build",
     "test": "react-scripts test"
   },

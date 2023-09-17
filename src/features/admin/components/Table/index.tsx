@@ -1,19 +1,8 @@
 import React, { type FC } from 'react'
-// import dayjs from 'dayjs'
-
-import {
-  Paper,
-  TableContainer,
-  Table as MuiTable,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody
-  /* Chip, */
-  // Avatar
-} from '@mui/material'
 import _ from 'lodash'
-import { RecentUsers } from '../../type'
+
+import { Paper, TableContainer, Table as MuiTable, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
+import { type RecentUsers } from 'features/admin/type'
 
 export interface Column {
   field: string
@@ -72,7 +61,6 @@ export const Table: FC<TableProps> = ({ data, excludedFields, needToFormat }) =>
     const unexcludedRows = formatValues(data, needToFormat)
     const rows = unexcludedRows.map(user => _.omit(user, excludeKey))
 
-    console.log({ rows, columns })
     return {
       columns,
       rows

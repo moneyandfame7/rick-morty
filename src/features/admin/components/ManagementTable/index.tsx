@@ -1,8 +1,8 @@
 import React, { type FC } from 'react'
-import { DataGrid, DataGridProps } from '@mui/x-data-grid'
-import { Box, BoxProps, LinearProgress, Stack } from '@mui/material'
-import { NoRowsOverlay } from '../NoRowsOverlay'
-import { CustomToolbar } from '../CustomToolbar'
+import { DataGrid, type DataGridProps } from '@mui/x-data-grid'
+import { Box, type BoxProps, LinearProgress, Stack } from '@mui/material'
+import { NoRowsOverlay } from './NoRowsOverlay'
+import { CustomToolbar } from './CustomToolbar'
 import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
 
 interface ManagementTableInterface {

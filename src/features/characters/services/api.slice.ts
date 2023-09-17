@@ -1,9 +1,9 @@
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import { type FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
 import { rootApi } from 'application/store/root-api.slice'
 
 import type { Character, ManyCharacter } from 'features/characters/type'
-import { CharacterFields } from 'features/characters/constant'
+import { type CharacterFields } from 'features/characters/constant'
 
 import { Navigation } from 'shared/constants'
 

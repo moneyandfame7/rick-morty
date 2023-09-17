@@ -1,5 +1,4 @@
-import { UserRole } from 'features/authorization/type'
-import { User } from 'features/users/type'
+import type { User } from 'features/users/type'
 
 export interface UserStatistics {
   authStats: Array<{

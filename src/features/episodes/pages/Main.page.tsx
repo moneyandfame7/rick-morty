@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { CircularProgress } from '@mui/material'
 
 import { useGetManyEpisodesQuery } from 'features/episodes/services'
@@ -14,12 +14,6 @@ export const MainEpisodePage: FC = () => {
 
   return (
     <>
-      {/* <Pagination
-        prev={data?.info.prev}
-        next={data?.info.next}
-        navigationType={NavigationEnum.EPISODES}
-        isLoading={isLoading}
-      />*/}
       <div
         style={{
           display: 'flex',

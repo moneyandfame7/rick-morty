@@ -3,7 +3,8 @@ import React from 'react'
 import SmartToyIcon from '@mui/icons-material/SmartToy'
 import LocationSearchingIcon from '@mui/icons-material/LocationSearching'
 import MovieIcon from '@mui/icons-material/Movie'
-interface ILinkConfig {
+
+export interface HeaderLinkType {
   url: string
   name: string
   id: number
@@ -11,7 +12,7 @@ interface ILinkConfig {
   search: string
 }
 
-export const LINKS_CONFIG: ILinkConfig[] = [
+export const NAV_LINKS: HeaderLinkType[] = [
   {
     id: 0,
     url: '/characters',

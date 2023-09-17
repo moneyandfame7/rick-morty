@@ -1,2 +1,5 @@
-export * from './Logo';
-export * from './UserAvatar';
+export * from './Logo'
+export * from './UserAvatar'
+export * from './BaseIcon'
+export * from './SuccessIcon'
+export * from './LogoIcon'

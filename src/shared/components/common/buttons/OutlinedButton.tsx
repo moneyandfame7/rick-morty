@@ -1,6 +1,6 @@
 import React, { type FC } from 'react'
 import { styled } from '@mui/material'
-import { LoadingButton, LoadingButtonProps } from '@mui/lab'
+import { LoadingButton, type LoadingButtonProps } from '@mui/lab'
 import { getContrastColor } from 'shared/utils/getContrastColor'
 
 export const StyledOutlineButton = styled(LoadingButton)<LoadingButtonProps>(({ theme }) => ({
@@ -33,8 +33,8 @@ export const StyledOutlineButton = styled(LoadingButton)<LoadingButtonProps>(({ 
     lineHeight: '24px'
   },
   '&.MuiButton-sizeSmall': {
-    padding: '8px 14px 8px 14px',
-    fontSize: 14,
+    padding: '4px 10px',
+    fontSize: 13,
     lineHeight: '20px'
   }
 }))

@@ -1,0 +1,35 @@
+@import 'cropperjs/dist/cropper.css';
+
+.cropper-view-box {
+  border-radius: 50%;
+  outline: 1px solid #7f56d9;
+  outline-color: #7f56d9;
+}
+.cropper-line {
+  background-color: #7f56d9;
+}
+.cropper-point {
+  background-color: #7f56d9;
+  &.point-se {
+    width: 5px;
+    height: 5px;
+  }
+}
+.cropper-center {
+  &::after {
+    height: 13px;
+    width: 2px;
+    top: -6px;
+  }
+  &::before {
+    height: 2px;
+    width: 13px;
+    left: -6px;
+  }
+}
+.cropper-face {
+  background-color: inherit !important;
+}
+.cropper-dashed {
+  display: none;
+}

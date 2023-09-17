@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { type FC, useEffect } from 'react'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { Box, Link, Stack, Typography } from '@mui/material'
@@ -6,7 +6,7 @@ import { Box, Link, Stack, Typography } from '@mui/material'
 import { useAppSelector } from 'application/store'
 
 import { useLogin } from 'features/authorization/hooks'
-import { authHandler, selectIsAuthenticated } from 'features/authorization/services'
+import { errorHandler, selectIsAuthenticated } from 'features/authorization/services'
 
 import { HOME_ROUTE } from 'shared/routes'
 import { ValidatedInput } from 'shared/components/forms'
@@ -17,7 +17,7 @@ export const LoginForm: FC = () => {
   const navigate = useNavigate()
   const { formik, isLoading, error } = useLogin()
   const isUserAuthenticated = useAppSelector(selectIsAuthenticated)
-  const authBadCredentials = authHandler(error)
+  const authBadCredentials = errorHandler(error)
 
   useEffect(() => {
     if (isUserAuthenticated) {

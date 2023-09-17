@@ -6,20 +6,19 @@ import DoneOutlineOutlinedIcon from '@mui/icons-material/DoneOutlineOutlined'
 import { useAppSelector } from 'application/store'
 
 import { useLogout, useWelcome } from 'features/authorization/hooks'
-import { authHandler } from 'features/authorization/services'
+import { errorHandler } from 'features/authorization/services'
 import Title from 'features/authorization/components/titles/Signup'
 import { StepperContext } from 'features/authorization/components/steppers'
 import { selectCurrentUser } from 'features/users/services'
 
-import { ValidatedInput } from 'shared/components/forms'
-import { CountryAutocompleteInput } from 'shared/components/forms'
-import { OutlinedButton } from 'shared/components/common/buttons'
-import { PrimaryButton } from 'shared/components/common/buttons'
+import { ValidatedInput, CountryAutocompleteInput } from 'shared/components/forms'
+import { OutlinedButton, PrimaryButton } from 'shared/components/common/buttons'
+import { getUserCountry } from 'shared/utils/getUserCountry'
 
 export const WelcomeForm: FC = () => {
   const { countries, formik, isLoading, error, isSuccess } = useWelcome()
   const { isLoading: isLogoutLoading, makeLogout } = useLogout()
-  const authBadCredentials = authHandler(error)
+  const authBadCredentials = errorHandler(error)
   const user = useAppSelector(selectCurrentUser)
   const { setActiveStep } = useContext(StepperContext)
 
@@ -36,7 +35,6 @@ export const WelcomeForm: FC = () => {
     }
   }
 
-  console.log(formik.values.country)
   return (
     <Stack
       component="form"
@@ -67,8 +65,11 @@ export const WelcomeForm: FC = () => {
         />
         <CountryAutocompleteInput
           items={countries}
-          setFieldValue={formik.setFieldValue}
-          onBlur={formik.handleBlur}
+          value={getUserCountry(formik.values.country)}
+          disabled={isLoading}
+          onChange={(e, country) => {
+            formik.setFieldValue('country', country?.value)
+          }}
           errorText={formik.errors.country}
         />
         <Stack direction="row" alignItems="center" width="100%" justifyContent="space-between">

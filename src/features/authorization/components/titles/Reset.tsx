@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 
 import { Box, Typography, useTheme } from '@mui/material'
 import KeyOutlinedIcon from '@mui/icons-material/KeyOutlined'
 
-import { BaseIcon, SuccessIcon } from 'shared/components/common/icons'
+import { BaseIcon, SuccessIcon } from 'shared/components/icons'
 
 const Reset: FC = () => {
   const theme = useTheme()

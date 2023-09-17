@@ -2,9 +2,9 @@ import React, { type FC } from 'react'
 
 import { Container, Grid, Typography } from '@mui/material'
 
-import { characterHandler } from 'features/authorization/services'
 import { useCreateCharacter } from 'features/characters/hooks'
 import { UploadCharacterImage } from 'features/characters/components'
+import { characterHandler } from 'features/characters/services'
 
 import { Alert } from 'shared/components'
 
